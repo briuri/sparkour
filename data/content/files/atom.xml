@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-03-17T10:00:00Z</updated>
+	<updated>2016-03-24T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,16 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 		
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-24</id>
+		<link href="https://sparkour.urizone.net/?2016-03-24" />
+		<updated>2016-03-24T10:00:00Z</updated>
+		<title type="html">Using JDBC with Spark DataFrames</title>
+		<summary type="html">
+			This recipe shows how Spark DataFrames can be read from or written to relational database tables with Java Database Connectivity (JDBC).
+		</summary>
+	</entry>
+			
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-03-17</id>
 		<link href="https://sparkour.urizone.net/?2016-03-17" />
