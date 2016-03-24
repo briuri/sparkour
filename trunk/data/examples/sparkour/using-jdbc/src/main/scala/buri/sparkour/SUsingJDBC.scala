@@ -54,9 +54,6 @@ object SUsingJDBC {
 		val malesDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
 		malesDF.show()
 		
-		println("Use groupBy to show counts of males and females.")
-		entireDF.groupBy("is_male").count().show()
-		
 		println("Update weights by 2 pounds (results in a new DataFrame with same column names)")
 		val heavyDF = entireDF.withColumn("updated_weight_lb", entireDF("weight_lb") + 2)
 		val updatedDF = heavyDF.select("id", "name", "is_male", "height_in", "updated_weight_lb")

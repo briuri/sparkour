@@ -55,9 +55,6 @@ if __name__ == "__main__":
     malesDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
     malesDF.show()
 
-    print("Use groupBy to show counts of males and females.")
-    entireDF.groupBy("is_male").count().show()
-
     print("Update weights by 2 pounds (results in a new DataFrame with same column names)")
     heavyDF = entireDF.withColumn("updated_weight_lb", entireDF["weight_lb"] + 2)
     updatedDF = heavyDF.select("id", "name", "is_male", "height_in", "updated_weight_lb") \

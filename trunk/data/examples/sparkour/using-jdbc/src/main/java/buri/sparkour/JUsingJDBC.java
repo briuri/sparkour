@@ -56,9 +56,6 @@ public final class JUsingJDBC {
 		DataFrame malesDF = sqlContext.read().jdbc(jdbcUrl, where, dbProperties);
 		malesDF.show();
 
-		System.out.println("Use groupBy to show counts of males and females.");
-		entireDF.groupBy("is_male").count().show();
-
 		System.out.println("Update weights by 2 pounds (results in a new DataFrame with same column names)");
 		DataFrame heavyDF = entireDF.withColumn("updated_weight_lb", entireDF.col("weight_lb").plus(2));
 		DataFrame updatedDF = heavyDF.select("id", "name", "is_male", "height_in", "updated_weight_lb")
