@@ -1,5 +1,4 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <bu:rOverview publishDate="2016-03-11">
@@ -17,7 +16,7 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Spark DataFrames were introduced in Spark <span class="rPN">1.3.0</span>. Any equal or higher version should work with this recipe.</li>
+		<li>Spark DataFrames were introduced in Spark 1.3.0. Any equal or higher version should work with this recipe.</li>
 	</ol>
 		
 	<a name="toc"></a>
@@ -32,10 +31,10 @@
 		
 <bu:rSection anchor="01" title="DataFrames Highlights" />
 
-<p>Most Spark tutorials dive into Resilient Distributed Datasets (RDDs) right away, loading file data with the Spark Core API (via <span class="rCW">textFile()</span>),
-and performing common transformations and actions on the raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions at a higher level. 
-The DataFrames API provides a tabular view of RDD data and allows you use common relational database patterns without stringing together endless chains 
-of low-level operators. (In math terms, where the Core API gives you <span class="rCW">add()</span> and allows you to put it in a loop to perform multiplication, 
+<p>Most Spark tutorials dive into Resilient Distributed Datasets (RDDs) right away, loading file data with <span class="rCW">textFile()</span> from the Spark Core API, and performing
+common transformations and actions on raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions of the data at a higher level. 
+The DataFrames API provides a tabular view of RDD data and allows you to interact with the data through common relational database patterns without stringing together endless chains 
+of low-level operators. (In math terms, where the Core API gives you <span class="rCW">add()</span> and tells you to put it in a loop to do multiplication, 
 the DataFrames API just provides <span class="rCW">multiply()</span> right out of the box).</p>
 	
 <p>DataFrames are optimized for distributed processing within Spark, and are also compatible with the DataFrame libraries offered in Python and R.
@@ -60,33 +59,35 @@ With a schema that's either inferred from the data or specified as a configurati
 		sudo chown -R ec2-user:ec2-user /opt/sparkour		
 	</bu:rCode>
 
-	<li>The example source code for each language is in a subdirectory of <span class="rCW">src/main</span> with that language's name. A helper script,
-		<span class="rCW">sparkour.sh</span> is included to compile, bundle, and submit applications in all languages.</li>
+	<li>The example source code for each language is in a subdirectory with that language's name. Refresher instructions for running the applications can be seen
+		below. Helper scripts are included to compile Java and Scala source code, bundle those classes into JAR files, and submit to the cluster with a single command.</li>
 		
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
+				# Use shell script to compile, bundle, and submit Java source code
+				# Copy commands out of script if you'd prefer to do this by hand
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh java
+				./runJava.sh
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
-				# Use shell script to submit source code
+				# Run the python code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh python
+				/opt/spark/bin/spark-submit python/dataframes_sandbox.py
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
-				# Use shell script to submit source code
+				# Run the R code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh r
+				/opt/spark/bin/spark-submit r/dataframes_sandbox.R
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
+				# Use shell script to compile, bundle, and submit Scala source code
+				# Copy commands out of script if you'd prefer to do this by hand
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh scala
+				./runScala.sh
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -113,12 +114,6 @@ With a schema that's either inferred from the data or specified as a configurati
 		a JSON file. The format of the JSON file requires that each line be an independent, well-formed JSON object
 		(and lines should not end with a comma). Pretty-printed JSON objects need to be compressed to a single line.</li>
 			
-	<bu:rCode lang="plain">
-		{"district_type": "Congressional", "last_name": "Clinton", "candidate_ballot_order": "1", "precinct_code": "###PROV", "referendumId": "", "total_votes": "9", "candidate_name": "Hillary Clinton", "locality_name": "LOUDOUN COUNTY", "office_ballot_order": "1", "party": "Democratic", "election_name": "2016 March Democratic Presidential Primary", "election_date": "2016-03-01 00:00:00.000", "precinct_name": "## Provisional", "null": [""], "locality_code": "107", "negative_votes": "", "office_name": "President", "candidateId": "124209128", "DESCRIPTION": "10th District", "districtId": "1085224094", "referendum_title": "", "officeId": "933838092", "in_precinct": "## Provisional", "election_type": "Primary"}
-		{"district_type": "Congressional", "last_name": "O'Malley", "candidate_ballot_order": "2", "precinct_code": "###PROV", "referendumId": "", "total_votes": "0", "candidate_name": "Martin J. O'Malley", "locality_name": "LOUDOUN COUNTY", "office_ballot_order": "1", "party": "Democratic", "election_name": "2016 March Democratic Presidential Primary", "election_date": "2016-03-01 00:00:00.000", "precinct_name": "## Provisional", "null": [""], "locality_code": "107", "negative_votes": "", "office_name": "President", "candidateId": "1999936198", "DESCRIPTION": "10th District", "districtId": "1085224094", "referendum_title": "", "officeId": "933838092", "in_precinct": "## Provisional", "election_type": "Primary"}
-		{"district_type": "Congressional", "last_name": "Sanders", "candidate_ballot_order": "3", "precinct_code": "###PROV", "referendumId": "", "total_votes": "11", "candidate_name": "Bernie Sanders", "locality_name": "LOUDOUN COUNTY", "office_ballot_order": "1", "party": "Democratic", "election_name": "2016 March Democratic Presidential Primary", "election_date": "2016-03-01 00:00:00.000", "precinct_name": "## Provisional", "null": [""], "locality_code": "107", "negative_votes": "", "office_name": "President", "candidateId": "673872380", "DESCRIPTION": "10th District", "districtId": "1085224094", "referendum_title": "", "officeId": "933838092", "in_precinct": "## Provisional", "election_type": "Primary"}
-	</bu:rCode>
-		
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
@@ -154,68 +149,14 @@ With a schema that's either inferred from the data or specified as a configurati
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
-	
 	<li>The path specified in the above command could also be a directory, and the <span class="rCW">DataFrame</span> would be
 		built from all files in that directory (but not in nested directories).</li>
 	<li>We can now treat the data as a column-based table, performing queries and transformations as if
 		the underlying data were in a relational database. By default, the 
 		<span class="rCW">DataFrameReader</span> infers the schema of the data from the	data in the 
 		first row of the file. In this case, the original data was all string-based, so the
-		<span class="rCW">DataFrame</span> makes each column string-based. You can use <span class="rCW">printSchema()</span> to
-		see the inferred schema of the data.</li>
-
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<bu:rCode lang="java">
-				// Print the schema
-				rawDF.printSchema();
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="python">
-				# Print the schema
-				rawDF.printSchema()
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="plain">
-				# Print the schema
-				printSchema(rawDF)
-			</bu:rCode>	
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="scala">
-				// Print the schema
-				rawDF.printSchema()
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
-			
-	<bu:rCode lang="plain">
-		root
-		 |-- DESCRIPTION: string (nullable = true)
-		 |-- candidateId: string (nullable = true)
-		 |-- candidate_ballot_order: string (nullable = true)
-		 |-- candidate_name: string (nullable = true)
-		 |-- districtId: string (nullable = true)
-		 |-- district_type: string (nullable = true)
-		 |-- election_date: string (nullable = true)
-		 |-- election_name: string (nullable = true)
-		 |-- election_type: string (nullable = true)
-		 |-- in_precinct: string (nullable = true)
-		 |-- last_name: string (nullable = true)
-		 |-- locality_code: string (nullable = true)
-		 |-- locality_name: string (nullable = true)
-		 |-- negative_votes: string (nullable = true)
-		 |-- null: array (nullable = true)
-		 |    |-- element: string (containsNull = true)
-		 |-- officeId: string (nullable = true)
-		 |-- office_ballot_order: string (nullable = true)
-		 |-- office_name: string (nullable = true)
-		 |-- party: string (nullable = true)
-		 |-- precinct_code: string (nullable = true)
-		 |-- precinct_name: string (nullable = true)
-		 |-- referendumId: string (nullable = true)
-		 |-- referendum_title: string (nullable = true)
-		 |-- total_votes: string (nullable = true)
-	</bu:rCode>
+		<span class="rCW">DataFrame</span> makes each column string-based.</li>
+		
 </ol>
 
 <bu:rSection anchor="03" title="Transforming and Querying the DataFrame" />
@@ -355,7 +296,7 @@ With a schema that's either inferred from the data or specified as a configurati
 			</bu:rTab>
 		</bu:rTabs>
 
-	<li>To demonstrate a <span class="rCW">join</span> transformation, let's consider a contrived example.
+	<li>To demonstrate the <span class="rCW">join</span> transformation, let's consider a contrived example.
 		The previous query that showed the ballot order needs to be changed to show
 		descriptive English text instead of numbers. We have a reference lookup table available in the file
 		called <span class="rCW">friendly_orders.json</span> that we would like to use.</li>
@@ -644,27 +585,27 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				System.out.println("Saving overall candidate summary as a new JSON dataset.");
-				summaryDF.write().mode("overwrite").json("target/json");		
+				summaryDF.write().mode("overwrite").json("output.json");		
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("Saving overall candidate summary as a new JSON dataset.")
-			    summaryDF.write.json("target/json", mode="overwrite")		
+			    summaryDF.write.json("output.json", mode="overwrite")		
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				print("Saving overall candidate summary as a new JSON dataset.")
-				write.df(summaryDF, path="target/json", source="json", mode="overwrite")		
+				write.df(summaryDF, path="output.json", source="json", mode="overwrite")		
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("Saving overall candidate summary as a new JSON dataset.")
-				summaryDF.write.mode("overwrite").json("target/json")		
+				summaryDF.write.mode("overwrite").json("output.json")		
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
 
-	<li>If you look in the <span class="rCW">target/json</span> directory after running the application, you'll see a
+	<li>If you look in the directory after running the application, you'll see a
 		separate JSON file for each row of the <span class="rCW">DataFrame</span>, along with a <span class="rCW">_SUCCESS</span>
 		indicator file.</li>
 		

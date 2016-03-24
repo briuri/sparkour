@@ -1,7 +1,5 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
-
 <c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
 
 <bu:rOverview publishDate="2016-02-24">
@@ -290,8 +288,7 @@ For now, we use a pre-built distribution which already contains a common set of 
 	</bu:rCode>
 		
 	<li>Spark is not shy about presenting reams of informational output to the console as it runs. To make the output of your applications easier to spot, you can
-		optionally set up a Log4J configuration file and suppress some of the Spark logging output. You should maintain logging at the INFO level during the
-		Sparkour tutorials, as we'll review some information such as Master URLs in the log files.</li>
+		optionally set up a Log4J configuration file and suppress some of the Spark logging output.</li>
 		
 	<bu:rCode lang="bash">
 		# Create a Log4J configuration file from the provided template.
@@ -299,7 +296,6 @@ For now, we use a pre-built distribution which already contains a common set of 
 		cp log4j.properties.template log4j.properties
 		vi log4j.properties
 		# (on line 19 of the file, change the log level from INFO to ERROR)
-		# (Note that this will suppress some of the output needed in the tutorials)
 		
 		# log4j.rootCategory=ERROR, console
 		
@@ -396,7 +392,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 	</bu:rTabs>
 	
 	<li>For now, we just want to make sure that the shell executes the commands properly and return the correct value.
-		We will explore what's going on under the hood in the last tutorial.</li>
+		We will explore what's going on under the hood in later recipes.</li>
 </ol>
 
 <bu:rSection anchor="03" title="Conclusion" />
@@ -415,7 +411,7 @@ If you are done playing with Spark for now, make sure that you
 		<li><a href="https://aws.amazon.com/ec2/instance-types">Amazon EC2 Instance Types</a></li>
 	</bu:rLinks>
 	<bu:rChangeLog>
-		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
+		<li>This recipe hasn't had any substantive updates since it was first published.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 

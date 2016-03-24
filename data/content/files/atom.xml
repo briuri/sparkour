@@ -5,35 +5,13 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-03-17T10:00:00Z</updated>
+	<updated>2016-03-11T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
 	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
-		
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-17</id>
-		<link href="https://sparkour.urizone.net/?2016-03-17" />
-		<updated>2016-03-17T10:00:00Z</updated>
-		<title type="html">Building Spark Applications with SBT</title>
-		<summary type="html">
-			This recipe covers the use of SBT (Simple Build Tool or, sometimes, Scala Build Tool) to build and bundle Spark applications
-			written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
-			managing library dependencies, packaging, and creating an assembly JAR file with the sbt-assembly plugin.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-15</id>
-		<link href="https://sparkour.urizone.net/?2016-03-15" />
-		<updated>2016-03-15T10:00:00Z</updated>
-		<title type="html">Writing and Submitting Applications</title>
-		<summary type="html">
-			This recipe has been updated to include examples in Java, R, and Scala as well as the original Python.
-		</summary>
-	</entry>
 	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-03-11</id>
@@ -41,8 +19,8 @@
 		<updated>2016-03-11T10:00:00Z</updated>
 		<title type="html">Working with Spark DataFrames</title>
 		<summary type="html">
-			This recipe provides a straightforward introduction to the Spark DataFrames API.
-			It uses common DataFrames operators to explore and transform raw data from the 2016 Democratic Primary in Virginia.
+			This recipe provides a straightforward introduction to the Spark DataFrames API, which builds upon the Spark Core API to
+			increase developer productivity. It uses the DataFrames API to explore data from the 2016 Democratic Primary in Virginia.
 		</summary>
 	</entry>
 		

@@ -27,11 +27,6 @@
 		<path>/WEB-INF/tags/recipeFooter.tag</path>
 	</tag-file>
 	
-		<tag-file>
-		<name>rTabHandlers</name>
-		<path>/WEB-INF/tags/recipeTabHandlers.tag</path>
-	</tag-file>
-	
 	<tag-file>
 		<name>rIndexLink</name>
 		<path>/WEB-INF/tags/recipeIndexLink.tag</path>

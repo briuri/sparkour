@@ -1,9 +1,6 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
-
 <c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
-
 <bu:rOverview publishDate="2016-03-06">
 	<h3>Synopsis</h3>
 	<p>This recipe provides the steps needed to securely connect an Apache Spark cluster running on Amazon Elastic Compute Cloud (EC2) 
@@ -27,13 +24,13 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>Spark depends on Apache Hadoop and Amazon Web Services (AWS) for libraries that communicate with Amazon S3. 
-			As such, <span class="rPN">any version</span> of Spark should work with this recipe.</li>
+			As such, any version of Spark should work with this recipe.</li>
 		<li>Apache Hadoop started supporting the <span class="rCW">s3n</span> protocol in version 0.18.0, so any recent version should suffice.
 			The <span class="rCW">s3a</span> protocol was introduced in version 
 			<a href="https://issues.apache.org/jira/browse/HADOOP-10400">2.6.0</a>, but is still maturing. 
 			Several important issues were corrected in <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a>,
 			and even more are planned in the not-yet-released <a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>. 
-			You should consider <span class="rPN">2.7.0</span> to be the minimum recommended version.</li>
+			You should consider 2.7.0 to be the minimum recommended version.</li>
 	</ol>
 		
 	<a name="toc"></a>
@@ -48,7 +45,7 @@
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the 
 AWS services is very much a work in progress. Hadoop offers 3 protocols for working with Amazon S3's REST API, and the protocol you select for your
-application is a trade-off between maturity, security, and performance.</p>
+application will be a trade-off between maturity, security, and performance.</p>
 
 <ol>
 	<li>The <span class="rCW">s3</span> protocol is supported in Hadoop, but does not work with Apache Spark unless you are using the AWS version of Spark in Elastic MapReduce (EMR).
@@ -295,7 +292,7 @@ These parameters also works on the <span class="rCW">spark-submit</span> script.
 	</bu:rTab>
 </bu:rTabs>
 
-<h3>Class org.apache.hadoop.fs.s3a.S3AFileSystem not found</h3>
+<h3>org.apache.hadoop.fs.s3a.S3AFileSystem not found</h3>
 
 <bu:rCode lang="plain">
 	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found

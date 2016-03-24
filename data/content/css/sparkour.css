@@ -139,9 +139,6 @@ img.diagram {
 pre.exception {
 	font-size: 8pt;
 }
-.rCategory {
-	font-weight: bold;
-}
 .rDate {
 	font-size: 9pt;
 	font-style: italic;
@@ -212,18 +209,6 @@ pre.exception {
     border: 1px solid #888888;
    	clear: both;
    	display: block;
-   	position: relative;
-   	top: -1px;
-}
-.tabSave {
-	padding: 0px 4px 0px 4px;
-}
-.tabSave:hover {
-	cursor: pointer;
-}
-.tabSaveMessage {
-	display: none;
-	font-size: 9pt;
 }
 .tabsMenu {
     padding-left: 0px;
@@ -235,20 +220,24 @@ pre.exception {
     border-top: 1px solid #888888;
     float: left;
     list-style-type: none;
-    margin: 0px 0px 0px 0px;
+    margin: 0px 8px 0px 0px;
 }
 .tabsMenu li.tabCurrent {
     background-color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    z-index: 5;
 }
 .tabsMenu li a {
     color: #0054b4;
-    font-size: 10pt;
-    padding: 6px;
+    padding: 10px;
     text-decoration: none; 
     text-transform: uppercase;
 }
 .tabsMenu li.tabCurrent a {
     color: #000000;
+}
+.tab-2 {
+ 	display: block;   
 }
 
 /**

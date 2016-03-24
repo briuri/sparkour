@@ -1,5 +1,4 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <bu:rOverview publishDate="2016-02-26">
@@ -53,19 +52,14 @@ of your application much less than some "copyleft" licenses.</p>
 
 <ul>
 	<li>Spark is not a <span class="rPN">data storage solution</span>:<br />
-		Spark is a stateless computing engine that acts upon data from somewhere else.
-		It requires some other storage provider to store your source data and saved, processed data, and
-		supports a wide variety of options (such as your local filesystem, Amazon S3, the Hadoop Distributed File System [HDFS], 
-		or Apache Cassandra), but it does not implement storage itself.</li>
+		Spark requires some other storage provider to store your source data and saved, processed data.
+		It can accept data from a wide variety of storage options (such as your local filesystem, Amazon S3, the Hadoop Distributed File System [HDFS], 
+		or Apache Cassandra) but it does not implement storage itself.</li>
 	<li>Spark is not a <span class="rPN">Hadoop Killer</span>:<br />
 		In spite of some articles with clickbait headlines, Spark is actually a complementary addition to Apache Hadoop, rather than a replacement.
 		It's designed to integrate well with components from the Hadoop ecosystem (such as HDFS, Hive, or YARN). Spark can be used to extend Hadoop,
 		especially in use cases where the Hadoop MapReduce paradigm has become a limiting factor in the scalability of your solution. Conversely,
 		you don't need to use Hadoop at all if Spark satisfies your requirements on its own.</li>
-	<li>Spark is not an <span class="rPN">in-memory computing engine</span>:<br />
-		Spark exploits in-memory processing as much as possible to increase performance, but employs complementary approaches in memory usage, disk usage, and data
-		serialization to operate pragmatically within the limitations of the available infrastructure. Once memory resources are exhausted, Spark can spill over onto disk and continue
-		processing.</li>
 	<li>Spark is not a <span class="rPN">miracle product</span>:<br />
 		At the end of the day, Spark is just a collection of very useful Application Programming Interfaces (APIs). 
 		It's not a shrinkwrapped product that you turn on and set loose on your data for immediate benefit. As the domain expert

@@ -1,69 +1,232 @@
-#########
-# Links #
-#########
+			// Create a DataFrame from a JDBC database table.
+			// (Don't forget to include JAR dependencies for your JDBC client)
+			Properties properties = new Properties();
+			properties.setProperty("user", "db_user");
+			properties.setProperty("password", passwordFromExternalPropertiesFile);
+			DataFrame dataFrame = sqlContext.read().jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties);
+			
+			# Create a DataFrame from a JDBC database table.
+			# (Don't forget to include JAR dependencies for your JDBC client) 
+			data_frame = sql_context.read.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table",
+				properties={"user": "db_user", "password": password_from_external_properties_file}
+			)
+			
+			# Create a DataFrame from a JDBC database table.
+			# (Don't forget to include RJDBC library) 
+			urlString = paste("jdbc:mysql://localhost:3306/sparkour?user=db_user&password=", passwordFromExternalPropertiesFile, sep="")
+			dataFrame <- read.df(sqlContext, source="jdbc", url=urlString)
+			
+			// Create a DataFrame from a JDBC database table.
+			// (Don't forget to include JAR dependencies for your JDBC client) 
+			val properties = new java.util.Properties();
+			properties.setProperty("user", "db_user");
+			properties.setProperty("password", passwordFromExternalPropertiesFile);
+			val dataFrame = sqlContext.read.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties)
+			
+			// Save a DataFrame to a JDBC database table.
+			// (Don't forget to include JAR dependencies for your JDBC client)
+			Properties properties = new Properties();
+			properties.setProperty("user", "db_user");
+			properties.setProperty("password", passwordFromExternalPropertiesFile);
+			dataFrame.write().mode(SaveMode.ErrorIfExists).jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties);
+									
+			# Save a DataFrame to a JDBC database table.
+			# (Don't forget to include JAR dependencies for your JDBC client) 
+			data_frame.write.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table",
+				mode="error",
+				properties={"user": "db_user", "password": password_from_external_properties_file}
+			)
+						
+			# Save a DataFrame to a JDBC database table.
+			# (Don't forget to include RJDBC library) 
+			urlString = paste("jdbc:mysql://localhost:3306/sparkour?user=db_user&password=", passwordFromExternalPropertiesFile, sep="")
+			write.df(dataFrame, source="jdbc", url=urlString)
+			
+			// Save a DataFrame to a JDBC database table.
+			// (Don't forget to include JAR dependencies for your JDBC client) 
+			val properties = new java.util.Properties();
+			properties.setProperty("user", "db_user");
+			properties.setProperty("password", passwordFromExternalPropertiesFile);
+			dataFrame.write.mode(SaveMode.ErrorIfExists).jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties)
+			
+			
+<bu:rTabs>
+	<bu:rTab index="1">
+		<bu:rCode lang="java">
+			// Create a DataFrame from in-memory data.
+			DataFrame dataFrame = sqlContext.createDataFrame(existingRdd);
+						
+			// Create a DataFrame from a file containing 1 JSON record per line.
+			DataFrame dataFrame = sqlContext.read().json("data.json")
+			
+			// Create a DataFrame from a directory of Parquet files.
+			DataFrame dataFrame = sqlContext.read().parquet("parquet_data")
+			 
+			// Create a 1-column DataFrame with each file line becoming a row in the DataFrame.
+			DataFrame dataFrame = sqlContext.read().text("data.txt")
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="2">
+		<bu:rCode lang="python">
+			# Create a DataFrame from in-memory data.
+			data_frame = sql_context.createDataFrame(existing_rdd)
+			
+			# Create a DataFrame from a file containing 1 JSON record per line.
+			data_frame = sql_context.read.json("data.json")
+			
+			# Create a DataFrame from a directory of Parquet files.
+			data_frame = sql_context.read.parquet("parquet_data")
+			 
+			# Create a 1-column DataFrame with each file line becoming a row in the DataFrame.
+			data_frame = sql_context.read.text("data.txt")
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="3">
+		<bu:rCode lang="plain">
+			# Create a Spark DataFrame from in-memory R DataFrame.
+			dataFrame <- createDataFrame(sqlContext, existingRDataFrame)
+			
+			# Create a DataFrame from a file containing 1 JSON record per line.
+			dataFrame <- read.df(sqlContext, "data.json", "json")
+			
+			# Create a DataFrame from a directory of Parquet files.
+			dataFrame <- read.df(sqlContext, "parquet_data")
+			
+			# The text input option does not exist in SparkR.
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="4">
+		<bu:rCode lang="scala">
+			// Create a DataFrame from in-memory data.
+			val dataFrame = sqlContext.createDataFrame(existing_rdd)
+			
+			// Create a DataFrame from a file containing 1 JSON record per line.
+			val dataFrame = sqlContext.read.json("data.json")
+			
+			// Create a DataFrame from a directory of Parquet files.
+			val dataFrame = sqlContext.read.parquet("parquet_data")
+			 
+			// Create a 1-column DataFrame with each file line becoming a row in the DataFrame.
+			val dataFrame = sqlContext.read.text("data.txt")
+		</bu:rCode>	
+	</bu:rTab>
+</bu:rTabs>
+<bu:rTabs>
+	<bu:rTab index="1">
+		<bu:rCode lang="java">
+			// Convert a DataFrame into an RDD.
+			JavaRdd<Row> rdd = dataFrame.toJavaRDD();
+			
+			// Save a DataFrame to a file with 1 JSON record per line.
+			dataFrame.write().mode(SaveMode.ErrorIfExists).json("data.json")
+			
+			// Save a DataFrame as a directory of Parquet files.
+			dataFrame.write().mode(SaveMode.ErrorIfExists).parquet("parquet_data")
+			 
+			// Save a 1-column DataFrame to a file with each row becoming a line.
+			dataFrame.write().mode(SaveMode.ErrorIfExists).text("data.txt")
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="2">
+		<bu:rCode lang="python">
+			# Convert a DataFrame into an RDD.
+			rdd = dataFrame.rdd
+						
+			# Save a DataFrame to a file with 1 JSON record per line.
+			data_frame.write.json("data.json", mode="error")
+			
+			# Save a DataFrame as a directory of Parquet files.
+			data_frame.write.parquet("parquet_data", mode="error")
+			 
+			# Save a 1-column DataFrame to a file with each row becoming a line.
+			data_frame.write.text("data.txt", mode="error")
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="3">
+		<bu:rCode lang="plain">
+			# Create a Spark DataFrame from in-memory R DataFrame.
+			dataFrame <- createDataFrame(sqlContext, existingRDataFrame)
+						
+			# Save a DataFrame to a file with 1 JSON record per line.
+			write.df(dataFrame, "data.json", "source=json", mode="error")
+			
+			# Save a DataFrame as a directory of Parquet files.
+			write.parquet(dataFrame, "parquet_data", source="parquet", mode="error")
+			
+			# The text output option does not exist in SparkR.
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="4">
+		<bu:rCode lang="scala">
+			// Convert a DataFrame into an RDD.
+			rdd = dataFrame.rdd
+					
+			// Save a DataFrame to a file with 1 JSON record per line.
+			dataFrame.write.mode(SaveMode.ErrorIfExists).json("data.json")
+			
+			// Save a DataFrame as a directory of Parquet files.
+			dataFrame.write.mode(SaveMode.ErrorIfExists).parquet("parquet_data")
+			 
+			// Save a 1-column DataFrame to a file with each row becoming a line.
+			dataFrame.write.mode(SaveMode.ErrorIfExists).text("data.txt")
+		</bu:rCode>	
+	</bu:rTab>
+</bu:rTabs>	
 
-Shuffle:
-	http://blog.cloudera.com/blog/2015/05/working-with-apache-spark-or-how-i-learned-to-stop-worrying-and-love-the-shuffle/ 
-HDFS:
-	http://www.ccs.neu.edu/home/cbw/spark.html
-Standalone/YARN/Mesos:
-	http://stackoverflow.com/questions/28664834/which-cluster-type-should-i-choose-for-spark
-	https://www.quora.com/How-does-YARN-compare-to-Mesos
-Uber JAR with Ant:	
-	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create-fat-jar-file/
-	
-##################
-# Code Fragments #
-##################
-		
-	// Create a DataFrame from a JDBC database table.
-	// (Don't forget to include JAR dependencies for your JDBC client)
-	Properties properties = new Properties();
-	properties.setProperty("user", "db_user");
-	properties.setProperty("password", passwordFromExternalPropertiesFile);
-	DataFrame dataFrame = sqlContext.read().jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties);
-	
-	# Create a DataFrame from a JDBC database table.
-	# (Don't forget to include JAR dependencies for your JDBC client) 
-	data_frame = sql_context.read.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table",
-		properties={"user": "db_user", "password": password_from_external_properties_file}
-	)
-	
-	# Create a DataFrame from a JDBC database table.
-	# (Don't forget to include RJDBC library) 
-	urlString = paste("jdbc:mysql://localhost:3306/sparkour?user=db_user&password=", passwordFromExternalPropertiesFile, sep="")
-	dataFrame <- read.df(sqlContext, source="jdbc", url=urlString)
-	
-	// Create a DataFrame from a JDBC database table.
-	// (Don't forget to include JAR dependencies for your JDBC client) 
-	val properties = new java.util.Properties();
-	properties.setProperty("user", "db_user");
-	properties.setProperty("password", passwordFromExternalPropertiesFile);
-	val dataFrame = sqlContext.read.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties)
-	
-	// Save a DataFrame to a JDBC database table.
-	// (Don't forget to include JAR dependencies for your JDBC client)
-	Properties properties = new Properties();
-	properties.setProperty("user", "db_user");
-	properties.setProperty("password", passwordFromExternalPropertiesFile);
-	dataFrame.write().mode(SaveMode.ErrorIfExists).jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties);
-							
-	# Save a DataFrame to a JDBC database table.
-	# (Don't forget to include JAR dependencies for your JDBC client) 
-	data_frame.write.jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table",
-		mode="error",
-		properties={"user": "db_user", "password": password_from_external_properties_file}
-	)
-				
-	# Save a DataFrame to a JDBC database table.
-	# (Don't forget to include RJDBC library) 
-	urlString = paste("jdbc:mysql://localhost:3306/sparkour?user=db_user&password=", passwordFromExternalPropertiesFile, sep="")
-	write.df(dataFrame, source="jdbc", url=urlString)
-	
-	// Save a DataFrame to a JDBC database table.
-	// (Don't forget to include JAR dependencies for your JDBC client) 
-	val properties = new java.util.Properties();
-	properties.setProperty("user", "db_user");
-	properties.setProperty("password", passwordFromExternalPropertiesFile);
-	dataFrame.write.mode(SaveMode.ErrorIfExists).jdbc("jdbc:mysql://localhost:3306/sparkour", "my_table", properties)
+    fields = (
+        StructField("district_type", StringType(), True),
+        StructField("last_name", StringType(), True),
+        StructField("candidate_ballot_order", IntegerType(), True),
+        StructField("precinct_code", StringType(), True),
+        StructField("referendumId", StringType(), True),
+        StructField("total_votes", IntegerType(), True),
+        StructField("candidate_name", StringType(), True),
+        StructField("locality_name", StringType(), True),
+        StructField("office_ballot_order", IntegerType(), True),
+        StructField("party", StringType(), True),
+        StructField("election_name", StringType(), True),
+        StructField("election_date", StringType(), True),
+        StructField("precinct_name", StringType(), True),
+        StructField("locality_code", StringType(), True),
+        StructField("negative_votes", IntegerType(), True),
+        StructField("office_name", StringType(), True),
+        StructField("candidateId", StringType(), True),
+        StructField("DESCRIPTION", StringType(), True),
+        StructField("districtId", StringType(), True),
+        StructField("referendum_title", StringType(), True),
+        StructField("officeId", StringType(), True),
+        StructField("in_precinct", StringType(), True),
+        StructField("election_type", StringType(), True),
+    )
+    schema = StructType(fields)
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+How many votes were cast?
++--------------------+
+|sum(total_votes_int)|
++--------------------+
+|               36149|
++--------------------+
+
+How many votes did each candidate get?
++------------------+--------------------+
+|    candidate_name|sum(total_votes_int)|
++------------------+--------------------+
+|   Hillary Clinton|               21180|
+|    Bernie Sanders|               14730|
+|Martin J. O'Malley|                 239|
++------------------+--------------------+
+
+Which polling station had the highest physical turnout?
++-------------+--------------------+
+|precinct_name|sum(total_votes_int)|
++-------------+--------------------+
+| 314 - LEGACY|                 652|
++-------------+--------------------+
+
+Saving overall candidate summary as a new JSON dataset.
     

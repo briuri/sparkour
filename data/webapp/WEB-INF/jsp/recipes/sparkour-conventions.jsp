@@ -1,5 +1,4 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <bu:rOverview publishDate="2016-02-24">
@@ -51,8 +50,7 @@
 </bu:rCode>
 
 <p>Code samples employ the Java, Python, R, or Scala programming languages. If the example
-	has been translated into multiple languages, a separate box appears for each employed language. These boxes will show code
-	in Python by default, but you can change the language and use the &#128190; icon to save your preferred language.</p>
+	has been translated into multiple languages, a separate box appears for each employed language:</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -126,8 +124,7 @@
 
 <bu:rFooter>
 	<bu:rChangeLog>
-		<li>2016-03-13: Added instructions for saving a preferred programming language
-			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-1">SPARKOUR-1</a>).</li>
+		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 	

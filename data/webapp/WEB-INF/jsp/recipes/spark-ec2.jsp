@@ -1,5 +1,4 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <bu:rOverview publishDate="2016-03-04">

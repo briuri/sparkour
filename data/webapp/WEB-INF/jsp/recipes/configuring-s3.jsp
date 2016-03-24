@@ -1,5 +1,4 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <bu:rOverview publishDate="2016-03-05">
@@ -39,8 +38,8 @@ The monthly cost is based upon the number of API calls your application makes an
 your data takes up ($0.03 per GB per month, as of March 2016). Transfer of data between S3 and an EC2 instance is free.</p>
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the AWS services
-is very much a work in progress. Your success in getting things working is very dependent on specific versions of the various libraries, the protocol you use, and possibly even the weather forecast.
-Because of this, the Spark side is covered in a separate recipe (<bu:rLink id="using-s3" />) and this recipe focuses solely on the S3 side.</p>
+is very much a work in progress. The Spark side of the equation will be saved for a later recipe, as your success in getting things working is very dependent on specific versions
+of the various libraries, the protocol you use, and possibly even the weather forecast.</p>
 
 <h3>Important Limitations</h3>
 <ul>

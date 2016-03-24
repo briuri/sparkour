@@ -1,9 +1,6 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
-
 <c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private as of Spark 1.4.0, no R examples will be included in this tutorial.</p>" />
-
 <bu:rOverview publishDate="2016-02-29">
 	<h3>Synopsis</h3>
 	<p>This tutorial explores Resilient Distributed Datasets (RDDs), Spark's primary data structure which
@@ -16,7 +13,7 @@
 	<h3>Prerequisites</h3>
 	<ol>
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
-			covered in <bu:rLink id="submitting-applications" />. You can opt to use the EC2 instance we 
+			covered in <bu:rLink id="submitting-applications" />. You can opt to use the running EC2 instance we 
 			created in <bu:rLink id="installing-ec2" />. If you have stopped and started the instance since the
 			previous tutorial, you need to make note of its new dynamic Public IP address.</li>
 	</ol>
@@ -76,38 +73,35 @@ tuning is required.</p>
 		sudo chown -R ec2-user:ec2-user /opt/sparkour		
 	</bu:rCode>
 
-	<li>The example source code for each language is in a subdirectory of <span class="rCW">src/main</span> with that language's name. A helper script,
-		<span class="rCW">sparkour.sh</span> is included to compile, bundle, and submit applications in all languages.</li>
-
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh java
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="bash">
-				# Use shell script to submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh python
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="bash">
-				# Use shell script to submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh r
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh scala
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
-
+	<li>The example source code for each language is in a subdirectory with that language's name. Refresher instructions for running the applications can be seen
+		below. Helper scripts are included to compile Java and Scala source code, bundle those classes into JAR files, and submit to the cluster with a single command.</li>
 </ol>
+	
+<bu:rTabs>
+	<bu:rTab index="1">
+		<bu:rCode lang="bash">
+			# Use shell script to compile, bundle, and submit Java source code
+			# Copy commands out of script if you'd prefer to do this by hand
+			cd /opt/sparkour/working-rdds
+			./runJava.sh
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="2">
+		<bu:rCode lang="bash">
+			# Run the python code
+			cd /opt/sparkour/working-rdds
+			/opt/spark/bin/spark-submit python/rdd_sandbox.py
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="3">
+		<c:out value="${noRMessage}" escapeXml="false" />
+	</bu:rTab><bu:rTab index="4">
+		<bu:rCode lang="bash">
+			# Use shell script to compile, bundle, and submit Scala source code
+			# Copy commands out of script if you'd prefer to do this by hand
+			cd /opt/sparkour/working-rdds
+			./runScala.sh
+		</bu:rCode>	
+	</bu:rTab>
+</bu:rTabs>
 
 <h3>Creating an RDD</h3>
 

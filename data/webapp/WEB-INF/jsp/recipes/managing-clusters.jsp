@@ -1,9 +1,6 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
-
 <c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
-
 <bu:rOverview publishDate="2016-02-26">
 	<h3>Synopsis</h3>
 	<p>This tutorial describes the tools available to manage Spark in a clustered configuration, including
