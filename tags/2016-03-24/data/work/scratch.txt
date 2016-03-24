@@ -1,0 +1,14 @@
+#########
+# Links #
+#########
+
+Shuffle:
+	http://blog.cloudera.com/blog/2015/05/working-with-apache-spark-or-how-i-learned-to-stop-worrying-and-love-the-shuffle/ 
+HDFS:
+	http://www.ccs.neu.edu/home/cbw/spark.html
+Standalone/YARN/Mesos:
+	http://stackoverflow.com/questions/28664834/which-cluster-type-should-i-choose-for-spark
+	https://www.quora.com/How-does-YARN-compare-to-Mesos
+Uber JAR with Ant:	
+	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create-fat-jar-file/
+   
