@@ -8,11 +8,6 @@
 	<uri>http://www.urizone.net/tags</uri>
 
 	<tag-file>
-		<name>newsUpdate</name>
-		<path>/WEB-INF/tags/newsUpdate.tag</path>
-	</tag-file>
-		
-	<tag-file>
 		<name>rChangeLog</name>
 		<path>/WEB-INF/tags/recipeChangeLog.tag</path>
 	</tag-file>
@@ -20,16 +15,6 @@
 	<tag-file>
 		<name>rCode</name>
 		<path>/WEB-INF/tags/recipeCode.tag</path>
-	</tag-file>
-	
-	<tag-file>
-		<name>rFooter</name>
-		<path>/WEB-INF/tags/recipeFooter.tag</path>
-	</tag-file>
-	
-		<tag-file>
-		<name>rTabHandlers</name>
-		<path>/WEB-INF/tags/recipeTabHandlers.tag</path>
 	</tag-file>
 	
 	<tag-file>

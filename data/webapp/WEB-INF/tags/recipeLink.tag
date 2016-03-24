@@ -1,1 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%><%@ attribute name="id" required="true" type="java.lang.String" %><%@ attribute name="anchor" required="false" type="java.lang.String" %><spring:url var="recipeUrl" value="/recipes/${id}/${anchor}" /><a href="${recipeUrl}"><c:out value="${recipeTitles[id]}" /></a>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ attribute name="id" required="false" type="java.lang.String" %>
+<c:if test="${not empty id}"><spring:url var="recipeUrl" value="/recipes/${id}/" /><a href="${recipeUrl}"></c:if><c:out value="${recipeTitles[id]}" /><c:if test="${not empty id}"></a></c:if>

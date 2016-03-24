@@ -9,18 +9,11 @@
 	">
 
 	<util:map id="recipeTitles">
-    	<entry key="sparkour-conventions"		value="Tutorial #0: Sparkour Conventions" />
-    	<entry key="spark-nutshell" 			value="Tutorial #1: Apache Spark in a Nutshell" />
-    	<entry key="installing-ec2" 			value="Tutorial #2: Installing Spark on Amazon EC2" />
-    	<entry key="managing-clusters" 			value="Tutorial #3: Managing Spark Clusters" />
-    	<entry key="submitting-applications" 	value="Tutorial #4: Writing and Submitting a Spark Application" />
-    	<entry key="working-rdds" 				value="Tutorial #5: Working with Spark Resilient Distributed Datasets (RDDs)" />
-    	
-    	<entry key="working-dataframes" 		value="Working with Spark DataFrames" />
-    	<entry key="building-sbt" 				value="Building Spark Applications with SBT" />
-    	    	
-    	<entry key="spark-ec2" 					value="Managing a Spark Cluster with the spark-ec2 Script" />
-    	<entry key="configuring-s3" 			value="Configuring Amazon S3 as a Spark Data Source" />
-    	<entry key="using-s3" 					value="Configuring Spark to Use Amazon S3" />
+    	<entry key="sparkour-conventions" value="Tutorial #0: Sparkour Conventions" />
+    	<entry key="spark-nutshell" value="Tutorial #1: Apache Spark in a Nutshell" />
+    	<entry key="installing-ec2" value="Tutorial #2: Installing Spark on Amazon EC2" />
+    	<entry key="managing-clusters" value="Tutorial #3: Managing Spark Clusters" />
+    	<entry key="submitting-applications" value="Tutorial #4: Submitting a Spark Application" />
+    	<entry key="working-rdds" value="Tutorial #5: Working with Resilient Distributed Datasets (RDDs)" />
 	</util:map>       
 </beans>

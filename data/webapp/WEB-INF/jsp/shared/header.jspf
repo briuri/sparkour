@@ -8,6 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="Sparkour is an open-source collection of programming recipes for Apache Spark. Designed as an efficient way to navigate the intricacies of the Spark ecosystem, Sparkour aims to be an approachable, understandable, and actionable cookbook for distributed data processing.">
+	<meta name="keywords" content="Sparkour,Apache,Spark,distributed,data,processing,recipes,cookbook,java,python,r,scala,brian uri" />
 	<meta property="og:image" content="https://sparkour.urizone.net/images/logo-256.png"/>
 	<meta property="og:title" content="Sparkour"/>
 	<meta property="og:url" content="https://sparkour.urizone.net/"/>
@@ -20,7 +21,6 @@
 	<c:set var="localImagesUrlBase" value="${imagesUrlBase}${imagesPath}" />
 	<script type="text/javascript" src="${jsUrlBase}/jquery-2.2.1.min.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/jquery.slicknav-1.0.2.min.js"></script>
-	<script type="text/javascript" src="${jsUrlBase}/js.cookie-2.1.0.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/shCore-3.0.83.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/shBrushes-3.0.83.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/sparkour.js"></script>
@@ -30,6 +30,19 @@
 			$('#menu').slicknav({
 				label: '',
 				prependTo: '#menuContainer'
+			});
+		});
+		$(document).ready(function() {
+			$(".tabsMenu a").click(function(event) {
+				event.preventDefault();
+				var liElement = $(this).parent()
+		        liElement.addClass("tabCurrent");
+		        liElement.siblings().removeClass("tabCurrent");
+		        
+		        var selectedTab = $(this).attr("href");
+		        var tabContentPaneElement = liElement.parent().next();		        
+		        tabContentPaneElement.children().not(selectedTab).css("display", "none");
+		        tabContentPaneElement.children(selectedTab).fadeIn(200);
 			});
 		});
 	</script>

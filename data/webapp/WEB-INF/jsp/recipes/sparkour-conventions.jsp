@@ -1,9 +1,10 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<bu:rOverview publishDate="2016-02-24">
-	<h3>Synopsis</h3>
+<bu:rOverview publishDate="02/24/2016">
+	<h2>Overview</h2>	
+		 
+	<h3>Introduction</h3>
 	<p>This tutorial describes the formatting conventions used in the Sparkour recipes.
 	There is no hands-on work involved.
 	
@@ -31,9 +32,7 @@
 	<li><span class="rAB">Button</span> denotes an important button you need to press in
 		a user interface (UI).</li>
 	<li><span class="rK">Field Name</span> denotes the name of a form field in a UI.</li>
-	<li><span class="rV">Field Value</span> denotes the value that you would enter into a form field. Example values in a recipe
-		will generally include a <span class="rV">sparkour-</span> prefix. Feel free to customize this with a token
-		relevant to your own work.</li>
+	<li><span class="rV">Field Value</span> denotes the value that you would enter into a form field.</li>
 	<li><span class="rCW">code word</span> denotes technical coding concepts, such as the names
 		of classes and variables, or the name of a Linux command line utility.</li>
 </ul>
@@ -50,9 +49,8 @@
 	#  of the previous command, such as selecting something from a follow-up menu)
 </bu:rCode>
 
-<p>Code samples employ the Java, Python, R, or Scala programming languages. If the example
-	has been translated into multiple languages, a separate box appears for each employed language. These boxes will show code
-	in Python by default, but you can change the language and use the &#128190; icon to save your preferred language.</p>
+<p>Code samples will employ the Java, Python, R, or Scala programming languages. If the example
+	has been translated into multiple languages, a separate box will appear for each employed language:</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -68,12 +66,7 @@
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
 			class SparkApp():
-				"""A sample Python class.
-				
-			    	camelCase used for variable names for consistency and
-    				ease of translation across the prevailing style of
-    				the Java, R, and Scala examples.
-				"""
+				"""A sample Python class."""
 				
 				def __init__(self):
 			   		self.data = []
@@ -124,12 +117,9 @@
 	</bu:rTab>
 </bu:rTabs>
 
-<bu:rFooter>
-	<bu:rChangeLog>
-		<li>2016-03-13: Added instructions for saving a preferred programming language
-			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-1">SPARKOUR-1</a>).</li>
-	</bu:rChangeLog>
-</bu:rFooter>
+<bu:rChangeLog>
+	<li>This tutorial hasn't had any substantive updates since it was first published.</li>
+</bu:rChangeLog>
 	
 <bu:rIndexLink />	
 <%@ include file="../shared/footer.jspf" %>

@@ -26,56 +26,16 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <a href="${licenseUrl}">licensed</a> under the Apache License 2.0.</p> 
 
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
-
 <div id="newsFeed">
-	<bu:newsUpdate date="2016-03-17">
-		<bu:rLink id="building-sbt" />
-		covers the use of SBT (Simple Build Tool or, sometimes, Scala Build Tool) to build and bundle Spark applications
-		written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
-		managing library dependencies, packaging, and creating an assembly JAR file with the <span class="rCW">sbt-assembly</span> plugin.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-15">
-		<bu:rLink id="submitting-applications" />
-		has been updated to include examples in Java, R, and Scala as well as the original Python.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-11">
-		<bu:rLink id="working-dataframes" />
-		provides a straightforward introduction to the Spark DataFrames API. It uses common DataFrames operators to explore and transform raw data
-		from the 2016 Democratic Primary in Virginia.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-06">
-		<bu:rLink id="using-s3" />
-		provides the steps needed to securely connect an Apache Spark cluster running on Amazon EC2	to data stored in Amazon S3.
-		It contains instructions for both the classic <span class="rCW">s3n</span> protocol and the newer, but still maturing, 
-		<span class="rCW">s3a</span> protocol.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-05">
-		<bu:rLink id="configuring-s3" />
-		provides the steps needed to securely expose data in Amazon S3 for consumption by a Spark application.
-		The resultant configuration works with both supported S3 protocols in Spark: the classic <span class="rCW">s3n</span> 
-		protocol and the newer, but still maturing, <span class="rCW">s3a</span> protocol.
-	</bu:newsUpdate>
-
+	<div class="newsUpdate"><u>2016-03-01</u>: Welcome to Sparkour! 
+		To kick things off, I have released 5 sequential tutorials, which should give you a solid foundation for mastering Spark.
+		My long-term goal is to publish one or two new standalone recipes per week until the end of time. Help me improve Sparkour
+		by submitting bugs and improvement suggestions on the <a href="${issuesUrl}">Issues</a> page.</div>
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
-		<bu:newsUpdate date="2016-03-04">	
-			<bu:rLink id="spark-ec2" />
-			describes how to automatically launch, start, stop, or destroy a Spark cluster running in Amazon EC2. 
-			It steps through the pre-launch configuration, explains the script's most common parameters, and points out where 
-			specific parameters can be found in the AWS Management Console.
-		</bu:newsUpdate>	
-		<bu:newsUpdate date="2016-03-01">	
-			Welcome to Sparkour! 
-			To kick things off, I have released 5 sequential <a href="${recipesUrl}">tutorials</a>, which should give you a solid foundation for mastering Spark.
-			My long-term goal is to publish one or two new standalone recipes per week until the end of time. Help me improve Sparkour
-			by submitting bugs and improvement suggestions on the <a href="${issuesUrl}">Issues</a> page.
-		</bu:newsUpdate>	
-		<bu:newsUpdate date="2016-02-22">
-			The Sparkour website is online. Visiting <span class="rCW">sparkour.net</span> will redirect you here if you forget the full hostname.
-		</bu:newsUpdate>
-		<bu:newsUpdate date="2016-02-15">		
-			The idea for Sparkour was conceived during the President's Day ice storm.
-		</bu:newsUpdate>
+		<div class="newsUpdate"><u>2016-02-22</u>: The Sparkour website is online. Visiting <span class="rCW">sparkour.net</span> will redirect you here if you
+			forget the full hostname.</div>
+		<div class="newsUpdate"><u>2016-02-15</u>: The idea for Sparkour was conceived during the President's Day ice storm.</div>
 	</div>
 </div>
 

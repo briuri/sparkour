@@ -33,10 +33,6 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 			<li><a href="http://jquery.com/">jQuery 2.2.1</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Dynamic UI (unmodified).</li>
-			<li><a href="https://github.com/js-cookie/js-cookie">js.cookie 2.1.0</a>
-				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
-				Browser cookie management (unmodified).</li>
-
 			<li><a href="http://slicknav.com/">SlickNav 1.0.2</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Mobile UI (with modified stylesheets).</li>

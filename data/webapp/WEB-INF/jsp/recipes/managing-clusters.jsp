@@ -1,11 +1,10 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+<bu:rOverview publishDate="02/26/2016">
+	<h2>Overview</h2>	
 
-<bu:rOverview publishDate="2016-02-26">
-	<h3>Synopsis</h3>
+	<h3>Introduction</h3>
 	<p>This tutorial describes the tools available to manage Spark in a clustered configuration, including
 	the official Spark scripts and the web User Interfaces (UIs). We compare the different cluster modes
 	available, and experiment with Local and Standalone mode on our EC2 instance. We also learn how to
@@ -66,36 +65,32 @@ Key clustering concepts are shown in the image below.</p>
 <p>Spark comes with a cluster manager implementation referred to as the <span class="rPN">Standalone</span> cluster manager. However,
 this concept is not unique to Spark, and you can also swap in one of these implementations instead:
 
-<ul> 
+<ol> 
 	<li><a href="http://mesos.apache.org/">Apache Mesos</a> is a general-purpose cluster manager with fairly broad industry adoption.</li>
 	<li><a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html">Apache Hadoop YARN</a>
 		(Yet Another Resource Navigator) is the resource manager for Hadoop 2, and may be a good choice in a Hadoop-centric ecosystem.</li>
-</ul>
+</ol>
 
 <p>We focus on Standalone Mode here, and explore these alternatives in later recipes.</p>
 
-<a name="spark-server-roles"></a>
 <h3>The Roles of a Spark Server</h3>
 
-<p>A server with Spark installed on it can be used in four separate ways:</p>
+<p>A server with Spark installed on it can be used in three separate ways:</p>
 
 <ol>
-	<li>As a <span class="rPN">development environment</span>, you use the server to write applications for Spark and then use the <span class="rCW">spark-submit</span>
-		script to submit your applications to a Spark cluster for execution.</li>
-	<li>As a <span class="rPN">launch environment</span>, you use the server to run the <span class="rCW">spark-ec2</span> script, which launches a new Spark cluster
-		from scratch, starts and stops an existing cluster, or permanently terminates the cluster.</li>
-	<li>As a <span class="rPN">master</span> node in a cluster, this server is responsible for cluster management and receives jobs from a development environment.</li>
-	<li>As a <span class="rPN">worker</span> node in a cluster, this server is responsible for task execution.</li>
+	<li>It is a <span class="rPN">development environment</span>, where you write applications with Spark library dependencies and use Spark
+	scripts to submit your applications to a cluster for execution. The Spark interactive shells count as applications.</li>
+	<li>It is a <span class="rPN">master</span> node in a cluster, responsible for cluster management.</li>
+	<li>It is a <span class="rPN">worker</span> node in a cluster, responsible for task execution.</li>
 </ol>
-
-<p>Sometimes, these roles will overlap on the same server. For example, you probably use the same server as both a development environment and a launch environment.
-When you're doing rapid development with a test cluster, you might reuse the master node as a development environment to reduce the feedback loop between compiling and running
-your code. Later in this tutorial, we reuse the same server to create a cluster where a master and a worker are running on the same EC2 instance -- this demonstrates
-clustering concepts without forcing us to pay for an additional instance.</p>
 
 <p>When you document or describe your architecture for others, you should be clear about
 the logical roles. For example, "Submitting my application from my local server A to the Spark cluster on server B" is much clearer than 
 "Running my application on my Spark server" and guaranteed to elicit better responses when you inevitably pose a question on <a href="http://stackoverflow.com/">Stack Overflow</a>.</p>
+
+<p>Sometimes, these roles will overlap on the same server. For example, you might do your development on the master node to reduce network latency
+while you engage in rapid development. Later in this tutorial, we create a cluster where a master and a worker are running on the same EC2 instance 
+to show off the concepts without paying for an additional instance.</p>
  
 <bu:rSection anchor="02" title="Local and Standalone Mode" />
 
@@ -103,81 +98,40 @@ the logical roles. For example, "Submitting my application from my local server 
 
 <p>Juggling the added complexity a Spark cluster may not be a priority when you're just getting started with Spark. If you are developing
 a new application and just want to execute code against small test datasets, you can use Spark's Local mode. In
-this mode, your development environment is the only thing you need. An ephemeral Spark engine is started when you run your application, 
-executes your application just like a real cluster would, and then goes away when your application stops. There are no explicit
-masters or slaves to complicate your mental model.</p>
+this mode, your local environment takes on all 3 of the roles discussed in the previous section. Spark runs only in your local environment 
+without any explicit masters or slaves to complicate your mental model. An ephemeral Spark engine is started when you run your application, 
+executes your application just like a real cluster would, and then goes away when your application stops.</p>
 
 <p>By default, the Spark interactive shells run in Local mode unless you explicitly specify a cluster. A Spark engine starts up when you start
 the shell, executes the code that you type interactively, and goes away when you exit the shell. To mimic the idea of adding more workers
 to a Spark cluster, you can specify the number of parallel threads used in Local mode:</p>
 
-<bu:rTabs>
-	<bu:rTab index="1">
-		<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
-	</bu:rTab><bu:rTab index="2">
-		<bu:rCode lang="bash">
-			cd /opt/spark
-			
-			# Run in Local mode with a single thread
-			./bin/pyspark --master local
-			
-			# The default is also Local Mode with a single thread
-			./bin/pyspark
-			
-			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/pyspark --master local[2]
-			
-			# Run with as many threads as this server can handle
-			./bin/pyspark --master local[*]
-		</bu:rCode>
-	</bu:rTab><bu:rTab index="3">
-		<bu:rCode lang="bash">
-			cd /opt/spark
-			
-			# Run in Local mode with a single thread
-			./bin/sparkR --master local
-			
-			# The default is also Local Mode with a single thread
-			./bin/sparkR
-			
-			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/sparkR --master local[2]
-			
-			# Run with as many threads as this server can handle
-			./bin/sparkR --master local[*]
-		</bu:rCode>
-	</bu:rTab><bu:rTab index="4">
-		<bu:rCode lang="bash">
-			cd /opt/spark
-			
-			# Run in Local mode with a single thread
-			./bin/spark-shell --master local
-			
-			# The default is also Local Mode with a single thread
-			./bin/spark-shell
-			
-			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/spark-shell --master local[2]
-			
-			# Run with as many threads as this server can handle
-			./bin/spark-shell --master local[*]
-		</bu:rCode>	
-	</bu:rTab>
-</bu:rTabs>
+<bu:rCode lang="bash">
+	# Run Scala shell in Local mode with a single thread
+	./bin/spark-shell --master local
+	
+	# The default is also Local Mode with a single thread
+	./bin/spark-shell
+	
+	# Run Python shell with 2 worker threads (try not to exceed the number of cores this server has)
+	./bin/pyspark --master local[2]
+	
+	# Run Python shell with as many threads as this server can handle
+	./bin/pyspark --master local[*]
+</bu:rCode>
 
 <h3>Standalone Mode</h3>
 
 <p>"Running in Standalone Mode" is just another way of saying that the Spark Standalone cluster manager is being used in the cluster. The
 Standalone cluster manager is a simple implementation that accepts jobs in First In, First Out (FIFO) order: applications that submit jobs first
-are given priority access to workers over applications that submit jobs later on. Starting a Spark cluster in Standalone Mode on our EC2 instance 
-is easy to do with the official Spark scripts.</p>
+are given priority access to workers over applications that submit jobs later on.</p> 
 
-<p>Normally, a Spark cluster would consist of separate servers for the cluster manager (master) and each worker (slave). 
-Each server would have a copy of Spark installed, and a third server would be your development environment where you write and submit your application.
+<p>Starting a Spark cluster in Standalone Mode on our EC2 instance is easy to do with the official Spark scripts. Normally, a Spark cluster
+would consist of separate servers for the cluster manager (master) and each worker (slave). Each server would have a copy of Spark installed.
 In the interests of limiting the time you spend configuring EC2 instances and reducing the risk of unexpected charges, this tutorial creates
-a minimal cluster using the same EC2 instance as the development environment, master, and slave, as shown in the image below.</p>
+a minimal cluster using the same EC2 instance as both the master and slave, as shown in the image below.</p>
 
-<img src="${localImagesUrlBase}/minimal-cluster.png" width="750" height="411" title="Both master and slave on the same EC2 instance" class="diagram border" />
+<img src="${localImagesUrlBase}/minimal-cluster.png" width="750" height="202" title="Both master and slave on the same EC2 instance" class="diagram border" />
 
 <p>In a real world situation, you would launch as many worker EC2 instances as you need (and you would probably forgo these 
 manual  steps in favour of automation with the <span class="rCW">spark-ec2</span> script).</p>
@@ -286,61 +240,24 @@ We are going to run our interactive shells from our EC2 instance, meaning that t
 development environment, master, and slave at the same time.</p> 
 
 <ol>
-	<li>From the command line, run an interactive shell and specify the master URL of your minimal cluster. </li>
+	<li>From the command line, run an interactive shell and specify the master URL of your minimal cluster. 
+	The example below uses the Python shell, but the same parameter format applies to the Scala shell.</li>
 	
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="bash">
-				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/pyspark --master spark://ip-172-31-24-101:7077
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="bash">
-				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/sparkR --master spark://ip-172-31-24-101:7077
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="bash">
-				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/spark-shell --master spark://ip-172-31-24-101:7077
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
+	<bu:rCode lang="bash">
+		# Start the shell with your running cluster	
+		cd /opt/spark
+		./bin/pyspark --master spark://ip-172-31-24-101:7077
+	</bu:rCode>
 
 	<li>Refresh each UI web page. You should see a new application (the shell) in the Master UI, and a new executor in the Worker UI.</li>
 
 	<li>Next, run our simple line count example in the shell.</li>
-
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
-			<bu:rCode lang="java">
-				JavaRDD<String> textFile = sc.textFile("README.md");
-				System.out.println(textFile.count());
-			</bu:rCode>	
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="python">
-				>>> textFile = sc.textFile("README.md")
-				>>> textFile.count()
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="plain">
-				> # The low-level Spark Core API containing <span class="rCW">textFile()</span>
-				> # is not available in R, so we cannot attempt this example.				
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="scala">
-				scala> val textFile = sc.textFile("README.md")
-				scala> textFile.count()
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
 	
+	<bu:rCode lang="python">
+		>>> textFile = sc.textFile("README.md")
+		>>> textFile.count()
+	</bu:rCode>
+
 	<li>This time, the shell makes use of the Spark cluster to process the data. Your application is sent to the master for scheduling,
 		and the master assigns the task to the a worker for processing (here, we only have 1 worker). The time to execute is about the 
 		same as running in Local mode because our data size is so small, but improvements would be noticeable with massive 
@@ -357,32 +274,12 @@ development environment, master, and slave at the same time.</p>
 
 	<li>Refreshing the Master UI after this command shows the Worker as <span class="rCW">DEAD</span>. The Worker UI is also shut down
 		and can no longer be refreshed. Additionally, trying to execute our commands in the Python shell now fails:</li>
+		
+	<bu:rCode lang="python">
+		>>> # Processing data fails now, because there are no workers
+		>>> textFile.count()
+	</bu:rCode>
 
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
-			<bu:rCode lang="java">
-				// Processing data fails now, because there are no workers
-				System.out.println(textFile.count());
-			</bu:rCode>	
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="python">
-				>>> # Processing data fails now, because there are no workers
-				>>> textFile.count()
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="plain">
-				> # The low-level Spark Core API containing <span class="rCW">textFile()</span>
-				> # is not available in R, so we cannot attempt this example.				
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="scala">
-				scala> // Processing data fails now, because there are no workers
-				scala> textFile.count()
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
-	
 	<li>After you submit this command, refresh the Master UI. 
 		The application enters a <span class="rCW">WAITING</span> state and your shell eventually shows a warning.</li>
 
@@ -394,26 +291,10 @@ development environment, master, and slave at the same time.</p>
 	<li>Because there are no workers to assign tasks to, your application can never complete.
 		Hit <span class="rCW">Ctrl+C</span> to abort your command in the interactive shell and then quit the shell.</li>
 
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="python">
-				>>> # Quit the shell
-				>>> quit()
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="plain">
-				> quit()
-				> # (Hit 'n' to quit without saving the workspace).					
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="scala">
-				scala> // Quit the shell
-				scala> exit
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
+	<bu:rCode lang="python">
+		>>> # Quit the shell
+		>>> quit()
+	</bu:rCode>
 
 	<li>Refresh the Master UI one final time, and the shell moves from the Running Applications list to the Completed Applications list.</li>
 	
@@ -451,8 +332,8 @@ development environment, master, and slave at the same time.</p>
 <p>Although managing the cluster from the master instance is better than logging into each worker, you still have the overhead of configuring and
 launching each instance. As you start to work with clusters of non-trivial size, you should take a look at the  
 <span class="rCW">spark-ec2</span> script. This script automates all facets of cluster management, allowing you to configure, launch, start,
-stop, and terminate instances from the command line. It ensures that the masters and slaves running on the instances are cleanly started
-and stopped when the cluster is started or stopped. We explore the power of this script in the recipe, <bu:rLink id="spark-ec2" />.</p>
+stop, and terminate instances from the command line, and ensuring that the masters and slaves running on the instances are cleanly started
+and stopped when the cluster is started or stopped. We will explore the power of this script in a later recipe.</p>
 
 <bu:rSection anchor="06" title="Conclusion" />
 
@@ -461,16 +342,14 @@ with Spark. In the next tutorial, <bu:rLink id="submitting-applications" />, we 
 application and submit it to a cluster for execution. If you are done playing with Spark for now, make sure that you stop your 
 EC2 instance so you don't incur unexpected charges.</p>
 
-<bu:rFooter>
-	<bu:rLinks>
-		<li><a href="http://spark.apache.org/docs/latest/spark-standalone.html">Spark Standalone Mode</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/">Running the Spark Interactive Shells</a> in the Spark Programming Guide</li>
-	</bu:rLinks>
-	
-	<bu:rChangeLog>
-		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
-	</bu:rChangeLog>
-</bu:rFooter>
+<bu:rLinks>
+	<li><a href="http://spark.apache.org/docs/latest/spark-standalone.html">Spark Standalone Mode</a></li>
+	<li><a href="http://spark.apache.org/docs/latest/">Running the Spark Interactive Shells</a></li>
+</bu:rLinks>
+
+<bu:rChangeLog>
+	<li>This tutorial hasn't had any substantive updates since it was first published.</li>
+</bu:rChangeLog>
 
 <bu:rIndexLink />	
 <%@ include file="../shared/footer.jspf" %>

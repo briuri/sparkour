@@ -1,24 +1,25 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
+<c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private as of Spark 1.4.0, no R examples will be included in this tutorial." />
+<bu:rOverview publishDate="02/29/2016">
+	<h2>Overview</h2>	
 
-<c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private as of Spark 1.4.0, no R examples will be included in this tutorial.</p>" />
-
-<bu:rOverview publishDate="2016-02-29">
-	<h3>Synopsis</h3>
+	<h3>Introduction</h3>
 	<p>This tutorial explores Resilient Distributed Datasets (RDDs), Spark's primary data structure which
 	enables high performance data processing. We use simple programs (in Java, Python, or Scala) to create RDDs
 	and experiment with the available transformations and actions from the Spark Core API. Finally, we explore the available
 	Spark features for making your application more amenable to distributed processing.</p>
 	
-	<p>Because the Spark Core API is not exposed in the SparkR library, this tutorial does not include R examples.</p>
+	<p>Because the Spark Core API is not exposed in the SparkR library, this tutorial will not include R examples.</p>
 	
 	<h3>Prerequisites</h3>
 	<ol>
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
-			covered in <bu:rLink id="submitting-applications" />. You can opt to use the EC2 instance we 
+			covered in <bu:rLink id="submitting-applications" />. You can opt to use the running EC2 instance we 
 			created in <bu:rLink id="installing-ec2" />. If you have stopped and started the instance since the
 			previous tutorial, you need to make note of its new dynamic Public IP address.</li>
+		<li>You need to understand how to submit applications to Spark in Local mode, as covered in 
+			<bu:rLink id="submitting-applications" />.</li>
 	</ol>
 	
 	<h3>Tutorial Goals</h3>
@@ -76,38 +77,35 @@ tuning is required.</p>
 		sudo chown -R ec2-user:ec2-user /opt/sparkour		
 	</bu:rCode>
 
-	<li>The example source code for each language is in a subdirectory of <span class="rCW">src/main</span> with that language's name. A helper script,
-		<span class="rCW">sparkour.sh</span> is included to compile, bundle, and submit applications in all languages.</li>
-
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh java
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="bash">
-				# Use shell script to submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh python
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="bash">
-				# Use shell script to submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh r
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="bash">
-				# Use shell script to compile, bundle, and submit source code
-				cd /opt/sparkour/working-rdds
-				./sparkour.sh scala
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
-
+	<li>The example source code for each language is in a subdirectory with that language's name. Refresher instructions for running the applications can be seen
+		below. Helper scripts are included to compile Java and Scala source code, bundle those classes into JAR files, and submit to the cluster with a single command.</li>
 </ol>
+	
+<bu:rTabs>
+	<bu:rTab index="1">
+		<bu:rCode lang="bash">
+			# Use shell script to compile, bundle, and submit Java source code
+			# Copy commands out of script if you'd prefer to do this by hand
+			cd /opt/sparkour/working-rdds
+			./runJava.sh
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="2">
+		<bu:rCode lang="bash">
+			# Run the python code
+			cd /opt/sparkour/working-rdds
+			/opt/spark/bin/spark-submit python/rdd_sandbox.py
+		</bu:rCode>
+	</bu:rTab><bu:rTab index="3">
+		<c:out value="${noRMessage}" escapeXml="false" />
+	</bu:rTab><bu:rTab index="4">
+		<bu:rCode lang="bash">
+			# Use shell script to compile, bundle, and submit Scala source code
+			# Copy commands out of script if you'd prefer to do this by hand
+			cd /opt/sparkour/working-rdds
+			./runScala.sh
+		</bu:rCode>	
+	</bu:rTab>
+</bu:rTabs>
 
 <h3>Creating an RDD</h3>
 
@@ -136,7 +134,7 @@ within the cluster.</p>
         		numbers.append(random.randint(0, 50))
         		
     		# Create an RDD from the numbers array
-    		numbersListRdd = sc.parallelize(numbers)
+    		numbers_list_rdd = sc.parallelize(numbers)
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noRMessage}" escapeXml="false" />
@@ -163,7 +161,7 @@ types of files, including <span class="rCW">SequenceFiles</span> containing key-
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
  			# Create an RDD from a similar array on the local filesystem
-    		numbersFileRdd = sc.textFile("random_numbers.txt")
+    		numbers_file_rdd = sc.textFile("random_numbers.txt")
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noRMessage}" escapeXml="false" />
@@ -186,13 +184,13 @@ Here are simplified descriptions of a few key operators:</p>
 
 <ul>
 	<li><span class="rCW">map(func)</span>: Passes each element in the source RDD through a function. Setting code aside for a moment, if we had an array of numbers from 1 to 10, and we
-		called <span class="rCW">map</span> with a function that subtracted 1 from each element, the result would be a new array of numbers from 0 to 9.</li>
-	<li><span class="rCW">filter(func)</span>: Returns just the elements that make the function <span class="rCW">true</span>. If we had a list of barnyard animal types as strings,
-		and we called <span class="rCW">filter</span> with a function that checked if an element was a "horse", the result would be a new, smaller list containing only horses.</li>
+		called <span class="rCW">map</span> with a function that subtracted 1 from each element, the result would be an array of numbers from 0 to 9.</li>
+	<li><span class="rCW">filter(func)</span>: Returns just the elements that make the function return <span class="rCW">true</span>. if we had a list of barnyard animal types as strings,
+		and we called <span class="rCW">filter</span> with a function that checked if an element was a "horse", the result would be a smaller list containing only horses.</li>
 	<li><span class="rCW">flatMap(func)</span>: Like <span class="rCW">map</span>, but passing each element through a function might result in multiple values.
-		If we had a list of 10 complete sentences each containing 4 words, and we called <span class="rCW">flatMap</span> with a function that tokenized each sentence based on whitespace,
+		if we had a list of 10 complete sentences each containing 4 words, and we called <span class="rCW">flatMap</span> with a function that tokenized each sentence based on whitespace,
 		the result would be a list of 40 individual words.</li>
-	<li><span class="rCW">reduce(func)</span>: Aggregates an RDD using a comparative function to reduce the RDD to specific elements. If we had an array of numbers, and we called
+	<li><span class="rCW">reduce(func)</span>: Aggregates an RDD using a comparative function to reduce the RDD to specific elements. if we had an array of numbers, and we called
 		<span class="rCW">reduce</span> with a function that compared 2 elements and always returned the higher one, the result would be an array containing just one value: the highest number.</li>
 </ul>
 
@@ -200,13 +198,13 @@ Here are simplified descriptions of a few key operators:</p>
 to functional programming. This simply allows you to define a stateless reusable function as a prototype that other parts of your code can call without dealing with
 instantiation and other object-oriented overhead. A later recipe will cover Lambda Expressions in Java -- this will be a good way to get used to this programming mindset.</p> 
 
-<p>A typical data processing workflow consists of several operators applied to an RDD in sequence. The path from the raw source data to the final action can be referred to
+<p>A typical data processing workflow will consist of several operators applied to an RDD in sequence. The path from the raw source data to the final action can be referred to
 as a chain of operators. Let's create some chains to analyze our created RDDs. To make the example less abstract, pretend that the list of numbers we parallelized is actually a random sample of the number of books in 
 1000 households in Chicago, and the file full of numbers is the same sampling in Houston.</p>
 
 <ol>
-	<li>First, let's assign the RDDs to new named variables so their function is clearer in the subsequent code. We also need to transform the Houston sample from its original format as a list of string lines into
-	a list of integers. This requires one transformation to split the strings up at spaces, and another to convert each token into an integer.</li>
+	<li>First, let's rename the RDDs so their function is clearer in the subsequent code. We also need to transform the Houston sample from its original format as a list of string lines into
+	a list of integers.</li>
 
 	<bu:rTabs>
 		<bu:rTab index="1">
@@ -222,11 +220,11 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # 1000 Chicago residents: How many books do you own?
-			    chicagoRdd = numbersListRdd
+			    chicago_rdd = numbers_list_rdd
 					    
 			    # 1000 Houston residents: How many books do you own?
 			    # Must convert from file's string data to integers first
-			    houstonRdd = numbersFileRdd.flatMap(lambda x: x.split(' ')) \
+			    houston_rdd = numbers_file_rdd.flatMap(lambda x: x.split(' ')) \
 			                                  .map(lambda x: int(x))
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -256,8 +254,8 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # How many have more than 30 in Chicago?
-			    moreThanThirty = chicagoRdd.filter(lambda x: x > 30).count()
-			    print("{} Chicago residents have more than 30 books.".format(moreThanThirty))
+			    more_than_thirty = chicago_rdd.filter(lambda x: x > 30).count()
+			    print("{} Chicago residents have more than 30 books.".format(more_than_thirty))
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
@@ -272,9 +270,9 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
  
 	<li>Remember that transformations always return a new RDD rather than modifying the existing one. Spark is designed so that all transformations are "lazy", and not actually
 		executed until an action requires it. This ensures that you can chain transformations together without worrying about overloading your cluster memory or disk with tons of interim RDDs.
-		In the examples above, the Spark cluster does not actually execute any transformations until the cumulative chain is needed for the <span class="rCW">count()</span> call.<br /><br />
-		Be aware that a parallelized RDD is based on the source data as it was when you first set up the chain of operators. Any changes to the source data after the <span class="rCW">parallelize()</span>
-		call will not be reflected in future executions of the chain. However, file-based source data will include changes if the underlying file changed between executions.</li>	
+		In the example above, the Spark cluster does not actually execute any transformations until the cumulative chain is needed for the <span class="rCW">count()</span> call.<br /><br />
+		Be aware that a parallelized RDD is based on the source data as it was when you first set up the chain of operators. Any changes to the data after the <span class="rCW">parallelize()</span>
+		call will not be reflected in future executions of the chain. However, file-based source data will include changes if the file changed between executions.</li>	
 	
 	<li>Next, let's see what the maximum number of books is in any household across both cities. We combine the RDDs together, and 
 		then use a max function with <span class="rCW">reduce()</span>.</li>
@@ -289,8 +287,8 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				# What's the most number of books in either city?
-			    mostBooks = chicagoRdd.union(houstonRdd).reduce(lambda x, y: x if x > y else y)
-			    print("{} is the most number of books owned in either city.".format(mostBooks))
+			    most_books = chicago_rdd.union(houston_rdd).reduce(lambda x, y: x if x > y else y)
+			    print("{} is the most number of books owned in either city.".format(most_books))
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
@@ -316,8 +314,8 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				# What's the total number of books in both cities?
-			    totalBooks = chicagoRdd.union(houstonRdd).reduce(add)
-				print("{} books in both cities.".format(totalBooks))
+			    total_books = chicago_rdd.union(houston_rdd).reduce(add)
+				print("{} books in both cities.".format(total_books))
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
@@ -337,7 +335,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 
 <p>Spark data processing pipelines can be represented as a graph of transformations and actions without any infinite loops, 
 known as a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph (DAG)</a>. The graph for our RDD Sandbox application
-is very simple, shown in the image below. We start with our raw source data (in grey) which we use to do 3 separate analyses of the data. 
+is very simple, and shown in the image below. We start with our raw source data (in grey) which we use to do 3 separate analyses of the data. 
 Our code sets up a chain of transformations (in blue) which are not
 acted upon until we reach an action step (in orange). We then print out the result of the action.</p>
 
@@ -367,15 +365,15 @@ so that Spark caches and reuses it later instead of recomputing every earlier st
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
 			# Tell Spark to persist this RDD
-			unionRdd = chicagoRdd.union(houstonRdd).persist()
+			union_rdd = chicago_rdd.union(houston_rdd).persist()
 			
 			# What's the most number of books in either city?
-		    mostBooks = unionRdd.reduce(lambda x, y: x if x > y else y)
-		    print("{} is the most number of books owned in either city.".format(mostBooks))
+		    most_books = unionRdd.reduce(lambda x, y: x if x > y else y)
+		    print("{} is the most number of books owned in either city.".format(most_books))
 		    
 			# What's the total number of books in both cities?
-		    totalBooks = unionRdd.reduce(add)
-			print("{} books in both cities.".format(totalBooks))
+		    total_books = unionRdd.reduce(add)
+			print("{} books in both cities.".format(total_books))
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noRMessage}" escapeXml="false" />
@@ -395,12 +393,12 @@ so that Spark caches and reuses it later instead of recomputing every earlier st
 	</bu:rTab>
 </bu:rTabs>
 
-<p>(<span class="rCW">persist()</span> is a chainable call that we could have simply inserted into the <span class="rCW">mostBooks</span> chain. However, 
+<p>(<span class="rCW">persist()</span> is a chainable call that we could have simply inserted into the <span class="rCW">most_books</span> chain. However, 
 refactoring the code to insert a common variable in both chains makes our intent clear and results in better code readability).</p>
 	
 <p>You can optionally set a <span class="rPN">Storage Level</span> as a parameter to <span class="rCW">persist()</span> for more control over the caching strategy. Spark 
 offers <a href="http://spark.apache.org/docs/latest/programming-guide.html#rdd-persistence">several strategies</a> with different trade-offs between resources and performance.
-By default, Spark persists as much of the RDD in memory as possible, and recomputes the rest based on the chain of defined operators whenever the rest is needed. You can also 
+By default, Spark will persist as much of the RDD in memory as possible, and recompute the rest based on the chain of defined operators whenever the rest is needed. You can also 
 serialize your in-memory RDDs as byte arrays or allow them to spill over onto disk. The best strategy to use depends on your data processing needs and the amount of memory, CPU, and disk
 resources available in your cluster.</p>
 
@@ -415,9 +413,9 @@ of your testing in Local mode.</p>
 
 <p>When a job is submitted, Spark calculates a <span class="rPN">closure</span> consisting of all of the variables and methods required for a single executor to perform operations on an RDD,
 and then sends that closure to each worker node. In Local mode, there is only one executor, so the same closure is shared across your application. 
-When this same application is run in parallel on a cluster, each worker has a separate closure and their own copies of variables and methods. 
+When this same application is run in parallel on a cluster, each worker will have a separate closure and their own copies of variables and methods. 
 A common example of a potential issue is creating a counter variable in your application and incrementing it. 
-In Local mode, the counter accurately updates based on the work done in the local threads. On a cluster, however,
+In Local mode, the counter will accurately update based on the work done in the local threads. On a cluster, however,
 each worker has its own copy of the counter.</p>
 
 <p>Spark provides a helpful set of shared variables to ensure that you can safely code in a distributed way. We will explore these in later recipes.</p>  
@@ -442,29 +440,27 @@ both network and disk operations as well as data serialization, so it is complex
 
 <bu:rSection anchor="04" title="Conclusion" />	
 
-<p>Congratulations! You have now programmed a simple application against the Spark Core API to process small datasets. The patterns and practices from this tutorial apply across
-all of the Spark components (e.g. Spark SQL and MLLib). In practice, you will probably end up using the high-level Spark components more often than the Core API.</p>
+<p>Congratulations! You have now programmed simple applications against the Spark Core API to process small datasets. The patterns and practices from this tutorial will apply across
+all of the Spark components (e.g. Spark SQL and MLLib).</p>
 
 <p>This is the final sequential tutorial, and you are now ready to dive into one of the more targeted recipes that focus on specific
 aspects of Spark use. If you are done playing with Spark for now, make sure that you stop your EC2 instance so you don't incur unexpected charges. If you no longer need your EC2 instance,
 make sure to terminate it so you also stop incurring charges for the attached EBS Volume.</p>
 
-<bu:rFooter>
-	<bu:rLinks>
-		<li><a href="http://spark.apache.org/docs/latest/api.html">Spark API Documentation</a></li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#resilient-distributed-datasets-rdds">Resilient Distributed Datasets</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#transformations">Transformations and Actions</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#rdd-persistence">RDD Persistence</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shared-variables">Shared Variables</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shuffle-operations">Shuffle Operations</a> in the Spark Programming Guide</li>
-		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#understanding-closures-a-nameclosureslinka">Understanding Closures</a> in the Spark Programming Guide</li>	
-		<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
-	</bu:rLinks>
-	
-	<bu:rChangeLog>
-		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
-	</bu:rChangeLog>
-</bu:rFooter>
+<bu:rLinks>
+	<li><a href="http://spark.apache.org/docs/latest/api.html">Spark API Documentation</a></li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#resilient-distributed-datasets-rdds">Resilient Distributed Datasets</a> in the Spark Programming Guide</li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#transformations">Transformations and Actions</a> in the Spark Programming Guide</li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#rdd-persistence">RDD Persistence</a> in the Spark Programming Guide</li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shared-variables">Shared Variables</a> in the Spark Programming Guide</li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shuffle-operations">Shuffle Operations</a> in the Spark Programming Guide</li>
+	<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#understanding-closures-a-nameclosureslinka">Understanding Closures</a> in the Spark Programming Guide</li>	
+	<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
+</bu:rLinks>
+
+<bu:rChangeLog>
+	<li>This tutorial hasn't had any substantive updates since it was first published.</li>
+</bu:rChangeLog>
 
 <bu:rIndexLink />	
 <%@ include file="../shared/footer.jspf" %>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="output/classes/main" path="src/main/java"/>
-	<classpathentry kind="src" output="output/classes/test" path="src/test/java"/>
+	<classpathentry kind="src" output="output/classes/main" path="src/java/main"/>
+	<classpathentry kind="src" output="output/classes/test" path="src/java/test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/javax/javax.servlet.jsp.jstl-1.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/javax/javax.servlet.jsp.jstl-api-1.2.1.jar"/>

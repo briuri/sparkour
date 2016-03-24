@@ -1,8 +1,7 @@
-	<title><c:out value="${pageTitle}" /> | Sparkour</title>
+	<title>Sparkour: <c:out value="${pageTitle}" /></title>
 	<spring:url var="recipesUrl" value="/recipes" />
 	<spring:url var="licenseUrl" value="/license" />
 	<c:set var="issuesUrl" value="https://ddmsence.atlassian.net/projects/SPARKOUR" />
-	<c:set var="discussionUrl" value="http://groups.google.com/group/sparkour" />
 </head>
 <body>
 	<div id="layoutOuterPosition">
@@ -13,7 +12,6 @@
 				<li><a href="${recipesUrl}">Recipes</a></li>
 				<li><a href="${licenseUrl}">License</a></li>
 				<li><a href="${issuesUrl}">Issues &rArr;</a></li>
-				<li><a href="${discussionUrl}">Discussion &rArr;</a></li>
 			</ul>
 		</div>
 		<div id="layoutContent">

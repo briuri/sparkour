@@ -1,11 +1,10 @@
 <%@ include file="../shared/header.jspf" %>
-<bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+<bu:rOverview publishDate="02/24/2016">
+	<h2>Overview</h2>	
 
-<bu:rOverview publishDate="2016-02-24">
-	<h3>Synopsis</h3>
+	<h3>Introduction</h3>
 	<p>This tutorial teaches you how to get a pre-built distribution of Apache Spark running on a Linux server,
 	using two Amazon Web Services (AWS) offerings: Amazon Elastic Cloud Compute (EC2) and Identity and Access 
 	Management (IAM). We configure and launch an EC2 instance and then install Spark, using the Spark 
@@ -236,7 +235,7 @@ sure you locate the necessary commands in the EC2 dashboard so you can manage yo
 
 <p>There are several options available for installing Spark. We could build it from the original source code, or 
 download a distribution configured for different versions of Apache Hadoop. 
-For now, we use a pre-built distribution which already contains a common set of Hadoop dependencies.</p>
+For now, we use a pre-built distribution which already contains the necessary dependencies.</p>
  
 <ol>
 	<li>In a web browser from your local development environment, visit the 
@@ -265,53 +264,14 @@ For now, we use a pre-built distribution which already contains a common set of 
 		sudo ln -fs /opt/spark-1.6.0-bin-hadoop2.6 /opt/spark
 	</bu:rCode>
 
-	<li>To complete your installation, set the <span class="rCW">SPARK_HOME</span>
-		environment variable so it takes effect when you login to the EC2 instance.</li>
-		
-	<bu:rCode lang="bash">
-		# Insert these lines into your .bash_profile:
-		SPARK_HOME=/opt/spark
-		PATH=$PATH:$HOME/.local/bin:$HOME/bin:$SPARK_HOME/bin
-		export SPARK_HOME
-		export PATH
-		# Then exit the text editor and return to the command line.
-	</bu:rCode>
-		
-	<li>You need to reload the environment variables (or logout and login again) so
-	they take effect.</li>
-		
-	<bu:rCode lang="bash">
-		# Reload environment variables
-		source ~/.bash_profile
-		
-		# Confirm that spark-submit is now in the PATH.
-		spark-submit --version
-		# (Should display a version number)
-	</bu:rCode>
-		
-	<li>Spark is not shy about presenting reams of informational output to the console as it runs. To make the output of your applications easier to spot, you can
-		optionally set up a Log4J configuration file and suppress some of the Spark logging output. You should maintain logging at the INFO level during the
-		Sparkour tutorials, as we'll review some information such as Master URLs in the log files.</li>
-		
-	<bu:rCode lang="bash">
-		# Create a Log4J configuration file from the provided template.
-		cd /opt/spark/conf
-		cp log4j.properties.template log4j.properties
-		vi log4j.properties
-		# (on line 19 of the file, change the log level from INFO to ERROR)
-		# (Note that this will suppress some of the output needed in the tutorials)
-		
-		# log4j.rootCategory=ERROR, console
-		
-		# Save the file and exit the text editor.
-	</bu:rCode>		
 </ol>
 
 <h3>Testing with the Interactive Shells</h3>
 
 <p>Spark comes with interactive shell programs which allow you to enter arbitrary commands 
 and have them evaluated as you wait. These shells offer a simple way to get started with Spark 
-through "quick and dirty" jobs. An interactive shell does not yet exist for Java.</p>
+through "quick and dirty" jobs. Spark interactive shells are offered for both the Python and Scala programming
+languages, and Spark code can also be run in R's shell. An interactive shell does not yet exist for Java.</p>
 
 <p>Let's use the shells to try a simple example from the Spark website. 
 This example counts the number of lines in the <span class="rCW">README.md</span> file bundled with Spark.</p>
@@ -325,78 +285,51 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		wc -l README.md
 	</bu:rCode>
 
-	<li>Start the interactive shell in the language of your choice.</li>
+	<li>Start the Python shell.</li>
 
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="bash">
-				# Start the Python shell
-				cd /opt/spark
-				./bin/pyspark
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="bash">
-				# Start the R shell
-				cd /opt/spark
-				./bin/sparkR
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="bash">
-				# Start the Scala shell
-				cd /opt/spark
-				./bin/spark-shell
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
+	<bu:rCode lang="bash">
+		# Starting the Python shell
+		cd /opt/spark
+		./bin/pyspark
+	</bu:rCode>
 
 	<li>While in a shell, your command prompt changes, and you have access to environment settings in a
 	<span class="rCW">SparkContext</span> object defined in an <span class="rCW">sc</span> variable.
-	When you see the shell prompt, you can enter arbitrary code in the appropriate language. (You don't 
-	have to type the explanatory comments). The shell responses to each of these commands is omitted for clarity.</li>
+	When you see the <span class="rCW">>>></span> prompt, you can enter arbitrary Python code
+	(you can omit the explanatory comments denoted by <span class="rCW">#</span> in the example below).
+	The shell responses to each of these commands is omitted for clarity.</li>
+		
+	<bu:rCode lang="python">
+		>>> # Load the README.md file for processing
+		>>> textFile = sc.textFile("README.md")
+		>>> # Output the line count (it should match the wc output from the command line)
+		>>> textFile.count()
+		>>> # Quit the shell
+		>>> quit()
+	</bu:rCode>
+
+	<li>Next, start the Scala shell.</li>
 	
-	<bu:rTabs>
-		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
-			<bu:rCode lang="java">
-				// Load the README.md file for processing
-				JavaRDD<String> textFile = sc.textFile("README.md");
-				
-				// Output the line count (it should match the wc output from the command line)
-				System.out.println(textFile.count());
-			</bu:rCode>			
-		</bu:rTab><bu:rTab index="2">
-			<bu:rCode lang="python">
-				>>> # Load the README.md file for processing
-				>>> textFile = sc.textFile("README.md")
-				>>> # Output the line count (it should match the wc output from the command line)
-				>>> textFile.count()
-				>>> # Quit the shell
-				>>> quit()
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="3">
-			<bu:rCode lang="plain">
-				> # The low-level Spark Core API containing <span class="rCW">textFile()</span>
-				> # is not available in R, so we just print hello and quit.
-				> print("Hello")
-				> quit()
-				> # (Hit 'n' to quit without saving the workspace).				
-			</bu:rCode>
-		</bu:rTab><bu:rTab index="4">
-			<bu:rCode lang="scala">
-				scala> // Load the README.md file for processing
-				scala> val textFile = sc.textFile("README.md")
-				scala> // Output the line count (it should match the wc output from the command line)
-				scala> textFile.count()
-				scala> // Quit the shell
-				scala> exit
-			</bu:rCode>	
-		</bu:rTab>
-	</bu:rTabs>
-	
-	<li>For now, we just want to make sure that the shell executes the commands properly and return the correct value.
-		We will explore what's going on under the hood in the last tutorial.</li>
+	<bu:rCode lang="bash">
+		# Starting the Scala shell
+		cd /opt/spark
+		./bin/spark-shell
+	</bu:rCode>
+
+	<li>When you see the <span class="rCW">scala></span> prompt, you can enter arbitrary Scala code.
+	Again, you can omit the comments, denoted by <span class="rCW">//</span>.</li>
+		
+	<bu:rCode lang="scala">
+		scala> // Load the README.md file for processing
+		scala> val textFile = sc.textFile("README.md")
+		scala> // Output the line count (it should match the wc output from the command line)
+		scala> textFile.count()
+		scala> // Quit the shell
+		scala> exit
+	</bu:rCode>
+
+	<li>For now, we just want to make sure that the shells execute the commands properly and return the correct value.
+		We will explore what's going on under the hood in later recipes.</li>
 </ol>
 
 <bu:rSection anchor="03" title="Conclusion" />
@@ -406,18 +339,17 @@ In the next tutorial, <bu:rLink id="managing-clusters" />, we focus on the diffe
 If you are done playing with Spark for now, make sure that you
 <a href="#managing-ec2">stop your EC2 instance</a> so you don't incur unexpected charges.</p>
 
-<bu:rFooter>
-	<bu:rLinks>
-		<li><a href="http://spark.apache.org/docs/latest/">Running the Spark Interactive Shells</a> in the Spark Programming Guide</li>
-		<li><a href="https://media.amazonwebservices.com/AWS_Pricing_Overview.pdf">How AWS Pricing Works</a></li>
-		<li><a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">Amazon IAM User Guide</a></li>
-		<li><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide">Amazon EC2 User Guide</a></li>
-		<li><a href="https://aws.amazon.com/ec2/instance-types">Amazon EC2 Instance Types</a></li>
-	</bu:rLinks>
-	<bu:rChangeLog>
-		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
-	</bu:rChangeLog>
-</bu:rFooter>
+<bu:rLinks>
+	<li><a href="http://spark.apache.org/docs/latest/">Running the Spark Interactive Shells</a></li>
+	<li><a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide">Amazon EC2 User Guide</a></li>
+	<li><a href="https://aws.amazon.com/ec2/instance-types">Amazon EC2 Instance Types</a></li>
+	<li><a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">Amazon IAM User Guide</a></li>
+	<li><a href="https://media.amazonwebservices.com/AWS_Pricing_Overview.pdf">How AWS Pricing Works</a></li>
+</bu:rLinks>
+
+<bu:rChangeLog>
+	<li>This recipe hasn't had any substantive updates since it was first published.</li>
+</bu:rChangeLog>
 
 <bu:rIndexLink />
 <%@ include file="../shared/footer.jspf" %>

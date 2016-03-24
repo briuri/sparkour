@@ -9,8 +9,8 @@
 	<property name="sparkour.version" value="1.0.0" />
 	<property name="conf.dir" value="conf" />
 	<property name="data.dir" value="data" />
-	<property name="src.main.dir" value="src/main/java" />
-	<property name="src.test.dir" value="src/test/java" />
+	<property name="src.main.dir" value="src/java/main" />
+	<property name="src.test.dir" value="src/java/test" />
 	<property name="lib.main.dir" value="lib" />
 	<property name="lib.test.dir" value="${lib.main.dir}/test" />
 
@@ -69,10 +69,6 @@
 	</fileset>
 	<!-- These files are used by AWS CodeDeploy to deploy the live site -->
 	<fileset dir="${data.dir}/deploy" id="files.deploy">
-		<include name="*" />
-	</fileset>	
-	<!-- These files are the zipped up examples -->
-	<fileset dir="${data.dir}/examples/zip" id="files.examples">
 		<include name="*" />
 	</fileset>	
 	<!-- These files are bundled in the webapp WAR file -->
@@ -163,10 +159,6 @@
 		<copy todir="${deploy.content.dir}">
 			<fileset refid="files.content" />
 		</copy>
-		<!-- Copy examples ZIPs to /files/ -->
-		<copy todir="${deploy.content.dir}/files">
-			<fileset refid="files.examples" />
-		</copy>
 	</target>
 
 	<target name="tests" depends="clean, compile" description="Runs unit tests">
@@ -199,10 +191,6 @@
 		<copy todir="${deploy.webapp.dir}/ROOT">
 			<fileset dir="${staging.webapp.dir}" />
 			<fileset refid="files.content" />
-		</copy>
-		<!-- Copy examples ZIPs to /files/ -->
-		<copy todir="${deploy.webapp.dir}/ROOT/files">
-			<fileset refid="files.examples" />
 		</copy>
 		<delete quiet="true" dir="${staging.dir}/webapp" />
 	</target>		
