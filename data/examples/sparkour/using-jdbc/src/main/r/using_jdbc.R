@@ -44,9 +44,6 @@ where <- "(select * from sparkour.people where is_male = 1) as subset"
 malesDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
 print(collect(malesDF))
 
-print("Use groupBy to show counts of males and females.")
-print(collect(count(groupBy(entireDF, "is_male"))))
-
 print("Update weights by 2 pounds (results in a new DataFrame with same column names)")
 heavyDF <- withColumn(entireDF, "updated_weight_lb", entireDF$weight_lb + 2)
 selectDF = select(heavyDF, "id", "name", "is_male", "height_in", "updated_weight_lb")
