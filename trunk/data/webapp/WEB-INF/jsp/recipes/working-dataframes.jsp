@@ -34,7 +34,7 @@
 
 <p>Most Spark tutorials dive into Resilient Distributed Datasets (RDDs) right away, loading file data with the Spark Core API (via <span class="rCW">textFile()</span>),
 and performing common transformations and actions on the raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions at a higher level. 
-The DataFrames API provides a tabular view of RDD data and allows you use common relational database patterns without stringing together endless chains 
+The DataFrames API provides a tabular view of RDD data and allows you to use common relational database patterns without stringing together endless chains 
 of low-level operators. (In math terms, where the Core API gives you <span class="rCW">add()</span> and allows you to put it in a loop to perform multiplication, 
 the DataFrames API just provides <span class="rCW">multiply()</span> right out of the box).</p>
 	
@@ -106,7 +106,7 @@ With a schema that's either inferred from the data or specified as a configurati
 	<span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> from existing data in supported formats. 
 	Consistent with the Spark Core API, any command that takes a file path as a string can use protocols such as
 	<span class="rCW">s3a://</span> or <span class="rCW">hdfs://</span> to point to files on external storage solutions. 
-	You can also read from relational database tables via JDBC, which will be covered in a later recipe.</p> 
+	You can also read from relational database tables via JDBC, as described in <bu:rLink id="using-jdbc" />.</p> 
 
 <ol>
 	<li>In our application, we create a <span class="rCW">SQLContext</span> and then create a <span class="rCW">DataFrame</span> from
@@ -634,7 +634,7 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 	<li><span class="rV">error</span>: Throw an exception if any data already exists at the target location.</li>
 </ol>
 
-<p>You can also write to relational database tables via JDBC, which will be covered in a later recipe.</p>
+<p>You can also write to relational database tables via JDBC, as described in <bu:rLink id="using-jdbc" />.</p>
 
 <ol>
 	<li>In our application, we save one of our generated DataFrames as JSON data. The string-based
@@ -675,6 +675,7 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 <bu:rFooter>
 	<bu:rLinks>
 		<li><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html">Spark DataFrames</a> in the Spark Programming Guide</li>
+		<li><bu:rLink id="using-jdbc" /></li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>

@@ -28,6 +28,10 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-03-24">
+		<bu:rLink id="using-jdbc" />
+		 shows how Spark DataFrames can be read from or written to relational database tables with Java Database Connectivity (JDBC).
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-03-17">
 		<bu:rLink id="building-sbt" />
 		covers the use of SBT (Simple Build Tool or, sometimes, Scala Build Tool) to build and bundle Spark applications
