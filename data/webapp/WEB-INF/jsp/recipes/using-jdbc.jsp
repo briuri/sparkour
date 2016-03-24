@@ -609,7 +609,7 @@ schema, resulting in an imperfect match when the DataFrame is written back to th
 Most noticeable in our example is the loss of the database index sequence, the primary key,
 and the changes to the datatypes of each column.</p>
 
-<p>These changes may cause some write modes to fail in unexpected ways. 
+<p>These differences may cause some write modes to fail in unexpected ways. 
 Programatically specifying a DataFrame schema to enforce schema equality helps to prevent 
 these errors and will be covered in a later recipe.</p>
 
