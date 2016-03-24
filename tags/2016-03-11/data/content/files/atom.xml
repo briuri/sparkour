@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Sparkour</title>
+	<subtitle>An open-source collection of programming recipes for Apache Spark</subtitle>
+	<link href="https://sparkour.urizone.net/" />
+	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
+	
+	<updated>2016-03-11T10:00:00Z</updated>
+	
+	<author><name>Brian Uri!</name></author>
+	<id>https://sparkour.urizone.net/</id>
+	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
+	<icon>https://sparkour.urizone.net/favicon.ico</icon>
+	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
+	
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-11</id>
+		<link href="https://sparkour.urizone.net/?2016-03-11" />
+		<updated>2016-03-11T10:00:00Z</updated>
+		<title type="html">Working with Spark DataFrames</title>
+		<summary type="html">
+			This recipe provides a straightforward introduction to the Spark DataFrames API, which builds upon the Spark Core API to
+			increase developer productivity. It uses the DataFrames API to explore data from the 2016 Democratic Primary in Virginia.
+		</summary>
+	</entry>
+		
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-06</id>
+		<link href="https://sparkour.urizone.net/?2016-03-06" />
+		<updated>2016-03-06T10:00:00Z</updated>
+		<title type="html">Configuring Spark to Use Amazon S3</title>
+		<summary type="html">
+			This recipe provides the steps needed to securely connect an Apache Spark cluster running on Amazon EC2 to data stored in Amazon S3. 
+			It contains instructions for both the classic s3n protocol and the newer, but still maturing, s3a protocol.
+		</summary>
+	</entry>
+		
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-05</id>
+		<link href="https://sparkour.urizone.net/?2016-03-05" />
+		<updated>2016-03-05T10:00:00Z</updated>
+		<title type="html">Configuring Amazon S3 as a Spark Data Source</title>
+		<summary type="html">
+			This recipe provides the steps needed to securely expose data in Amazon S3 for consumption by a Spark application. 
+			The resultant configuration works with both supported S3 protocols in Spark: the classic s3n protocol and the newer, but still maturing, s3a protocol.
+		</summary>
+	</entry>
+			
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-04</id>
+		<link href="https://sparkour.urizone.net/?2016-03-04" />
+		<updated>2016-03-04T10:00:00Z</updated>
+		<title type="html">Managing a Cluster with the spark-ec2 Script</title>
+		<summary type="html">
+			This recipe describes how to automatically launch, start, stop, or destroy a Spark cluster running in Amazon EC2 
+			It steps through the pre-launch configuration, explains the script's most common parameters, and points out 
+			where specific parameters can be found in the AWS Management Console.
+		</summary>
+	</entry>
+   
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-01</id>
+		<link href="https://sparkour.urizone.net/?2016-03-01" />
+		<updated>2016-03-01T10:00:00Z</updated>
+		<title type="html">Welcome to Sparkour!</title>
+		<summary type="html">
+			To kick things off, I have released 5 sequential tutorials, which should give you a solid foundation for mastering Spark. 
+			My long-term goal is to publish one or two new standalone recipes per week until the end of time.
+			Help me improve Sparkour by submitting bugs and improvement suggestions on the Issues page.
+		</summary>
+	</entry>
+</feed>
+
+

@@ -1,0 +1,2 @@
+token.logback.sparkour.level=debug
+token.logback.level=warn

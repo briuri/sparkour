@@ -1,0 +1,262 @@
+/**
+ * Base Styles
+ */
+a:link {
+	color: #0054b4;
+	text-decoration: none;
+}
+a:visited {
+	color: #50a4f4;
+	text-decoration: none;
+}
+a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+body {
+	background: #3b79f0 url('../images/background.png');
+	color: #000000;
+	font: 11pt 'Merriweather Sans', sans-serif;
+	margin: 0px auto;
+}
+h1 {
+	font-size: 19pt;
+	margin-bottom: 0px;
+	text-shadow: 0px 1px 1px #dddddd;
+}
+h2 {
+	font-size: 14pt;
+}
+h3 {
+	font-size: 12pt;
+	text-decoration: underline;
+}
+li {
+	margin-bottom: 6px;
+}
+
+/**
+ * Layout Styles
+ */
+#layoutContent {
+	background-color: #fafafa;
+	box-shadow: 0px 1px 3px #999999;
+	margin-bottom: 15px;
+} 
+#layoutFooter {
+	color: #888888;
+	font-size: 9pt;
+	text-align: center;
+	margin-top: 10px;
+}
+#layoutHeaderRow {
+	background: url('/images/logo-50.png') no-repeat top left;
+	color: #ffffff;
+	font-size: 26pt;
+	font-weight: bold;
+	height: 50px;
+	margin: 0px 0px 0px 4px;
+	padding: 4px 0px 0px 60px;
+	text-shadow: 0px 2px 3px #000000;
+}
+#layoutInnerContent {
+	padding: 10px 15px 10px 15px;
+}
+#layoutOuterPosition {
+	margin: 0px auto;
+}
+#layoutOuterPosition > a:hover {
+	text-decoration: none;
+}
+#menu {
+	background: #1c4370 url('../images/background-menu.png');
+	color: #888888;
+	height: 27px;
+	margin: 0px auto;
+	padding-left: 15px;
+}
+#menu a:link, #menu a:visited {
+	color: #ddcc44;
+	text-decoration: none;
+}
+#menu a:hover {
+	color: #ffee66;
+	cursor: pointer;
+	text-decoration: underline;
+}
+#menu li {
+	float: left;
+	list-style-type: none;
+	padding: 5px 20px 0px 0px;
+}
+
+/**
+ * Additional Styles
+ */
+.expand {}
+.hidden {
+	display: none;
+}
+img.border {
+	border-color: #888888;
+	border-style: solid;
+	border-width: 1px;
+	margin: 2px;
+}
+img.diagram {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+} 
+.license {
+	font-size: 10pt;
+}
+#newsFeed {
+	background-color: #ffffff;
+	box-shadow: 0px 1px 3px #888888;
+	padding: 10px 5px 10px 5px;
+}
+#newsFeedControl {
+	margin: 0px 5px 0px 5px;
+	text-align: right;
+}
+.newsDate {
+	background-color: #cccccc;
+	border-color: #888888;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	box-shadow: 0px 1px 1px #bbbbbb;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 0px 8px 0px 8px;
+	white-space: nowrap;
+}
+.newsUpdate {
+	margin: 8px 12px 16px 12px;
+}
+pre.exception {
+	font-size: 8pt;
+}
+.rDate {
+	font-size: 9pt;
+	font-style: italic;
+	margin-bottom: 8px;
+}
+.rIndexLink {
+	margin-top: 8px;
+	display: block;
+	font-size: 10pt;
+	text-align: right;
+}
+.rReference {
+	background-color: #ffe4c2;
+	border-radius: 5px;
+	box-shadow: 0px 1px 3px #888888;
+	padding: 2px 10px 10px 10px;
+}
+.rAB { /* AWS Button */
+	background-color: #9f9f9f;
+	border-color: #888888;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 9pt;
+	padding: 0px 4px 0px 4px;
+	white-space: nowrap;
+}
+.rCW { /* Code Word */
+}
+.rK { /* Key */
+	background-color: #e0e0e0;
+	padding: 0px 3px 0px 3px;
+}
+.rMI { /* Menu Item */
+	font-style: italic;
+	font-weight: bold;
+}
+.rPN { /* Page Name */
+	font-weight: bold;
+}
+.rV { /* Value */
+	text-decoration: underline;
+}
+.rCW, .rK, .rMI, .rV {
+	font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+	font-size: 9pt;
+}
+.slicknav_menu {
+	display: none;
+}
+.tabsContainer {
+	margin-bottom: 20px;
+}
+.tabContent {
+    display: none;
+    //margin: 10px;
+}
+.tabContent p {
+	margin: 10px;
+}
+.tabContent .syntaxhighlighter {
+	box-shadow: none;
+	margin: 0px;
+}
+.tabContentPane {
+    background-color: #ffffff;
+    border: 1px solid #888888;
+   	clear: both;
+   	display: block;
+}
+.tabsMenu {
+    padding-left: 0px;
+}
+.tabsMenu li {
+    background-color: #dddddd;
+    border-left: 1px solid #888888;
+    border-right: 1px solid #888888;
+    border-top: 1px solid #888888;
+    float: left;
+    list-style-type: none;
+    margin: 0px 8px 0px 0px;
+}
+.tabsMenu li.tabCurrent {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    z-index: 5;
+}
+.tabsMenu li a {
+    color: #0054b4;
+    padding: 10px;
+    text-decoration: none; 
+    text-transform: uppercase;
+}
+.tabsMenu li.tabCurrent a {
+    color: #000000;
+}
+.tab-2 {
+ 	display: block;   
+}
+
+/**
+ * Mobile
+ */
+@media screen and (max-width: 750px) {
+	img.diagram {
+		height: auto;
+		width: 100%;
+	}
+	#menu {
+		display: none;
+	}	
+	.slicknav_menu {
+		display: block;
+	}
+} 
+@media screen and (min-width: 1025px) {
+	#layoutOuterPosition {
+		max-width: 1024px;
+	}
+}

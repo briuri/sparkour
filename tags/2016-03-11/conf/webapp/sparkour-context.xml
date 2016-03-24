@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	">
+
+	<util:map id="recipeTitles">
+    	<entry key="sparkour-conventions" value="Tutorial #0: Sparkour Conventions" />
+    	<entry key="spark-nutshell" value="Tutorial #1: Apache Spark in a Nutshell" />
+    	<entry key="installing-ec2" value="Tutorial #2: Installing Spark on Amazon EC2" />
+    	<entry key="managing-clusters" value="Tutorial #3: Managing Spark Clusters" />
+    	<entry key="submitting-applications" value="Tutorial #4: Submitting a Spark Application" />
+    	<entry key="working-rdds" value="Tutorial #5: Working with Resilient Distributed Datasets (RDDs)" />
+    	
+    	<entry key="working-dataframes" value="Working with Spark DataFrames" />
+    	
+    	<entry key="spark-ec2" value="Managing a Cluster with the spark-ec2 Script" />
+    	<entry key="configuring-s3" value="Configuring Amazon S3 as a Spark Data Source" />
+    	<entry key="using-s3" value="Configuring Spark to Use Amazon S3" />
+	</util:map>       
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Sparkour</title>
+    <subtitle>An open-source collection of programming recipes for Apache Spark</subtitle>
+    <link href="https://sparkour.urizone.net/" />
+    <link rel="self" href="https://sparkour.urizone.net/atom.xml" />
+    <updated>2016-03-01T10:00:00Z</updated>
+    <author><name>Brian Uri!</name></author>
+    <id>https://sparkour.urizone.net/</id>
+    <rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
+    <icon>https://sparkour.urizone.net/favicon.ico</icon>
+    <logo>https://sparkour.urizone.net/images/logo-50.png</logo>
+
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-01</id>
+            <link href="https://sparkour.urizone.net/?2016-03-01" />
+            <published>2016-03-01T10:00:00Z</published>
+            <updated>2016-03-01T10:00:00Z</updated>
+            <title type="html">Welcome to Sparkour!</title>
+            <summary type="html">
+            	To kick things off, I have released 5 sequential tutorials, which should give you a solid foundation for mastering Spark. 
+            	My long-term goal is to publish one or two new standalone recipes per week until the end of time.
+				Help me improve Sparkour by submitting bugs and improvement suggestions on the Issues page.
+            </summary>
+        </entry>
+</feed>
