@@ -49,8 +49,7 @@ public final class JUsingSqlUdf {
 		sqlContext.sql(query).show();
 
 		System.out.println("What order were candidates on the ballot?");
-		// Get the ballot order and discard the many duplicates (all VA ballots
-		// are the same)
+		// Get the ballot order and discard the many duplicates (all VA ballots are the same)
 		// We also register this DataFrame as a table to reuse later.
 		query = "SELECT DISTINCT candidate_name, candidate_ballot_order "
 			+ "FROM votes ORDER BY candidate_ballot_order";
@@ -63,7 +62,8 @@ public final class JUsingSqlUdf {
 		DataFrame friendlyDF = sqlContext.read().json("friendly_orders.json");
 		friendlyDF.registerTempTable("ballot_order");
 		// Join the tables so the results show descriptive text
-		query = "SELECT oc.candidate_name, bo.friendly_name " + "FROM ordered_candidates oc JOIN ballot_order bo "
+		query = "SELECT oc.candidate_name, bo.friendly_name " 
+			+ "FROM ordered_candidates oc JOIN ballot_order bo "
 			+ "ON oc.candidate_ballot_order = bo.candidate_ballot_order";
 		sqlContext.sql(query).show();
 
@@ -79,8 +79,7 @@ public final class JUsingSqlUdf {
 		sqlContext.sql(query).show();
 
 		System.out.println("Which polling station had the highest physical turnout?");
-		// All physical precincts have a numeric code. Provisional/absentee
-		// precincts start with "##".
+		// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 		query = "SELECT precinct_name, SUM(to_int(total_votes)) AS sum_total_votes "
 			+ "FROM votes WHERE precinct_code NOT LIKE '##%' "
 			+ "GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1";
