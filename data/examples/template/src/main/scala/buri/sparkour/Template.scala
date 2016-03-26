@@ -19,7 +19,6 @@
 package buri.sparkour
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.SparkContext._
 
 /**
  * 
