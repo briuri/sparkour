@@ -9,9 +9,10 @@
 	
 	<h3>Prerequisites</h3>
 	<ol>
+		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.</li> 
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
 			covered in <bu:rLink id="submitting-applications" />.</li>
-		<li>You need administrative access to a relational database (such as mySQL, PostgreSQL, or Oracle).</li> 
+		<li>You need administrative access to a relational database (such as mySQL, PostgreSQL, or Oracle).</li>
 	</ol>		
 
 	<h3>Target Versions</h3>
@@ -573,7 +574,7 @@ rather than updating the existing one.</p>
 <p>You may encounter this error when trying to write to a JDBC table with <span class="rCW">write.df()</span>.
 The SparkR API does not fully support JDBC yet, so you cannot write to tables in R yet. 
 There will eventually be a <span class="rCW">write.jdbc()</span> function added, and you can track
-the progress of this work in <a href="https://issues.apache.org/jira/browse/SPARK-12224">this issue</a>.</p> 
+the progress of this work in the <a href="https://issues.apache.org/jira/browse/SPARK-12224">SPARK-12224</a> ticket.</p> 
 
 <h3>Schema Variations</h3>
 
@@ -616,6 +617,7 @@ use the same database table as both the source and the target, <i>unless</i> the
 <bu:rFooter>
 	<bu:rLinks>
 		<li><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html#jdbc-to-other-databases">JDBC to Other Databases</a> in the Spark Programming Guide</li>
+		<li><bu:rLink id="working-dataframes" /></li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>
