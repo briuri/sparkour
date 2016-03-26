@@ -24,6 +24,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Column;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.types.DataTypes;
 
 /**
  * Performs a variety of DataFrames manipulations using raw SQL and
@@ -39,54 +40,50 @@ public final class JUsingSqlUdf {
 		// Create a DataFrame based on the JSON results.
 		DataFrame rawDF = sqlContext.read().json("loudoun_d_primary_results_2016.json");
 
+                // Register as a SQL-accessible table
+                rawDF.registerTempTable("votes");
+
 		System.out.println("Who was on the ballet?");
 		// Get all distinct candidate names from the DataFrame
-		rawDF.select("candidate_name").distinct().show();
+                String query = "SELECT DISTINCT candidate_name FROM votes";
+                sqlContext.sql(query).show();
 
 		System.out.println("What order were candidates on the ballot?");
 		// Get the ballot order and discard the many duplicates (all VA ballots are the same)
-		// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-		DataFrame ballotDF = rawDF.select(rawDF.col("candidate_name"), rawDF.col("candidate_ballot_order"))
-			.dropDuplicates().orderBy("candidate_ballot_order").persist();
-		ballotDF.show();
+                // We also register this DataFrame as a table to reuse later.
+                query = "SELECT DISTINCT candidate_name, candidate_ballot_order "
+                    + "FROM votes ORDER BY candidate_ballot_order";
+                DataFrame orderDF = sqlContext.sql(query);
+                orderDF.registerTempTable("ordered_candidates");
+                orderDF.show();
 
 		System.out.println("What order were candidates on the ballot (in descriptive terms)?");
 		// Load a reference table of friendly names for the ballot orders.
 		DataFrame friendlyDF = sqlContext.read().json("friendly_orders.json");
+                friendlyDF.registerTempTable("ballot_order");
 		// Join the tables so the results show descriptive text
-		DataFrame joinedDF = ballotDF.join(friendlyDF, "candidate_ballot_order");
-		// Hide the numeric column in the output.
-		joinedDF.select(joinedDF.col("candidate_name"), joinedDF.col("friendly_name")).show();
+                query = "SELECT oc.candidate_name, bo.friendly_name "
+                    + "FROM ordered_candidates oc JOIN ballot_order bo "
+                    + "ON oc.candidate_ballot_order = bo.candidate_ballot_order";
+                sqlContext.sql(query).show();
 
 		System.out.println("How many votes were cast?");
-		// Orginal data is string-based. Create an integer version of the total
-		// votes column.
-		Column votesColumn = rawDF.col("total_votes").cast("int").alias("total_votes_int");
-		// Get the integer-based votes column and sum all values together
-		rawDF.select(votesColumn).groupBy().sum("total_votes_int").show();
+		// Orginal data is string-based. Create a UDF to cast as an integer.
+                sqlContext.udf().register("to_int", (String x) -> Integer.valueOf(x), DataTypes.IntegerType);
+                query = "SELECT SUM(to_int(total_votes)) AS sum_total_votes FROM votes";
+                sqlContext.sql(query).show();
 
 		System.out.println("How many votes did each candidate get?");
-		// Get just the candidate names and votes.
-		DataFrame candidateDF = rawDF.select(rawDF.col("candidate_name"), votesColumn);
-		// Group by candidate name and sum votes. Assign an alias to the sum so we can order on that column.
-		// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-		DataFrame groupedDF = candidateDF.groupBy("candidate_name")
-			.agg(sum("total_votes_int").alias("sum_column"));
-		DataFrame summaryDF = groupedDF.orderBy(groupedDF.col("sum_column").desc()).persist();
-		summaryDF.show();
+                query = "SELECT candidate_name, SUM(to_int(total_votes)) AS sum_total_votes "
+                    + "FROM votes GROUP BY candidate_name ORDER BY sum_total_votes DESC";
+                sqlContext.sql(query).show();
 
 		System.out.println("Which polling station had the highest physical turnout?");
-		// All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
-		// Spark's cast function converts these to "null".
-		Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
-		// Get the precinct name, integer-based code, and integer-based votes,
-		// then filter on non-null codes.
-		DataFrame pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
-			.filter("precinct_code_int is not null");
-		// Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
-		// Then, show the max row.
-		groupedDF = pollingDF.groupBy("precinct_name").agg(sum("total_votes_int").alias("sum_column"));
-		groupedDF.orderBy(groupedDF.col("sum_column").desc()).limit(1).show();
+		// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
+                query = "SELECT precinct_name, SUM(to_int(total_votes)) AS sum_total_votes "
+                    + "FROM votes WHERE precinct_code NOT LIKE '##%' "
+                    + "GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1";
+                sqlContext.sql(query).show();
 
 		sc.stop();
 	}

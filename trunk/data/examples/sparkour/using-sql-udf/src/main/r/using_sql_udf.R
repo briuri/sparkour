@@ -25,51 +25,53 @@ sqlContext <- sparkRSQL.init(sc)
 # Create a DataFrame based on the JSON results.
 rawDF <- read.df(sqlContext, "loudoun_d_primary_results_2016.json", "json")
 
+# Register as a SQL-accessible table
+registerTempTable(rawDF, "votes")
+
 print("Who was on the ballet?")
 # Get all distinct candidate names from the DataFrame
-print(collect(distinct(select(rawDF, "candidate_name"))))
+query <- "SELECT DISTINCT candidate_name FROM votes"
+print(collect(sql(sqlContext, query)))
 
 print("What order were candidates on the ballot?")
 # Get the ballot order and discard the many duplicates (all VA ballots are the same)
-# Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-orderDF <- orderBy(distinct(select(rawDF, "candidate_name", "candidate_ballot_order")), "candidate_ballot_order")
-persist(orderDF, "MEMORY_ONLY")
+# We also register this DataFrame as a table to reuse later.
+query <- paste("SELECT DISTINCT candidate_name, candidate_ballot_order",
+    "FROM votes ORDER BY candidate_ballot_order", sep=" ")
+orderDF <- sql(sqlContext, query)
+registerTempTable(orderDF, "ordered_candidates")
 print(collect(orderDF))
 
 print("What order were candidates on the ballot (in descriptive terms)?")
 # Load a reference table of friendly names for the ballot orders.
 friendlyDF <- read.df(sqlContext, "friendly_orders.json", "json")
+registerTempTable(friendlyDF, "ballot_order")
 # Join the tables so the results show descriptive text
-joinedDF <- join(orderDF, friendlyDF, orderDF$candidate_ballot_order == friendlyDF$candidate_ballot_order)
-# Hide the numeric column in the output.
-print(collect(select(joinedDF, "candidate_name", "friendly_name")))
+query <- paste("SELECT oc.candidate_name, bo.friendly_name",
+    "FROM ordered_candidates oc JOIN ballot_order bo",
+    "ON oc.candidate_ballot_order = bo.candidate_ballot_order", sep=" ")
+print(collect(sql(sqlContext, query)))
 
 print("How many votes were cast?")
 # Orginal data is string-based. Create an integer version of the total votes column.
+# Because UDFs are not yet supported in SparkR, we cast the column first, then run SQL.
 votesColumn <- alias(cast(rawDF$total_votes, "int"), "total_votes_int")
+votesDF <- withColumn(rawDF, "total_votes_int", cast(rawDF$total_votes, "int"))
+registerTempTable(votesDF, "votes_int")
 # Get the integer-based votes column and sum all values together
-print(collect(sum(groupBy(select(rawDF, votesColumn)), "total_votes_int")))
-   
-print("How many votes did each candidate get?")
-# Get just the candidate names and votes.
-candidateDF <- select(rawDF, rawDF$candidate_name, votesColumn)
-# Group by candidate name and sum votes. Assign an alias to the sum so we can order on that column.
-# Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-groupedDF <- agg(groupBy(candidateDF, "candidate_name"), sum_column=sum(candidateDF$total_votes_int))
-summaryDF <- orderBy(groupedDF, desc(groupedDF$sum_column))
-persist(summaryDF, "MEMORY_ONLY")
-print(collect(summaryDF))
+query <- "SELECT SUM(total_votes_int) AS sum_total_votes FROM votes_int"
+print(collect(sql(sqlContext, query)))
 
+print("How many votes did each candidate get?")
+query <- paste("SELECT candidate_name, SUM(total_votes_int) AS sum_total_votes",
+    "FROM votes_int GROUP BY candidate_name ORDER BY sum_total_votes DESC", sep=" ")
+print(collect(sql(sqlContext, query)))
+    
 print("Which polling station had the highest physical turnout?")
-# All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
-# Spark's cast function converts these to "null".
-precinctColumn <- alias(cast(rawDF$precinct_code, "int"), "precinct_code_int")
-# Get the precinct name, integer-based code, and integer-based votes, then filter on non-null codes.
-pollingDF <- filter(select(rawDF, rawDF$precinct_name, precinctColumn, votesColumn), "precinct_code_int is not null")
-# Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
-# Then, show the max row.
-groupedDF <- agg(groupBy(pollingDF, "precinct_name"), sum_column=sum(pollingDF$total_votes_int))
-pollingDF <- limit(orderBy(groupedDF, desc(groupedDF$sum_column)), 1)
-print(collect(pollingDF))
+# All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
+query <- paste("SELECT precinct_name, SUM(total_votes_int) AS sum_total_votes",
+    "FROM votes_int WHERE precinct_code NOT LIKE '##%'",
+    "GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1", sep=" ")
+print(collect(sql(sqlContext, query)))
 
 sparkR.stop()
