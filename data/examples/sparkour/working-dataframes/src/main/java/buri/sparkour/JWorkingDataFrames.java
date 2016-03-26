@@ -64,8 +64,7 @@ public final class JWorkingDataFrames {
 		joinedDF.select(joinedDF.col("candidate_name"), joinedDF.col("friendly_name")).show();
 
 		System.out.println("How many votes were cast?");
-		// Orginal data is string-based. Create an integer version of the total
-		// votes column.
+		// Orginal data is string-based. Create an integer version of the total votes column.
 		Column votesColumn = rawDF.col("total_votes").cast("int").alias("total_votes_int");
 		// Get the integer-based votes column and sum all values together
 		rawDF.select(votesColumn).groupBy().sum("total_votes_int").show();
