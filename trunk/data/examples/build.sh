@@ -95,6 +95,7 @@ function createExample {
     mv $SRC_PATH/python/template.py $SRC_PATH/python/$NAME_INTERPRETED.py
     mv $SRC_PATH/r/template.R $SRC_PATH/r/$NAME_INTERPRETED.R
     mv $SRC_PATH/scala/$PACKAGE/Template.scala $SRC_PATH/scala/$PACKAGE/S$NAME_COMPILED.scala
+    echo "Next, run 'svn add' and 'svn propset svn:ignore \"*\" target'."
 }
 
 # Creates a ZIP archive of an example.
