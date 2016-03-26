@@ -19,7 +19,7 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.7</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.10.6</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions.</li>
 		<li>SBT continues to mature, sometimes in ways that break backwards compatibility. You should consider using a minimum of SBT <span class="rPN">0.13.6</span> and
 			<span class="rCW">sbt-assembly</span> <span class="rPN">0.12.0</span>.</li>
@@ -111,7 +111,7 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 <bu:rCode lang="scala">
 	name := "BuildingSBT"
 	version := "1.0"
-	scalaVersion := "2.11.7"
+	scalaVersion := "2.10.6"
 
 	libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"

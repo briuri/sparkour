@@ -106,21 +106,23 @@ components installed, you should be able to review these instructions and adapt 
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
-		downloaded separately.</p>
+		downloaded separately. You should use the same version of Scala that was
+		used to build Apache Spark. In the case of <span class="rPN">Spark 1.6.0 Pre-built for Hadoop 2.6 and later</span>,
+		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version.</p>
 		
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
 			cd ~
-			wget http://downloads.lightbend.com/scala/2.11.7/scala-2.11.7.tgz
+			wget http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.tgz
 			
 			# Unpack Spark in the /opt directory
-			sudo tar zxvf scala-2.11.7.tgz -C /opt
+			sudo tar zxvf scala-2.10.6.tgz -C /opt
 			
 			# Update permissions on installation
-			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.7
+			sudo chown -R ec2-user:ec2-user /opt/scala-2.10.6
 			
 			# Create a symbolic link to make it easier to access
-			sudo ln -fs /opt/scala-2.11.7 /opt/scala
+			sudo ln -fs /opt/scala-2.10.6 /opt/scala
 			
 			#Edit your bash profile to add environment variables
 			vi ~/.bash_profile
