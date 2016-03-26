@@ -17,8 +17,13 @@
 
 package buri.sparkour;
 
+import static org.apache.spark.sql.functions.*;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.Column;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.SQLContext;
 
 /**
  * Performs a variety of DataFrames manipulations using raw SQL and
