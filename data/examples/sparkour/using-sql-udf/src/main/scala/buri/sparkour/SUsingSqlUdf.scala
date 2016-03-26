@@ -19,8 +19,7 @@
 package buri.sparkour
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.SparkContext._
-
+import org.apache.spark.sql.{SQLContext, functions}
 /**
  * Performs a variety of DataFrames manipulations using raw SQL and
  * User-Defined Functions (UDFs).

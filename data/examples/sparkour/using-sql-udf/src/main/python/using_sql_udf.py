@@ -17,6 +17,9 @@
 
 from __future__ import print_function
 from pyspark import SparkContext
+from pyspark.sql import SQLContext
+from pyspark.sql.types import *
+import pyspark.sql.functions as func
 
 """
     Performs a variety of DataFrames manipulations using raw SQL and
