@@ -552,7 +552,7 @@ With a schema that's either inferred from the data or specified as a configurati
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 		System.out.println("Which polling station had the highest physical turnout?");
-		// All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+		// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 		// Spark's cast function converts these to "null".
 		Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
 		// Get the precinct name, integer-based code, and integer-based votes,
@@ -567,7 +567,7 @@ With a schema that's either inferred from the data or specified as a configurati
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("Which polling station had the highest physical turnout?")
-			    # All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+			    # All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 			    # Spark's cast function converts these to "null".
 			    precinctColumn = rawDF["precinct_code"].cast("int").alias("precinct_code_int")
 			    # Get the precinct name, integer-based code, and integer-based votes, then filter on non-null codes.
@@ -581,7 +581,7 @@ With a schema that's either inferred from the data or specified as a configurati
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				print("Which polling station had the highest physical turnout?")
-				# All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+				# All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 				# Spark's cast function converts these to "null".
 				precinctColumn <- alias(cast(rawDF$precinct_code, "int"), "precinct_code_int")
 				# Get the precinct name, integer-based code, and integer-based votes, then filter on non-null codes.
@@ -595,7 +595,7 @@ With a schema that's either inferred from the data or specified as a configurati
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("Which polling station had the highest physical turnout?")
-				// All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+				// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 				// Spark's cast function converts these to "null".
 				val precinctColumn = rawDF("precinct_code").cast("int").alias("precinct_code_int")
 				// Get the precinct name, integer-based code, and integer-based votes, then filter on non-null codes.

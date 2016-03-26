@@ -81,7 +81,7 @@ public final class JWorkingDataFrames {
 		summaryDF.show();
 
 		System.out.println("Which polling station had the highest physical turnout?");
-		// All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+		// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 		// Spark's cast function converts these to "null".
 		Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
 		// Get the precinct name, integer-based code, and integer-based votes,

@@ -66,7 +66,7 @@ persist(summaryDF, "MEMORY_ONLY")
 print(collect(summaryDF))
 
 print("Which polling station had the highest physical turnout?")
-# All physical precincts have a numeric code. Provisional/absentee precincts start with "###".
+# All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
 # Spark's cast function converts these to "null".
 precinctColumn <- alias(cast(rawDF$precinct_code, "int"), "precinct_code_int")
 # Get the precinct name, integer-based code, and integer-based votes, then filter on non-null codes.
