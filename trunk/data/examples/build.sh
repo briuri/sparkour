@@ -59,7 +59,6 @@ function cleanExample {
     rm -rf $OUTPUT_PATH/*
     rm -f $SRC_PATH/python/*.pyc
     if [[ -f "$EXAMPLE_PATH/build.sbt" ]]; then
-        echo "help"
         rm -rf $EXAMPLE_PATH/project/project/target/*
         rm -rf $EXAMPLE_PATH/project/target/*
     fi
