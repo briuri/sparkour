@@ -231,7 +231,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.11/buildingsbt_2.11-1.0.jar
+					target/scala-2.10/buildingsbt_2.10-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -244,7 +244,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.11/buildingsbt_2.11-1.0.jar
+					target/scala-2.10/buildingsbt_2.10-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -289,7 +289,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.11/buildingsbt_2.11-1.0.jar
+					target/scala-2.10/buildingsbt_2.10-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -302,7 +302,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.11/buildingsbt_2.11-1.0.jar
+					target/scala-2.10/buildingsbt_2.10-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -351,7 +351,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 		
 	<bu:rCode lang="bash">
 		cd /opt/sparkour/building-sbt
-		less target/scala-2.11/BuildingSBT-assembly-1.0.jar | grep commons
+		less target/scala-2.10/BuildingSBT-assembly-1.0.jar | grep commons
 	</bu:rCode>
 	
 	<bu:rCode lang="bash">
@@ -386,7 +386,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
-					target/scala-2.11/BuildingSBT-assembly-1.0.jar
+					target/scala-2.10/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -398,7 +398,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
-					target/scala-2.11/BuildingSBT-assembly-1.0.jar
+					target/scala-2.10/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>	
