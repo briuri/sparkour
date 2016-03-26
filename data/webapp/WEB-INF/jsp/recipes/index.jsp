@@ -11,7 +11,7 @@
 <div class="tabsContainer">
     <ul class="tabsMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
-        <li><a href=".tab-2">Spark Development (3)</a></li>
+        <li><a href=".tab-2">Spark Development (4)</a></li>
         <li><a href=".tab-3">Spark Integration (3)</a></li>
     </ul>
     <div class="tabContentPane">
@@ -40,8 +40,8 @@
 				</ul></li>
 				<li><span class="rCategory">Libraries: Spark SQL</span><ul>
 					<li><bu:rLink id="working-dataframes" /></li>
+					<li><bu:rLink id="using-sql-udf" /></li>
 					<li><bu:rLink id="using-jdbc" /></li>
-					<li>Applying User-Defined Functions and Raw SQL to Spark DataFrames</li>
 					<li>Controlling the Schema of a DataFrame</li>
 					<li>Using Hive Tables with Spark DataFrames</li>
 					<li>Working with Spark Datasets</li>

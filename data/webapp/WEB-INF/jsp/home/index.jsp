@@ -28,6 +28,11 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-03-26">
+		<bu:rLink id="using-sql-udf" /> demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The SparkSQL library
+		supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
+		the recipe, <bu:rLink id="working-dataframes" />.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-03-24">
 		<bu:rLink id="using-jdbc" />
 		 shows how Spark DataFrames can be read from or written to relational database tables with Java Database Connectivity (JDBC).
@@ -53,15 +58,15 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		It contains instructions for both the classic <span class="rCW">s3n</span> protocol and the newer, but still maturing, 
 		<span class="rCW">s3a</span> protocol.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-05">
-		<bu:rLink id="configuring-s3" />
-		provides the steps needed to securely expose data in Amazon S3 for consumption by a Spark application.
-		The resultant configuration works with both supported S3 protocols in Spark: the classic <span class="rCW">s3n</span> 
-		protocol and the newer, but still maturing, <span class="rCW">s3a</span> protocol.
-	</bu:newsUpdate>
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2016-03-05">
+			<bu:rLink id="configuring-s3" />
+			provides the steps needed to securely expose data in Amazon S3 for consumption by a Spark application.
+			The resultant configuration works with both supported S3 protocols in Spark: the classic <span class="rCW">s3n</span> 
+			protocol and the newer, but still maturing, <span class="rCW">s3a</span> protocol.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-03-04">	
 			<bu:rLink id="spark-ec2" />
 			describes how to automatically launch, start, stop, or destroy a Spark cluster running in Amazon EC2. 

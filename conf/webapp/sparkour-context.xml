@@ -17,6 +17,7 @@
     	<entry key="working-rdds" 				value="Tutorial #5: Working with Spark Resilient Distributed Datasets (RDDs)" />
     	
     	<entry key="working-dataframes" 		value="Working with Spark DataFrames" />
+    	<entry key="using-sql-udf"			 	value="Using SQL and User-Defined Functions with Spark DataFrames" />
     	<entry key="using-jdbc"			 		value="Using JDBC with Spark DataFrames" />
     	<entry key="building-sbt" 				value="Building Spark Applications with SBT" />
     	    	

@@ -25,7 +25,7 @@
 	<ul>
 		<li><a href="#01">DataFrames Highlights</a></li>
 		<li><a href="#02">Creating the DataFrame</a></li>
-		<li><a href="#03">Transforming and Querying</a></li>
+		<li><a href="#03">Transforming and Querying the DataFrame</a></li>
 		<li><a href="#04">Saving the DataFrame</a></li>
 	</ul>
 </bu:rOverview>
@@ -434,12 +434,11 @@ With a schema that's either inferred from the data or specified as a configurati
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
-					System.out.println("How many votes were cast?");
-					// Orginal data is string-based. Create an integer version of the total
-					// votes column.
-					Column votesColumn = rawDF.col("total_votes").cast("int").alias("total_votes_int");
-					// Get the integer-based votes column and sum all values together
-					rawDF.select(votesColumn).groupBy().sum("total_votes_int").show();						
+				System.out.println("How many votes were cast?");
+				// Orginal data is string-based. Create an integer version of the total votes column.
+				Column votesColumn = rawDF.col("total_votes").cast("int").alias("total_votes_int");
+				// Get the integer-based votes column and sum all values together
+				rawDF.select(votesColumn).groupBy().sum("total_votes_int").show();						
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
@@ -551,18 +550,18 @@ With a schema that's either inferred from the data or specified as a configurati
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
-		System.out.println("Which polling station had the highest physical turnout?");
-		// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
-		// Spark's cast function converts these to "null".
-		Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
-		// Get the precinct name, integer-based code, and integer-based votes,
-		// then filter on non-null codes.
-		DataFrame pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
-			.filter("precinct_code_int is not null");
-		// Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
-		// Then, show the max row.
-		groupedDF = pollingDF.groupBy("precinct_name").agg(sum("total_votes_int").alias("sum_column"));
-		groupedDF.orderBy(groupedDF.col("sum_column").desc()).limit(1).show();
+				System.out.println("Which polling station had the highest physical turnout?");
+				// All physical precincts have a numeric code. Provisional/absentee precincts start with "##".
+				// Spark's cast function converts these to "null".
+				Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
+				// Get the precinct name, integer-based code, and integer-based votes,
+				// then filter on non-null codes.
+				DataFrame pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
+					.filter("precinct_code_int is not null");
+				// Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
+				// Then, show the max row.
+				groupedDF = pollingDF.groupBy("precinct_name").agg(sum("total_votes_int").alias("sum_column"));
+				groupedDF.orderBy(groupedDF.col("sum_column").desc()).limit(1).show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
@@ -675,6 +674,7 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 <bu:rFooter>
 	<bu:rLinks>
 		<li><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html">Spark DataFrames</a> in the Spark Programming Guide</li>
+		<li><bu:rLink id="using-sql-udf" /></li>
 		<li><bu:rLink id="using-jdbc" /></li>
 	</bu:rLinks>
 	
