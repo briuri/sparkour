@@ -35,7 +35,7 @@ EXAMPLES_PATH="/opt/examples/sparkour"
 EXAMPLE_PATH="$EXAMPLES_PATH/$ID"
 SRC_PATH="$EXAMPLE_PATH/src/main"
 OUTPUT_PATH="$EXAMPLE_PATH/target"
-JAVA_CP="$SPARK_HOME/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"			# Spark assembly
+JAVA_CP="$SPARK_HOME/lib/spark-assembly-1.6.0-hadoop2.6.0.jar"			# Spark assembly
 JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar"				# building-sbt
 
 # Asserts that an example exists before cleaning or zipping it.

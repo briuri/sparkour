@@ -200,14 +200,14 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
-		16/03/27 00:42:19 INFO Utils: Successfully started service 'sparkMaster' on port 7077.
-		16/03/27 00:42:20 INFO Master: Starting Spark master at spark://ip-172-31-24-101:7077
-		16/03/27 00:42:20 INFO Master: Running Spark version 1.6.1
-		16/03/27 00:42:20 INFO Utils: Successfully started service 'MasterUI' on port 8080.
-		16/03/27 00:42:20 INFO MasterWebUI: Started MasterWebUI at http://172.31.24.101:8080
-		16/03/27 00:42:20 INFO Utils: Successfully started service on port 6066.
-		16/03/27 00:42:20 INFO StandaloneRestServer: Started REST server for submitting applications on port 6066
-		16/03/27 00:42:20 INFO Master: I have been elected leader! New state: ALIVE
+		16/02/26 00:42:19 INFO Utils: Successfully started service 'sparkMaster' on port 7077.
+		16/02/26 00:42:20 INFO Master: Starting Spark master at spark://ip-172-31-24-101:7077
+		16/02/26 00:42:20 INFO Master: Running Spark version 1.6.0
+		16/02/26 00:42:20 INFO Utils: Successfully started service 'MasterUI' on port 8080.
+		16/02/26 00:42:20 INFO MasterWebUI: Started MasterWebUI at http://172.31.24.101:8080
+		16/02/26 00:42:20 INFO Utils: Successfully started service on port 6066.
+		16/02/26 00:42:20 INFO StandaloneRestServer: Started REST server for submitting applications on port 6066
+		16/02/26 00:42:20 INFO Master: I have been elected leader! New state: ALIVE
 	</bu:rCode>
 
 	<li>On line 2 of the log output above, you can see the unique URL for this master, <span class="rCW">spark://ip-172-31-24-101:7077</span>.
@@ -237,14 +237,14 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
-		16/03/27 00:54:47 INFO Utils: Successfully started service 'sparkWorker' on port 32883.
-		16/03/27 00:54:48 INFO Worker: Starting Spark worker 172.31.24.101:32883 with 2 cores, 6.8 GB RAM
-		16/03/27 00:54:48 INFO Worker: Running Spark version 1.6.1
-		16/03/27 00:54:48 INFO Worker: Spark home: /opt/spark
-		16/03/27 00:54:48 INFO Utils: Successfully started service 'WorkerUI' on port 8081.
-		16/03/27 00:54:48 INFO WorkerWebUI: Started WorkerWebUI at http://172.31.24.101:8081
-		16/03/27 00:54:48 INFO Worker: Connecting to master ip-172-31-24-101:7077...
-		16/03/27 00:54:48 INFO Worker: Successfully registered with master spark://ip-172-31-24-101:7077
+		16/02/26 00:54:47 INFO Utils: Successfully started service 'sparkWorker' on port 32883.
+		16/02/26 00:54:48 INFO Worker: Starting Spark worker 172.31.24.101:32883 with 2 cores, 6.8 GB RAM
+		16/02/26 00:54:48 INFO Worker: Running Spark version 1.6.0
+		16/02/26 00:54:48 INFO Worker: Spark home: /opt/spark
+		16/02/26 00:54:48 INFO Utils: Successfully started service 'WorkerUI' on port 8081.
+		16/02/26 00:54:48 INFO WorkerWebUI: Started WorkerWebUI at http://172.31.24.101:8081
+		16/02/26 00:54:48 INFO Worker: Connecting to master ip-172-31-24-101:7077...
+		16/02/26 00:54:48 INFO Worker: Successfully registered with master spark://ip-172-31-24-101:7077
 	</bu:rCode>
 
 	<li>On line 6 of the log output above, you can see the URL for the Worker UI, <span class="rCW">http://172.31.24.101:8081</span>.
