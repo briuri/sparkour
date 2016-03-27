@@ -547,14 +547,17 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 	<bu:rTab index="1">
 		<bu:rCode lang="java">
 			import static org.apache.spark.sql.functions.udf;
-			import org.apache.spark.sql.types.DataTypes;
+			import org.apache.spark.sql.DataFrame 
 			import org.apache.spark.sql.UserDefinedFunction;
+			import org.apache.spark.sql.types.DataTypes;
+			
+			// Note: This example does not work yet. I'm still trying to figure out the correct syntax.
 			
 			// Define the UDF
 			UserDefinedFunction udfUppercase = udf((String string) -> string.toUpperCase(), DataTypes.StringType);
 
 			// Convert a whole column to uppercase with a UDF.
-			newDF = oldDF.withColumn("name_upper", udfUppercase(oldDF.col("name")));
+			DataFrame newDF = oldDF.withColumn("name_upper", udfUppercase(oldDF.col("name")));
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
