@@ -570,10 +570,8 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 			newDF = oldDF.withColumn("name_upper", udf_uppercase("name"))
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
-		<bu:rCode lang="plain">
-			<p>Unfortunately, SparkR does not yet support UDFs. You can track the progress of this
-				work in the <a href="https://issues.apache.org/jira/browse/SPARK-6817">SPARK-6817</a> ticket.</p>
-		</bu:rCode>	
+		<p>Unfortunately, SparkR does not yet support UDFs. You can track the progress of this
+			work in the <a href="https://issues.apache.org/jira/browse/SPARK-6817">SPARK-6817</a> ticket.</p>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
 			import org.apache.spark.sql.functions.udf
