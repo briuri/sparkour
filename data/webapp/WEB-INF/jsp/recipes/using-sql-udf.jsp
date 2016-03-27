@@ -545,19 +545,20 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 	
 <bu:rTabs>
 	<bu:rTab index="1">
+		<p>There is no good way to create a full-fledged Java UDF that can be used as a method call. Instead, you need to register
+		the UDF in the <span class="rCW">SQLContext</span> as we did before, and then use <span class="rCW">callUDF()</span> to insert
+		it into your chain of operators.<p>
+		
 		<bu:rCode lang="java">
-			import static org.apache.spark.sql.functions.udf;
-			import org.apache.spark.sql.DataFrame 
-			import org.apache.spark.sql.UserDefinedFunction;
+			import org.apache.spark.sql.DataFrame;
+			import org.apache.spark.sql.SqlContext; 
 			import org.apache.spark.sql.types.DataTypes;
 			
-			// Note: This example does not work yet. I'm still trying to figure out the correct syntax.
-			
 			// Define the UDF
-			UserDefinedFunction udfUppercase = udf((String string) -> string.toUpperCase(), DataTypes.StringType);
+			sqlContext.udf().register("udfUppercase", (String string) -> string.toUpperCase(), DataTypes.StringType);
 
 			// Convert a whole column to uppercase with a UDF.
-			DataFrame newDF = oldDF.withColumn("name_upper", udfUppercase(oldDF.col("name")));
+			DataFrame newDF = oldDF.withColumn("name_upper", callUDF("udfUppercase", oldDF.col("name")));
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
