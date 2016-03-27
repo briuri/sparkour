@@ -45,7 +45,7 @@ just need to get your build dependencies in order.</p>
 <ol>
 	<li>Regardless of which language you use, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
-	<li>You also need the development kit for your language. If developing for Spark 1.6.1, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
+	<li>You also need the development kit for your language. If developing for Spark 1.6.0, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
 		Python 2.6, R 3.1, or Scala 2.10, respectively. You probably already have the development kit for your language installed in your development
 		environment.</li>
 	<li>Finally, you need to link or include the core Spark libraries with your application. If you are using an Integrated Development Environment (IDE) like 
@@ -107,7 +107,7 @@ components installed, you should be able to review these instructions and adapt 
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
-		used to build Apache Spark. In the case of <span class="rPN">Spark 1.6.1 Pre-built for Hadoop 2.6 and later</span>,
+		used to build Apache Spark. In the case of <span class="rPN">Spark 1.6.0 Pre-built for Hadoop 2.6 and later</span>,
 		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version.</p>
 		
 		<bu:rCode lang="bash">
@@ -504,7 +504,7 @@ can be found in the official documentation.</p>
 		cd /opt/spark/lib
 		
 		# Peek in the assembly JAR (it's big!)
-		less spark-examples-1.6.1-hadoop2.6.0.jar
+		less spark-examples-1.6.0-hadoop2.6.0.jar
 		# (hold down spacebar to skim down, or hit 'q' to exit)
 	</bu:rCode>
 
@@ -515,7 +515,7 @@ can be found in the official documentation.</p>
 		cd /opt/spark	
 		./bin/spark-submit \
 			--class org.apache.spark.examples.JavaWordCount \
-			./lib/spark-examples-1.6.1-hadoop2.6.0.jar \
+			./lib/spark-examples-1.6.0-hadoop2.6.0.jar \
 			README.md
 	</bu:rCode>
 
