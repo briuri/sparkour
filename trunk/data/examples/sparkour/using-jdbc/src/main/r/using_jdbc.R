@@ -50,7 +50,7 @@ selectDF = select(heavyDF, "id", "name", "is_male", "height_in", "updated_weight
 updatedDF <- withColumnRenamed(selectDF, "updated_weight_lb", "weight_lb")
 print(collect(updatedDF))
 
-# As of Spark 1.6.0, saving to JDBC does not work in R.
+# As of Spark 1.6.1, saving to JDBC does not work in R.
 # Check https://issues.apache.org/jira/browse/SPARK-12224 to see when support is added.
 
 #print("Save the updated data to a new table with JDBC")

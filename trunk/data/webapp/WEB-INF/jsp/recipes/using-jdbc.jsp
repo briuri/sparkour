@@ -253,8 +253,8 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 		</bu:rTab>
 	</bu:rTabs>
 
-	<li>We use Spark's <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
-		to connect to the database and load all of the table data into a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span>.</li>
+	<li>We use Spark's <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
+		to connect to the database and load all of the table data into a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span>.</li>
 		
 	<bu:rTabs>
 		<bu:rTab index="1">
@@ -416,8 +416,8 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 
 <bu:rSection anchor="03" title="Writing to a Table" />
 
-<p>The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class 
-exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
+<p>The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class 
+exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
 named <span class="rCW">write</span> which can be used to save a <span class="rCW">DataFrame</span> as a database table (even if the
 DataFrame didn't originate from that database). There are four available write modes which can be specified, with 
 <span class="rV">error</span> being the default:</p>

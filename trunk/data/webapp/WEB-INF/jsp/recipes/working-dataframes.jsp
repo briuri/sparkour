@@ -100,10 +100,10 @@ With a schema that's either inferred from the data or specified as a configurati
 
 <bu:rSection anchor="02" title="Creating the DataFrame" />
 
-<p>The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.SQLContext">SQLContext</a></span> class is the entry point for
-	the DataFrames API. This class exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
+<p>The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.SQLContext">SQLContext</a></span> class is the entry point for
+	the DataFrames API. This class exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
 	named <span class="rCW">read</span> which can be used to create a 
-	<span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> from existing data in supported formats. 
+	<span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> from existing data in supported formats. 
 	Consistent with the Spark Core API, any command that takes a file path as a string can use protocols such as
 	<span class="rCW">s3a://</span> or <span class="rCW">hdfs://</span> to point to files on external storage solutions. 
 	You can also read from relational database tables via JDBC, as described in <bu:rLink id="using-jdbc" />.</p> 
@@ -622,8 +622,8 @@ With a schema that's either inferred from the data or specified as a configurati
 
 <p>We used <span class="rCW">persist()</span> to optimize the operator chain for each of our data manipulations.
 We can also save the data more permanently using a <span class="rCW">DataFrameWriter</span>.
-The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class 
-exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
+The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class 
+exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.1/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
 named <span class="rCW">write</span> which can be used to save a <span class="rCW">DataFrame</span>. There are four available write modes which can be specified, with 
 <span class="rV">error</span> being the default:</p>
 <ol>
