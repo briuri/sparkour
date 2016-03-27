@@ -52,7 +52,7 @@ You can even mix and match approaches at different points in your processing pip
 
 <ol>
 	<li><a href="${filesUrlBase}/using-sql-udf.zip">Download</a> and unzip the example source code for this recipe. This ZIP archive contains source code in all
-		supported languages. Here's how you would do this on an EC2 instance:</li> 
+		supported languages. Here's how you would do this on an EC2 instance running Amazon Linux:</li> 
 
 	<bu:rCode lang="bash">
 		# Download the using-sql-udf source code to the home directory.
@@ -106,11 +106,6 @@ You can even mix and match approaches at different points in your processing pip
 
 <bu:rSection anchor="02" title="Registering a Table" />
 
-<p>The <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.SQLContext">SQLContext</a></span> class is the entry point for
-	the DataFrames API. This class exposes a <span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
-	named <span class="rCW">read</span> which can be used to create a 
-	<span class="rCW"><a href="https://spark.apache.org/docs/1.6.0/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> from existing data in supported formats.</p>
-	
 <ol>
 	<li>In our application, we create a <span class="rCW">SQLContext</span> and then create a <span class="rCW">DataFrame</span> from
 		a JSON file. The format of the JSON file requires that each line be an independent, well-formed JSON object
@@ -379,8 +374,8 @@ You can even mix and match approaches at different points in your processing pip
 	
 	<li>Next, let's try an aggregate query. To count the total votes, we must cast the column
 		to numeric data and then take the sum of every cell. The DataFrame API has a <span class="rCW">cast()</span>
-		operator which we can use. Alternately, we can create a UDF that
-		converts a String into an Integer, and then use that UDF in a SQL query.</li>
+		operator which we can use without SQL. Alternately, we can create a UDF that
+		converts a String into an Integer, and then use that UDF in a SQL query:</li>
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
@@ -539,14 +534,14 @@ You can even mix and match approaches at different points in your processing pip
 		+-------------+---------------+
 	</bu:rCode>
 	
-	<li>If you are comparing the source code to the source code in <bu:rLink id="working-dataframes" />, you'll notice
-		that, especially for aggregate queries, the syntax of the SQL approach is much more readable.</li>
+	<li>If you are comparing this source code to the source code in <bu:rLink id="working-dataframes" />, you'll notice
+		that the syntax of the SQL approach is much more readable and understandable, especially for aggregate queries.</li>
 </ol>
 
 <h3>Using UDFs without SQL</h3>
 
-<p>UDFs are not unique to SparkSQL. You can also define them as named functions and insert them into a chain of operators without using SQL. 
-The contrived example below shows how we could use a UDF without using SQL.</li>
+<p>UDFs are not unique to SparkSQL. You can also define them as named functions and insert them into a chain of operators without 
+using SQL. The contrived example below shows how we would define and use a UDF directly in the code.</li>
 	
 <bu:rTabs>
 	<bu:rTab index="1">
