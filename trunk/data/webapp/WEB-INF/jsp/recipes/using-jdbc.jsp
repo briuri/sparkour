@@ -43,7 +43,7 @@ this conversion over a JDBC connection.</p>
 <ol>
 	<li><a href="${filesUrlBase}/using-jdbc.zip">Download</a> and unzip the example source code for this recipe. 
 		This ZIP archive contains source code in all supported languages.
-		Here's how you would do this on an EC2 instance:</li> 
+		Here's how you would do this on an EC2 instance running Amazon Linux:</li> 
 
 	<bu:rCode lang="bash">
 		# Download the using-jdbc source code to the home directory.

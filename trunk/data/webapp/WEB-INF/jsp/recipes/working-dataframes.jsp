@@ -46,7 +46,7 @@ With a schema that's either inferred from the data or specified as a configurati
 
 <ol>
 	<li><a href="${filesUrlBase}/working-dataframes.zip">Download</a> and unzip the example source code for this recipe. This ZIP archive contains source code in all
-		supported languages. Here's how you would do this on an EC2 instance:</li> 
+		supported languages. Here's how you would do this on an EC2 instance running Amazon Linux:</li> 
 
 	<bu:rCode lang="bash">
 		# Download the working-dataframes source code to the home directory.

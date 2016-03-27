@@ -50,7 +50,7 @@ commands. Refer to the <a href="http://www.scala-sbt.org/0.13/docs/">SBT Referen
 
 <ol>
 	<li><a href="${filesUrlBase}/building-sbt.zip">Download</a> and unzip the example source code for this recipe. This ZIP archive contains source code in 
-		Java and Scala. Here's how you would do this on an EC2 instance:</li> 
+		Java and Scala. Here's how you would do this on an EC2 instance running Amazon Linux:</li> 
 
 	<bu:rCode lang="bash">
 		# Download the building-sbt source code to the home directory.
