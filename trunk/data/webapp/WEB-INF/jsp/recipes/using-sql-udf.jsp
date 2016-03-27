@@ -554,7 +554,7 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 			UserDefinedFunction udfUppercase = udf((String string) -> string.toUpperCase(), DataTypes.StringType);
 
 			// Convert a whole column to uppercase with a UDF.
-			newDF = oldDF.withColumn("name_upper", udfUppercase(oldDF("name")));
+			newDF = oldDF.withColumn("name_upper", udfUppercase(oldDF.col("name")));
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
