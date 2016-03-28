@@ -29,7 +29,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 
 <div id="newsFeed">
 	<bu:newsUpdate date="2016-03-26">
-		<bu:rLink id="using-sql-udf" /> demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The SparkSQL library
+		<bu:rLink id="using-sql-udf" /> demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The Spark SQL library
 		supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
 		the recipe, <bu:rLink id="working-dataframes" />.
 	</bu:newsUpdate>
