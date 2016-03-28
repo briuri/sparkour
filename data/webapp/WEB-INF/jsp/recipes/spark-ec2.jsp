@@ -235,7 +235,7 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
-			<c:out value="${noJavaMessage}" escapeXml="false" />
+			<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
