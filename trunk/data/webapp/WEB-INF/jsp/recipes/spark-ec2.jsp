@@ -2,6 +2,8 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
+<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+
 <bu:rOverview publishDate="2016-03-04">
 	<h3>Synopsis</h3>
 	<p>This recipe describes how to automatically launch, start, stop, or destroy a Spark cluster running in Amazon Elastic Cloud Compute (EC2)
