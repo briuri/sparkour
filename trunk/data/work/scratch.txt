@@ -11,4 +11,80 @@ Standalone/YARN/Mesos:
 	https://www.quora.com/How-does-YARN-compare-to-Mesos
 Uber JAR with Ant:	
 	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create-fat-jar-file/
-   
+  
+  
+##########################################
+# Building Spark Applications with Maven #
+##########################################
+
+Building Spark Applications with Maven
+	http://stackoverflow.com/questions/4955635/how-to-add-local-jar-files-in-maven-project
+	https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/troubleshooting/missing_dependencies_in_jar_files.html
+	http://www.robertomarchetto.com/spark_java_maven_example
+	https://nosqlnocry.wordpress.com/2015/02/27/how-to-build-a-spark-fat-jar-in-scala-and-submit-a-job/
+	http://maven.apache.org/plugins/maven-assembly-plugin/
+
+# Download Maven to the ec2-user's home directory
+wget http://apache.mirrors.ionfish.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+
+# Unpack Maven in the /opt directory
+sudo tar zxvf apache-maven-3.3.9-bin.tar.gz -C /opt
+ 
+# Update permissions on installation
+sudo chown -R ec2-user:ec2-user /opt/apache-maven-3.3.9
+ 
+# Create a symbolic link to make it easier to access
+sudo ln -fs /opt/apache-maven-3.3.9 /opt/maven
+ 
+#Edit your bash profile to add environment variables
+vi ~/.bash_profile
+
+# Insert these lines into your .bash_profile:
+PATH=$PATH:/opt/maven/bin
+# Then exit the text editor and return to the command line.
+
+# Test maven
+mvn --version
+
+mvn -f pom-java.xml clean
+mvn -f pom-java.xml package
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.JBuildingMaven \
+    --packages org.apache.commons:commons-csv:1.2 \
+    target/original-building-maven-1.0-SNAPSHOT.jar
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.JBuildingMaven \
+    target/building-maven-1.0-SNAPSHOT.jar
+
+mvn -f pom-scala.xml clean
+mvn -f pom-scala.xml package
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.SBuildingMaven \
+    --packages org.apache.commons:commons-csv:1.2 \
+    target/original-building-maven-1.0-SNAPSHOT.jar
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.SBuildingMaven \
+    target/building-maven-1.0-SNAPSHOT.jar
+
+cd /opt/sparkour/building-maven/lib
+wget http://central.maven.org/maven2/org/apache/commons/commons-csv/1.2/commons-csv-1.2.jar
+
+mvn -f pom-java-local.xml clean
+mvn -f pom-java-local.xml package
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.JBuildingMaven \
+    --packages org.apache.commons:commons-csv:1.2 \
+    target/original-building-maven-1.0-SNAPSHOT.jar
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.JBuildingMaven \
+    target/building-maven-1.0-SNAPSHOT.jar
+
+mvn -f pom-scala-local.xml clean
+mvn -f pom-scala-local.xml package
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.SBuildingMaven \
+    --packages org.apache.commons:commons-csv:1.2 \
+    target/original-building-maven-1.0-SNAPSHOT.jar
+$SPARK_HOME/bin/spark-submit \
+    --class buri.sparkour.SBuildingMaven \
+    target/building-maven-1.0-SNAPSHOT.jar
