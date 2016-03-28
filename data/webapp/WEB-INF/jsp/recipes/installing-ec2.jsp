@@ -270,9 +270,8 @@ For now, we use a pre-built distribution which already contains a common set of 
 		
 	<bu:rCode lang="bash">
 		# Insert these lines into your .bash_profile:
-		SPARK_HOME=/opt/spark
-		PATH=$PATH:$HOME/.local/bin:$HOME/bin:$SPARK_HOME/bin
-		export SPARK_HOME
+		export SPARK_HOME=/opt/spark
+		PATH=$PATH:$SPARK_HOME/bin
 		export PATH
 		# Then exit the text editor and return to the command line.
 	</bu:rCode>
