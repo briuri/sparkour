@@ -108,7 +108,8 @@ components installed, you should be able to review these instructions and adapt 
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
 		used to build Apache Spark. In the case of <span class="rPN">Spark 1.6.0 Pre-built for Hadoop 2.6 and later</span>,
-		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version.</p>
+		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version unless you have explicitly
+		built Spark for 2.11.x from the source code.</p>
 		
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
