@@ -217,7 +217,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 	
 	<li>There are many more configuration options available in SBT that you may want to learn if you are serious about adopting SBT across your codebase. Refer to the 
 	 	<a href="http://www.scala-sbt.org/0.13/docs/">SBT Reference Manual</a> to learn more. For example, you might use <span class="rCW">dependencyClasspath</span>
-	 	to separate compile, test, and runtime dependencies or add <span class="rCW">resolvers</span> to identify alternate repositories for downloading JAR files.</li>
+	 	to separate compile, test, and runtime dependencies or add <span class="rCW">resolvers</span> to identify alternate repositories for downloading dependencies.</li>
 	 	
 	<li>We can now run these applications using the familiar <span class="rCW">spark-submit</span> script. We use the <span class="rK">--packages</span> parameter to include
 		Commons CSV as a runtime dependency. Remember that <span class="rCW">spark-submit</span> uses Maven syntax, not SBT syntax (colons as separators instead of percent signs),
@@ -321,7 +321,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 
 <ol>
 	<li>We use the <span class="rCW">sbt-assembly</span> plugin to generate an assembly JAR. This plugin is already in our example project, as seen in the 
-		<span class="rCW">project/assembly.sbt</span> file:</p>
+		<span class="rCW">project/assembly.sbt</span> file:</li>
 
 	<bu:rCode lang="scala">
 		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.2")
@@ -408,6 +408,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 	<bu:rLinks>
 		<li><a href="http://www.scala-sbt.org/0.13/docs/">SBT Reference Manual</a></li>
 		<li><a href="https://github.com/sbt/sbt-assembly"><span class="rCW">sbt-assembly</span> plugin for SBT</a></li>
+		<li><bu:rLink id="building-maven" /></li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>

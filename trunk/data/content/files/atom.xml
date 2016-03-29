@@ -5,14 +5,26 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-03-26T10:00:00Z</updated>
+	<updated>2016-03-29T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
 	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
-			
+
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-03-29</id>
+		<link href="https://sparkour.urizone.net/?2016-03-29" />
+		<updated>2016-03-29T10:00:00Z</updated>
+		<title type="html">Building Spark Applications with Maven</title>
+		<summary type="html">
+			This recipe covers the use of Apache Maven to build and bundle Spark applications
+			written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
+			managing library dependencies, packaging, and creating an assembly JAR file.	
+		</summary>
+	</entry>
+				
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-03-26</id>
 		<link href="https://sparkour.urizone.net/?2016-03-26" />
