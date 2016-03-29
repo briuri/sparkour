@@ -19,7 +19,8 @@
 		<li><a href="#02">What <i>Isn't</i> Spark?</a></li>
 		<li><a href="#03">How Does Spark Deliver on Its Promises?</a></li>
 		<li><a href="#04">When Should I Use Spark?</a></li>
-		<li><a href="#05">Conclusion</a></li>
+		<li><a href="#05">What's the Best Programming Language for Spark?</a></li>
+		<li><a href="#06">Conclusion</a></li>
 	</ul>
 </bu:rOverview>
 
@@ -112,7 +113,34 @@ Instead, consider using Spark if some of these conditions apply to your scenario
 	<li>Your data processing workflow would be limited by the rigidity or performance of Hadoop MapReduce.</li>
 </ol>
 
-<bu:rSection anchor="05" title="Conclusion" />
+<bu:rSection anchor="05" title="What's the Best Programming Language For Spark?" />
+
+<p>Spark applications can be written in Java, Python, R, or Scala, and the language you pick should be a pragmatic decision based on your skillset and application
+requirements.</p>
+
+<ul>
+	<li>From an <span class="rPN">ease of adoption</span> perspective, Python offers a friendly, forgiving entry point, especially if you're coming from a data science
+		background. In 2015, Scala and Python were the most frequently used languages for Spark development, and this larger user base makes it much
+		easier to seek out help and discover useful example code. Java is hampered by its lack of a Spark interactive shell, which allows you to test Spark 
+		commands in real-time.</li>
+	<li>From a <span class="rPN">feature completeness</span> perspective, Scala is the obvious choice. Spark itself is written in Scala, and APIs in the other three languages
+		are built on top of the Scala API, as shown in the image below. New features are published to the Scala API first, and it may take a few releases for the features to
+		propogate up to the other APIs. R is the least feature-complete at the moment, but active development work continues to improve this situation.</li> 
+
+	<img src="${localImagesUrlBase}/languages.png" width="750" height="336" title="Spark includes APIs in Java, Scala, Python, and R." class="diagram border" />
+	
+	<li>From a <span class="rPN">performance</span> perspective, the compiled languages (Java and Scala) provide better general performance than the
+		interpreted languages (Python and R) in <i>most</i> cases. However, this should not be accepted as a blanket truth without profiling, and you should be careful not
+		to select a language solely on the basis of performance. Aim for developer productivity and code readability first, and optimize later when you have a legitimate
+		performance concern.</li>
+</ul>
+
+<p>My personal recommendation (as a developer with 19 years of Java experience, 2 years of Python experience, and miscellaneous dabbling in the other languages) would
+be to favour Python for learning and smaller applications, and Scala for enterprise projects. There's absolutely nothing wrong with writing Spark code in Java, but it 
+sometimes feels unnecessarily inflexible, like running a marathon with shoes one size too small. Until the R API is more mature, I would only consider R
+if I had specific requirements for pulling parts of Spark into an existing R environment. Feel free to disregard these recommendations if they don't align with your views.</p>
+
+<bu:rSection anchor="06" title="Conclusion" />
 
 <p>You have now gotten a taste of Apache Spark in theory, and are ready to do some hands-on work. 
 In the next tutorial, <bu:rLink id="installing-ec2" />, we install Apache Spark
@@ -125,7 +153,9 @@ on an Amazon EC2 instance.</p>
 		<li><a href="https://en.wikipedia.org/wiki/Apache_Spark">Apache Spark</a> on Wikipedia</li>	
 	</bu:rLinks>
 	<bu:rChangeLog>
-		<li>This tutorial hasn't had any substantive updates since it was first published.</li>
+		<li>2016-03-29: Updated with a section comparing the available programming languages
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-6">SPARKOUR-6</a>).</li>
+		
 	</bu:rChangeLog>
 </bu:rFooter>
 	
