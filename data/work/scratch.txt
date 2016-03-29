@@ -11,15 +11,4 @@ Standalone/YARN/Mesos:
 	https://www.quora.com/How-does-YARN-compare-to-Mesos
 Uber JAR with Ant:	
 	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create--fileat-jar--fileile/
-  
-  
-##########################################
-# Building Spark Applications with Maven #
-##########################################
-
-Building Spark Applications with Maven
-	http://stackoverflow.com/questions/4955635/how-to-add-local-jar--fileiles-in-maven-project
-	https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/troubleshooting/missing_dependencies_in_jar_files.html
-	http://www.robertomarchetto.com/spark_java_maven_example
-	https://nosqlnocry.wordpress.com/2015/02/27/how-to-build-a-spark--fileat-jar-in-scala-and-submit-a-job/
-	http://maven.apache.org/plugins/maven-assembly-plugin/
+ 
