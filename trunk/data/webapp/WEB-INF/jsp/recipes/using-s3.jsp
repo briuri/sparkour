@@ -87,19 +87,19 @@ application is a trade-off between maturity, security, and performance.</p>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
  			# Create an RDD from a file in the working directory
-    		local_rdd = sc.textFile("random_numbers.txt")
+    		localRdd = sc.textFile("random_numbers.txt")
     		
     		# Create an RDD from a file in S3 using the s3n protocol
-    		s3n_rdd = sc.textFile("s3n://sparkour-data/random_numbers.txt");
+    		s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt");
     		
     		# Create an RDD from a file in S3 using the s3a protocol
-    		s3a_rdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
+    		s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
     		
     		# Save data to S3 using the s3n protocol
-	        local_rdd.saveAsTextFile("s3n://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3n://sparkour-data/saved_file.txt");
 	        
 	        # Save data to S3 using the s3a protocol
-	        local_rdd.saveAsTextFile("s3a://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3a://sparkour-data/saved_file.txt");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="plain">
