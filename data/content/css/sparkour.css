@@ -227,6 +227,7 @@ pre.exception {
 }
 .tabsMenu {
     padding-left: 0px;
+    margin-bottom: 0px;
 }
 .tabsMenu li {
     background-color: #dddddd;
@@ -254,6 +255,11 @@ pre.exception {
 /**
  * Mobile
  */
+@media screen and (max-width: 320px) {
+	.tabsCodeMenu li {
+		float: none;
+	}
+} 
 @media screen and (max-width: 750px) {
 	img.diagram {
 		height: auto;
@@ -264,6 +270,9 @@ pre.exception {
 	}	
 	.slicknav_menu {
 		display: block;
+	}
+	.tabsTocMenu li {
+		float: none;
 	}
 } 
 @media screen and (min-width: 1025px) {
