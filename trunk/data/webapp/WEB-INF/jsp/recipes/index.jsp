@@ -9,9 +9,9 @@
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <div class="tabsContainer">
-    <ul class="tabsMenu">
+    <ul class="tabsMenu tabsTocMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
-        <li><a href=".tab-2">Spark Development (4)</a></li>
+        <li><a href=".tab-2">Spark Development (5)</a></li>
         <li><a href=".tab-3">Spark Integration (3)</a></li>
     </ul>
     <div class="tabContentPane">
@@ -47,8 +47,8 @@
 					<li>Working with Spark Datasets</li>
 				</ul></li>
 				<li><span class="rCategory">Practices</span><ul>
+					<li><bu:rLink id="building-maven" /></li>
 					<li><bu:rLink id="building-sbt" /></li>
-					<li>Building Spark Applications with Maven</li>
 					<li>Simplifying Java Applications with Lambda Expressions</li>
 					<li>Using Accumulators</li>
 					<li>Using Broadcast Variables</li>
