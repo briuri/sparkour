@@ -30,10 +30,10 @@
 	<li><span class="rMI">Menu Item</span> denotes an option in a menu that needs to be selected.</li>
 	<li><span class="rAB">Button</span> denotes an important button you need to press in
 		a user interface (UI).</li>
-	<li><span class="rK">Field Name</span> denotes the name of a form field in a UI.</li>
-	<li><span class="rV">Field Value</span> denotes the value that you would enter into a form field. Example values in a recipe
-		will generally include a <span class="rV">sparkour-</span> prefix. Feel free to customize this with a token
-		relevant to your own work.</li>
+	<li><span class="rK">Field Name</span> denotes the name of a form field in a UI or an XML element name.</li>
+	<li><span class="rV">Field Value</span> denotes the value that you would enter into a form field or an XML element. 
+		Example values in a recipe will generally include a <span class="rV">sparkour-</span> prefix. Feel free to 
+		customize this with a token relevant to your own work.</li>
 	<li><span class="rCW">code word</span> denotes technical coding concepts, such as the names
 		of classes and variables, or the name of a Linux command line utility.</li>
 </ul>
