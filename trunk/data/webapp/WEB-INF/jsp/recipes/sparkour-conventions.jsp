@@ -17,6 +17,7 @@
 	<ul>
 		<li><a href="#01">Instructions</a></li>
 		<li><a href="#02">Code Samples</a></li>
+		<li><a href="#03">Conclusion</a></li>
 	</ul>
 </bu:rOverview>
 
@@ -60,7 +61,7 @@
 			/**
 			 * A sample Java class.
 			 */
-			public class SparkApp() {
+			public class SparkApp {
 			
 				public SparkApp() {}
 			}
@@ -109,20 +110,28 @@
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
 			>>> # This is a comment in Spark's Python interactive shell. You don't need to type this.
+			>>> print("Hello")
 			>>> quit()
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="plain">
 			> # This is a comment in an R shell. You don't need to type this.
+			> print("Hello")
 			> quit()
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
 			scala> // This is a comment in Spark's Scala interactive shell. You don't need to type this.
+			scala> println("Hello")
 			scala> exit
 		</bu:rCode>
 	</bu:rTab>
 </bu:rTabs>
+
+<bu:rSection anchor="03" title="Conclusion" />
+
+<p>You should now understand how the material in the remaining tutorials and recipes is presented. 
+In the next tutorial, <bu:rLink id="spark-nutshell" />, we learn more about Apache Spark.</p> 
 
 <bu:rFooter>
 	<bu:rChangeLog>

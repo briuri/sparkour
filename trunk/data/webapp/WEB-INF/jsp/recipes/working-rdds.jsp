@@ -336,7 +336,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 <bu:rSection anchor="03" title="Coding in a Distributed Way" />
 
 <p>Spark data processing pipelines can be represented as a graph of transformations and actions without any infinite loops, 
-known as a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph (DAG)</a>. The graph for our RDD Sandbox application
+known as a <a href="https://en.wikipedia.org/wiki/Directed_acyclic_graph">directed acyclic graph (DAG)</a>. The graph for our example application
 is very simple, shown in the image below. We start with our raw source data (in grey) which we use to do 3 separate analyses of the data. 
 Our code sets up a chain of transformations (in blue) which are not
 acted upon until we reach an action step (in orange). We then print out the result of the action.</p>
@@ -395,8 +395,8 @@ so that Spark caches and reuses it later instead of recomputing every earlier st
 	</bu:rTab>
 </bu:rTabs>
 
-<p>(<span class="rCW">persist()</span> is a chainable call that we could have simply inserted into the <span class="rCW">mostBooks</span> chain. However, 
-refactoring the code to insert a common variable in both chains makes our intent clear and results in better code readability).</p>
+<p><span class="rCW">persist()</span> is a chainable call that we could have simply inserted into the <span class="rCW">mostBooks</span> chain. However, 
+refactoring the code to insert a common variable in both chains makes our intent clear and results in better code readability.</p>
 	
 <p>You can optionally set a <span class="rPN">Storage Level</span> as a parameter to <span class="rCW">persist()</span> for more control over the caching strategy. Spark 
 offers <a href="http://spark.apache.org/docs/latest/programming-guide.html#rdd-persistence">several strategies</a> with different trade-offs between resources and performance.
@@ -446,7 +446,8 @@ both network and disk operations as well as data serialization, so it is complex
 all of the Spark components (e.g. Spark SQL and MLLib). In practice, you will probably end up using the high-level Spark components more often than the Core API.</p>
 
 <p>This is the final sequential tutorial, and you are now ready to dive into one of the more targeted recipes that focus on specific
-aspects of Spark use. If you are done playing with Spark for now, make sure that you stop your EC2 instance so you don't incur unexpected charges. If you no longer need your EC2 instance,
+aspects of Spark use. The recipe, <bu:rLink id="working-dataframes" />, is a good next step to consider.
+If you are done playing with Spark for now, make sure that you stop your EC2 instance so you don't incur unexpected charges. If you no longer need your EC2 instance,
 make sure to terminate it so you also stop incurring charges for the attached EBS Volume.</p>
 
 <bu:rFooter>

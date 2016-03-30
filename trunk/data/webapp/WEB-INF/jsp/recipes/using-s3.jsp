@@ -162,28 +162,24 @@ or SSH into the master node of the cluster. You should have already tested your 
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run an application with the <span class="rCW">spark-submit</span> script.</p>
 			<bu:rCode lang="bash">
 				# Submit an application to a Spark cluster	
-				cd /opt/spark
-				./bin/spark-submit \
+				$SPARK_HOME/bin/spark-submit \
 					--master spark://ip-172-31-24-101:7077 \
 					--class buri.sparkour.ImaginaryApplication bundledAssembly.jar applicationArgs
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">		
 				# Start the shell, pointing at a Spark cluster	
-				cd /opt/spark
-				./bin/pyspark --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">				
 				# Start the shell, pointing at a Spark cluster	
-				cd /opt/spark
-				./bin/sparkR --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">				
 				# Start the shell, pointing at a Spark cluster
-				cd /opt/spark
-				./bin/spark-shell --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -316,8 +312,7 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 			export LIB_PATH=share/hadoop/tools/lib
 			
 			# Submit an application with extra JAR dependencies
-			cd /opt/spark
-			./bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar \
 				--class buri.sparkour.ImaginaryApplication bundledAssembly.jar applicationArgs
@@ -329,7 +324,7 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 			export LIB_PATH=share/hadoop/tools/lib
 			
 			# Run shell with extra JAR dependencies 
-			./bin/pyspark --master spark://ip-172-31-24-101:7077 \
+			$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077 \
 				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
@@ -339,7 +334,7 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 			export LIB_PATH=share/hadoop/tools/lib
 			
 			# Run shell with extra JAR dependencies
-			./bin/sparkR --master spark://ip-172-31-24-101:7077 \
+			$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077 \
 				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
@@ -349,7 +344,7 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 			export LIB_PATH=share/hadoop/tools/lib
 			
 			# Run shell with extra JAR dependencies
-			./bin/spark-shell --master spark://ip-172-31-24-101:7077 \
+			$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077 \
 				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
 		</bu:rCode>	
 	</bu:rTab>

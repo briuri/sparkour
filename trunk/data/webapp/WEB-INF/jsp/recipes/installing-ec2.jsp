@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+<c:set var="noJavaMessage" value="There is no interactive shell available for Java. You should use one of the other languages to smoke test your Spark installation." />
 
 <bu:rOverview publishDate="2016-02-24">
 	<h3>Synopsis</h3>
@@ -219,7 +219,7 @@ sure you locate the necessary commands in the EC2 dashboard so you can manage yo
 		so your SSH client needs have your
 		<a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html">EC2 Key Pair</a> to login.</li>
 
-	<li>On you first login, you may see a welcome message notifying you of new security updates. You can apply these updates with the
+	<li>On your first login, you may see a welcome message notifying you of new security updates. You can apply these updates with the
 		<span class="rCW">yum</span> utility. </li>
 
 	<bu:rCode lang="bash">
@@ -236,7 +236,8 @@ sure you locate the necessary commands in the EC2 dashboard so you can manage yo
 
 <p>There are several options available for installing Spark. We could build it from the original source code, or 
 download a distribution configured for different versions of Apache Hadoop. 
-For now, we use a pre-built distribution which already contains a common set of Hadoop dependencies.</p>
+For now, we use a pre-built distribution which already contains a common set of Hadoop dependencies. 
+(You do not need any previous experience with Hadoop to work with Spark).</p>
  
 <ol>
 	<li>In a web browser from your local development environment, visit the 
@@ -269,7 +270,7 @@ For now, we use a pre-built distribution which already contains a common set of 
 		environment variable so it takes effect when you login to the EC2 instance.</li>
 		
 	<bu:rCode lang="bash">
-		# Insert these lines into your .bash_profile:
+		# Insert these lines into your ~/.bash_profile:
 		export SPARK_HOME=/opt/spark
 		PATH=$PATH:$SPARK_HOME/bin
 		export PATH
@@ -294,9 +295,8 @@ For now, we use a pre-built distribution which already contains a common set of 
 		
 	<bu:rCode lang="bash">
 		# Create a Log4J configuration file from the provided template.
-		cd /opt/spark/conf
-		cp log4j.properties.template log4j.properties
-		vi log4j.properties
+		cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties
+		vi $SPARK_HOME/conf/log4j.properties
 		# (on line 19 of the file, change the log level from INFO to ERROR)
 		# (Note that this will suppress some of the output needed in the tutorials)
 		
@@ -320,8 +320,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 	
 	<bu:rCode lang="bash">
 		# See how many lines are in the README.md file via Linux, to verify shell answers.
-		cd /opt/spark
-		wc -l README.md
+		wc -l $SPARK_HOME/README.md
 	</bu:rCode>
 
 	<li>Start the interactive shell in the language of your choice.</li>
@@ -332,20 +331,17 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Start the Python shell
-				cd /opt/spark
-				./bin/pyspark
+				$SPARK_HOME/bin/pyspark
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
 				# Start the R shell
-				cd /opt/spark
-				./bin/sparkR
+				$SPARK_HOME/bin/sparkR
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Start the Scala shell
-				cd /opt/spark
-				./bin/spark-shell
+				$SPARK_HOME/bin/spark-shell
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -357,7 +353,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
+			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
 			<bu:rCode lang="java">
 				// Load the README.md file for processing
 				JavaRDD<String> textFile = sc.textFile("README.md");

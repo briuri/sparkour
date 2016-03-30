@@ -38,12 +38,13 @@
 <bu:rSection anchor="01" title="Installing a Programming Language" />
 
 <p>Spark imposes no special restrictions on where you can do your development.
-The Sparkour recipes will continue to use the EC2 instance as a development environment so that each recipe can start from the same baseline configuration.
+The Sparkour recipes will continue to use the EC2 instance created in a previous tutorial as a development environment,
+so that each recipe can start from the same baseline configuration.
 However, you probably already have a development environment tuned just the way you like it, so you can use it instead if you prefer. You'll 
 just need to get your build dependencies in order.</p>
 
 <ol>
-	<li>Regardless of which language you use, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
+	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
 	<li>You also need the development kit for your language. If developing for Spark 1.6.0, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
 		Python 2.6, R 3.1, or Scala 2.10, respectively. You probably already have the development kit for your language installed in your development
@@ -67,8 +68,8 @@ components installed, you should be able to review these instructions and adapt 
 		<p>If you intend to write any Spark applications with Java, you should consider updating to Java 8. This version
 		of Java introduced <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expressions</a>
 		which reduce the pain of writing repetitive boilerplate code while making the resulting code more similar to
-		Python or Scala code. Sparkour Java examples employ Lambda Expressions heavily. 
-		The Amazon Linux AMI comes with Java 7, but it's easy to switch versions.</p>
+		Python or Scala code. Sparkour Java examples employ Lambda Expressions heavily, and Java 7 support may go away in Spark 2.0.0. 
+		The Amazon Linux AMI comes with Java 7, but it's easy to switch versions:</p>
 
 		<bu:rCode lang="bash">
 			# Install Java 8 JDK
@@ -79,7 +80,7 @@ components installed, you should be able to review these instructions and adapt 
 			sudo /usr/sbin/alternatives --config java
 			# (Select the 1.8.0 option from the list that appears)
 			
-			# Remove Java 7
+			# Optionally remove Java 7
 			sudo yum remove java-1.7.0-openjdk
 			# (Hit 'y' to proceed)
 			
@@ -107,7 +108,7 @@ components installed, you should be able to review these instructions and adapt 
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
-		used to build Apache Spark. In the case of <span class="rPN">Spark 1.6.0 Pre-built for Hadoop 2.6 and later</span>,
+		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 1.6.0 Pre-built for Hadoop 2.6 and later</span>,
 		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version unless you have explicitly
 		built Spark for 2.11.x from the source code.</p>
 		
@@ -155,7 +156,7 @@ components installed, you should be able to review these instructions and adapt 
 </bu:rTabs>
 
 <p>These instructions do not cover Java and Scala build tools (such as Maven and SBT) which simplify the compiling and bundling
-steps of the development lifecycle. Build tools are covered in other recipes.</p> 
+steps of the development lifecycle. Build tools are covered in <bu:rLink id="building-maven" /> and <bu:rLink id="building-sbt" />.</p> 
 
 <bu:rSection anchor="02" title="Writing a Spark Application" />
 
@@ -267,16 +268,16 @@ steps of the development lifecycle. Build tools are covered in other recipes.</p
 <bu:rSection anchor="03" title="Bundling Dependencies" />
 
 <p>When you submit an application to a Spark cluster, the cluster manager distributes the application code to each worker so it can be executed locally. This means
-that all dependencies need to be included (except for Spark and Hadoop dependencies, which Spark already has copies of). There are multiple approaches for bundling
+that all dependencies need to be included (except for Spark and Hadoop dependencies, which the workers already have copies of). There are multiple approaches for bundling
 dependencies, depending on your programming language:</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
 		<p>The Spark documentation recommends creating an <span class="rPN">assembly JAR</span> (or "uber" JAR) containing your
-		application and all of the dependencies. You can also use the <span class="rK">--packages</span> parameter with Maven dependency IDs
-		and Spark will download and distribute the libraries from a Maven repository. Finally, you can also specify third-party JAR files with the 
+		application and all of the dependencies. You can also use the <span class="rK">--packages</span> parameter with a comma-separated list of Maven dependency IDs
+		and Spark will download and distribute the libraries from a Maven repository. Finally, you can also specify a comma-separated list of third-party JAR files with the 
 		<span class="rK">--jars</span> parameter in the <span class="rCW">spark-submit</span> script.
-		This is simpler, but has a performance trade-off if many separate files are copied across the workers.</p>
+		Avoiding the assembly JAR is simpler, but has a performance trade-off if many separate files are copied across the workers.</p>
 	</bu:rTab><bu:rTab index="2">
 		<p>You can use the <span class="rK">--py-files</span> parameter in the <span class="rCW">spark-submit</span> script and pass in 
 		<span class="rCW">.zip</span>, <span class="rCW">.egg</span>, or <span class="rCW">.py</span> dependencies.</p>
@@ -284,20 +285,20 @@ dependencies, depending on your programming language:</p>
 		<p>You can load additional libraries when you initialize the <span class="rCW">SparkR</span> package in your R script.</p>
 	</bu:rTab><bu:rTab index="4">
 		<p>The Spark documentation recommends creating an <span class="rPN">assembly JAR</span> (or "uber" JAR) containing your
-		application and all of the dependencies. You can also use the <span class="rK">--packages</span> parameter with Maven dependency IDs
-		and Spark will download and distribute the libraries from a Maven repository. Finally, you can also specify third-party JAR files with the 
+		application and all of the dependencies. You can also use the <span class="rK">--packages</span> parameter with a comma-separated list of Maven dependency IDs
+		and Spark will download and distribute the libraries from a Maven repository. Finally, you can also specify a comma-separated list of third-party JAR files with the 
 		<span class="rK">--jars</span> parameter in the <span class="rCW">spark-submit</span> script.
-		This is simpler, but has a performance trade-off if many separate files are copied across the workers.</p>
+		Avoiding the assembly JAR is simpler, but has a performance trade-off if many separate files are copied across the workers.</p>
 	</bu:rTab>
 </bu:rTabs>
 
-<p>All parameter-based approaches can accept a comma-separated list of simple file names. You can also use URL schemes such as <span class="rCW">ftp:</span> or
+<p>In the case of the <span class="rK">--py-files</span> or <span class="rK">--jars</span> parameters, you can also use URL schemes such as <span class="rCW">ftp:</span> or
 <span class="rCW">hdfs:</span> to reference files stored elsewhere, or <span class="rCW">local:</span> to specify files that
 are already stored on the workers. See the documentation on <a href="http://spark.apache.org/docs/latest/submitting-applications.html#advanced-dependency-management">Advanced Dependency Management</a>
 for more details.</p>
 
-<p>The simple application in this tutorial has no dependencies besides Spark itself. In later recipes, we use common build tools to create assembly JAR files for Java
-and Scala, or EGG files for Python.</p>
+<p>The simple application in this tutorial has no dependencies besides Spark itself. We cover the creation of an assembly JAR in 
+<bu:rLink id="building-maven" /> and <bu:rLink id="building-sbt" />.</p>
 
 <bu:rSection anchor="04" title="Submitting the Application" />
 
@@ -309,14 +310,14 @@ we just need the top-level module or script name. Everything after the expected 
 	<bu:rTab index="1">
 		<bu:rCode lang="bash">
 			# Submit an application to a Spark cluster
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--class buri.sparkour.ImaginaryApp \
 				bundledAssembly.jar \
 				applicationArgs
 				
 			# Submit an application with Maven package dependencies
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--packages groupId:artifactId:version \
 				--class buri.sparkour.ImaginaryApp \
@@ -324,7 +325,7 @@ we just need the top-level module or script name. Everything after the expected 
 				applicationArgs
 				
 			# Submit an application with JAR dependencies
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--jars dependency.jar \
 				--class buri.sparkour.ImaginaryApp \
@@ -334,7 +335,7 @@ we just need the top-level module or script name. Everything after the expected 
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="bash">
 			# Submit an application to a Spark cluster
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--py-files dependency.egg \
 				imaginaryApp.py \
@@ -343,7 +344,7 @@ we just need the top-level module or script name. Everything after the expected 
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="bash">
 			# Submit an application to a Spark cluster
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				imaginaryApp.R \
 				applicationArgs
@@ -351,14 +352,14 @@ we just need the top-level module or script name. Everything after the expected 
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="bash">
 			# Submit an arbitrary application to a Spark cluster
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--class buri.sparkour.ImaginaryApp \
 				bundledAssembly.jar \
 				applicationArgs
 				
 			# Submit an application with Maven package dependencies
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--packages groupId:artifactId:version \
 				--class buri.sparkour.ImaginaryApp \
@@ -366,7 +367,7 @@ we just need the top-level module or script name. Everything after the expected 
 				applicationArgs
 				
 			# Submit an application with JAR dependencies
-			/opt/spark/bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
 				--jars dependency.jar \
 				--class buri.sparkour.ImaginaryApp \
@@ -486,7 +487,7 @@ can be found in the official documentation.</p>
 		
 	<bu:rCode lang="bash">
 		# Go to the Java examples directory
-		cd /opt/spark/examples/src/main/java/
+		cd $SPARK_HOME/examples/src/main/java/
 		
 		# Go into the examples package
 		cd org/apache/spark/examples
@@ -498,11 +499,8 @@ can be found in the official documentation.</p>
 	<li>An assembly JAR file contains the compiled example classes and all of the necessary dependencies. If you look inside, you'll see tons of third-party classes.</li>
 
 	<bu:rCode lang="bash">
-		# Go to the assembly JAR directory
-		cd /opt/spark/lib
-		
 		# Peek in the assembly JAR (it's big!)
-		less spark-examples-1.6.0-hadoop2.6.0.jar
+		less $SPARK_HOME/lib/spark-examples-1.6.0-hadoop2.6.0.jar
 		# (hold down spacebar to skim down, or hit 'q' to exit)
 	</bu:rCode>
 
@@ -510,28 +508,26 @@ can be found in the official documentation.</p>
 
 	<bu:rCode lang="bash">
 		# Submit the JavaWordCount application
-		cd /opt/spark	
-		./bin/spark-submit \
+		$SPARK_HOME/bin/spark-submit \
 			--class org.apache.spark.examples.JavaWordCount \
 			./lib/spark-examples-1.6.0-hadoop2.6.0.jar \
-			README.md
+			$SPARK_HOME/README.md
 	</bu:rCode>
 
 	<li>Spark also includes a quality-of-life script that makes running Java and Scala examples simpler. Under the hood, this script ultimately calls <span class="rCW">spark-submit</span>.</li>
 
 	<bu:rCode lang="bash">
 		# Submit the JavaWordCount application with the run-example script.
-		cd /opt/spark	
-		./bin/run-example JavaWordCount README.md
+		$SPARK_HOME/bin/run-example JavaWordCount $SPARK_HOME/README.md
 	</bu:rCode>
 	
-	<li>Source code for the Python examples can be found in <span class="rCW">/opt/spark/examples/src/main/python/</span>. These examples have no dependent packages, other than
+	<li>Source code for the Python examples can be found in <span class="rCW">$SPARK_HOME/examples/src/main/python/</span>. These examples have no dependent packages, other than
 		the basic <span class="rCW">pyspark</span> library.</li>
 			
-	<li>Source code for the R examples can be found in <span class="rCW">/opt/spark/examples/src/main/r/</span>. These examples have no dependent packages, other than
+	<li>Source code for the R examples can be found in <span class="rCW">$SPARK_HOME/examples/src/main/r/</span>. These examples have no dependent packages, other than
 		the basic <span class="rCW">SparkR</span> library.</li>
 
-	<li>Source code for the Scala examples can be found in <span class="rCW">/opt/spark/examples/src/main/scala/</span>. These examples follow the same patterns and directory
+	<li>Source code for the Scala examples can be found in <span class="rCW">$SPARK_HOME/examples/src/main/scala/</span>. These examples follow the same patterns and directory
 		organization as the Java examples.</li>
 </ol>
  
@@ -544,11 +540,12 @@ so you don't incur unexpected charges.</p>
 
 <bu:rFooter>
 	<bu:rLinks>
-		<li><bu:rLink id="building-sbt" /></li>
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#linking-with-spark">Linking with Spark</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/quick-start.html">Self-Contained Applications</a> (in Java, Python, and Scala) in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/submitting-applications.html">Submitting Applications</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/configuration.html#dynamically-loading-spark-properties">Loading Default Configurations</a> in the Spark Programming Guide</li>
+		<li><bu:rLink id="building-maven" /></li>
+		<li><bu:rLink id="building-sbt" /></li>
 	</bu:rLinks>
 
 	<bu:rChangeLog>

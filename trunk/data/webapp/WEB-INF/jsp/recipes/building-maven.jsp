@@ -142,10 +142,7 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 
 	<li>A collection of <span class="rK">dependencies</span> identifies library dependencies that Maven needs
 		to gather from a Maven repository to compile, package, or run the project. All of our example POMs
-		identify Apache Spark as a dependency. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
-		signifies that Spark is needed to compile the project, but does not need to be available at runtime or included
-		in an assembly JAR file. (Recall that Spark will already be installed on a Spark cluster executing your
-		application, so there is no need to provide a new copy at runtime).</li>
+		identify Apache Spark as a dependency.</li>
 		
 	<bu:rCode lang="xml">
 	    <dependencies>
@@ -158,7 +155,13 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
         	<!-- Other managed dependencies (described below) -->
 	    </dependencies>
 	</bu:rCode>
-
+	
+	<li>The <span class="rCW">_2.10</span> suffix in the <span class="rK">artifactId</span> specifies a build of Spark that was compiled
+		with Scala 2.10. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
+		signifies that Spark is needed to compile the project, but does not need to be available at runtime or included
+		in an assembly JAR file. (Recall that Spark will already be installed on a Spark cluster executing your
+		application, so there is no need to provide a new copy at runtime).</li>
+		
 	<li>A collection of <span class="rK">plugins</span> identifies Maven plugins that perform tasks such as
 		compiling code.</li> 
 
@@ -323,7 +326,7 @@ you can probably find them on that dependency's website or in the <a href="http:
 	</bu:rTabs>
 	
 	<li>The <span class="rCW">package</span> command compiles the source code in <span class="rCW">/src/main/</span> and creates a JAR file of just the project code without
-		any dependencies. The result saved at <span class="rCW">target/original-building-maven-1.0-SNAPSHOT.jar</span>.</li>
+		any dependencies. The result is saved at <span class="rCW">target/original-building-maven-1.0-SNAPSHOT.jar</span>.</li>
 	
 	<li>There are many more configuration options available in Maven that you may want to learn if you are serious about adopting Maven across your codebase. Refer to the 
 	 	<a href="http://maven.apache.org/guides/">Maven Documentation</a> to learn more. For example, you might use <span class="rCW">repositories</span>
@@ -369,7 +372,7 @@ unmanaged libraries.</p>
 <ol>
 	<li>The plugin is defined in the <span class="rCW">pom-java-local.xml</span>
 		and <span class="rCW">pom-scala-local.xml</span> POM files. This plugin works with
-		both Java and Scala code. Our examples use the <span class="rCW">lib/</span> directory.</li>
+		both Java and Scala code. Our examples specify the <span class="rCW">lib/</span> directory for storing extra libraries.</li>
 				
 	<bu:rCode lang="xml">
         <plugin>

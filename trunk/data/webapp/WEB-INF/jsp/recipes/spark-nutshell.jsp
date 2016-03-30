@@ -33,11 +33,12 @@ separation of concerns supports the flexibility and scalability needed to handle
 
 <p>Spark is deployed as a <span class="rPN">cluster</span> consisting of a master server and many worker servers. The master
 server accepts incoming jobs and breaks them down into smaller tasks that can be handled by workers. A cluster includes 
-tools for logging and monitoring progress and status. Profiling metrics to support a decision on whether to
-improve performance with additional workers is easily accessible.</p> 
+tools for logging and monitoring progress and status. Profiling metrics are easily accessible, and can support the 
+decision on when to improve performance with additional workers or code changes.</p> 
 
 <p>Spark increases processing efficiency by implementing <span class="rPN">Resilient Distributed Datasets</span> (RDDs), which are
-immutable, fault-tolerant collections of objects. RDDs can be built from any arbitrary dataset, such as a text file in Amazon S3,
+immutable, fault-tolerant collections of objects. RDDs are foundation for all high-level Spark objects (such as <span class="rPN">DataFrames</span>
+and <span class="rPN">Datasets</span>) and can be built from any arbitrary data, such as a text file in Amazon S3,
 or an array of integers in the application itself. With Spark, your application can perform <span class="rPN">transformations</span>
 on RDDs to create new RDDs, or <span class="rPN">actions</span> that return the result of some computation. Spark transformations
 are "lazy", which means that they are not actually executed until an action is called. This reduces processing churn,
@@ -65,8 +66,8 @@ of your application much less than some "copyleft" licenses.</p>
 		you don't need to use Hadoop at all if Spark satisfies your requirements on its own.</li>
 	<li>Spark is not an <span class="rPN">in-memory computing engine</span>:<br />
 		Spark exploits in-memory processing as much as possible to increase performance, but employs complementary approaches in memory usage, disk usage, and data
-		serialization to operate pragmatically within the limitations of the available infrastructure. Once memory resources are exhausted, Spark can spill over onto disk and continue
-		processing.</li>
+		serialization to operate pragmatically within the limitations of the available infrastructure. Once memory resources are exhausted, Spark can spill the overflow 
+		data onto disk and continue processing.</li>
 	<li>Spark is not a <span class="rPN">miracle product</span>:<br />
 		At the end of the day, Spark is just a collection of very useful Application Programming Interfaces (APIs). 
 		It's not a shrinkwrapped product that you turn on and set loose on your data for immediate benefit. As the domain expert
@@ -91,7 +92,8 @@ of your application much less than some "copyleft" licenses.</p>
 		<span class="rPN">Spark Streaming</span> supports streaming data sources (such as Twitter feeds) while <span class="rPN">Spark SQL</span> provides options for exploring and mining
 		data in ways much closer to the mental model of a data analyst. <span class="rPN">MLLib</span> enables machine learning use cases and <span class="rPN">GraphX</span>
 		is available for graph computation. Previously, each of these areas might have been served by a different tool that needed to be integrated into your solution. Spark makes
-		it easy to combine these libraries into a single application without extra integration or the need to learn the idiosyncrasies of unrelated tools.</li>
+		it easy to combine these libraries into a single application without extra integration or the need to learn the idiosyncrasies of unrelated tools. In addition,
+		<a href="http://spark-packages.org/">Spark Packages</a> provides an easy way to discover and integrate third-party tools and libraries.</li>
 	<li><span class="rPN">Runs Everywhere</span>: Spark focuses narrowly on the complexities of data processing, leaving several technology choices in your hands.
 		Data can originate from many compatible storage solutions. Spark clusters can be managed by Spark's "Standalone" cluster manager or another popular manager (Apache Mesos or Hadoop YARN).
 		Finally, Spark's cluster is very conducive to deployment in a cloud environment (with helpful scripts provided for Amazon Web Services in particular). This greatly
@@ -105,7 +107,7 @@ The generality of Spark means that there isn't a single use case it's best for.
 Instead, consider using Spark if some of these conditions apply to your scenario.</p>
 
 <ol>
-	<li>You are starting a new application.</li>
+	<li>You are starting a new data processing application.</li>
 	<li>You expect to have massive datasets (on the order of petabytes).</li>
 	<li>You expect to integrate with a variety of data sources or the Hadoop ecosystem.</li>
 	<li>You expect to need more than one of Spark's libraries (e.g. MLLib and SQL) in the same application.</li>
@@ -150,7 +152,8 @@ on an Amazon EC2 instance.</p>
 	<bu:rLinks>
 		<li><a href="http://spark.apache.org/docs/latest/">Apache Spark documentation</a></li>
 		<li><a href="http://spark.apache.org/faq.html">Apache Spark FAQ</a></li>	
-		<li><a href="https://en.wikipedia.org/wiki/Apache_Spark">Apache Spark</a> on Wikipedia</li>	
+		<li><a href="https://en.wikipedia.org/wiki/Apache_Spark">Apache Spark</a> on Wikipedia</li>
+		<li><a href="http://spark-packages.org/">Spark Packages</a></li>	
 	</bu:rLinks>
 	<bu:rChangeLog>
 		<li>2016-03-29: Updated with a section comparing the available programming languages
