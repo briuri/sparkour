@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+<c:set var="noJavaMessage" value="There is no interactive shell available for Java. You should use one of the other languages to smoke test your Spark cluster." />
 
 <bu:rOverview publishDate="2016-02-26">
 	<h3>Synopsis</h3>
@@ -64,7 +64,7 @@ Key clustering concepts are shown in the image below.</p>
 </ul>
 
 <p>Spark comes with a cluster manager implementation referred to as the <span class="rPN">Standalone</span> cluster manager. However,
-this concept is not unique to Spark, and you can also swap in one of these implementations instead:
+resource management is not a unique Spark concept, and you can swap in one of these implementations instead:
 
 <ul> 
 	<li><a href="http://mesos.apache.org/">Apache Mesos</a> is a general-purpose cluster manager with fairly broad industry adoption.</li>
@@ -116,51 +116,45 @@ to a Spark cluster, you can specify the number of parallel threads used in Local
 		<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="bash">
-			cd /opt/spark
-			
 			# Run in Local mode with a single thread
-			./bin/pyspark --master local
+			$SPARK_HOME/bin/pyspark --master local
 			
 			# The default is also Local Mode with a single thread
-			./bin/pyspark
+			$SPARK_HOME/bin/pyspark
 			
 			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/pyspark --master local[2]
+			$SPARK_HOME/bin/pyspark --master local[2]
 			
 			# Run with as many threads as this server can handle
-			./bin/pyspark --master local[*]
+			$SPARK_HOME/bin/pyspark --master local[*]
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="bash">
-			cd /opt/spark
-			
 			# Run in Local mode with a single thread
-			./bin/sparkR --master local
+			$SPARK_HOME/bin/sparkR --master local
 			
 			# The default is also Local Mode with a single thread
-			./bin/sparkR
+			$SPARK_HOME/bin/sparkR
 			
 			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/sparkR --master local[2]
+			$SPARK_HOME/bin/sparkR --master local[2]
 			
 			# Run with as many threads as this server can handle
-			./bin/sparkR --master local[*]
+			$SPARK_HOME/bin/sparkR --master local[*]
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="bash">
-			cd /opt/spark
-			
 			# Run in Local mode with a single thread
-			./bin/spark-shell --master local
+			$SPARK_HOME/bin/spark-shell --master local
 			
 			# The default is also Local Mode with a single thread
-			./bin/spark-shell
+			$SPARK_HOME/bin/spark-shell
 			
 			# Run with 2 worker threads (try not to exceed the number of cores this server has)
-			./bin/spark-shell --master local[2]
+			$SPARK_HOME/bin/spark-shell --master local[2]
 			
 			# Run with as many threads as this server can handle
-			./bin/spark-shell --master local[*]
+			$SPARK_HOME/bin/spark-shell --master local[*]
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -187,16 +181,14 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
  
 	<bu:rCode lang="bash">
 		# Start the master
-		cd /opt/spark
-		./sbin/start-master.sh
+		$SPARK_HOME/sbin/start-master.sh
 	</bu:rCode>
 
 	<li>The output of this command identifies a log file location. Open this log file in your favourite text editor.</li>
 	
 	<bu:rCode lang="bash">
 		# Use whatever text editor you'd like
-		cd /opt/spark/logs
-		vi spark-ec2-user-org.apache.spark.deploy.master.Master-1-ip-172-31-24-101.out
+		vi $SPARK_HOME/logs/spark-ec2-user-org.apache.spark.deploy.master.Master-1-ip-172-31-24-101.out
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
@@ -224,16 +216,14 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	
 	<bu:rCode lang="bash">
 		# Start a slave on the same server as the master in this contrived example
-		cd /opt/spark
-		./sbin/start-slave.sh spark://ip-172-31-24-101:7077
+		$SPARK_HOME/sbin/start-slave.sh spark://ip-172-31-24-101:7077
 	</bu:rCode>
 
 	<li>The output of this command identifies a log file location. Open this log file in your favourite text editor.</li>
 	
 	<bu:rCode lang="bash">
 		# Use whatever text editor you'd like
-		cd /opt/spark/logs
-		vi spark-ec2-user-org.apache.spark.deploy.worker.Worker-1-ip-172-31-24-101.out
+		vi $SPARK_HOME/logs/spark-ec2-user-org.apache.spark.deploy.worker.Worker-1-ip-172-31-24-101.out
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
@@ -294,20 +284,17 @@ development environment, master, and slave at the same time.</p>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/pyspark --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/sparkR --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/spark-shell --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -351,8 +338,7 @@ development environment, master, and slave at the same time.</p>
 		
 	<bu:rCode lang="bash">
 		# Stop the slave	
-		cd /opt/spark
-		./sbin/stop-slave.sh worker-20160226005447-172.31.24.101-32883
+		$SPARK_HOME/sbin/stop-slave.sh worker-20160226005447-172.31.24.101-32883
 	</bu:rCode>
 
 	<li>Refreshing the Master UI after this command shows the Worker as <span class="rCW">DEAD</span>. The Worker UI is also shut down
@@ -421,8 +407,7 @@ development environment, master, and slave at the same time.</p>
 	
 	<bu:rCode lang="bash">
 		# Stop the master	
-		cd /opt/spark
-		./sbin/stop-master.sh
+		$SPARK_HOME/sbin/stop-master.sh
 	</bu:rCode>
 	
 </ol>

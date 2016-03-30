@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noJavaMessage" value="There is no interactive shell available for Java." />
+<c:set var="noJavaMessage" value="There is no interactive shell available for Java. You should use one of the other languages to smoke test your Spark cluster." />
 
 <bu:rOverview publishDate="2016-03-04">
 	<h3>Synopsis</h3>
@@ -164,8 +164,7 @@ displays the complete list.</p>
 <bu:rCode lang="bash">
 	export AWS_SECRET_ACCESS_KEY=AaBbCcDdEeFGgHhIiJjKkLlMmNnOoPpQqRrSsTtU
 	export AWS_ACCESS_KEY_ID=ABCDEFG1234567890123
-	cd /opt/spark/ec2
-	./spark-ec2 \
+	$SPARK_HOME/ec2/spark-ec2 \
 		--key-pair=my_key_pair \
 		--identity-file=/opt/keys/my_key_pair.pem \
 		--region=us-east-1 \
@@ -239,20 +238,17 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/pyspark --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/sparkR --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Start the shell with your running cluster	
-				cd /opt/spark
-				./bin/spark-shell --master spark://ip-172-31-24-101:7077
+				$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -267,19 +263,16 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 	<li>To start or stop the cluster, run these commands (from your launch environment, not the master):</li>
 
 	<bu:rCode lang="bash">
-		cd /opt/spark/ec2
+		$SPARK_HOME/ec2/spark-ec2 start sparkour-cluster
 		
-		./spark-ec2 start sparkour-cluster
-		
-		./spark-ec2 stop sparkour-cluster
+		$SPARK_HOME/ec2/spark-ec2 stop sparkour-cluster
 		# (Hit 'y' to confirm)
 	</bu:rCode>
 
 	<li>To permanently destroy your cluster, run this command (from your launch environment, not the master):</li>	
 
 	<bu:rCode lang="bash">
-		cd /opt/spark/ec2
-		./spark-ec2 destroy sparkour-cluster
+		$SPARK_HOME/ec2/spark-ec2 destroy sparkour-cluster
 		# (Hit 'y' to confirm)
 	</bu:rCode>
 	
