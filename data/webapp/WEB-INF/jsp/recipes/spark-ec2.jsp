@@ -47,14 +47,84 @@
 
 <bu:rSection anchor="01" title="Pre-Launch Configuration" />
 
+<p>Before running the <span class="rCW">spark-ec2</span> script, you must:</p>
+
+<ol>
+	<li>Add the appropriate permissions to your AWS Identity and Access Management (IAM) user account that will allow you to run the script.</li>
+	<li>Create an IAM Role for the instances in the generated Spark cluster that will allow them to access other AWS services.</li>
+	<li>Make configuration decisions about how your Spark cluster should be deployed, and look up important IDs and values in the AWS Management Console.</li>
+</ol>
+
+<h3>Adding Launch Permissions</h3>
+
+<p>The <span class="rCW">spark-ec2</span> script requires permission to execute multiple AWS Actions, such as creating new EC2 
+instances and configuring security groups. These permissions are checked against the AWS user account used to run the script, and
+can be attached to a user account through the IAM service. As a best practice, you should not be using your
+<a href="http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html">root user credentials</a> to run the script.</p>
+
+<ol>
+	<li>Login to your <a href="https://console.aws.amazon.com/">AWS Management Console</a> and select the 
+		<span class="rPN">Identity &amp; Access	Management</span> service.</li>
+	<li>Navigate to <span class="rMI">Groups</span> in the left side menu, and then select
+		<span class="rAB">Create New Group</span> at the top of the page. 
+		This starts a wizard workflow to create a new Group.</li>	
+	<li>On <span class="rPN">Step 1. Group Name</span>, set the <span class="rK">Group Name</span> to a value
+		like <span class="rV">spark-launch</span> and go to the <span class="rAB">Next Step</span>.</li>
+	<li>On <span class="rPN">Step 2. Attach Policy</span>, select <span class="rV">AdministratorAccess</span> to grant
+		a pre-defined set of administrative permissions to this Group. Go to the <span class="rAB">Next Step</span>.</li>
+	<li>On <span class="rPN">Step 3. Review</span>, select <span class="rAB">Create Group</span>. You return
+		to the Groups dashboard, and should see your new Group listed on the dashboard.</li>
+	<li>Next, click on the name of your group to show summary details. Go to the <span class="rPN">Users</span> tab
+		and select <span class="rAB">Add Users to Group</span>.</li>
+	<li>On the <span class="rPN">Add Users to Group</span> page, select your IAM user account and then <span class="rAB">Add Users</span>.
+		You return to the Groups summary detail page, and should see your user account listed in the Group. Your account can now be
+		used to run the <span class="rCW">spark-ec2</span> script.</li>		
+</ol>
+
+<p>These instructions provide all of the permissions needed to run the script, but advanced users may prefer to enforce a "least privilege" security posture
+with a more restrictive, custom policy. An example of such a policy is shown below, but the specific list of Actions may vary depending
+on the parameters you pass into the script to set up your Spark cluster.</p>
+
+<bu:rCode lang="plain">
+	{
+		"Version": "2012-10-17",
+		"Statement": [
+			{
+				"Effect": "Allow",
+				"Action": [
+					"ec2:DescribeAvailabilityZones", "ec2:DescribeRegions",
+					"ec2:DescribeSecurityGroups", "ec2:CreateSecurityGroup", "ec2:DeleteSecurityGroup",
+					"ec2:AuthorizeSecurityGroupEgress", "ec2:RevokeSecurityGroupEgress",
+					"ec2:AuthorizeSecurityGroupIngress", "ec2:RevokeSecurityGroupIngress",
+					
+					"ec2:DescribeImages", "ec2:DescribeInstances", "ec2:DescribeInstanceStatus",
+					"ec2:RunInstances", "ec2:StartInstances", "ec2:StopInstances", "ec2:TerminateInstances"
+
+					"ec2:DescribeTags", "ec2:CreateTags", "ec2:DeleteTags",
+					
+					"ec2:DescribeVolumes", "ec2:CreateVolume", "ec2:DeleteVolume",
+					"ec2:AttachVolume", "ec2:DetachVolume", 
+
+					"iam:PassRole"
+				],
+				"Resource": [ "*" ]
+			}
+		]
+	}
+</bu:rCode>
+
+<p>You can create and attach this policy to your Group with the IAM service instead of the <span class="rV">AdministratorAccess</span> policy we used above.
+If you encounter authorization errors when running the script with this policy, you may need to add additional AWS Actions to the policy.</p>
+
 <h3>Creating the IAM Role</h3>
 
 <p>By deploying your cluster in Amazon EC2, you gain access to other AWS service offerings such as Amazon S3 for data storage. Your cluster nodes
-need permission to access these services. Most Spark tutorials suggest that you pass your secret API keys to the instances as environment variables.
+need permission to access these services (separate from the permissions used to launch the cluster in the first place).
+Most Spark tutorials suggest that you pass your secret API keys to the instances as environment variables.
 This brittle "shared secret" approach is no longer a best practice in AWS, although it is the only way to use some older AWS integration libraries. (For example,
 the Hadoop library implementing the <span class="rCW">s3n</span> protocol for loading Amazon S3 data only accepts secret keys).</p>
 
-<p>A cleaner way to set this up is to use Identity and Access Management (IAM) Roles. You can assign a Role to every node in your cluster and then 
+<p>A cleaner way to set this up is to use IAM Roles. You can assign a Role to every node in your cluster and then 
 attach a policy granting those instances access to other services. No secret keys are involved, and the risk of accidentally disseminating keys or 
 committing them in version control is reduced. The only caveat is that the IAM Role must be assigned when an EC2 instance is first launched. 
 You cannot assign an IAM Role to an EC2 instance already in its post-launch lifecycle.</p>
@@ -63,8 +133,7 @@ You cannot assign an IAM Role to an EC2 instance already in its post-launch life
 attach new permission policies to an existing Role than it is to terminate the entire cluster and recreate everything with Roles after the fact.</p>
 
 <ol>
-	<li>Login to your <a href="https://console.aws.amazon.com/">AWS Management Console</a> and select the 
-		<span class="rPN">Identity &amp; Access	Management</span> service.</li>
+	<li>Go to the <span class="rPN">Identity &amp; Access Management</span> service, if you are not already there.</li>
 	<li>Navigate to <span class="rMI">Roles</span> in the left side menu, and then select
 		<span class="rAB">Create New Role</span> at the top of the page, as seen in the image below. 
 		This starts a wizard workflow to create a new role.</li>
@@ -109,12 +178,12 @@ displays the complete list.</p>
 
 <ul>
 	<li><span class="rPN">Identity Options</span><ul>
-		<li><span class="rK">AWS_SECRET_ACCESS_KEY / AWS_ACCESS_KEY_ID</span>: These credentials are tied to your AWS account, and allow you to run the script.
+		<li><span class="rK">AWS_SECRET_ACCESS_KEY / AWS_ACCESS_KEY_ID</span>: These credentials are tied to your AWS user account, and allow you to run the script.
 			You can <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">create new keys</a> if you have lost the old ones,
 			by visiting the IAM User dashboard, selecting a user, selecting <span class="rAB">Users Actions</span>, and choosing <span class="rMI">Manage Access Keys</span>.
 			We merely set them as environment variables as a best practice, so they are not stored anywhere on the machine containing your script.</li>
-		<li><span class="rK">--key-pair / --identity-file</span>: These credentials allow you to SSH into the cluster instances. You can <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair">create an EC2 Key Pair</a>
-			if you haven't already. The identity file must be installed on the server where the script is run and must have permissions of <span class="rCW">400</span> (readable
+		<li><span class="rK">--key-pair / --identity-file</span>: These credentials allow the script to SSH into the cluster instances. You can <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair">create an EC2 Key Pair</a>
+			if you haven't already. The identity file must be installed in the launch environment where the script is run and must have permissions of <span class="rCW">400</span> (readable
 			only by you). Use the absolute path in the parameter.</li>
 		<li><span class="rK">--copy-aws-credentials</span>: Optionally allow the cluster to use the credentials with which you ran the script when accessing Amazon
 			services. This is a brittle security approach, so only use it if you rely on a legacy library that doesn't support IAM Roles.</li>		
@@ -126,7 +195,9 @@ displays the complete list.</p>
 		<li><span class="rK">--zone</span>: Optionally set the ID of an Availability Zone(s) to launch in (defaults to a randomly chosen zone). You
 			can also set to <span class="rV">all</span> for higher availability at greater cost.</li>
 		<li><span class="rK">--authorized-address</span>: The whitelisted IP range used in the generated Security Group (defaults to the public Internet as <span class="rV">0.0.0.0/0</span>, so you should always specify a value for better security).</li>
-		<li><span class="rK">--private-ips</span>: Optionally set to <span class="rV">True</span> for VPCs in which public IP addresses are not automatically assigned to instances (defaults to <span class="rV">False</span>.</li>
+		<li><span class="rK">--private-ips</span>: Optionally set to <span class="rV">True</span> for VPCs in which public IP addresses are not automatically assigned to instances.
+			The script tries to connect to the cluster to configure it through Public DNS Names by default, and setting this to <span class="rV">True</span> forces the use of 
+			Private IPs instead (defaults to <span class="rV">False</span>).</li>
 	</ul></li>
 	<li><span class="rPN">Cluster Options</span><ul>                   
 		<li><span class="rK">--slaves</span>: Optionally set the number of slaves to launch (defaults to <span class="rV">1</span>).</li>
@@ -147,7 +218,8 @@ displays the complete list.</p>
 			GitHub repository, based upon your selected instance type).</li>
 		<li><span class="rK">--user-data</span>: Optionally specify a startup script (from a location on the machine running the <span class="rCW">spark-ec2</span> script). If specified,
 			this script will run on each of the cluster instances as an initialization step.</li>
-		<li><span class="rK">--additional-tags</span>: Optionally apply AWS tags to these instances.</li>
+		<li><span class="rK">--additional-tags</span>: Optionally apply AWS tags to these instances. 
+			Tag keys and values are separated by a colon, and you can pass in a comma-separated list of tags: <span class="rV">name:value,name2:value2</span>.</li>
 		<li><span class="rK">--instance-initiated-shutdown-behavior</span>: Optionally set to <span class="rV">stop</span> to stop instances when stopping
 			the cluster, or <span class="rV">terminate</span> to permanently destroy instances when stopping the cluster (defaults to <span class="rV">stop</span>).</li>
 		<li><span class="rK">--ebs-vol-size / --ebs-vol-type / --ebs-vol-num</span>: Optionally configure Elastic Block Store (EBS) Volumes to be created and attached
@@ -198,8 +270,9 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 		Waiting for cluster to enter 'ssh-ready' state....
 	</bu:rCode>
 	
-	<li>It may take several minutes to pass this point. You can monitor progress on the EC2 Dashboard -- 
-	when the Status Checks succeed, the script starts up again.</li>
+	<li>It may take several minutes to pass this point, during which the script will periodically attempt to SSH into the instances using their Public DNS names.
+	These attempts will fail until the cluster has entered the <span class="rCW">'ssh-ready'</span> state. You can monitor progress on the EC2 Dashboard -- 
+	when the Status Checks succeed, the script should be able to SSH successfully.</li>
 	
 	<img src="${localImagesUrlBase}/status-checks.png" width="750" height="158" title="The cluster may take several minutes to launch." class="diagram border" />
 
@@ -216,7 +289,26 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 		Done!
 	</bu:rCode>
 </ol>
-					
+
+<p>If your script is unable to use SSH even after the EC2 instances have succeeded their Status Checks, you should troubleshoot the connection using the 
+<span class="rCW">ssh</span> command in your launch environment, replacing <span class="rCW">&lt;sparkNodeAddress&gt;</span> with the hostname or IP address
+of one of the Spark nodes.</p>
+
+<bu:rCode lang="bash">
+	ssh -i /opt/keys/my_key_pair.pem ec2-user@&lt;sparkNodeAddress&gt;
+</bu:rCode>
+
+<p>Here are some troubleshooting paths to consider:</p>
+ 
+<ol>
+	<li>If you are running the <span class="rCW">spark-ec2</span> script from an EC2 instance, does its Security Group allow outbound traffic to the Spark cluster?</li>
+	<li>Does the Spark cluster's generated Security Group allow inbound SSH traffic (port 22) from your launch environment?</li>
+	<li>Can you manually SSH into a Spark cluster node from your launch environment over an IP address?</li>  
+	<li>Can you manually SSH into a Spark cluster node from your launch environment over a Public DNS Name? A failure here may suggest that your Spark cluster
+		does not automatically get public addresses assigned (in which case you can use the 
+		<span class="rK">--private-ips</span> parameter), or your launch environment cannot locate the cluster over its DNS service.</li>
+</ol>
+
 <h3>Validating the Cluster</h3>
 
 <ol>					
@@ -227,7 +319,8 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 	<li>From the EC2 dashboard, select each instance in the cluster. In the details pane, confirm that the IAM Role was successfully assigned.</li>
 	
 	<li>Next, try to SSH into the master instance. You can do this from the launch environment where you ran the <span class="rCW">spark-ec2</span> script, or use a client
-		like PuTTY that has been configured with the EC2 Key Pair. The Spark libraries are installed under <span class="rCW">/root/</span>.</li>
+		like PuTTY that has been configured with the EC2 Key Pair. When logged into the master, you will find the Spark libraries
+		installed under <span class="rCW">/root/</span>.</li>
 		
 	<li>Finally, try running the Spark interactive shell on the master instance, connecting to the cluster.
 		You can copy the Master URL from the Master UI and then start a shell with that value.</li>
@@ -292,7 +385,8 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 	</bu:rLinks>
 	
 	<bu:rChangeLog>
-		<li>This recipe hasn't had any substantive updates since it was first published.</li>
+		<li>Updated with additional detail on required permissions and SSH troubleshooting
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-7">SPARKOUR-7</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
