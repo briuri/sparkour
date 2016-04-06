@@ -12,3 +12,9 @@ Standalone/YARN/Mesos:
 Uber JAR with Ant:	
 	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create--fileat-jar--fileile/
  
+S3 VPC Endpoint:
+	https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
+	http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html
+	http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies-vpc-endpoint.html
+	http://cloudacademy.com/blog/vpc-endpoint-for-amazon-s3/
+	http://www.cloudtrek.com.au/blog/internal-vpc-s3-endpoints-in-aws/
