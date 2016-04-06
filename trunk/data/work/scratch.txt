@@ -2,19 +2,22 @@
 # Links #
 #########
 
-Shuffle:
-	http://blog.cloudera.com/blog/2015/05/working-with-apache-spark-or-how-i-learned-to-stop-worrying-and-love-the-shuffle/ 
 HDFS:
 	http://www.ccs.neu.edu/home/cbw/spark.html
-Standalone/YARN/Mesos:
-	http://stackoverflow.com/questions/28664834/which-cluster-type-should-i-choose--fileor-spark
-	https://www.quora.com/How-does-YARN-compare-to-Mesos
-Uber JAR with Ant:	
-	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create--fileat-jar--fileile/
- 
 S3 VPC Endpoint:
 	https://aws.amazon.com/blogs/aws/new-vpc-endpoint-for-amazon-s3/
 	http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html
 	http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies-vpc-endpoint.html
 	http://cloudacademy.com/blog/vpc-endpoint-for-amazon-s3/
 	http://www.cloudtrek.com.au/blog/internal-vpc-s3-endpoints-in-aws/
+Shuffle:
+	http://blog.cloudera.com/blog/2015/05/working-with-apache-spark-or-how-i-learned-to-stop-worrying-and-love-the-shuffle/ 
+Standalone/YARN/Mesos:
+	http://stackoverflow.com/questions/28664834/which-cluster-type-should-i-choose--fileor-spark
+	https://www.quora.com/How-does-YARN-compare-to-Mesos
+Streaming with Twitter:
+	https://medium.com/@anicolaspp/spark-streaming-and-twitter-sentiment-analysis-c860938d484#.cs2oral7p
+Uber JAR with Ant:	
+	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create--fileat-jar--fileile/
+
+ 
