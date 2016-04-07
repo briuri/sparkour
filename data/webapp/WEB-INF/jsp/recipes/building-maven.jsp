@@ -149,7 +149,7 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
         	<dependency>
             	<groupId>org.apache.spark</groupId>
             	<artifactId>spark-core_2.10</artifactId>
-            	<version>1.6.0</version>
+            	<version>1.6.1</version>
             	<scope>provided</scope>
         	</dependency>
         	<!-- Other managed dependencies (described below) -->

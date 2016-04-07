@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-04-07">
+		All recipes have been updated and tested against Spark 1.6.1.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-03-29">
 		<bu:rLink id="building-maven" />
 		covers the use of Apache Maven to build and bundle Spark applications
