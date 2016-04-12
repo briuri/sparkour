@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		rememberLastRecipeTab();
-		registerTabClicks();
+		registerTabClicks("Toc");
 	});
 </script>
 <%@ include file="../shared/headerSplit.jspf" %>
@@ -14,7 +14,7 @@
         <li><a href=".tab-2">Spark Development (5)</a></li>
         <li><a href=".tab-3">Spark Integration (3)</a></li>
     </ul>
-    <div class="tabContentPane">
+    <div class="tabContentPane tabTocContentPane">
     	<bu:rTab index="1">
 			<p>These sequential tutorial recipes are intended for developers just getting started with Spark. 
 			Developers should have some familiarity with the Linux command line and common tasks like running shell scripts.</p>
