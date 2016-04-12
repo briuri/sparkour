@@ -25,7 +25,9 @@
 USAGE="Usage: build.sh [clean|create|zip] id [name_compiled] [name_interpreted]\n
     \tbuild.sh create some-example SomeExample some_example\n
     \tbuild.sh clean some-example\n
-    \tbuild.sh zip some-example"
+    \tbuild.sh zip some-example\n
+    \tbuild.sh zip all"
+
 COMMAND=$1
 ID=$2
 NAME_COMPILED=$3
@@ -35,8 +37,8 @@ EXAMPLES_PATH="/opt/examples/sparkour"
 EXAMPLE_PATH="$EXAMPLES_PATH/$ID"
 SRC_PATH="$EXAMPLE_PATH/src/main"
 OUTPUT_PATH="$EXAMPLE_PATH/target"
-JAVA_CP="$SPARK_HOME/lib/spark-assembly-1.6.1-hadoop2.6.0.jar"			# Spark assembly
-JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar"				# building-sbt
+JAVA_CP="$SPARK_HOME/lib/spark-assembly-1.6.1-hadoop2.6.0.jar" # Spark assembly
+JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar"       # building-sbt
 
 # Asserts that an example exists before cleaning or zipping it.
 function assertExists {
@@ -97,10 +99,18 @@ function createExample {
     echo "Next, run 'svn add' and 'svn propset svn:ignore \"*\" target'."
 }
 
+# Iterates over all examples and creates a ZIP archive for each.
+function zipAll {
+    for ZIP_EXAMPLE in /opt/examples/sparkour/*; do
+        ZIP_SIMPLE_FILENAME=$(basename "$ZIP_EXAMPLE")
+        bash ./build.sh zip $ZIP_SIMPLE_FILENAME
+    done
+}
+
 # Creates a ZIP archive of an example.
 function zipExample {
     rm -f zip/$ID.zip
-    sudo zip -r zip/$ID.zip sparkour/$ID -x .svn
+    sudo zip -qr zip/$ID.zip sparkour/$ID -x .svn
     sudo chown ec2-user:ec2-user zip/$ID.zip
 }
 
@@ -116,6 +126,8 @@ if [ $COMMAND = "create" ]; then
 elif [ $COMMAND = "clean" ]; then
     assertExists
     cleanExample
+elif [[ $COMMAND = "zip" && $ID = "all" ]]; then
+    zipAll
 elif [ $COMMAND = "zip" ]; then
     assertExists
     compileExample
