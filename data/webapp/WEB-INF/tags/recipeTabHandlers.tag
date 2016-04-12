@@ -2,7 +2,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		showDefaultCodeTab();
-		registerTabClicks();
+		registerTabClicks("Code");
 		registerSaveTabClicks();
 	});
 </script>

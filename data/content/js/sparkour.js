@@ -23,31 +23,18 @@ function registerSaveTabClicks() {
 	$(".tabSave").click(function(event) {
 		var savedTab = $(this).parent().siblings(".tabCurrent").children().first().attr("href");
 		Cookies.set("defaultCodeTab", savedTab, { expires: 30 });
-		
-		$(".tabsCodeMenu li").removeClass("tabCurrent");
-		$(".tabsCodeMenu li a[href$='" + savedTab + "']").parent().addClass("tabCurrent");
-		
-		$('.tabCodeContentPane').children(savedTab).css("display", "block");
-		$('.tabCodeContentPane').children().not(savedTab).css("display", "none");
-		
+		showCurrentTab("Code", savedTab)		
 		$(this).next().hide();
 		$(this).next().show(0);
 	});
 }
 
 // Add event handlers for tab clicking (used on recipes page and individual recipes)
-function registerTabClicks() {
+function registerTabClicks(classToken) {
 	$(".tabsMenu a").click(function(event) {
 		event.preventDefault();
-		var liElement = $(this).parent()
-        liElement.addClass("tabCurrent");
-        liElement.siblings().removeClass("tabCurrent");
 		$(".tabSaveMessage").hide();
-		        
-        var selectedTab = $(this).attr("href");
-        var tabContentPaneElement = liElement.parent().next();		        
-        tabContentPaneElement.children().not(selectedTab).css("display", "none");
-        tabContentPaneElement.children(selectedTab).fadeIn(200);
+		showCurrentTab(classToken, $(this).attr("href"));
 	});
 }
 
@@ -59,6 +46,15 @@ function rememberLastRecipeTab() {
 	$(".tabsMenu a").click(function(event) {
 		Cookies.set("lastRecipeTab", $(this).attr("href"), { expires: 1 });
 	});
+}
+
+// Show the current tab and hide all others
+function showCurrentTab(classToken, current) {
+	$(".tabs" + classToken + "Menu li").removeClass("tabCurrent");
+	$(".tabs" + classToken + "Menu li a[href$='" + current + "']").parent().addClass("tabCurrent");
+		
+	$(".tab" + classToken + "ContentPane").children().not(current).css("display", "none");
+	$(".tab" + classToken + "ContentPane").children(current).fadeIn(300);
 }
 
 // Show all of the code tabs based on the default setting. (used on individual recipes)
