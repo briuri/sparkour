@@ -1,0 +1,17 @@
+===========================================================================
+Versions
+===========================================================================
+
+This file describes the specific software and library versions used to
+write and test this Sparkour recipe. This does not necessarily mean that
+you MUST use these versions, only that this combination of versions worked
+for me.
+
+Base Recipe (YYYY-MM-DD)
+    Amazon Linux AMI 2016.03
+    Apache Spark 1.6.0 Prebuilt for Hadoop 2.6 and later
+    Languages
+        OpenJDK 1.8.0_77
+        Python 2.7.10
+        R 3.2.2
+        Scala 2.10.6
