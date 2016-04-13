@@ -12,7 +12,7 @@
     <ul class="tabsMenu tabsTocMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
         <li><a href=".tab-2">Spark Development (5)</a></li>
-        <li><a href=".tab-3">Spark Integration (3)</a></li>
+        <li><a href=".tab-3">Spark Integration (4)</a></li>
     </ul>
     <div class="tabContentPane tabTocContentPane">
     	<bu:rTab index="1">
@@ -72,7 +72,7 @@
 				<li><span class="rCategory">Data Sources: S3</span><ul>
 					<li><bu:rLink id="configuring-s3" /></li>
 					<li><bu:rLink id="using-s3" /></li>
-					<li>Adding a VPC Endpoint for Amazon S3</li>
+					<li><bu:rLink id="s3-vpc-endpoint" /></li>
 				</ul></li>
 				<li><span class="rCategory">Data Sources: Other</span><ul>	
 					<li>Using HDFS as a Data Store</li>

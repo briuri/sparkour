@@ -354,6 +354,7 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 	<bu:rLinks>
 		<li><a href="https://wiki.apache.org/hadoop/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
 		<li><a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">Available Configuration Options for Hadoop-AWS</a></li>
+		<li><bu:rLink id="s3-vpc-endpoint" /></li>
 		<!--
 			https://github.com/apache/hadoop/blob/trunk/hadoop-tools/hadoop-aws/src/site/markdown/tools/hadoop-aws/index.md
 			http://stackoverflow.com/questions/30385981/how-to-access-s3a-files-from-apache-spark
