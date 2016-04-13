@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-04-07T10:00:00Z</updated>
+	<updated>2016-04-13T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,17 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-04-13</id>
+		<link href="https://sparkour.urizone.net/?2016-04-13" />
+		<updated>2016-04-13T10:00:00Z</updated>
+		<title type="html">Configuring an S3 VPC Endpoint for a Spark Cluster</title>
+		<summary type="html">
+			This recipe shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources
+			from a private subnet without a Network Address Translation (NAT) instance or Internet Gateway.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-04-07</id>
 		<link href="https://sparkour.urizone.net/?2016-04-07" />

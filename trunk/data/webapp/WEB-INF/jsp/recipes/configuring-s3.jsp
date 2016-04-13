@@ -245,7 +245,8 @@ on the union of the two policies.</p>
 		<li><a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">Amazon IAM User Guide</a></li>
 		<li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html">Amazon S3 Developer Guide</a></li>
 		<li><a href="http://blogs.aws.amazon.com/security/post/TxPOJBY6FE360K/IAM-policies-and-Bucket-Policies-and-ACLs-Oh-My-Controlling-Access-to-S3-Resourc">IAM Policies and Bucket Policies and ACLs! Oh, My! (Controlling Access to S3 Resources)</li>
-		<li><a href="https://wiki.apache.org/hadoop/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>	
+		<li><a href="https://wiki.apache.org/hadoop/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
+		<li><bu:rLink id="s3-vpc-endpoint" /></li>	
 	</bu:rLinks>
 	
 	<bu:rChangeLog>

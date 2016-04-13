@@ -28,6 +28,11 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-04-13">
+		<bu:rLink id="s3-vpc-endpoint" />
+		shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources from a private subnet 
+		without a Network Address Translation (NAT) instance or Internet Gateway.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-04-07">
 		All recipes have been updated and tested against Spark 1.6.1.
 	</bu:newsUpdate>
@@ -52,18 +57,18 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
 		managing library dependencies, packaging, and creating an assembly JAR file with the <span class="rCW">sbt-assembly</span> plugin.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-15">
-		<bu:rLink id="submitting-applications" />
-		has been updated to include examples in Java, R, and Scala as well as the original Python.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-11">
-		<bu:rLink id="working-dataframes" />
-		provides a straightforward introduction to the Spark DataFrames API. It uses common DataFrames operators to explore and transform raw data
-		from the 2016 Democratic Primary in Virginia.
-	</bu:newsUpdate>
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2016-03-15">
+			<bu:rLink id="submitting-applications" />
+			has been updated to include examples in Java, R, and Scala as well as the original Python.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-03-11">
+			<bu:rLink id="working-dataframes" />
+			provides a straightforward introduction to the Spark DataFrames API. It uses common DataFrames operators to explore and transform raw data
+			from the 2016 Democratic Primary in Virginia.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-03-06">
 			<bu:rLink id="using-s3" />
 			provides the steps needed to securely connect an Apache Spark cluster running on Amazon EC2	to data stored in Amazon S3.
