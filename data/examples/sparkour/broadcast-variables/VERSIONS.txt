@@ -7,7 +7,7 @@ write and test this Sparkour recipe. This does not necessarily mean that
 you MUST use these versions, only that this combination of versions worked
 for me.
 
-Base Recipe (YYYY-MM-DD)
+Base Recipe (2016-04-14)
     Amazon Linux AMI 2016.03
     Apache Spark 1.6.1 Prebuilt for Hadoop 2.6 and later
     Languages
