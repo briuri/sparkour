@@ -21,6 +21,7 @@
     	<entry key="using-jdbc"			 		value="Using JDBC with Spark DataFrames" />
     	<entry key="building-sbt" 				value="Building Spark Applications with SBT" />
     	<entry key="building-maven"				value="Building Spark Applications with Maven" />
+    	<entry key="broadcast-variables"		value="Improving Spark Performance with Broadcast Variables" />
     	    	
     	<entry key="spark-ec2" 					value="Managing a Spark Cluster with the spark-ec2 Script" />
     	<entry key="configuring-s3" 			value="Configuring Amazon S3 as a Spark Data Source" />
