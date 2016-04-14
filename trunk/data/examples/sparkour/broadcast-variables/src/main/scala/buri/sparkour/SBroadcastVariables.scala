@@ -30,29 +30,29 @@ object SBroadcastVariables {
 	def main(args: Array[String]) {
 		val sparkConf = new SparkConf().setAppName("SBroadcastVariables")
 		val sc = new SparkContext(sparkConf)
-                val sqlContext = new SQLContext(sc)
+		val sqlContext = new SQLContext(sc)
 
-                // Register state data as a broadcast variable
-                val broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collectAsList())
+		// Register state data as a broadcast variable
+		val broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collectAsList())
 
-                // Create a DataFrame based on the store locations.
-                val storesDF = sqlContext.read.json("store_locations.json")
+		// Create a DataFrame based on the store locations.
+		val storesDF = sqlContext.read.json("store_locations.json")
 
-                // Create a DataFrame of US state data with the broadcast variable.
-                val schema = StructType(
-                    Array(
-                        StructField("census_division", StringType, false),
-                        StructField("census_region", StringType, false),
-                        StructField("name", StringType, false),
-                        StructField("state", StringType, false)
-                    )
-                )
-                val stateDF = sqlContext.createDataFrame(broadcastStateData.value, schema)
+		// Create a DataFrame of US state data with the broadcast variable.
+		val schema = StructType(
+			Array(
+				StructField("census_division", StringType, false),
+				StructField("census_region", StringType, false),
+				StructField("name", StringType, false),
+				StructField("state", StringType, false)
+			)
+		)
+		val stateDF = sqlContext.createDataFrame(broadcastStateData.value, schema)
 
-                // Join the DataFrames to get an aggregate count of stores in each US Region
-                println("How many stores are in each US region?")
-                val joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count()
-                joinedDF.show()
+		// Join the DataFrames to get an aggregate count of stores in each US Region
+		println("How many stores are in each US region?")
+		val joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count()
+		joinedDF.show()
 
 		sc.stop()
 	}
