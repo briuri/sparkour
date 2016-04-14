@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-04-13T10:00:00Z</updated>
+	<updated>2016-04-14T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,18 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-04-14</id>
+		<link href="https://sparkour.urizone.net/?2016-04-14" />
+		<updated>2016-04-14T10:00:00Z</updated>
+		<title type="html">Improving Spark Performance with Broadcast Variables</title>
+		<summary type="html">
+			This recipe explains how to use broadcast variables distribute immutable reference data across a Spark cluster. Using
+			broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
+			to execute your Spark application.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-04-13</id>
 		<link href="https://sparkour.urizone.net/?2016-04-13" />
@@ -56,95 +68,6 @@
 			This recipe demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The Spark SQL library
 			supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
 			the recipe, Working with Spark DataFrames.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-24</id>
-		<link href="https://sparkour.urizone.net/?2016-03-24" />
-		<updated>2016-03-24T10:00:00Z</updated>
-		<title type="html">Using JDBC with Spark DataFrames</title>
-		<summary type="html">
-			This recipe shows how Spark DataFrames can be read from or written to relational database tables with Java Database Connectivity (JDBC).
-		</summary>
-	</entry>
-			
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-17</id>
-		<link href="https://sparkour.urizone.net/?2016-03-17" />
-		<updated>2016-03-17T10:00:00Z</updated>
-		<title type="html">Building Spark Applications with SBT</title>
-		<summary type="html">
-			This recipe covers the use of SBT (Simple Build Tool or, sometimes, Scala Build Tool) to build and bundle Spark applications
-			written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
-			managing library dependencies, packaging, and creating an assembly JAR file with the sbt-assembly plugin.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-15</id>
-		<link href="https://sparkour.urizone.net/?2016-03-15" />
-		<updated>2016-03-15T10:00:00Z</updated>
-		<title type="html">Writing and Submitting Applications</title>
-		<summary type="html">
-			This recipe has been updated to include examples in Java, R, and Scala as well as the original Python.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-11</id>
-		<link href="https://sparkour.urizone.net/?2016-03-11" />
-		<updated>2016-03-11T10:00:00Z</updated>
-		<title type="html">Working with Spark DataFrames</title>
-		<summary type="html">
-			This recipe provides a straightforward introduction to the Spark DataFrames API.
-			It uses common DataFrames operators to explore and transform raw data from the 2016 Democratic Primary in Virginia.
-		</summary>
-	</entry>
-		
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-06</id>
-		<link href="https://sparkour.urizone.net/?2016-03-06" />
-		<updated>2016-03-06T10:00:00Z</updated>
-		<title type="html">Configuring Spark to Use Amazon S3</title>
-		<summary type="html">
-			This recipe provides the steps needed to securely connect an Apache Spark cluster running on Amazon EC2 to data stored in Amazon S3. 
-			It contains instructions for both the classic s3n protocol and the newer, but still maturing, s3a protocol.
-		</summary>
-	</entry>
-		
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-05</id>
-		<link href="https://sparkour.urizone.net/?2016-03-05" />
-		<updated>2016-03-05T10:00:00Z</updated>
-		<title type="html">Configuring Amazon S3 as a Spark Data Source</title>
-		<summary type="html">
-			This recipe provides the steps needed to securely expose data in Amazon S3 for consumption by a Spark application. 
-			The resultant configuration works with both supported S3 protocols in Spark: the classic s3n protocol and the newer, but still maturing, s3a protocol.
-		</summary>
-	</entry>
-			
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-04</id>
-		<link href="https://sparkour.urizone.net/?2016-03-04" />
-		<updated>2016-03-04T10:00:00Z</updated>
-		<title type="html">Managing a Cluster with the spark-ec2 Script</title>
-		<summary type="html">
-			This recipe describes how to automatically launch, start, stop, or destroy a Spark cluster running in Amazon EC2 
-			It steps through the pre-launch configuration, explains the script's most common parameters, and points out 
-			where specific parameters can be found in the AWS Management Console.
-		</summary>
-	</entry>
-   
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-01</id>
-		<link href="https://sparkour.urizone.net/?2016-03-01" />
-		<updated>2016-03-01T10:00:00Z</updated>
-		<title type="html">Welcome to Sparkour!</title>
-		<summary type="html">
-			To kick things off, I have released 5 sequential tutorials, which should give you a solid foundation for mastering Spark. 
-			My long-term goal is to publish one or two new standalone recipes per week until the end of time.
-			Help me improve Sparkour by submitting bugs and improvement suggestions on the Issues page.
 		</summary>
 	</entry>
 </feed>
