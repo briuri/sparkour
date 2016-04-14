@@ -38,28 +38,30 @@ public final class JBroadcastVariables {
 	public static void main(String[] args) throws Exception {
 		SparkConf sparkConf = new SparkConf().setAppName("JBroadcastVariables");
 		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-                SQLContext sqlContext = new SQLContext(sc);
+		SQLContext sqlContext = new SQLContext(sc);
 
-                // Register state data as a broadcast variable
-                Broadcast<List<Row>> broadcastStateData = sc.broadcast(
-                    sqlContext.read().json("us_states.json").collectAsList());
-                
-               // Create a DataFrame based on the store locations.
-               DataFrame storesDF = sqlContext.read().json("store_locations.json");
-               
-               // Create a DataFrame of US state data with the broadcast variable.
-               StructType schema = DataTypes.createStructType(new StructField[] {
-                   DataTypes.createStructField("census_division", DataTypes.StringType, false),
-                   DataTypes.createStructField("census_region", DataTypes.StringType, false),
-                   DataTypes.createStructField("name", DataTypes.StringType, false),
-                   DataTypes.createStructField("state", DataTypes.StringType, false)
-                });
-               DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), schema);
+		// Register state data as a broadcast variable
+		Broadcast<List<Row>> broadcastStateData = sc
+			.broadcast(sqlContext.read().json("us_states.json").collectAsList());
 
-               // Join the DataFrames to get an aggregate count of stores in each US Region
-               System.out.println("How many stores are in each US region?");
-               DataFrame joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
-               joinedDF.show();
+		// Create a DataFrame based on the store locations.
+		DataFrame storesDF = sqlContext.read().json("store_locations.json");
+
+		// Create a DataFrame of US state data with the broadcast variable.
+		StructType schema = DataTypes.createStructType(
+			new StructField[] { 
+				DataTypes.createStructField("census_division", DataTypes.StringType, false),
+				DataTypes.createStructField("census_region", DataTypes.StringType, false),
+				DataTypes.createStructField("name", DataTypes.StringType, false),
+				DataTypes.createStructField("state", DataTypes.StringType, false) 
+			}
+		);
+		DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), schema);
+
+		// Join the DataFrames to get an aggregate count of stores in each US Region
+		System.out.println("How many stores are in each US region?");
+		DataFrame joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
+		joinedDF.show();
 
 		sc.stop();
 	}
