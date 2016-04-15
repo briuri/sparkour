@@ -19,7 +19,7 @@
 		<updated>2016-04-14T10:00:00Z</updated>
 		<title type="html">Improving Spark Performance with Broadcast Variables</title>
 		<summary type="html">
-			This recipe explains how to use broadcast variables distribute immutable reference data across a Spark cluster. Using
+			This recipe explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
 			broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
 			to execute your Spark application.
 		</summary>

@@ -36,7 +36,7 @@
 <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. Normally, connections between EC2 instances in a Virtual Private Cloud (VPC)
 and resources in S3 require an Internet Gateway to be established in the VPC. However, you may need to deploy your Spark cluster in a private subnet where no Internet Gateway
 is available. In this case, you can establish a VPC Endpoint, which enables secure connections to S3 without the extra expense of a NAT instance. (Normally, a NAT instance would be
-needed to allow instances in the private subnet to share the Internet Gateway of a public subnet).</p>
+needed to allow instances in the private subnet to share the Internet Gateway of a nearby public subnet).</p>
 
 <p>Currently, S3 is the only Amazon service accessible over a VPC Endpoint, but other services are expected to adopt Endpoints in the future. 
 Using a VPC Endpoint to access S3 also improves your cluster's security posture, as traffic between the cluster and S3 never leaves the Amazon network.</p>  
@@ -51,7 +51,7 @@ Using a VPC Endpoint to access S3 also improves your cluster's security posture,
 		This starts a wizard workflow to create a new Endpoint.</li>
 	<li>On <span class="rPN">Step 1. Configure Endpoint</span>, set the <span class="rK">VPC</span> to 
 		the VPC containing your Spark cluster or other EC2 instances. In this example, we're using the Default VPC
-		provided in my AWS account, as shown in the image below.</li>
+		provided with the base AWS account, as shown in the image below.</li>
 		
 	<img src="${localImagesUrlBase}/configure-endpoint.png" width="600" height="585" title="Configuring a VPC Endpoint to S3" class="diagram border" />
 	
@@ -81,9 +81,9 @@ Using a VPC Endpoint to access S3 also improves your cluster's security posture,
 <bu:rSection anchor="03" title="Next Steps" />
 
 <p>The recipe, <bu:rLink id="configuring-s3" />, provides instructions for setting up an S3 bucket and testing a connection between
-EC2 and S3. Previously, that test would send and receive traffic through the configured Internet Gateway out of Amazon's network, and then
-back in to S3. Now that you have created a VPC Endpoint, it will be the preferred route for such traffic. If your Spark cluster
-is in a private subnet, that test will fail without a VPC Endpoint in place.</p>
+EC2 and S3. Normally, those tests would send and receive traffic through the configured Internet Gateway out of Amazon's network, and then
+back in to S3. Now that you have created a VPC Endpoint, it is the preferred route for such traffic. If your Spark cluster
+is in a private subnet, those tests should fail without a VPC Endpoint in place.</p>
 
 <p>If your Spark cluster is in a public subnet and you want to confirm that the VPC Endpoint is working, 
 you can temporarily detach the Internet Gateway from the VPC:</p>
