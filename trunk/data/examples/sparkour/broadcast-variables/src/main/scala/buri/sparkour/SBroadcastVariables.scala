@@ -20,7 +20,6 @@ package buri.sparkour
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.SQLContext
-import org.apache.spark.sql.types.{StringType, StructType, StructField}
 
 /**
  * Uses a broadcast variable to generate summary information
@@ -32,22 +31,16 @@ object SBroadcastVariables {
 		val sc = new SparkContext(sparkConf)
 		val sqlContext = new SQLContext(sc)
 
-		// Register state data as a broadcast variable
-		val broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collectAsList())
+		// Register state data and schema as broadcast variables
+                val localDF = sqlContext.read.json("us_states.json")
+		val broadcastStateData = sc.broadcast(localDF.collectAsList())
+                val broadcastSchema = sc.broadcast(localDF.schema)
 
 		// Create a DataFrame based on the store locations.
 		val storesDF = sqlContext.read.json("store_locations.json")
 
-		// Create a DataFrame of US state data with the broadcast variable.
-		val schema = StructType(
-			Array(
-				StructField("census_division", StringType, false),
-				StructField("census_region", StringType, false),
-				StructField("name", StringType, false),
-				StructField("state", StringType, false)
-			)
-		)
-		val stateDF = sqlContext.createDataFrame(broadcastStateData.value, schema)
+		// Create a DataFrame of US state data with the broadcast variables.
+		val stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 
 		// Join the DataFrames to get an aggregate count of stores in each US Region
 		println("How many stores are in each US region?")
