@@ -39,9 +39,9 @@ public final class JBroadcastVariables {
 		SQLContext sqlContext = new SQLContext(sc);
 
 		// Register state data and schema as broadcast variables
-                DataFrame localDF = sqlContext.read().json("us_states.json");
+		DataFrame localDF = sqlContext.read().json("us_states.json");
 		Broadcast<List<Row>> broadcastStateData = sc.broadcast(localDF.collectAsList());
-                Broadcast<StructType> broadcastSchema = sc.broadcast(localDF.schema());
+		Broadcast<StructType> broadcastSchema = sc.broadcast(localDF.schema());
 
 		// Create a DataFrame based on the store locations.
 		DataFrame storesDF = sqlContext.read().json("store_locations.json");
