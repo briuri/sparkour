@@ -164,35 +164,40 @@ the recipe, <bu:rLink id="working-dataframes" />, may be helpful. Alternately, y
 on the parts of the code related to broadcast variables for now.</p>
 		
 <ol>
-	<li>First, we register the state data as a broadcast variable. We use our
+	<li>First, we register the state data and its schema as broadcast variables. We use our
 		<span class="rCW">SQLContext</span> to read in the JSON file as a DataFrame
 		and then convert it into a simple list of <span class="rCW">Rows</span>.
-		Finally, we wrap the list of rows in a broadcast variable.</li>
+		Finally, we wrap the list of rows and the schema in two separate broadcast variables.</li>
 
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				SQLContext sqlContext = new SQLContext(sc);
 		
-				// Register state data as a broadcast variable
-				Broadcast<List<Row>> broadcastStateData = sc
-					.broadcast(sqlContext.read().json("us_states.json").collectAsList());
+				// Register state data and schema as broadcast variables
+				DataFrame localDF = sqlContext.read().json("us_states.json");
+				Broadcast<List<Row>> broadcastStateData = sc.broadcast(localDF.collectAsList());
+				Broadcast<StructType> broadcastSchema = sc.broadcast(localDF.schema());
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    sqlContext = SQLContext(sc)
 			    
-			    # Register state data as a broadcast variable
-			    broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collect())
-			</bu:rCode>
+			    # Register state data and schema as broadcast variables
+			    localDF = sqlContext.read.json("us_states.json")
+			    broadcastStateData = sc.broadcast(localDF.collect())
+			    broadcastSchema = sc.broadcast(localDF.schema)
+    		</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				val sqlContext = new SQLContext(sc)
 		
-				// Register state data as a broadcast variable
-				val broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collectAsList())
+				// Register state data and schema as broadcast variables
+				val localDF = sqlContext.read.json("us_states.json")
+				val broadcastStateData = sc.broadcast(localDF.collectAsList())
+				val broadcastSchema = sc.broadcast(localDF.schema)
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -205,54 +210,30 @@ on the parts of the code related to broadcast variables for now.</p>
 
 	<bu:rTabs>
 		<bu:rTab index="1">
-			<p>In order to convert a list of <span class="rCW">Rows</span> 
-				back into a <span class="rCW">DataFrame</span>, we must also
-				provide a schema for the raw data. In this case, each column in the
-				state data is a string, and no column is nullable.</p>
 			<bu:rCode lang="java">
 				// Create a DataFrame based on the store locations.
 				DataFrame storesDF = sqlContext.read().json("store_locations.json");
 		
-				// Create a DataFrame of US state data with the broadcast variable.
-				StructType schema = DataTypes.createStructType(
-					new StructField[] { 
-						DataTypes.createStructField("census_division", DataTypes.StringType, false),
-						DataTypes.createStructField("census_region", DataTypes.StringType, false),
-						DataTypes.createStructField("name", DataTypes.StringType, false),
-						DataTypes.createStructField("state", DataTypes.StringType, false) 
-					}
-				);
-				DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), schema);
+				// Create a DataFrame of US state data with the broadcast variables.
+				DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), broadcastSchema.value());				
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame based on the store locations.
 			    storesDF = sqlContext.read.json("store_locations.json")
 			
-			    # Create a DataFrame of US state data with the broadcast variable.
-			    stateDF = sqlContext.createDataFrame(broadcastStateData.value)
+			    # Create a DataFrame of US state data with the broadcast variables.
+    			stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
-			<p>In order to convert a list of <span class="rCW">Rows</span> 
-			back into a <span class="rCW">DataFrame</span>, we must also
-			provide a schema for the raw data. In this case, each column in the
-			state data is a string, and no column is nullable</p>
 			<bu:rCode lang="scala">
 				// Create a DataFrame based on the store locations.
 				val storesDF = sqlContext.read.json("store_locations.json")
-				
-				// Create a DataFrame of US state data with the broadcast variable.
-				val schema = StructType(
-					Array(
-						StructField("census_division", StringType, false),
-						StructField("census_region", StringType, false),
-						StructField("name", StringType, false),
-						StructField("state", StringType, false)
-					)
-				)
-				val stateDF = sqlContext.createDataFrame(broadcastStateData.value, schema)
+
+				// Create a DataFrame of US state data with the broadcast variables.
+				val stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)				
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>		
@@ -292,7 +273,7 @@ on the parts of the code related to broadcast variables for now.</p>
 		
 	<bu:rCode lang="plain">
 		INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.31.24.101:39947 (size: 19.3 KB, free: 511.1 MB)
-		INFO SparkContext: Created broadcast 2 from collect at /opt/examples/sparkour/broadcast-variables/src/main/python/broadcast_variables.py:38
+		INFO SparkContext: Created broadcast 2 from collect at /opt/examples/sparkour/broadcast-variables/src/main/python/broadcast_variables.py:36
 	</bu:rCode>
 	
 	<li>The final output of the application should look like this:</li>
