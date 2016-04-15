@@ -32,9 +32,9 @@ object SBroadcastVariables {
 		val sqlContext = new SQLContext(sc)
 
 		// Register state data and schema as broadcast variables
-                val localDF = sqlContext.read.json("us_states.json")
+		val localDF = sqlContext.read.json("us_states.json")
 		val broadcastStateData = sc.broadcast(localDF.collectAsList())
-                val broadcastSchema = sc.broadcast(localDF.schema)
+		val broadcastSchema = sc.broadcast(localDF.schema)
 
 		// Create a DataFrame based on the store locations.
 		val storesDF = sqlContext.read.json("store_locations.json")
