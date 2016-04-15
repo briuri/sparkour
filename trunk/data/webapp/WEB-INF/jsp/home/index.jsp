@@ -30,7 +30,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <div id="newsFeed">
 	<bu:newsUpdate date="2016-04-14">
 		<bu:rLink id="broadcast-variables" />
-		explains how to use broadcast variables distribute immutable reference data across a Spark cluster. Using
+		explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
 		broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
 		to execute your Spark application.
 	</bu:newsUpdate>	

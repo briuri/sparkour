@@ -2,11 +2,11 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private as of Spark 1.4.0, broadcast variables are not available in R.</p>" />
+<c:set var="noRMessage" value="<p>Because the low-level Spark Core API was made private as of Spark 1.4.0, broadcast variables are not available in SparkR.</p>" />
 
 <bu:rOverview publishDate="2016-04-14">
 	<h3>Synopsis</h3>
-	<p>This recipe explains how to use broadcast variables distribute immutable reference data across a Spark cluster. Using
+	<p>This recipe explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
 		broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
 		to execute your Spark application.</p>  
 	
@@ -47,9 +47,9 @@ and deserialized more times than necessary.</p>
 		multiple times is impacting your performance.</li>
 </ul>
 
-<p>Broadcast variables are implemented as simple wrappers around collections of simple data types, as shown in the example code below.
-They are not intended to wrap around distributed data structures such as RDDs and DataFrames, but you can use the data in the broadcast variable
-to construct a distributed data structure.</p>
+<p>Broadcast variables are implemented as wrappers around collections of simple data types, as shown in the example code below.
+They are not intended to wrap around other distributed data structures such as RDDs and DataFrames, but you can use the data in the broadcast variable
+to construct a distributed data structure after it has been broadcast.</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -134,7 +134,7 @@ to construct a distributed data structure.</p>
 
 	<li>There are two JSON files included with the source code. <span class="rCW">us_states.json</span> contains reference data about
 	US states, including their abbreviation, full name, and the regional classification provided by the US Census Bureau. For example,
-	Alabama is considered to be in the <span class="rV">Southern</span> region.</li>
+	Alabama is considered to be in the <span class="rV">South</span>.</li>
 	
 	<bu:rCode lang="plain">
 		{"state": "AL", "name": "Alabama", "census_region": "South", "census_division": "East South Central"}
@@ -199,7 +199,7 @@ on the parts of the code related to broadcast variables for now.</p>
 
 	<li>Next, we build a <span class="rCW">DataFrame</span> for the store data, and another
 		for the state data. Instead of directly referencing the wrapped data, we use
-		the <span class="rCW">value</span> of the broadcast variable. This conceals
+		the <span class="rCW">value</span> of the broadcast variables. This conceals
 		the complexity of the distributed way in which Spark broadcasts the data to every worker
 		node.</li>
 
