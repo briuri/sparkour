@@ -31,14 +31,16 @@ if __name__ == "__main__":
     sc = SparkContext(appName="broadcast_variables")
     sqlContext = SQLContext(sc)
 
-    # Register state data as a broadcast variable
-    broadcastStateData = sc.broadcast(sqlContext.read.json("us_states.json").collect())
+    # Register state data and schema as broadcast variables
+    localDF = sqlContext.read.json("us_states.json")
+    broadcastStateData = sc.broadcast(localDF.collect())
+    broadcastSchema = sc.broadcast(localDF.schema)
 
     # Create a DataFrame based on the store locations.
     storesDF = sqlContext.read.json("store_locations.json")
 
-    # Create a DataFrame of US state data with the broadcast variable.
-    stateDF = sqlContext.createDataFrame(broadcastStateData.value)
+    # Create a DataFrame of US state data with the broadcast variables.
+    stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 
     # Join the DataFrames to get an aggregate count of stores in each US Region
     print("How many stores are in each US region?")
