@@ -19,14 +19,117 @@
 package buri.sparkour
 
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.types.{ArrayType, BooleanType, DateType, IntegerType, MapType, StringType, TimestampType, StructField, StructType}
+
+import java.util.Calendar
+import java.sql.Date
 
 /**
- * 
+ * Demonstrates strategies for controlling the schema of a
+ * DataFrame built from a JSON or RDD data source.
  */
 object SControllingSchema {
+
+        /**
+         * Case class used to define RDD.
+         */
+        case class Record(
+            name: String,
+            num_pets: Long,
+            paid_in_full: Boolean,
+            preferences: Map[String, String],
+            registered_on: Date,
+            visits: List[Date]
+        )
+
+        /**
+         * Helper method to construct a Date for sample data.
+         */
+        def buildDate(year:Int, month:Int, date:Int, hour:Int, min:Int) : Date = {
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month, date, hour, min)
+            return new Date(calendar.getTimeInMillis())
+        }
+
 	def main(args: Array[String]) {
 		val sparkConf = new SparkConf().setAppName("SControllingSchema")
 		val sc = new SparkContext(sparkConf)
+                val sqlContext = new SQLContext(sc)
+
+                // Define raw data for an RDD, consisting of 3 rows of veterinary records
+                val caseData = List(
+                    Record(
+                        "Alex",
+                        3,
+                        true,
+                        Map(
+                            "preferred_vet" -> "Dr. Smith",
+                            "preferred_appointment_day" -> "Monday"
+                        ),
+                        buildDate(2015, 01, 01, 12, 00),
+                        List(
+                             buildDate(2015, 02, 01, 11, 00),
+                             buildDate(2015, 02, 02, 10, 45)
+                        ) 
+                    ),
+                    Record(
+                        "Beth",
+                        2,
+                        false,
+                        Map(
+                            "preferred_vet" -> "Dr. Travis"
+                        ),
+                        buildDate(2013, 01, 01, 12, 00),
+                        List(
+                             buildDate(2015, 01, 15, 12, 15),
+                             buildDate(2015, 02, 01, 11, 15)
+                        )
+                    ),
+                    Record(
+                        "Charlie",
+                        1,
+                        true,
+                        Map(),
+                        buildDate(2016, 05, 01, 12, 00),
+                        List()
+                    )
+                )
+                var caseRDD = sc.parallelize(caseData)
+
+                // Create a DataFrame from the RDD, inferring the schema from a case class.
+                println("RDD: Schema inferred from case class.")
+                var dataDF = sqlContext.createDataFrame(caseRDD)
+                dataDF.printSchema()
+
+                // Use the DataFrame to generate an RDD of Rows for the next demonstration
+                // instead of manually building it up from raw data.
+                val rowRDD = dataDF.rdd
+
+                // Create a DataFrame from the RDD, specifying a schema.
+                println("RDD: Schema programmatically specified.")
+                val schema = StructType(
+                    Array(
+                        StructField("name", StringType, true), 
+                        StructField("num_pets", IntegerType, true),
+                        StructField("paid_in_full", BooleanType, true),
+                        StructField("preferences", MapType(StringType, StringType, true), true),
+                        StructField("registered_on", DateType, true),
+                        StructField("visits", ArrayType(TimestampType, true), true)
+                    )
+                )
+                dataDF = sqlContext.createDataFrame(rowRDD, schema)
+                dataDF.printSchema()
+
+                // Create a DataFrame from a JSON source, inferring the schema from all rows.
+                println("JSON: Schema inferred from all rows.")
+                dataDF = sqlContext.read.json("data.json")
+                dataDF.printSchema()
+
+                // Create a DataFrame from a JSON source, specifying a schema.
+                println("JSON: Schema programmatically specified.")
+                dataDF = sqlContext.read.schema(schema).json("data.json")
+                dataDF.printSchema()
 
 		sc.stop()
 	}
