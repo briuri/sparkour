@@ -15,10 +15,31 @@
 # limitations under the License.
 #
 
-#
-#
+# Demonstrates strategies for controlling the schema of a
+# DataFrame built from a JSON data source.
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
 sc <- sparkR.init()
+sqlContext <- sparkRSQL.init(sc)
+
+# Demonstrations using RDDs cannot be done with SparkR.
+
+# Create a DataFrame from a JSON source, inferring the schema from all rows.
+print("JSON: Schema inferred from all rows.")
+dataDF <- read.df(sqlContext, "data.json", "json")
+printSchema(dataDF)
+
+# Create a DataFrame from a JSON source, specifying a schema.
+print("JSON: Schema programmatically specified.")
+schema <- structType(
+    structField("name", "string", TRUE),
+    structField("num_pets", "integer", TRUE),
+    structField("paid_in_full", "boolean", TRUE),
+    structField("preferences", "map<string,string>", TRUE),
+    structField("registered_on", "date", TRUE),
+    structField("visits", "array<timestamp>", TRUE)
+)
+dataDF <- read.df(sqlContext, "data.json", "json", schema)
+printSchema(dataDF)
 
 sparkR.stop()
