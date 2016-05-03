@@ -93,30 +93,30 @@ public final class JControllingSchema {
 			3,
 			true,
 			new HashMap<String, String>(),
-			buildDate(2015, 01, 01, 12, 00),
+			buildDate(2015, 1, 1, 12, 0),
 			new ArrayList<Date>());
 		record.getPreferences().put("preferred_vet", "Dr. Smith");
 		record.getPreferences().put("preferred_appointment_day", "Monday");
-		record.getVisits().add(buildDate(2015, 02, 01, 11, 00));
-		record.getVisits().add(buildDate(2015, 02, 02, 10, 45));
+		record.getVisits().add(buildDate(2015, 2, 1, 11, 0));
+		record.getVisits().add(buildDate(2015, 2, 2, 10, 45));
 		beanData.add(record);
 		record = new Record(
 			"Beth",
 			2,
 			false,
 			new HashMap<String, String>(),
-			buildDate(2013, 01, 01, 12, 00),
+			buildDate(2013, 1, 1, 12, 0),
 			new ArrayList<Date>());
 		record.getPreferences().put("preferred_vet", "Dr. Travis");
-		record.getVisits().add(buildDate(2015, 01, 15, 12, 15));
-		record.getVisits().add(buildDate(2015, 02, 01, 11, 15));
+		record.getVisits().add(buildDate(2015, 1, 15, 12, 15));
+		record.getVisits().add(buildDate(2015, 2, 1, 11, 15));
 		beanData.add(record);
 		record = new Record(
 			"Charlie",
 			1,
 			true,
 			new HashMap<String, String>(),
-			buildDate(2016, 05, 01, 12, 00),
+			buildDate(2016, 5, 1, 12, 0),
 			new ArrayList<Date>());
 		beanData.add(record);
 		return (beanData);

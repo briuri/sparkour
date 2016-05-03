@@ -28,11 +28,67 @@ from pyspark.sql.types import ArrayType, BooleanType, DateType, IntegerType, Map
     ease of translation across the prevailing style of
     the Java, R, and Scala examples.
 """
+
+def build_sample_data():
+    """Build and return the sample data."""
+    data = [
+        Row(
+            name="Alex",
+            num_pets=3,
+            paid_in_full=True,
+            preferences={
+                "preferred_vet": "Dr. Smith",
+                "preferred_appointment_day": "Monday"
+            },
+            registered_on=datetime.datetime(2015, 1, 1, 12, 0),
+            visits=[
+                datetime.datetime(2015, 2, 1, 11, 0),
+                datetime.datetime(2015, 2, 2, 10, 45),
+            ],
+        ),
+        Row(
+            name="Beth",
+            num_pets=2,
+            paid_in_full=False,
+            preferences={
+                "preferred_vet": "Dr. Travis",
+            },
+            registered_on=datetime.datetime(2013, 1, 1, 12, 0),
+            visits=[
+                datetime.datetime(2015, 1, 15, 12, 15),
+                datetime.datetime(2015, 2, 1, 11, 15),
+            ],
+        ),
+        Row(
+            name="Charlie",
+            num_pets=1,
+            paid_in_full=True,
+            preferences={},
+            registered_on=datetime.datetime(2016, 5, 1, 12, 0),
+            visits=[],
+        ),
+    ]
+    return data
+   
+def build_schema():
+    """Build and return a schema to use for the sample data."""
+    schema = StructType(
+        [
+            StructField("name", StringType(), True),
+            StructField("num_pets", IntegerType(), True),
+            StructField("paid_in_full", BooleanType(), True),
+            StructField("preferences", MapType(StringType(), StringType(), True), True),
+            StructField("registered_on", DateType(), True),
+            StructField("visits", ArrayType(TimestampType(), True), True),
+        ]
+    )
+    return schema
+
 if __name__ == "__main__":
     sc = SparkContext(appName="controlling_schema")
     sqlContext = SQLContext(sc)
 
-	// Create an RDD with sample data.
+    # Create an RDD with sample data.
     dataRDD = sc.parallelize(build_sample_data())
 
     # Create a DataFrame from the RDD, inferring the schema from the first row.
@@ -61,58 +117,3 @@ if __name__ == "__main__":
     dataDF.printSchema()
 
     sc.stop()
-
-def build_sample_data():
-	""" Build and return the sample data. """
-	data = [
-        Row(
-            name="Alex",
-            num_pets=3,
-            paid_in_full=True,
-            preferences={
-                "preferred_vet": "Dr. Smith",
-                "preferred_appointment_day": "Monday"
-            },
-            registered_on=datetime.datetime(2015, 01, 01, 12, 00),
-            visits=[
-                datetime.datetime(2015, 02, 01, 11, 00),
-                datetime.datetime(2015, 02, 02, 10, 45),
-            ],
-        ),
-        Row(
-            name="Beth",
-            num_pets=2,
-            paid_in_full=False,
-            preferences={
-                "preferred_vet": "Dr. Travis",
-            },
-            registered_on=datetime.datetime(2013, 01, 01, 12, 00),
-            visits=[
-                datetime.datetime(2015, 01, 15, 12, 15),
-                datetime.datetime(2015, 02, 01, 11, 15),
-            ],
-        ),
-        Row(
-            name="Charlie",
-            num_pets=1,
-            paid_in_full=True,
-            preferences={},
-            registered_on=datetime.datetime(2016, 05, 01, 12, 00),
-            visits=[],
-        ),
-    ]
-    return data
-   
-def build_schema():
-	""" Build and return a schema to use for the sample data. """
-    schema = StructType(
-        [
-            StructField("name", StringType(), True),
-            StructField("num_pets", IntegerType(), True),
-            StructField("paid_in_full", BooleanType(), True),
-            StructField("preferences", MapType(StringType(), StringType(), True), True),
-            StructField("registered_on", DateType(), True),
-            StructField("visits", ArrayType(TimestampType(), True), True),
-        ]
-    )
-    return schema
