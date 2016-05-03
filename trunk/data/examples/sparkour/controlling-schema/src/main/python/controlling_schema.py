@@ -32,8 +32,39 @@ if __name__ == "__main__":
     sc = SparkContext(appName="controlling_schema")
     sqlContext = SQLContext(sc)
 
-    # Define raw data for an RDD, consisting of 3 rows of veterinary records
-    data = [
+	// Create an RDD with sample data.
+    dataRDD = sc.parallelize(build_sample_data())
+
+    # Create a DataFrame from the RDD, inferring the schema from the first row.
+    print("RDD: Schema inferred from first row.")
+    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=None)
+    dataDF.printSchema()
+
+    # Create a DataFrame from the RDD, inferring the schema from a sampling of rows.
+    print("RDD: Schema inferred from random sample.")
+    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=0.6)
+    dataDF.printSchema()
+
+    # Create a DataFrame from the RDD, specifying a schema.
+    print("RDD: Schema programmatically specified.")
+    dataDF = sqlContext.createDataFrame(dataRDD, schema=build_schema())
+    dataDF.printSchema()
+    
+    # Create a DataFrame from a JSON source, inferring the schema from all rows.
+    print("JSON: Schema inferred from all rows.")
+    dataDF = sqlContext.read.json("data.json")
+    dataDF.printSchema()
+
+    # Create a DataFrame from a JSON source, specifying a schema.
+    print("JSON: Schema programmatically specified.")
+    dataDF = sqlContext.read.json("data.json", schema=build_schema())
+    dataDF.printSchema()
+
+    sc.stop()
+
+def build_sample_data():
+	""" Build and return the sample data. """
+	data = [
         Row(
             name="Alex",
             num_pets=3,
@@ -70,20 +101,10 @@ if __name__ == "__main__":
             visits=[],
         ),
     ]
-    dataRDD = sc.parallelize(data)
-
-    # Create a DataFrame from the RDD, inferring the schema from the first row.
-    print("RDD: Schema inferred from first row.")
-    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=None)
-    dataDF.printSchema()
-
-    # Create a DataFrame from the RDD, inferring the schema from a sampling of rows.
-    print("RDD: Schema inferred from random sample.")
-    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=0.6)
-    dataDF.printSchema()
-
-    # Create a DataFrame from the RDD, specifying a schema.
-    print("RDD: Schema programmatically specified.")
+    return data
+   
+def build_schema():
+	""" Build and return a schema to use for the sample data. """
     schema = StructType(
         [
             StructField("name", StringType(), True),
@@ -94,17 +115,4 @@ if __name__ == "__main__":
             StructField("visits", ArrayType(TimestampType(), True), True),
         ]
     )
-    dataDF = sqlContext.createDataFrame(dataRDD, schema=schema)
-    dataDF.printSchema()
-    
-    # Create a DataFrame from a JSON source, inferring the schema from all rows.
-    print("JSON: Schema inferred from all rows.")
-    dataDF = sqlContext.read.json("data.json")
-    dataDF.printSchema()
-
-    # Create a DataFrame from a JSON source, specifying a schema.
-    print("JSON: Schema programmatically specified.")
-    dataDF = sqlContext.read.json("data.json", schema=schema)
-    dataDF.printSchema()
-
-    sc.stop()
+    return schema
