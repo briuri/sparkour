@@ -100,10 +100,10 @@ object SControllingSchema {
 					"preferred_vet" -> "Dr. Smith",
 					"preferred_appointment_day" -> "Monday"
 				),
-				buildDate(2015, 01, 01, 12, 00),
+				buildDate(2015, 1, 1, 12, 0),
 				List(
-					 buildDate(2015, 02, 01, 11, 00),
-					 buildDate(2015, 02, 02, 10, 45)
+					 buildDate(2015, 2, 1, 11, 0),
+					 buildDate(2015, 2, 2, 10, 45)
 				) 
 			),
 			Record(
@@ -113,10 +113,10 @@ object SControllingSchema {
 				Map(
 					"preferred_vet" -> "Dr. Travis"
 				),
-				buildDate(2013, 01, 01, 12, 00),
+				buildDate(2013, 1, 1, 12, 0),
 				List(
-					 buildDate(2015, 01, 15, 12, 15),
-					 buildDate(2015, 02, 01, 11, 15)
+					 buildDate(2015, 1, 15, 12, 15),
+					 buildDate(2015, 2, 1, 11, 15)
 				)
 			),
 			Record(
@@ -124,7 +124,7 @@ object SControllingSchema {
 				1,
 				true,
 				Map(),
-				buildDate(2016, 05, 01, 12, 00),
+				buildDate(2016, 5, 1, 12, 0),
 				List()
 			)
 		)
