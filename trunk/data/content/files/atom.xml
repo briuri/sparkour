@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-04-14T10:00:00Z</updated>
+	<updated>2016-05-01T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,18 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-05-04</id>
+		<link href="https://sparkour.urizone.net/?2016-05-04" />
+		<updated>2016-05-04T10:00:00Z</updated>
+		<title type="html">Controlling the Schema of a Spark DataFrame</title>
+		<summary type="html">
+			This recipe demonstrates different strategies for defining the schema of a DataFrame built from various data sources (using
+			RDD and JSON as examples). Schemas can be inferred from metadata or the data itself, or programmatically specified in advance
+			in your application.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-04-14</id>
 		<link href="https://sparkour.urizone.net/?2016-04-14" />
@@ -43,31 +55,6 @@
 		<title type="html">Updated for Spark 1.6.1</title>
 		<summary type="html">
 			All recipes have been updated and tested against Spark 1.6.1.	
-		</summary>
-	</entry>
-
-
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-29</id>
-		<link href="https://sparkour.urizone.net/?2016-03-29" />
-		<updated>2016-03-29T10:00:00Z</updated>
-		<title type="html">Building Spark Applications with Maven</title>
-		<summary type="html">
-			This recipe covers the use of Apache Maven to build and bundle Spark applications
-			written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
-			managing library dependencies, packaging, and creating an assembly JAR file.	
-		</summary>
-	</entry>
-				
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-03-26</id>
-		<link href="https://sparkour.urizone.net/?2016-03-26" />
-		<updated>2016-03-26T10:00:00Z</updated>
-		<title type="html">Using SQL and User-Defined Functions with Spark DataFrames</title>
-		<summary type="html">
-			This recipe demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The Spark SQL library
-			supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
-			the recipe, Working with Spark DataFrames.
 		</summary>
 	</entry>
 </feed>

@@ -676,6 +676,7 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 		<li><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html">Spark DataFrames</a> in the Spark Programming Guide</li>
 		<li><bu:rLink id="using-sql-udf" /></li>
 		<li><bu:rLink id="using-jdbc" /></li>
+		<li><bu:rLink id="controlling-schema" /></li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>

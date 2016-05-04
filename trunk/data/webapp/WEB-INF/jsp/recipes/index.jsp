@@ -11,7 +11,7 @@
 <div class="tabsContainer">
     <ul class="tabsMenu tabsTocMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
-        <li><a href=".tab-2">Spark Development (6)</a></li>
+        <li><a href=".tab-2">Spark Development (7)</a></li>
         <li><a href=".tab-3">Spark Integration (4)</a></li>
     </ul>
     <div class="tabContentPane tabTocContentPane">
@@ -42,7 +42,7 @@
 					<li><bu:rLink id="working-dataframes" /></li>
 					<li><bu:rLink id="using-sql-udf" /></li>
 					<li><bu:rLink id="using-jdbc" /></li>
-					<li>Controlling the Schema of a DataFrame</li>
+					<li><bu:rLink id="controlling-schema" /></li>
 					<li>Using Hive Tables with Spark DataFrames</li>
 					<li>Working with Spark Datasets</li>
 				</ul></li>

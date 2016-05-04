@@ -28,6 +28,12 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-05-04">
+		<bu:rLink id="controlling-schema" />
+		demonstrates different strategies for defining the schema of a DataFrame built from various data sources (using
+		RDD and JSON as examples). Schemas can be inferred from metadata or the data itself, or programmatically specified in advance
+		in your application.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-04-14">
 		<bu:rLink id="broadcast-variables" />
 		explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
@@ -42,20 +48,20 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 	<bu:newsUpdate date="2016-04-07">
 		All recipes have been updated and tested against Spark 1.6.1.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-29">
-		<bu:rLink id="building-maven" />
-		covers the use of Apache Maven to build and bundle Spark applications
-		written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
-		managing library dependencies, packaging, and creating an assembly JAR file.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-03-26">
-		<bu:rLink id="using-sql-udf" /> demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The Spark SQL library
-		supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
-		the recipe, <bu:rLink id="working-dataframes" />.
-	</bu:newsUpdate>
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
-	<div id="oldNews" class="hidden">
+	<div id="oldNews" class="hidden">	
+		<bu:newsUpdate date="2016-03-29">
+			<bu:rLink id="building-maven" />
+			covers the use of Apache Maven to build and bundle Spark applications
+			written in Java or Scala. It focuses very narrowly on a subset of commands relevant to Spark applications, including
+			managing library dependencies, packaging, and creating an assembly JAR file.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-03-26">
+			<bu:rLink id="using-sql-udf" /> demonstrates how to query Spark DataFrames with Structured Query Language (SQL). The Spark SQL library
+			supports SQL as an alternate way to work with DataFrames that is compatible with the code-based approach discussed in
+			the recipe, <bu:rLink id="working-dataframes" />.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-03-24">
 			<bu:rLink id="using-jdbc" />
 			 shows how Spark DataFrames can be read from or written to relational database tables with Java Database Connectivity (JDBC).
