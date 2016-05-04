@@ -63,7 +63,7 @@ public final class JControllingSchema {
 
 		// Create a DataFrame from a JSON source, inferring the schema from all rows.
 		System.out.println("JSON: Schema inferred from all rows.");
-		dataDF = sqlContext.read().json("data.json");
+		dataDF = sqlContext.read().option("samplingRatio", "1.0").json("data.json");
 		dataDF.printSchema();
 
 		// Create a DataFrame from a JSON source, specifying a schema.

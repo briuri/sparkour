@@ -26,7 +26,7 @@ sqlContext <- sparkRSQL.init(sc)
 
 # Create a DataFrame from a JSON source, inferring the schema from all rows.
 print("JSON: Schema inferred from all rows.")
-dataDF <- read.df(sqlContext, "data.json", "json")
+dataDF <- read.df(sqlContext, "data.json", "json", samplingRatio = "1.0")
 printSchema(dataDF)
 
 # Create a DataFrame from a JSON source, specifying a schema.

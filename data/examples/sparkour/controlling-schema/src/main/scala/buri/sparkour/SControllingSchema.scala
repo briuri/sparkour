@@ -67,7 +67,7 @@ object SControllingSchema {
 
 		// Create a DataFrame from a JSON source, inferring the schema from all rows.
 		println("JSON: Schema inferred from all rows.")
-		dataDF = sqlContext.read.json("data.json")
+		dataDF = sqlContext.read.option("samplingRatio", "1.0").json("data.json")
 		dataDF.printSchema()
 
 		// Create a DataFrame from a JSON source, specifying a schema.
@@ -84,7 +84,7 @@ object SControllingSchema {
 	def buildDate(year:Int, month:Int, date:Int, hour:Int, min:Int) : Date = {
 		val calendar = Calendar.getInstance()
 		calendar.set(year, month, date, hour, min)
-		return new Date(calendar.getTimeInMillis())
+		new Date(calendar.getTimeInMillis())
 	}
 	
 	/**
@@ -128,7 +128,7 @@ object SControllingSchema {
 				List()
 			)
 		)
-		return caseData
+		caseData
 	}
 	
 	/**
@@ -145,7 +145,7 @@ object SControllingSchema {
 				StructField("visits", ArrayType(TimestampType, true), true)
 			)
 		)
-		return schema
+		schema
 	 }
 }
 // scalastyle:on println
