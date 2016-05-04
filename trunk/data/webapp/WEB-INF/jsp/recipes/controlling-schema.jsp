@@ -790,7 +790,8 @@ performance impact of this operation, you should consider programmatically speci
 		</bu:rTab>
 	</bu:rTabs>
 	
-	<li>To avoid the inference step completely, we can specify a schema.</li>
+	<li>To avoid the inference step completely, we can specify a schema. The code pattern you see below can easily
+		be applied to any input format supported within a DataFrameReader (e.g. JDBC and Parquet).</li>
 
 	<bu:rTabs>
 		<bu:rTab index="1">
