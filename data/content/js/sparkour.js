@@ -23,7 +23,6 @@ function registerSaveTabClicks() {
 	$(".tabSave").click(function(event) {
 		var savedTab = $(this).parent().siblings(".tabCurrent").children().first().attr("href");
 		Cookies.set("defaultCodeTab", savedTab, { expires: 30 });
-		showCurrentTab("Code", savedTab)		
 		$(this).next().hide();
 		$(this).next().show(0);
 	});
@@ -35,6 +34,12 @@ function registerTabClicks(classToken) {
 		event.preventDefault();
 		$(".tabSaveMessage").hide();
 		showCurrentTab(classToken, $(this).attr("href"));
+		
+		if (classToken == "Code") {
+			$('html,body').animate({
+				scrollTop: $(this).offset().top
+			});
+		}
 	});
 }
 
@@ -54,7 +59,7 @@ function showCurrentTab(classToken, current) {
 	$(".tabs" + classToken + "Menu li a[href$='" + current + "']").parent().addClass("tabCurrent");
 		
 	$(".tab" + classToken + "ContentPane").children().not(current).css("display", "none");
-	$(".tab" + classToken + "ContentPane").children(current).fadeIn(300);
+	$(".tab" + classToken + "ContentPane").children(current).fadeIn(300);	
 }
 
 // Show all of the code tabs based on the default setting. (used on individual recipes)
