@@ -88,8 +88,8 @@ object SControllingSchema {
 	}
 	
 	/**
- 	* Build and return the sample data.
- 	*/
+	 * Build and return the sample data.
+	 */
  	def buildSampleData() : List[Record] = {
 		val caseData = List(
 			Record(
