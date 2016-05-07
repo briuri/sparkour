@@ -25,13 +25,13 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">VPC Endpoint Highlights</a></li>
+		<li><a href="#01">Introducing VPC Endpoints</a></li>
 		<li><a href="#02">Establishing the VPC Endpoint</a></li>
 		<li><a href="#03">Next Steps</a></li>
 	</ul>
 </bu:rOverview>
 
-<bu:rSection anchor="01" title="VPC Endpoint Highlights" />
+<bu:rSection anchor="01" title="Introducing VPC Endpoints" />
 
 <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. Normally, connections between EC2 instances in a Virtual Private Cloud (VPC)
 and resources in S3 require an Internet Gateway to be established in the VPC. However, you may need to deploy your Spark cluster in a private subnet where no Internet Gateway

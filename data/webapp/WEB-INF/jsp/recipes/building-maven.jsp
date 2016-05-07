@@ -29,14 +29,14 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Maven Highlights</a></li>
+		<li><a href="#01">Introducing Maven</a></li>
 		<li><a href="#02">Project Organization</a></li>
 		<li><a href="#03">Building and Submitting an Application</a></li>
 		<li><a href="#04">Creating an Assembly JAR</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="Maven Highlights" />
+<bu:rSection anchor="01" title="Introducing Maven" />
 
 <p>Apache Maven is a Java-based build tool that works with both Java and Scala source code. 
 It employs a "convention over configuration" philosophy that attempts to make useful assumptions about project structure and

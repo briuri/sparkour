@@ -23,20 +23,20 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">SparkSQL Highlights</a></li>
+		<li><a href="#01">Introducing SparkSQL</a></li>
 		<li><a href="#02">Registering a Table</a></li>
 		<li><a href="#03">Transforming and Querying the DataFrame</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="SparkSQL Highlights" />
+<bu:rSection anchor="01" title="Introducing SparkSQL" />
 
 <p>The DataFrames API provides a tabular view of data that allows you to use common relational database patterns  
 at a higher abstraction than the low-level Spark Core API. A DataFrame can be manipulated using functions and methods
 exposed in the Java, Python, R, and Scala programming languages, making them straightforward to work with for developers
 familiar with those languages.</p>
 
-<p>DataFrames can also be queried using SQL, which immediately broadens the potential user base of Apache Spark to
+<p>DataFrames can also be queried using SQL through the SparkSQL API, which immediately broadens the potential user base of Apache Spark to
 a wider audience of analysts and database administrators. Any series of operators that can be chained together in programming code
 can also be represented as a SQL query, and the base set of keywords and operations can also be extended with User-Defined Functions (UDFs).</p>
 

@@ -28,14 +28,14 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">SBT Highlights</a></li>
+		<li><a href="#01">Introducing SBT</a></li>
 		<li><a href="#02">Project Organization</a></li>
 		<li><a href="#03">Building and Submitting an Application</a></li>
 		<li><a href="#04">Creating an Assembly JAR</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="SBT Highlights" />
+<bu:rSection anchor="01" title="Introducing SBT" />
 
 <p>SBT is a Scala-based build tool that works with both Java and Scala source code. It adopts many of the conventions used by Apache Maven.
 Although it has faced some criticism for its arcane syntax and the fact that it's "yet another build tool", SBT has become the de facto build 

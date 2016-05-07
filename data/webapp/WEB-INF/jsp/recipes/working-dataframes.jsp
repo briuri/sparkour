@@ -23,14 +23,14 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">DataFrames Highlights</a></li>
+		<li><a href="#01">Introducing DataFrames</a></li>
 		<li><a href="#02">Creating the DataFrame</a></li>
 		<li><a href="#03">Transforming and Querying the DataFrame</a></li>
 		<li><a href="#04">Saving the DataFrame</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="DataFrames Highlights" />
+<bu:rSection anchor="01" title="Introducing DataFrames" />
 
 <p>Most Spark tutorials dive into Resilient Distributed Datasets (RDDs) right away, loading file data with the Spark Core API (via <span class="rCW">textFile()</span>),
 and performing common transformations and actions on the raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions at a higher level. 

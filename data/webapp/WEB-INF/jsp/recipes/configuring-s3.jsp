@@ -25,13 +25,13 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Amazon S3 Highlights</a></li>
+		<li><a href="#01">Introducing Amazon S3</a></li>
 		<li><a href="#02">Configuring Access Control</a></li>
 		<li><a href="#03">Next Steps</a></li>
 	</ul>
 </bu:rOverview>
 
-<bu:rSection anchor="01" title="Amazon S3 Highlights" />
+<bu:rSection anchor="01" title="Introducing Amazon S3" />
 
 <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. You can store unlimited data in S3
 although there is a 5 TB maximum on individual files. Data is organized into S3 <span class="rPN">buckets</span> with various options for access control and versioning.
