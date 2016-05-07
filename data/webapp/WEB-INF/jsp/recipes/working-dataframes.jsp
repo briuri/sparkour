@@ -68,25 +68,25 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="bash">
 				# Use shell script to compile, bundle, and submit source code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh java
+				./sparkour.sh java --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Use shell script to submit source code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh python
+				./sparkour.sh python --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
 				# Use shell script to submit source code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh r
+				./sparkour.sh r --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Use shell script to compile, bundle, and submit source code
 				cd /opt/sparkour/working-dataframes
-				./sparkour.sh scala
+				./sparkour.sh scala --master spark://ip-172-31-24-101:7077
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>

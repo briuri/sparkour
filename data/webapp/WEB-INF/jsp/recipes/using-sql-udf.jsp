@@ -74,25 +74,25 @@ You can even mix and match approaches at different points in your processing pip
 			<bu:rCode lang="bash">
 				# Use shell script to compile, bundle, and submit source code
 				cd /opt/sparkour/using-sql-udf
-				./sparkour.sh java
+				./sparkour.sh java --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Use shell script to submit source code
 				cd /opt/sparkour/using-sql-udf
-				./sparkour.sh python
+				./sparkour.sh python --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="bash">
 				# Use shell script to submit source code
 				cd /opt/sparkour/using-sql-udf
-				./sparkour.sh r
+				./sparkour.sh r --master spark://ip-172-31-24-101:7077
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Use shell script to compile, bundle, and submit source code
 				cd /opt/sparkour/using-sql-udf
-				./sparkour.sh scala
+				./sparkour.sh scala --master spark://ip-172-31-24-101:7077
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
