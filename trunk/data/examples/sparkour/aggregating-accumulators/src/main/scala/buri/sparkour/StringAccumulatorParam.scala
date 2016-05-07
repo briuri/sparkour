@@ -25,11 +25,11 @@ import org.apache.spark.AccumulatorParam
  * Contrived example -- see recipe for caveats.
  */
 object StringAccumulatorParam extends AccumulatorParam[String] {
-    def zero(initialValue: String): String = {
-        ""
-    }
-                
-    def addInPlace(s1: String, s2: String): String = {
-        s1.trim + " " + s2.trim
-    }
+	def zero(initialValue: String): String = {
+		""
+	}
+				
+	def addInPlace(s1: String, s2: String): String = {
+		s1.trim + " " + s2.trim
+	}
 }

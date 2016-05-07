@@ -29,32 +29,32 @@ object SAggregatingAccumulators {
 	def main(args: Array[String]) {
 		val sparkConf = new SparkConf().setAppName("SAggregatingAccumulators")
 		val sc = new SparkContext(sparkConf)
-                val sqlContext = new SQLContext(sc)
+		val sqlContext = new SQLContext(sc)
 
-                // Create an accumulator to count how many rows might be inaccurate.
-                val heightCount = sc.accumulator(0)
+		// Create an accumulator to count how many rows might be inaccurate.
+		val heightCount = sc.accumulator(0)
 
-                // Create an accumulator to store all questionable values.
-                val heightValues = sc.accumulator("")(StringAccumulatorParam)
+		// Create an accumulator to store all questionable values.
+		val heightValues = sc.accumulator("")(StringAccumulatorParam)
 
-                // A function that checks for questionable values
-                def validate(row: Row) = {
-                    val height = row.getLong(row.fieldIndex("height"))
-                    if (height < 15 || height > 84) {
-                        heightCount.add(1)
-                        heightValues.add(height.toString)
-                    }
-                }
+		// A function that checks for questionable values
+		def validate(row: Row) = {
+			val height = row.getLong(row.fieldIndex("height"))
+			if (height < 15 || height > 84) {
+				heightCount.add(1)
+				heightValues.add(height.toString)
+			}
+		}
 
-                // Create a DataFrame from a file of names and heights in inches.
-                val heightDF = sqlContext.read.json("heights.json")
+		// Create a DataFrame from a file of names and heights in inches.
+		val heightDF = sqlContext.read.json("heights.json")
 
-                // Validate the data with the function.
-                heightDF.foreach(validate)
+		// Validate the data with the function.
+		heightDF.foreach(validate)
 
-                // Show how many questionable values were found and what they were.
-                println(s"$heightCount rows had questionable values.")
-                println(s"Questionable values: $heightValues")
+		// Show how many questionable values were found and what they were.
+		println(s"$heightCount rows had questionable values.")
+		println(s"Questionable values: $heightValues")
 
 		sc.stop()
 	}
