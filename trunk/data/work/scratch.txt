@@ -2,9 +2,6 @@
 # Links #
 #########
 
-Accumulators:
-	http://imranrashid.com/posts/Spark-Accumulators/
-	http://stackoverflow.com/questions/29494452/when-are-accumulators-truly-reliable
 HDFS:
 	http://www.ccs.neu.edu/home/cbw/spark.html
 Shuffle:

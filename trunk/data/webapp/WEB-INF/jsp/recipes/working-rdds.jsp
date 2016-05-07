@@ -420,14 +420,15 @@ A common example of a potential issue is creating a counter variable in your app
 In Local mode, the counter accurately updates based on the work done in the local threads. On a cluster, however,
 each worker has its own copy of the counter.</p>
 
-<p>Spark provides a helpful set of shared variables to ensure that you can safely code in a distributed way. We will explore these in later recipes.</p>  
+<p>Spark provides a helpful set of shared variables to ensure that you can safely code in a distributed way.</p>  
 
 <ul>
 	<li><span class="rPN">Broadcast variables</span> are read-only variables that are efficiently delivered to worker nodes and cached for use on many tasks. Broadcast variables are implemented
-		as wrappers around arbitrary data, making it easy to use them in lieu of directly calling on the wrapped local data.</li>
+		as wrappers around arbitrary data, making it easy to use them in lieu of directly calling on the wrapped local data. These are explored in the recipe,
+		<bu:rLink id="broadcast-variables" />.</li>
 	<li><span class="rPN">Accumulators</span> are shared, writeable variables that allow safe, parallel writing. Worker nodes can write to the accumulator without any special precautions, and the
 		driver containing the application can read the current value. The simplest accumulator might be an incremental counter, but custom accumulators allow you to do things like
-		concatenating a string from tokens provided by each worker node.</li>
+		concatenating a string from tokens provided by each worker node. Accumulators are explored in the recipe, <bu:rLink id="aggregating-accumulators" />.</li>
 </ul> 
 
 <h3>Shuffle Operations</h3>
@@ -460,6 +461,8 @@ make sure to terminate it so you also stop incurring charges for the attached EB
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shuffle-operations">Shuffle Operations</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#understanding-closures-a-nameclosureslinka">Understanding Closures</a> in the Spark Programming Guide</li>	
 		<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
+		<li><bu:rLink id="broadcast-variables" /></li>
+		<li><bu:rLink id="aggregating-accumulators" /></li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>
