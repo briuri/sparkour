@@ -25,13 +25,13 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Schema Highlights</a></li>
+		<li><a href="#01">Introducing DataFrame Schemas</a></li>
 		<li><a href="#02">Creating a DataFrame Schema from an RDD</a></li>
 		<li><a href="#03">Creating a DataFrame Schema from a JSON File</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="Schema Highlights" />
+<bu:rSection anchor="01" title="Introducing DataFrame Schemas" />
 
 <p>The <span class="rPN">schema</span> of a DataFrame controls the data that can appear in each column of that DataFrame. A schema 
 provides informational detail such as the column name, the type of data in that column, and whether null or empty values are allowed

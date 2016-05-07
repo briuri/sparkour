@@ -24,12 +24,12 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Broadcast Highlights</a></li>
+		<li><a href="#01">Introducing Broadcast Variables</a></li>
 		<li><a href="#02">Using Broadcast Variables</a></li>
 	</ul>
 </bu:rOverview>
 		
-<bu:rSection anchor="01" title="Broadcast Highlights" />
+<bu:rSection anchor="01" title="Introducing Broadcast Variables" />
 
 <p>Broadcast variables are a built-in feature of Spark that allow you to efficiently share read-only 
 reference data across a Spark cluster. When a job is submitted, Spark calculates a 
