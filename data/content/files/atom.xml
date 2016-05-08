@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-05-01T10:00:00Z</updated>
+	<updated>2016-05-07T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,18 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-05-07</id>
+		<link href="https://sparkour.urizone.net/?2016-05-07" />
+		<updated>2016-05-07T10:00:00Z</updated>
+		<title type="html">Aggregating Results with Spark Accumulators</title>
+		<summary type="html">
+			This recipe explains how to use accumulators to aggregate results in a Spark application.
+			Accumulators provide a safe way for multiple Spark workers to contribute information to
+			a shared variable, which can then be read by the application driver.	
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-05-04</id>
 		<link href="https://sparkour.urizone.net/?2016-05-04" />
@@ -45,16 +57,6 @@
 		<summary type="html">
 			This recipe shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources
 			from a private subnet without a Network Address Translation (NAT) instance or Internet Gateway.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-04-07</id>
-		<link href="https://sparkour.urizone.net/?2016-04-07" />
-		<updated>2016-04-07T10:00:00Z</updated>
-		<title type="html">Updated for Spark 1.6.1</title>
-		<summary type="html">
-			All recipes have been updated and tested against Spark 1.6.1.	
 		</summary>
 	</entry>
 </feed>
