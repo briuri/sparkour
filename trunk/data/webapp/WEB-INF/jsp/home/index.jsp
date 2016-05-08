@@ -28,6 +28,12 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-05-07">
+		<bu:rLink id="aggregating-accumulators" />
+		explains how to use accumulators to aggregate results in a Spark application.
+		Accumulators provide a safe way for multiple Spark workers to contribute information to
+		a shared variable, which can then be read by the application driver.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-05-04">
 		<bu:rLink id="controlling-schema" />
 		demonstrates different strategies for defining the schema of a DataFrame built from various data sources (using
@@ -45,12 +51,12 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources from a private subnet 
 		without a Network Address Translation (NAT) instance or Internet Gateway.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-04-07">
-		All recipes have been updated and tested against Spark 1.6.1.
-	</bu:newsUpdate>
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">	
+		<bu:newsUpdate date="2016-04-07">
+			All recipes have been updated and tested against Spark 1.6.1.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-03-29">
 			<bu:rLink id="building-maven" />
 			covers the use of Apache Maven to build and bundle Spark applications
