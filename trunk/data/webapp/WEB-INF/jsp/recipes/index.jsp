@@ -52,7 +52,6 @@
 					<li><bu:rLink id="broadcast-variables" /></li>
 					<li><bu:rLink id="aggregating-accumulators" /></li>
 					<li>Simplifying Java Applications with Lambda Expressions</li>
-					<li>Using Accumulators</li>
 					<li>Writing Unit Tests</li>
 				</ul></li>
 			</ul>    	
