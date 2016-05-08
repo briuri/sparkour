@@ -60,10 +60,10 @@ Remember that transformations are "lazy" and not executed until your processing 
 an accumulator employed inside a transformation is not actually touched until a subsequent action is triggered.</p>
 
 <p>You should limit your use of accumulators to Spark actions for several reasons. For one, Spark guarantees that an accumulator 
-employed in an action un exactly one time, but no such guarantee covers accumulators in transformations. If a task fails for
+employed in an action runs exactly one time, but no such guarantee covers accumulators in transformations. If a task fails for
 a hardware reason and is then re-executed, you might get duplicate values (or no value at all) written to an accumulator inside a transformation.
 Spark also employs <span class="rPN">speculative execution</span> (duplicating a task on a free worker in case a slow-running worker fails) which
-could also introduce duplicate data outside of an action.</p> 
+could introduce duplicate accumulator data outside of an action.</p> 
 
 <h3>Downloading the Source Code</h3>
 
@@ -111,7 +111,7 @@ could also introduce duplicate data outside of an action.</p>
 	</bu:rTabs>
 
 	<li>The <span class="rCW">heights.json</span> file contains a very simple dataset of person names and heights in inches. Some of the values
-		are questionable, possibly due to poor data entry or even poorer metric conversion. We accumulators to get some statistics on
+		are questionable, possibly due to poor data entry or even poorer metric conversion. We use accumulators to get some statistics on
 		the values that might be incorrect.</li>
 	
 	<bu:rCode lang="plain">
@@ -130,7 +130,7 @@ could also introduce duplicate data outside of an action.</p>
 
 <p>The example source code uses accumulators to provide some quick diagnostic information about the height dataset. 
 We validate the data to count how many rows might be incorrect and then print out a simple string containing all of the
-questionable values. (With a larger set of real data, this type of validation could also be done with machine learning).</p>
+questionable values. (With a larger set of real data, this type of validation could be done more dynamically with statistical analysis or machine learning).</p>
 
 <ol>
 	<li>To count questionable rows, we use the built-in number-based accumulator, which supports addition with
@@ -161,7 +161,7 @@ questionable values. (With a larger set of real data, this type of validation co
 		string concatenation. This is a contrived example to demonstrate the syntax, and
 		should not be used in a real-world solution. It has multiple flaws, including the
 		fact that it is not commutative ("a" + "b" is not the same as "b" + "a"), it
-		has performance issues at scale, and it could grow very large (consuming the resources
+		has performance issues at scale, and it could grow very large (claiming the resources
 		you need for your actual Spark processing).</li> 
 		
 	<bu:rTabs>
@@ -351,7 +351,7 @@ questionable values. (With a larger set of real data, this type of validation co
 	</bu:rCode>
 	
 	<li>The order of numbers may be different on different runs, because the order that the worker nodes write
-		to the accumulators is not necessarily consistent. This is why it's important that you use accumulators for
+		to the accumulators is not guaranteed. This is why it's important that you use accumulators for
 		operations that are both associative and commutative, such as incrementing a counter, calculating a sum, or
 		calculating a max value.</li> 
 </ol>
@@ -363,7 +363,7 @@ resulting in a new DataFrame containing just the questionable rows.</p>
 <p>A good rule of thumb to follow is to use accumulators
 only for data you would consider to be a side effect of your main data processing application. For example, if
 you are exploring a new dataset and need some simple diagnostics to further guide your data cleansing operations, accumulators
-are very useful. However, if you are writing an application whose sole purpose is to test the quality of a dataset and the results are the "main point",
+are very useful. However, if you are writing an application whose sole purpose is to test the quality of a dataset and the results are the whole point,
 full-fledged Spark operations might be more appropriate.</p> 
 
 <bu:rFooter>
