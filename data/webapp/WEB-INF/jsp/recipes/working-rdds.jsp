@@ -31,7 +31,7 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Creating an RDD</a></li>
+		<li><a href="#01">Introducing RDDs</a></li>
 		<li><a href="#02">Transformations and Actions</a></li>
 		<li><a href="#03">Coding in a Distributed Way</a></li>
 		<li><a href="#04">Conclusion</a></li>
@@ -39,7 +39,7 @@
 	</ul>
 </bu:rOverview>
 
-<bu:rSection anchor="01" title="Creating an RDD" />
+<bu:rSection anchor="01" title="Introducing RDDs" />
 
 <p>An RDD is an immutable, fault-tolerant collection of objects, logically partitioned across a Spark cluster:</p>
 
