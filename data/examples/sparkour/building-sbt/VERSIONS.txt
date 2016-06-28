@@ -21,3 +21,8 @@ Base Recipe (2016-03-17)
 Spark Update (2016-04-07)
     Apache Spark 1.6.1 Prebuilt for Hadoop 2.6 and later
     (all other versions the same as base recipe)
+Spark Update (2016-06-28)
+    Apache Spark 1.6.2 Prebuilt for Hadoop 2.6 and later
+    Languages
+    	OpenJDK 1.8.0_91
+    (all other versions the same as base recipe)

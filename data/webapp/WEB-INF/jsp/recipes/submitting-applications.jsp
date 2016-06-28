@@ -46,7 +46,7 @@ just need to get your build dependencies in order.</p>
 <ol>
 	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
-	<li>You also need the development kit for your language. If developing for Spark 1.6.1, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
+	<li>You also need the development kit for your language. If developing for Spark 1.6.2, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
 		Python 2.6, R 3.1, or Scala 2.10, respectively. You probably already have the development kit for your language installed in your development
 		environment.</li>
 	<li>Finally, you need to link or include the core Spark libraries with your application. If you are using an Integrated Development Environment (IDE) like 
@@ -108,7 +108,7 @@ components installed, you should be able to review these instructions and adapt 
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
-		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 1.6.1 Pre-built for Hadoop 2.6 and later</span>,
+		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 1.6.2 Pre-built for Hadoop 2.6 and later</span>,
 		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version unless you have explicitly
 		built Spark for 2.11.x from the source code.</p>
 		
@@ -500,7 +500,7 @@ can be found in the official documentation.</p>
 
 	<bu:rCode lang="bash">
 		# Peek in the assembly JAR (it's big!)
-		less $SPARK_HOME/lib/spark-examples-1.6.1-hadoop2.6.0.jar
+		less $SPARK_HOME/lib/spark-examples-1.6.2-hadoop2.6.0.jar
 		# (hold down spacebar to skim down, or hit 'q' to exit)
 	</bu:rCode>
 
@@ -510,7 +510,7 @@ can be found in the official documentation.</p>
 		# Submit the JavaWordCount application
 		$SPARK_HOME/bin/spark-submit \
 			--class org.apache.spark.examples.JavaWordCount \
-			./lib/spark-examples-1.6.1-hadoop2.6.0.jar \
+			./lib/spark-examples-1.6.2-hadoop2.6.0.jar \
 			$SPARK_HOME/README.md
 	</bu:rCode>
 
