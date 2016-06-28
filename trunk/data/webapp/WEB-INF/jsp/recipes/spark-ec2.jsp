@@ -27,6 +27,11 @@
 		<li>With the <span class="rCW">spark-ec2</span> script from a specific version of Apache Spark, you can launch a cluster running
 			the same, or any earlier, version of Spark. For consistency between your launch environment (which is probably also your development
 			environment) and the cluster, you should use the same version of Spark everywhere.</li>
+		<li>The script included in Spark 1.6.2 omits "1.6.2" as a valid version number, so it can only be used to create clusters up to versions 1.6.1.
+			You can track the progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK-16257">SPARK-16257</a> ticket. Advanced
+			users can hand-edit their <span class="rCW">spark_ec2.py</span> file and manually insert 1.6.2 into the following variables:
+			<span class="rCW">SPARK_EC2_VERSION</span>, <span class="rCW">VALID_SPARK_VERSIONS</span>, <span class="rCW">SPARK_TACHYON_MAP</span>,
+			<span class="rCW">DEFAULT_SPARK_EC2_BRANCH</span>.</li> 
 		<li>The <span class="rCW">spark-ec2</span> script only supports three versions of Hadoop right now: Hadoop 1.0.4, Hadoop 2.4.0, or
 			the Cloudera Distribution with Hadoop (CDH) 4.2.0. If you have application dependencies that require another version of Hadoop,
 			you will need to manually set up the cluster without the script. These tutorials may be useful in
