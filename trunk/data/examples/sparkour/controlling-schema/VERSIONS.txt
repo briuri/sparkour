@@ -15,3 +15,8 @@ Base Recipe (2016-05-01)
         Python 2.7.10
         R 3.2.2
         Scala 2.10.6
+Spark Update (2016-06-28)
+    Apache Spark 1.6.2 Prebuilt for Hadoop 2.6 and later
+    Languages
+    	OpenJDK 1.8.0_91
+    (all other versions the same as base recipe)

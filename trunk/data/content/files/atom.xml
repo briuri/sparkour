@@ -5,14 +5,24 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-05-07T10:00:00Z</updated>
+	<updated>2016-06-28T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
 	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
-
+	
+	<entry>
+		<id>https://sparkour.urizone.net/</id>
+		<link href="https://sparkour.urizone.net/" />
+		<updated>2016-06-28T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated and tested against Spark 1.6.2.	
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-05-07</id>
 		<link href="https://sparkour.urizone.net/?2016-05-07" />
@@ -36,29 +46,7 @@
 			in your application.
 		</summary>
 	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-04-14</id>
-		<link href="https://sparkour.urizone.net/?2016-04-14" />
-		<updated>2016-04-14T10:00:00Z</updated>
-		<title type="html">Improving Spark Performance with Broadcast Variables</title>
-		<summary type="html">
-			This recipe explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
-			broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
-			to execute your Spark application.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-04-13</id>
-		<link href="https://sparkour.urizone.net/?2016-04-13" />
-		<updated>2016-04-13T10:00:00Z</updated>
-		<title type="html">Configuring an S3 VPC Endpoint for a Spark Cluster</title>
-		<summary type="html">
-			This recipe shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources
-			from a private subnet without a Network Address Translation (NAT) instance or Internet Gateway.
-		</summary>
-	</entry>
+
 </feed>
 
 

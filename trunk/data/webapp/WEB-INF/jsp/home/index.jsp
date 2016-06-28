@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-06-28">
+		All recipes have been updated and tested against Spark 1.6.2.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-05-07">
 		<bu:rLink id="aggregating-accumulators" />
 		explains how to use accumulators to aggregate results in a Spark application.
