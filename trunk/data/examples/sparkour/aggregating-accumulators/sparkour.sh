@@ -47,7 +47,8 @@ if [ $LANGUAGE = "java" ]; then
 elif [ $LANGUAGE = "python" ]; then
 	APP_ARGS="$SRC_PATH/python/${NAME_INTERPRETED}.py ${APP_ARGS}"
 elif [ $LANGUAGE = "r" ]; then
-	APP_ARGS="$SRC_PATH/r/${NAME_INTERPRETED}.R ${APP_ARGS}"
+    echo "This example uses the Spark Core API, which is not exposed through SparkR."
+    exit 1
 elif [ $LANGUAGE = "scala" ]; then
     mkdir -p target/scala
     scalac $SRC_PATH/scala/$PACKAGE/*.scala -classpath $SPARK_HOME/lib/spark-assembly-*.jar -d target/scala
