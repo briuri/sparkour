@@ -19,10 +19,9 @@ package buri.sparkour;
 
 import org.apache.spark.Accumulator;
 import org.apache.spark.api.java.function.VoidFunction;
-import org.apache.spark.sql.SparkSession;
-import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SparkSession;
 
 /**
  * Uses accumulators to provide statistics on potentially incorrect data.
@@ -33,7 +32,7 @@ public final class JAggregatingAccumulators {
 		SparkSession spark = SparkSession.builder().appName("JAggregatingAccumulators").getOrCreate();
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		Accumulator<Integer> heightCount = spark.sparkContext().accumulator(0);
+		Accumulator<Integer> heightCount = spark.sparkContext().accumulator(0)
 
 		// Create an accumulator to store all questionable values.
 		Accumulator<String> heightValues = spark.sparkContext().accumulator("", new StringAccumulatorParam());
@@ -50,7 +49,7 @@ public final class JAggregatingAccumulators {
 		};
 
 		// Create a DataFrame from a file of names and heights in inches.
-		DataFrame heightDF = spark.read().json("heights.json");
+		Dataset<Row> heightDF = spark.read().json("heights.json");
 
 		// Validate the data with the function.
 		heightDF.javaRDD().foreach(validate);
