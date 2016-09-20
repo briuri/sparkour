@@ -47,7 +47,7 @@ object SAggregatingAccumulators {
 		val heightDF = spark.read.json("heights.json")
 
 		// Validate the data with the function.
-		heightDF.foreach(validate)
+		heightDF.foreach(validate(_))
 
 		// Show how many questionable values were found and what they were.
 		println(s"$heightCount rows had questionable values.")
