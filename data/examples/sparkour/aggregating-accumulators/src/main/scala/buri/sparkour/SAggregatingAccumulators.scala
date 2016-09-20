@@ -29,10 +29,10 @@ object SAggregatingAccumulators {
 		val spark = SparkSession.builder.appName("SAggregatingAccumulators").getOrCreate()
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		val heightCount = spark.accumulator(0)
+		val heightCount = spark.sparkContext.accumulator(0)
 
 		// Create an accumulator to store all questionable values.
-		val heightValues = spark.accumulator("")(StringAccumulatorParam)
+		val heightValues = spark.sparkContext.accumulator("")(StringAccumulatorParam)
 
 		// A function that checks for questionable values
 		def validate(row: Row) = {
@@ -44,7 +44,7 @@ object SAggregatingAccumulators {
 		}
 
 		// Create a DataFrame from a file of names and heights in inches.
-		val heightDF = sqlContext.read.json("heights.json")
+		val heightDF = spark.read.json("heights.json")
 
 		// Validate the data with the function.
 		heightDF.foreach(validate)

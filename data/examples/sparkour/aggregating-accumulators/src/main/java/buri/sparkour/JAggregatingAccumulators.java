@@ -33,10 +33,10 @@ public final class JAggregatingAccumulators {
 		SparkSession spark = SparkSession.builder().appName("JAggregatingAccumulators").getOrCreate();
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		Accumulator<Integer> heightCount = spark.accumulator(0);
+		Accumulator<Integer> heightCount = spark.sparkContext().accumulator(0);
 
 		// Create an accumulator to store all questionable values.
-		Accumulator<String> heightValues = spark.accumulator("", new StringAccumulatorParam());
+		Accumulator<String> heightValues = spark.sparkContext().accumulator("", new StringAccumulatorParam());
 
 		// A function that checks for questionable values
 		VoidFunction<Row> validate = new VoidFunction<Row>() {
@@ -50,7 +50,7 @@ public final class JAggregatingAccumulators {
 		};
 
 		// Create a DataFrame from a file of names and heights in inches.
-		DataFrame heightDF = sqlContext.read().json("heights.json");
+		DataFrame heightDF = spark.read().json("heights.json");
 
 		// Validate the data with the function.
 		heightDF.javaRDD().foreach(validate);

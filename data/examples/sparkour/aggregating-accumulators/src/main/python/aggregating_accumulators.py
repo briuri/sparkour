@@ -48,13 +48,13 @@ if __name__ == "__main__":
     spark = SparkSession.builder.appName("aggregating_accumulators").getOrCreate()
 
     # Create an accumulator to count how many rows might be inaccurate.
-    heightCount = spark.accumulator(0)
+    heightCount = spark.sparkContext.accumulator(0)
 
     # Create an accumulator to store all questionable values.
-    heightValues = spark.accumulator("", StringAccumulatorParam())
+    heightValues = spark.sparkContext.accumulator("", StringAccumulatorParam())
 
     # Create a DataFrame from a file of names and heights in inches.
-    heightDF = sqlContext.read.json("heights.json")
+    heightDF = spark.read.json("heights.json")
 
     # Validate the data with the function.
     heightDF.foreach(lambda x : validate(x))
