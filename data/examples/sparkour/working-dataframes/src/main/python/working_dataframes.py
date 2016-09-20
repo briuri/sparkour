@@ -16,8 +16,7 @@
 #
 
 from __future__ import print_function
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
+from pyspark.sql import SparkSession
 from pyspark.sql.types import *
 import pyspark.sql.functions as func
 
@@ -30,13 +29,10 @@ import pyspark.sql.functions as func
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="working_dataframes")
-
-    # Initialize the SQLContext
-    sqlContext = SQLContext(sc)
+    spark = SparkSession.builder.appName("working_dataframes").getOrCreate()
 
     # Create a DataFrame based on the JSON results.
-    rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")
+    rawDF = spark.read.json("loudoun_d_primary_results_2016.json")
 
     # Print the schema
     rawDF.printSchema()
@@ -54,7 +50,7 @@ if __name__ == "__main__":
 
     print("What order were candidates on the ballot (in descriptive terms)?")
     # Load a reference table of friendly names for the ballot orders.
-    friendlyDF = sqlContext.read.json("friendly_orders.json")
+    friendlyDF = spark.read.json("friendly_orders.json")
     # Join the tables so the results show descriptive text
     joinedDF = orderDF.join(friendlyDF, "candidate_ballot_order")
     # Hide the numeric column in the output.
@@ -90,4 +86,4 @@ if __name__ == "__main__":
     print("Saving overall candidate summary as a new JSON dataset.")
     summaryDF.write.json("target/json", mode="overwrite")
 
-    sc.stop()
+    spark.stop()
