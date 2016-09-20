@@ -390,8 +390,10 @@ of one of the Spark nodes.</p>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>
-		<li>Updated with additional detail on required permissions and SSH troubleshooting
+		<li>2016-06-28: Updated with additional detail on required permissions and SSH troubleshooting
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-7">SPARKOUR-7</a>).</li>
+		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 

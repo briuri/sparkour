@@ -386,7 +386,8 @@ why this occurs, since it did not occur in Spark 1.6. You can track the progress
 	</bu:rLinks>
 	
 	<bu:rChangeLog>
-		<li>This recipe hasn't had any substantive updates since it was first published.</li>
+		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
