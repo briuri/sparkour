@@ -25,10 +25,7 @@ from pyspark.sql import SparkSession
     Spark for execution.
 """
 if __name__ == "__main__":
-    spark = SparkSession\
-        .builder\
-        .appName("submitting_applications")\
-        .getOrCreate()
+    spark = SparkSession.builder.appName("submitting_applications").getOrCreate()
 
     print("You are using Spark " + spark.version);
     
