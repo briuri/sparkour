@@ -40,7 +40,7 @@ if __name__ == "__main__":
     numbersListRdd = spark.sparkContext.parallelize(numbers)
 
     # Create an RDD from a similar array on the local filesystem
-    numbersFileRdd = spark.sparkContext.textFile("random_numbers.txt")
+    numbersFileRdd = spark.read.text("random_numbers.txt").rdd
 
     # 1000 Chicago residents: How many books do you own?
     chicagoRdd = numbersListRdd

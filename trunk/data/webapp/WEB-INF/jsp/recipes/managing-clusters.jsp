@@ -309,16 +309,13 @@ development environment, master, and slave at the same time.</p>
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
 			<bu:rCode lang="java">
-				// Initialize the session and context
 				SparkSession spark = SparkSession.builder().appName("JWordCount").getOrCreate();
- 				JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
- 							
-				JavaRDD<String> textFile = sc.textFile("README.md");
+				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
 				System.out.println(textFile.count());
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> textFile = spark.sparkContext.textFile("README.md")
+				>>> textFile = spark.read.text("README.md").rdd
 				>>> textFile.count()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -328,7 +325,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> val textFile = spark.sparkContext.textFile("README.md")
+				scala> val textFile = spark.read.text("README.md").rdd
 				scala> textFile.count()
 			</bu:rCode>	
 		</bu:rTab>
