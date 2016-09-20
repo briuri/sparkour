@@ -10,14 +10,16 @@
 		
 	<h3>Prerequisites</h3>
 	<ol>
-		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.</li>
+		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.
+			If you're working in Java, you should understand that DataFrames are now represented by a <span class="rCW">Dataset[Row]</span> object.</li>
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
 			covered in <bu:rLink id="submitting-applications" />.</li>
 	</ol>		
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Spark DataFrames were introduced in Spark <span class="rPN">1.3.0</span>. Any equal or higher version should work with this recipe.</li>
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher.
+			You may need to make modifications to use it on an older version of Spark.</li>
 	</ol>
 		
 	<a name="toc"></a>
@@ -120,31 +122,31 @@ You can even mix and match approaches at different points in your processing pip
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
-				SQLContext sqlContext = new SQLContext(sc);
+				SparkSession spark = SparkSession.builder().appName("JUsingSqlUdf").getOrCreate();
 		
 				// Create a DataFrame based on the JSON results.
-				DataFrame rawDF = sqlContext.read().json("loudoun_d_primary_results_2016.json");
+				Dataset<Row> rawDF = spark.read().json("loudoun_d_primary_results_2016.json");
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-			    sqlContext = SQLContext(sc)
+			    spark = SparkSession.builder.appName("using_sql_udf").getOrCreate()
 			
 			    # Create a DataFrame based on the JSON results.
-			    rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")
+			    rawDF = spark.read.json("loudoun_d_primary_results_2016.json")
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				sqlContext <- sparkRSQL.init(sc)
+				session <- sparkR.session()
 				
 				# Create a DataFrame based on the JSON results.
-				rawDF <- read.df(sqlContext, "loudoun_d_primary_results_2016.json", "json")					
+				rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")					
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				val sqlContext = new SQLContext(sc)
+				val spark = SparkSession.builder.appName("SUsingSqlUdf").getOrCreate()
 			
 				// Create a DataFrame based on the JSON results.
-				val rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")		
+				val rawDF = spark.read.json("loudoun_d_primary_results_2016.json")		
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -155,22 +157,22 @@ You can even mix and match approaches at different points in your processing pip
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				// Register as a SQL-accessible table
-				rawDF.registerTempTable("votes");
+				rawDF.createOrReplaceTempView("votes");
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Register as a SQL-accessible table
-			    rawDF.registerTempTable("votes")
+			    rawDF.createOrReplaceTempView("votes")
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				# Register as a SQL-accessible table
-				registerTempTable(rawDF, "votes")
+				createOrReplaceTempView(rawDF, "votes")
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Register as a SQL-accessible table
-				rawDF.registerTempTable("votes")
+				rawDF.createOrReplaceTempView("votes")
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -197,28 +199,28 @@ You can even mix and match approaches at different points in your processing pip
 				System.out.println("Who was on the ballet?");
 				// Get all distinct candidate names from the DataFrame
 				String query = "SELECT DISTINCT candidate_name FROM votes";
-				sqlContext.sql(query).show();
+				spark.sql(query).show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("Who was on the ballet?")
 			    # Get all distinct candidate names from the DataFrame
 			    query = "SELECT DISTINCT candidate_name FROM votes"
-			    sqlContext.sql(query).show()		
+			    spark.sql(query).show()		
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				print("Who was on the ballet?")
 				# Get all distinct candidate names from the DataFrame
 				query <- "SELECT DISTINCT candidate_name FROM votes"
-				print(collect(sql(sqlContext, query)))
+				print(collect(sql(query)))
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("Who was on the ballet?")
 				// Get all distinct candidate names from the DataFrame
 				var query = "SELECT DISTINCT candidate_name FROM votes"
-				sqlContext.sql(query).show()		
+				spark.sql(query).show()		
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -245,8 +247,8 @@ You can even mix and match approaches at different points in your processing pip
 				// We also register this DataFrame as a table to reuse later.
 				query = "SELECT DISTINCT candidate_name, candidate_ballot_order "
 					+ "FROM votes ORDER BY candidate_ballot_order";
-				DataFrame orderDF = sqlContext.sql(query);
-				orderDF.registerTempTable("ordered_candidates");
+				Dataset<Row> orderDF = spark.sql(query);
+				orderDF.createOrReplaceTempView("ordered_candidates");
 				orderDF.show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
@@ -256,8 +258,8 @@ You can even mix and match approaches at different points in your processing pip
 			    # We also register this DataFrame as a table to reuse later.
 			    query = """SELECT DISTINCT candidate_name, candidate_ballot_order
 			        FROM votes ORDER BY candidate_ballot_order"""
-			    orderDF = sqlContext.sql(query)
-			    orderDF.registerTempTable("ordered_candidates")
+			    orderDF = spark.sql(query)
+			    orderDF.createOrReplaceTempView("ordered_candidates")
 			    orderDF.show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -267,8 +269,8 @@ You can even mix and match approaches at different points in your processing pip
 				# We also register this DataFrame as a table to reuse later.
 				query <- paste("SELECT DISTINCT candidate_name, candidate_ballot_order",
 				    "FROM votes ORDER BY candidate_ballot_order", sep=" ")
-				orderDF <- sql(sqlContext, query)
-				registerTempTable(orderDF, "ordered_candidates")
+				orderDF <- sql(query)
+				createOrReplaceTempView(orderDF, "ordered_candidates")
 				print(collect(orderDF))
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
@@ -278,8 +280,8 @@ You can even mix and match approaches at different points in your processing pip
 				// We also register this DataFrame as a table to reuse later.
 				query = """SELECT DISTINCT candidate_name, candidate_ballot_order
 					FROM votes ORDER BY candidate_ballot_order"""
-				val orderDF = sqlContext.sql(query)
-				orderDF.registerTempTable("ordered_candidates")
+				val orderDF = spark.sql(query)
+				orderDF.createOrReplaceTempView("ordered_candidates")
 				orderDF.show()
 			</bu:rCode>	
 		</bu:rTab>
@@ -314,49 +316,49 @@ You can even mix and match approaches at different points in your processing pip
 			<bu:rCode lang="java">
 				System.out.println("What order were candidates on the ballot (in descriptive terms)?");
 				// Load a reference table of friendly names for the ballot orders.
-				DataFrame friendlyDF = sqlContext.read().json("friendly_orders.json");
-				friendlyDF.registerTempTable("ballot_order");
+				Dataset<Row> friendlyDF = spark.read().json("friendly_orders.json");
+				friendlyDF.createOrReplaceTempView("ballot_order");
 				// Join the tables so the results show descriptive text
 				query = "SELECT oc.candidate_name, bo.friendly_name "
 					+ "FROM ordered_candidates oc JOIN ballot_order bo "
 					+ "ON oc.candidate_ballot_order = bo.candidate_ballot_order";
-				sqlContext.sql(query).show();
+				spark.sql(query).show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("What order were candidates on the ballot (in descriptive terms)?")
 			    # Load a reference table of friendly names for the ballot orders.
-			    friendlyDF = sqlContext.read.json("friendly_orders.json")
-			    friendlyDF.registerTempTable("ballot_order")
+			    friendlyDF = spark.read.json("friendly_orders.json")
+			    friendlyDF.createOrReplaceTempView("ballot_order")
 			    # Join the tables so the results show descriptive text.
 			    query = """SELECT oc.candidate_name, bo.friendly_name
 			        FROM ordered_candidates oc JOIN ballot_order bo 
 			        ON oc.candidate_ballot_order = bo.candidate_ballot_order""" 
-			    sqlContext.sql(query).show()
+			    spark.sql(query).show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				print("What order were candidates on the ballot (in descriptive terms)?")
 				# Load a reference table of friendly names for the ballot orders.
-				friendlyDF <- read.df(sqlContext, "friendly_orders.json", "json")
-				registerTempTable(friendlyDF, "ballot_order")
+				friendlyDF <- read.df("friendly_orders.json", "json")
+				createOrReplaceTempView(friendlyDF, "ballot_order")
 				# Join the tables so the results show descriptive text
 				query <- paste("SELECT oc.candidate_name, bo.friendly_name",
 				    "FROM ordered_candidates oc JOIN ballot_order bo",
 				    "ON oc.candidate_ballot_order = bo.candidate_ballot_order", sep=" ")
-				print(collect(sql(sqlContext, query)))
+				print(collect(sql(query)))
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("What order were candidates on the ballot (in descriptive terms)?")
 				// Load a reference table of friendly names for the ballot orders.
-				val friendlyDF = sqlContext.read.json("friendly_orders.json")
-				friendlyDF.registerTempTable("ballot_order")
+				val friendlyDF = spark.read.json("friendly_orders.json")
+				friendlyDF.createOrReplaceTempView("ballot_order")
 				// Join the tables so the results show descriptive text
 				query = """SELECT oc.candidate_name, bo.friendly_name
 					FROM ordered_candidates oc JOIN ballot_order bo
 					ON oc.candidate_ballot_order = bo.candidate_ballot_order"""
-				sqlContext.sql(query).show()
+				spark.sql(query).show()
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -382,40 +384,40 @@ You can even mix and match approaches at different points in your processing pip
 			<bu:rCode lang="java">
 				System.out.println("How many votes were cast?");
 				// Orginal data is string-based. Create a UDF to cast as an integer.
-				sqlContext.udf().register("to_int", (String x) -> Integer.valueOf(x), DataTypes.IntegerType);
+				spark.udf().register("to_int", (String x) -> Integer.valueOf(x), DataTypes.IntegerType);
 				query = "SELECT SUM(to_int(total_votes)) AS sum_total_votes FROM votes";
-				sqlContext.sql(query).show();				
+				spark.sql(query).show();				
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("How many votes were cast?")
 			    # Orginal data is string-based. Create a UDF to cast as an integer.
-			    sqlContext.udf.register("to_int", lambda x: int(x))
+			    spark.udf.register("to_int", lambda x: int(x))
 			    query = "SELECT SUM(to_int(total_votes)) AS sum_total_votes FROM votes"
-			    sqlContext.sql(query).show()
+			    spark.sql(query).show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
-			<p>Unfortunately, SparkR does not yet support UDFs, so this example still uses
+			<p>Unfortunately, SparkR does not yet support SQL UDFs that apply to columns, so this example still uses
 			<span class="rCW">cast()</span>. You can track the progress of this
-			work in the <a href="https://issues.apache.org/jira/browse/SPARK-6817">SPARK-6817</a> ticket.</p>
+			work in the <a href="https://issues.apache.org/jira/browse/SPARK-12918">SPARK-12918</a> ticket.</p>
 			<bu:rCode lang="plain">
 				print("How many votes were cast?")
 				# Orginal data is string-based. Create an integer version of the total votes column.
 				# Because UDFs are not yet supported in SparkR, we cast the column first, then run SQL.
 				votesColumn <- alias(cast(rawDF$total_votes, "int"), "total_votes_int")
 				votesDF <- withColumn(rawDF, "total_votes_int", cast(rawDF$total_votes, "int"))
-				registerTempTable(votesDF, "votes_int")
+				createOrReplaceTempView(votesDF, "votes_int")
 				# Get the integer-based votes column and sum all values together
 				query <- "SELECT SUM(total_votes_int) AS sum_total_votes FROM votes_int"
-				print(collect(sql(sqlContext, query)))
+				print(collect(sql(query)))
    			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("How many votes were cast?")
 				// Orginal data is string-based. Create a UDF to cast as an integer.
-				sqlContext.udf.register("to_int", (x: String) => x.toInt)
+				spark.udf.register("to_int", (x: String) => x.toInt)
 				query = "SELECT SUM(to_int(total_votes)) AS sum_total_votes FROM votes"
-				sqlContext.sql(query).show()
+				spark.sql(query).show()
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -438,30 +440,30 @@ You can even mix and match approaches at different points in your processing pip
 				println("How many votes did each candidate get?")
 				query = """SELECT candidate_name, SUM(to_int(total_votes)) AS sum_total_votes
 					FROM votes GROUP BY candidate_name ORDER BY sum_total_votes DESC"""
-				sqlContext.sql(query).show()		
+				spark.sql(query).show()		
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("How many votes did each candidate get?")
 			    query = """SELECT candidate_name, SUM(to_int(total_votes)) AS sum_total_votes
 			        FROM votes GROUP BY candidate_name ORDER BY sum_total_votes DESC"""
-			    sqlContext.sql(query).show()
+			    spark.sql(query).show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
-			<p>Since SparkR does not yet support UDFs, we use the <span class="rCW">votes_int</span>
+			<p>Since SparkR does not yet support UDFs that work on columns yet, we use the <span class="rCW">votes_int</span>
 				temporary table created in the previous transformation.</p>
 			<bu:rCode lang="plain">
 				print("How many votes did each candidate get?")
 				query <- paste("SELECT candidate_name, SUM(total_votes_int) AS sum_total_votes",
 				    "FROM votes_int GROUP BY candidate_name ORDER BY sum_total_votes DESC", sep=" ")
-				print(collect(sql(sqlContext, query)))
+				print(collect(sql(query)))
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("How many votes did each candidate get?")
 				query = """SELECT candidate_name, SUM(to_int(total_votes)) AS sum_total_votes
 					FROM votes GROUP BY candidate_name ORDER BY sum_total_votes DESC"""
-				sqlContext.sql(query).show()
+				spark.sql(query).show()
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -491,7 +493,7 @@ You can even mix and match approaches at different points in your processing pip
 				query = "SELECT precinct_name, SUM(to_int(total_votes)) AS sum_total_votes "
 					+ "FROM votes WHERE precinct_code NOT LIKE '##%' "
 					+ "GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1";
-				sqlContext.sql(query).show();
+				spark.sql(query).show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
@@ -500,10 +502,10 @@ You can even mix and match approaches at different points in your processing pip
 			    query = """SELECT precinct_name, SUM(to_int(total_votes)) AS sum_total_votes
 			        FROM votes WHERE precinct_code NOT LIKE '##%'
 			        GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1"""
-			    sqlContext.sql(query).show()
+			    spark.sql(query).show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
-			<p>Since SparkR does not yet support UDFs, we use the <span class="rCW">votes_int</span>
+			<p>Since SparkR does not yet support UDFs that work on columns, we use the <span class="rCW">votes_int</span>
 				temporary table created in the previous transformation.</p>
 			<bu:rCode lang="plain">
 				print("Which polling station had the highest physical turnout?")
@@ -511,7 +513,7 @@ You can even mix and match approaches at different points in your processing pip
 				query <- paste("SELECT precinct_name, SUM(total_votes_int) AS sum_total_votes",
 				    "FROM votes_int WHERE precinct_code NOT LIKE '##%'",
 				    "GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1", sep=" ")
-				print(collect(sql(sqlContext, query)))
+				print(collect(sql(query)))
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
@@ -520,7 +522,7 @@ You can even mix and match approaches at different points in your processing pip
 				query = """SELECT precinct_name, SUM(to_int(total_votes)) AS sum_total_votes
 					FROM votes WHERE precinct_code NOT LIKE '##%'
 					GROUP BY precinct_name ORDER BY sum_total_votes DESC LIMIT 1"""
-				sqlContext.sql(query).show()
+				spark.sql(query).show()
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -555,10 +557,10 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 			import org.apache.spark.sql.types.DataTypes;
 			
 			// Define the UDF
-			sqlContext.udf().register("udfUppercase", (String string) -> string.toUpperCase(), DataTypes.StringType);
+			spark.udf().register("udfUppercase", (String string) -> string.toUpperCase(), DataTypes.StringType);
 
 			// Convert a whole column to uppercase with a UDF.
-			DataFrame newDF = oldDF.withColumn("name_upper", callUDF("udfUppercase", oldDF.col("name")));
+			Dataset<Row> newDF = oldDF.withColumn("name_upper", callUDF("udfUppercase", oldDF.col("name")));
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
@@ -574,8 +576,8 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 			newDF = oldDF.withColumn("name_upper", udf_uppercase("name"))
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
-		<p>Unfortunately, SparkR does not yet support UDFs. You can track the progress of this
-			work in the <a href="https://issues.apache.org/jira/browse/SPARK-6817">SPARK-6817</a> ticket.</p>
+		<p>Unfortunately, SparkR does not yet support UDFs that work on columns. You can track the progress of this
+			work in the <a href="https://issues.apache.org/jira/browse/SPARK-12918">SPARK-12918</a> ticket.</p>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
 			import org.apache.spark.sql.functions.udf
