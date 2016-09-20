@@ -18,21 +18,23 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 
 /**
- * A simple application which merely initializes the spark context,
+ * A simple application which merely initializes the spark session,
  * for the purposes of demonstrating how to submit an application to
  * Spark for execution.
  */
 object SSubmittingApplications {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SSubmittingApplications")
-		val sc = new SparkContext(sparkConf)
+                val spark = SparkSession
+                    .builder
+                    .appName("SSubmittingApplications")
+                    .getOrCreate()
 
-		println("You are using Spark " + sc.version)
+		println("You are using Spark " + spark.version)
 		
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println
