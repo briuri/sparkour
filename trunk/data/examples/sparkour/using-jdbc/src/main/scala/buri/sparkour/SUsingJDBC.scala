@@ -18,11 +18,10 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 
-import java.io.{File, FileInputStream};
-import java.util.Properties;
+import java.io.{File, FileInputStream}
+import java.util.Properties
 
 /**
  * Loads a DataFrame from a relational database table over JDBC,
@@ -30,19 +29,16 @@ import java.util.Properties;
  */
 object SUsingJDBC {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SUsingJDBC")
-		val sc = new SparkContext(sparkConf)
-
-		val sqlContext = new SQLContext(sc)
+		val spark = SparkSession.builder.appName("SUsingJDBC").getOrCreate()
 		
 		// Load properties from file
 		val dbProperties = new Properties
-		dbProperties.load(new FileInputStream(new File("db-properties.flat")));
+		dbProperties.load(new FileInputStream(new File("db-properties.flat")))
 		val jdbcUrl = dbProperties.getProperty("jdbcUrl")
 		
 		println("A DataFrame loaded from the entire contents of a table over JDBC.")
 		var where = "sparkour.people"
-		val entireDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+		val entireDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 		entireDF.printSchema()
 		entireDF.show()
 		
@@ -51,7 +47,7 @@ object SUsingJDBC {
 		
 		println("Alternately, pre-filter the table for males before loading over JDBC.")
 		where = "(select * from sparkour.people where is_male = 1) as subset"
-		val malesDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+		val malesDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 		malesDF.show()
 		
 		println("Update weights by 2 pounds (results in a new DataFrame with same column names)")
@@ -65,10 +61,10 @@ object SUsingJDBC {
 		updatedDF.write.mode("error").jdbc(jdbcUrl, where, dbProperties)
 		
 		println("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-		val retrievedDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+		val retrievedDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 		retrievedDF.show()
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println

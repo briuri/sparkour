@@ -23,8 +23,7 @@ install.packages("rjson", repos="http://cran.r-project.org")
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
 library(rjson)
 
-sc <- sparkR.init()
-sqlContext = sparkRSQL.init(sc)
+session <- sparkR.session()
 
 # Load properties from file
 properties <- fromJSON(file="db-properties.json")
@@ -32,7 +31,7 @@ jdbcUrl <- paste(properties["jdbcUrl"], "?user=", properties["user"], "&password
 
 print("A DataFrame loaded from the entire contents of a table over JDBC.")
 where <- "sparkour.people"
-entireDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
+entireDF <- read.jdbc(url=jdbcUrl, tableName=where)
 printSchema(entireDF)
 print(collect(entireDF))
 
@@ -41,7 +40,7 @@ print(collect(filter(entireDF, "is_male = 1")))
 
 print("Alternately, pre-filter the table for males before loading over JDBC.")
 where <- "(select * from sparkour.people where is_male = 1) as subset"
-malesDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
+malesDF <- read.jdbc(url=jdbcUrl, tableName=where)
 print(collect(malesDF))
 
 print("Update weights by 2 pounds (results in a new DataFrame with same column names)")
@@ -50,15 +49,12 @@ selectDF = select(heavyDF, "id", "name", "is_male", "height_in", "updated_weight
 updatedDF <- withColumnRenamed(selectDF, "updated_weight_lb", "weight_lb")
 print(collect(updatedDF))
 
-# As of Spark 1.6.2, saving to JDBC does not work in R (expected to be fixed in 2.0.0).
-# Check https://issues.apache.org/jira/browse/SPARK-12224 to see when support is added.
+print("Save the updated data to a new table with JDBC")
+where <- "sparkour.updated_people"
+write.jdbc(updatedDF, jdbcUrl, tableName=where)
 
-#print("Save the updated data to a new table with JDBC")
-#where <- "sparkour.updated_people"
-#write.df(updatedDF, jdbcUrl, source="jdbc", dbtable=where)
-
-#print("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-#retrievedDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
-#print(collect(retrievedDF))
+print("Load the new table into a new DataFrame to confirm that it was saved successfully.")
+retrievedDF <- read.jdbc(url=jdbcUrl, tableName=where)
+print(collect(retrievedDF))
 
 sparkR.stop()
