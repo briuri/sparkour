@@ -17,8 +17,7 @@
 from __future__ import print_function
 import json
 
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
+from pyspark.sql import SparkSession
 
 """
     Loads a DataFrame from a relational database table over JDBC,
@@ -29,8 +28,7 @@ from pyspark.sql import SQLContext
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="using_jdbc")
-    sqlContext = SQLContext(sc)
+    spark = SparkSession.builder.appName("using_jdbc").getOrCreate()
 
     # Load properties from file
     with open('db-properties.json') as propertyFile:
@@ -43,7 +41,7 @@ if __name__ == "__main__":
 
     print("A DataFrame loaded from the entire contents of a table over JDBC.")
     where = "sparkour.people"
-    entireDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+    entireDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
     entireDF.printSchema()
     entireDF.show()
 
@@ -52,7 +50,7 @@ if __name__ == "__main__":
 
     print("Alternately, pre-filter the table for males before loading over JDBC.")
     where = "(select * from sparkour.people where is_male = 1) as subset"
-    malesDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+    malesDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
     malesDF.show()
 
     print("Update weights by 2 pounds (results in a new DataFrame with same column names)")
@@ -66,7 +64,7 @@ if __name__ == "__main__":
     updatedDF.write.jdbc(jdbcUrl, where, properties=dbProperties, mode="error")
 
     print("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-    retrievedDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+    retrievedDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
     retrievedDF.show()
 
-    sc.stop()
+    spark.stop()
