@@ -244,12 +244,12 @@ For now, we use a pre-built distribution which already contains a common set of 
 		<a href="http://spark.apache.org/downloads.html">Apache Spark Download</a> page. We need to generate a download
 		link which we can access from our EC2 instance. 
 		Make selections for the first three bullets on the page as follows:<br /><br />
-		<span class="rK">Spark release</span>: <span class="rV">1.6.2 (Jun 25 2016)</span><br />
-		<span class="rK">Package type</span>: <span class="rV">Pre-built for Hadoop 2.6 and later</span><br />
+		<span class="rK">Spark release</span>: <span class="rV">2.0.0 (Jul 26 2016)</span><br />
+		<span class="rK">Package type</span>: <span class="rV">Pre-built for Hadoop 2.7 and later</span><br />
 		<span class="rK">Download type</span>: <span class="rV">Direct Download</span></li>
 	<li>The download link in the 4th bullet dynamically updates based on your choices, as seen in the image below.</li>
 	
-	<img src="${localImagesUrlBase}/spark-download.png" width="716" height="275" title="Getting a download link for Apache Spark" class="diagram border" />
+	<img src="${localImagesUrlBase}/spark-download.png" width="715" height="291" title="Getting a download link for Apache Spark" class="diagram border" />
 	
 	<li>Right-click on the download link and Copy it into your clipboard so it can be pasted onto your EC2 instance. It may not be the same
 		as the link in the example script below. From your EC2 instance, type these commands:</li>
@@ -257,13 +257,13 @@ For now, we use a pre-built distribution which already contains a common set of 
 	<bu:rCode lang="bash">
 		# Download Spark to the ec2-user's home directory
 		cd ~
-		wget http://d3kbcqa49mib13.cloudfront.net/spark-1.6.2-bin-hadoop2.6.tgz
+		wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.0-bin-hadoop2.7.tgz
 		
 		# Unpack Spark in the /opt directory
-		sudo tar zxvf spark-1.6.2-bin-hadoop2.6.tgz -C /opt
+		sudo tar zxvf spark-2.0.0-bin-hadoop2.7.tgz -C /opt
 		
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs /opt/spark-1.6.2-bin-hadoop2.6 /opt/spark
+		sudo ln -fs spark-2.0.0-bin-hadoop2.7 /opt/spark
 	</bu:rCode>
 
 	<li>To complete your installation, set the <span class="rCW">SPARK_HOME</span>
@@ -331,6 +331,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="bash">
 				# Start the Python shell
+				cd $SPARK_HOME
 				$SPARK_HOME/bin/pyspark
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -341,13 +342,15 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="bash">
 				# Start the Scala shell
+				cd $SPARK_HOME
 				$SPARK_HOME/bin/spark-shell
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
 
 	<li>While in a shell, your command prompt changes, and you have access to environment settings in a
-	<span class="rCW">SparkContext</span> object defined in an <span class="rCW">sc</span> variable.
+	<span class="rCW">SparkSession</span> object defined in an <span class="rCW">spark</span> variable. (In Spark 1.x, the environment
+	object is a <span class="rCW">SparkContext</span>, stored in the <span class="rCW">sc</span> variable).
 	When you see the shell prompt, you can enter arbitrary code in the appropriate language. (You don't 
 	have to type the explanatory comments). The shell responses to each of these commands is omitted for clarity.</li>
 	
@@ -356,7 +359,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
 			<bu:rCode lang="java">
 				// Load the README.md file for processing
-				JavaRDD<String> textFile = sc.textFile("README.md");
+				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
 				
 				// Output the line count (it should match the wc output from the command line)
 				System.out.println(textFile.count());
@@ -364,7 +367,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				>>> # Load the README.md file for processing
-				>>> textFile = sc.textFile("README.md")
+				>>> textFile = spark.read.text("README.md")
 				>>> # Output the line count (it should match the wc output from the command line)
 				>>> textFile.count()
 				>>> # Quit the shell
@@ -372,7 +375,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				> # The low-level Spark Core API containing <span class="rCW">textFile()</span>
+				> # The low-level Spark Core API containing "textFile()"
 				> # is not available in R, so we just print hello and quit.
 				> print("Hello")
 				> quit()
@@ -381,12 +384,13 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				scala> // Load the README.md file for processing
-				scala> val textFile = sc.textFile("README.md")
+				scala> val textFile = spark.read.textFile("README.md")
 				scala> // Output the line count (it should match the wc output from the command line)
 				scala> textFile.count()
 				scala> // Quit the shell
-				scala> exit
+				scala> sys.exit
 			</bu:rCode>	
+			<p>When using a version of Spark built with Scala 2.10, the command to quit is simply "<span class="rCW">exit</span>".
 		</bu:rTab>
 	</bu:rTabs>
 	
