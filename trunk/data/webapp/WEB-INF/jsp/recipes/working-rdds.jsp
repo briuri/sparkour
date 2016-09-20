@@ -6,7 +6,7 @@
 
 <bu:rOverview publishDate="2016-02-29">
 	<h3>Synopsis</h3>
-	<p>This tutorial explores Resilient Distributed Datasets (RDDs), Spark's primary data structure which
+	<p>This tutorial explores Resilient Distributed Datasets (RDDs), Spark's primary low-level data structure which
 	enables high performance data processing. We use simple programs (in Java, Python, or Scala) to create RDDs
 	and experiment with the available transformations and actions from the Spark Core API. Finally, we explore the available
 	Spark features for making your application more amenable to distributed processing.</p>
@@ -126,7 +126,7 @@ within the cluster.</p>
 	        }
 	
 	        // Create an RDD from the numbers array
-	        JavaRDD<Integer> numbersListRdd = sc.parallelize(numbers);
+	        JavaRDD<Integer> numbersListRdd = spark.sparkContext().parallelize(numbers);
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
@@ -136,7 +136,7 @@ within the cluster.</p>
         		numbers.append(random.randint(0, 50))
         		
     		# Create an RDD from the numbers array
-    		numbersListRdd = sc.parallelize(numbers)
+    		numbersListRdd = spark.sparkContext.parallelize(numbers)
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noRMessage}" escapeXml="false" />
@@ -146,7 +146,7 @@ within the cluster.</p>
 	        val numbers = Seq.fill(1000)(Random.nextInt(50))
 	
 	        // Create an RDD from the numbers array
-	        val numbersListRdd = sc.parallelize(numbers)
+	        val numbersListRdd = spark.sparkContext.parallelize(numbers)
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -158,19 +158,19 @@ types of files, including <span class="rCW">SequenceFiles</span> containing key-
 	<bu:rTab index="1">
 		<bu:rCode lang="java">
 	        // Create an RDD from a similar array on the local filesystem
-	        JavaRDD<String> numbersFilesRdd = sc.textFile("random_numbers.txt");
+	        JavaRDD<String> numbersFilesRdd = spark.sparkContext().textFile("random_numbers.txt");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
  			# Create an RDD from a similar array on the local filesystem
-    		numbersFileRdd = sc.textFile("random_numbers.txt")
+    		numbersFileRdd = spark.sparkContext.textFile("random_numbers.txt")
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noRMessage}" escapeXml="false" />
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
         	// Create an RDD from a similar array on the local filesystem
-        	val numbersFilesRdd = sc.textFile("random_numbers.txt")
+        	val numbersFilesRdd = spark.sparkContext.textFile("random_numbers.txt")
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -461,6 +461,7 @@ make sure to terminate it so you also stop incurring charges for the attached EB
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shuffle-operations">Shuffle Operations</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#understanding-closures-a-nameclosureslinka">Understanding Closures</a> in the Spark Programming Guide</li>	
 		<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
+		<li><a href="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html">A Tale of Three Apache Spark APIs: RDDs, DataFrames, and Datasets</a></li>
 		<li><bu:rLink id="broadcast-variables" /></li>
 		<li><bu:rLink id="aggregating-accumulators" /></li>
 	</bu:rLinks>
