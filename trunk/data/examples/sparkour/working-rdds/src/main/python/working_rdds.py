@@ -29,7 +29,7 @@ from pyspark.sql import SparkSession
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    spark = SparkSession.builder.appName("workings_rdds").getOrCreate()
+    spark = SparkSession.builder.appName("working_rdds").getOrCreate()
 
     # Create an array of 1000 random numbers between 0 and 50.
     numbers = []
