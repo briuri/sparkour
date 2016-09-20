@@ -27,10 +27,7 @@ import org.apache.spark.sql.SparkSession
  */
 object SSubmittingApplications {
 	def main(args: Array[String]) {
-                val spark = SparkSession
-                    .builder
-                    .appName("SSubmittingApplications")
-                    .getOrCreate()
+		val spark = SparkSession.builder.appName("SSubmittingApplications").getOrCreate()
 
 		println("You are using Spark " + spark.version)
 		

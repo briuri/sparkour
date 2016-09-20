@@ -27,13 +27,10 @@ import org.apache.spark.sql.SparkSession;
 public final class JSubmittingApplications {
 
 	public static void main(String[] args) throws Exception {
-                SparkSession spark = SparkSession
-                    .builder()
-                    .appName("JSubmittingApplications")
-                    .getOrCreate();
+		SparkSession spark = SparkSession.builder().appName("JSubmittingApplications").getOrCreate();
 
 		System.out.println("You are using Spark " + spark.version());
-		
+
 		spark.stop();
 	}
 }
