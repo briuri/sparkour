@@ -9,7 +9,8 @@
 	
 	<h3>Prerequisites</h3>
 	<ol>
-		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.</li> 
+		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.
+			If you're working in Java, you should understand that DataFrames are now represented by a <span class="rCW">Dataset[Row]</span> object.</li> 
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
 			covered in <bu:rLink id="submitting-applications" />.</li>
 		<li>You need administrative access to a relational database (such as mySQL, PostgreSQL, or Oracle).</li>
@@ -17,7 +18,8 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Spark DataFrames were introduced in Spark <span class="rPN">1.3.0</span>. Any equal or higher version should work with this recipe.</li>
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher.
+			You may need to make modifications to use it on an older version of Spark.</li>
 		<li>The examples in this recipe employ the mySQL Connector/J <span class="rPN">5.1.38</span> library to communicate with a mySQL database,
 			but any relational database with a JVM-compatible connector library should suffice.</li> 
 	</ol>
@@ -262,7 +264,7 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 			<bu:rCode lang="java">
 				System.out.println("A DataFrame loaded from the entire contents of a table over JDBC.");
 				String where = "sparkour.people";
-				DataFrame entireDF = sqlContext.read().jdbc(jdbcUrl, where, dbProperties);
+				Dataset<Row> entireDF = spark.read().jdbc(jdbcUrl, where, dbProperties);
 				entireDF.printSchema();
 				entireDF.show();
 			</bu:rCode>
@@ -270,7 +272,7 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 			<bu:rCode lang="python">
 			    print("A DataFrame loaded from the entire contents of a table over JDBC.")
 			    where = "sparkour.people"
-			    entireDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+			    entireDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
 			    entireDF.printSchema()
 			    entireDF.show()
 			</bu:rCode>
@@ -278,7 +280,7 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 			<bu:rCode lang="plain">
 				print("A DataFrame loaded from the entire contents of a table over JDBC.")
 				where <- "sparkour.people"
-				entireDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
+				entireDF <- read.jdbc(url=jdbcUrl, tableName=where)
 				printSchema(entireDF)
 				print(collect(entireDF))					
 			</bu:rCode>	
@@ -286,7 +288,7 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 			<bu:rCode lang="scala">
 				println("A DataFrame loaded from the entire contents of a table over JDBC.")
 				var where = "sparkour.people"
-				val entireDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+				val entireDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 				entireDF.printSchema()
 				entireDF.show()
 			</bu:rCode>	
@@ -373,28 +375,28 @@ modified the <span class="rCW">spark-defaults.conf</span> file.</p>
 			<bu:rCode lang="java">
 				System.out.println("Alternately, pre-filter the table for males before loading over JDBC.");
 				where = "(select * from sparkour.people where is_male = 1) as subset";
-				DataFrame malesDF = sqlContext.read().jdbc(jdbcUrl, where, dbProperties);
+				Dataset<Row> malesDF = spark.read().jdbc(jdbcUrl, where, dbProperties);
 				malesDF.show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    print("Alternately, pre-filter the table for males before loading over JDBC.")
 			    where = "(select * from sparkour.people where is_male = 1) as subset"
-			    malesDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+			    malesDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
 			    malesDF.show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				print("Alternately, pre-filter the table for males before loading over JDBC.")
 				where <- "(select * from sparkour.people where is_male = 1) as subset"
-				malesDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
+				malesDF <- read.jdbc(url=jdbcUrl, tableName=where)
 				print(collect(malesDF))			
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				println("Alternately, pre-filter the table for males before loading over JDBC.")
 				where = "(select * from sparkour.people where is_male = 1) as subset"
-				val malesDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+				val malesDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 				malesDF.show()				
 			</bu:rCode>	
 		</bu:rTab>
@@ -448,8 +450,8 @@ rather than updating the existing one.</p>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				System.out.println("Update weights by 2 pounds (results in a new DataFrame with same column names)");
-				DataFrame heavyDF = entireDF.withColumn("updated_weight_lb", entireDF.col("weight_lb").plus(2));
-				DataFrame updatedDF = heavyDF.select("id", "name", "is_male", "height_in", "updated_weight_lb")
+				Dataset<Row> heavyDF = entireDF.withColumn("updated_weight_lb", entireDF.col("weight_lb").plus(2));
+				Dataset<Row> updatedDF = heavyDF.select("id", "name", "is_male", "height_in", "updated_weight_lb")
 					.withColumnRenamed("updated_weight_lb", "weight_lb");
 				updatedDF.show();
 			</bu:rCode>
@@ -507,7 +509,7 @@ rather than updating the existing one.</p>
 				updatedDF.write().mode("error").jdbc(jdbcUrl, where, dbProperties);
 		
 				System.out.println("Load the new table into a new DataFrame to confirm that it was saved successfully.");
-				DataFrame retrievedDF = sqlContext.read().jdbc(jdbcUrl, where, dbProperties);
+				Dataset<Row> retrievedDF = spark.read().jdbc(jdbcUrl, where, dbProperties);
 				retrievedDF.show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
@@ -517,21 +519,17 @@ rather than updating the existing one.</p>
 			    updatedDF.write.jdbc(jdbcUrl, where, properties=dbProperties, mode="error")
 			
 			    print("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-			    retrievedDF = sqlContext.read.jdbc(jdbcUrl, where, properties=dbProperties)
+			    retrievedDF = spark.read.jdbc(jdbcUrl, where, properties=dbProperties)
 			    retrievedDF.show()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-			
-				# SparkR does not yet support writing to JDBC. This is what the code would look like when
-				# that feature is implemented.
-				
 				print("Save the updated data to a new table with JDBC")
 				where <- "sparkour.updated_people"
-				write.df(updatedDF, jdbcUrl, source="jdbc", dbtable=where)
+				write.jdbc(updatedDF, jdbcUrl, tableName=where)
 				
 				print("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-				retrievedDF <- read.df(sqlContext, source="jdbc", url=jdbcUrl, dbtable=where)
+				retrievedDF <- read.jdbc(url=jdbcUrl, tableName=where)
 				print(collect(retrievedDF))		
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
@@ -541,7 +539,7 @@ rather than updating the existing one.</p>
 					updatedDF.write.mode("error").jdbc(jdbcUrl, where, dbProperties)
 					
 					println("Load the new table into a new DataFrame to confirm that it was saved successfully.")
-					val retrievedDF = sqlContext.read.jdbc(jdbcUrl, where, dbProperties)
+					val retrievedDF = spark.read.jdbc(jdbcUrl, where, dbProperties)
 					retrievedDF.show()		
 			</bu:rCode>	
 		</bu:rTab>
@@ -576,10 +574,8 @@ rather than updating the existing one.</p>
 
 <h3>org.apache.spark.sql.execution.datasources.jdbc.DefaultSource does not allow create table as select.</h3>
 
-<p>You may encounter this error when trying to write to a JDBC table with <span class="rCW">write.df()</span>.
-The SparkR API does not fully support JDBC yet, so you cannot write to tables in R yet. 
-There will eventually be a <span class="rCW">write.jdbc()</span> function added, and you can track
-the progress of this work in the <a href="https://issues.apache.org/jira/browse/SPARK-12224">SPARK-12224</a> ticket.</p> 
+<p>You may encounter this error when trying to write to a JDBC table with R's <span class="rCW">write.df()</span> function
+in Spark 1.6 or lower. You will need to upgrade to Spark 2.0.0 to write to tables in R.</p> 
 
 <h3>Schema Variations</h3>
 
