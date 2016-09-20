@@ -12,14 +12,16 @@
 	
 	<h3>Prerequisites</h3>
 	<ol>
-		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.</li>
+		<li>You should have a basic understand of Spark DataFrames, as covered in <bu:rLink id="working-dataframes" />.
+			If you're working in Java, you should understand that DataFrames are now represented by a <span class="rCW">Dataset[Row]</span> object.</li>
 		<li>You need a development environment with your primary programming language and Apache Spark installed, as
 			covered in <bu:rLink id="submitting-applications" />.</li>
 	</ol>		
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Spark DataFrames were introduced in Spark <span class="rPN">1.3.0</span>. Any equal or higher version should work with this recipe.</li>
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher.
+			You may need to make modifications to use it on an older version of Spark.</li>
 	</ol>
 		
 	<a name="toc"></a>
@@ -412,7 +414,7 @@ the SparkR API.</p>
 		
 				// Create a DataFrame from the RDD, inferring the schema from a bean class.
 				System.out.println("RDD: Schema inferred from bean class.");
-				DataFrame dataDF = sqlContext.createDataFrame(beanRDD, Record.class);
+				Dataset<Row> dataDF = spark.createDataFrame(beanRDD, Record.class);
 				dataDF.printSchema();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
@@ -422,12 +424,12 @@ the SparkR API.</p>
 			
 			    # Create a DataFrame from the RDD, inferring the schema from the first row.
 			    print("RDD: Schema inferred from first row.")
-			    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=None)
+			    dataDF = spark.createDataFrame(dataRDD, samplingRatio=None)
 			    dataDF.printSchema()
 			
 			    # Create a DataFrame from the RDD, inferring the schema from a sampling of rows.
 			    print("RDD: Schema inferred from random sample.")
-			    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=0.6)
+			    dataDF = spark.createDataFrame(dataRDD, samplingRatio=0.6)
 			    dataDF.printSchema()		
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -439,7 +441,7 @@ the SparkR API.</p>
 		
 				// Create a DataFrame from the RDD, inferring the schema from a case class.
 				println("RDD: Schema inferred from case class.")
-				var dataDF = sqlContext.createDataFrame(caseRDD)
+				var dataDF = spark.createDataFrame(caseRDD)
 				dataDF.printSchema()			
 			</bu:rCode>	
 		</bu:rTab>
@@ -602,14 +604,14 @@ the SparkR API.</p>
 		
 				// Create a DataFrame from the RDD, specifying a schema.
 				System.out.println("RDD: Schema programmatically specified.");
-				dataDF = sqlContext.createDataFrame(rowRDD, buildSchema());
+				dataDF = spark.createDataFrame(rowRDD, buildSchema());
 				dataDF.printSchema();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame from the RDD, specifying a schema.
 			    print("RDD: Schema programmatically specified.")
-			    dataDF = sqlContext.createDataFrame(dataRDD, schema=build_schema())
+			    dataDF = spark.createDataFrame(dataRDD, schema=build_schema())
 			    dataDF.printSchema()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -625,7 +627,7 @@ the SparkR API.</p>
 		
 				// Create a DataFrame from the RDD, specifying a schema.
 				println("RDD: Schema programmatically specified.")
-				dataDF = sqlContext.createDataFrame(rowRDD, buildSchema())
+				dataDF = spark.createDataFrame(rowRDD, buildSchema())
 				dataDF.printSchema()
 			</bu:rCode>	
 		</bu:rTab>
@@ -700,28 +702,28 @@ performance impact of this operation, you should consider programmatically speci
 			<bu:rCode lang="java">
 				// Create a DataFrame from a JSON source, inferring the schema from all rows.
 				System.out.println("JSON: Schema inferred from all rows.");
-				dataDF = sqlContext.read().option("samplingRatio", "1.0").json("data.json");
+				dataDF = spark.read().option("samplingRatio", "1.0").json("data.json");
 				dataDF.printSchema();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame from a JSON source, inferring the schema from all rows.
 			    print("JSON: Schema inferred from all rows.")
-			    dataDF = sqlContext.read.option("samplingRatio", 1.0).json("data.json")
+			    dataDF = spark.read.option("samplingRatio", 1.0).json("data.json")
 			    dataDF.printSchema()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
 				# Create a DataFrame from a JSON source, inferring the schema from all rows.
 				print("JSON: Schema inferred from all rows.")
-				dataDF <- read.df(sqlContext, "data.json", "json", samplingRatio = "1.0")
+				dataDF <- read.df("data.json", "json", samplingRatio = "1.0")
 				printSchema(dataDF)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create a DataFrame from a JSON source, inferring the schema from all rows.
 				println("JSON: Schema inferred from all rows.")
-				dataDF = sqlContext.read.option("samplingRatio", "1.0").json("data.json")
+				dataDF = spark.read.option("samplingRatio", "1.0").json("data.json")
 				dataDF.printSchema()
 			</bu:rCode>	
 		</bu:rTab>
@@ -798,14 +800,14 @@ performance impact of this operation, you should consider programmatically speci
 			<bu:rCode lang="java">
 				// Create a DataFrame from a JSON source, specifying a schema.
 				System.out.println("JSON: Schema programmatically specified.");
-				dataDF = sqlContext.read().schema(buildSchema()).json("data.json");
+				dataDF = spark.read().schema(buildSchema()).json("data.json");
 				dataDF.printSchema();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame from a JSON source, specifying a schema.
 			    print("JSON: Schema programmatically specified.")
-			    dataDF = sqlContext.read.json("data.json", schema=build_schema())
+			    dataDF = spark.read.json("data.json", schema=build_schema())
 			    dataDF.printSchema()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -820,14 +822,14 @@ performance impact of this operation, you should consider programmatically speci
 				    structField("registered_on", "date", TRUE),
 				    structField("visits", "array<timestamp>", TRUE)
 				)
-				dataDF <- read.df(sqlContext, "data.json", "json", schema)
+				dataDF <- read.df("data.json", "json", schema)
 				printSchema(dataDF)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create a DataFrame from a JSON source, specifying a schema.
 				println("JSON: Schema programmatically specified.")
-				dataDF = sqlContext.read.schema(buildSchema()).json("data.json")
+				dataDF = spark.read.schema(buildSchema()).json("data.json")
 				dataDF.printSchema()
 			</bu:rCode>	
 		</bu:rTab>
