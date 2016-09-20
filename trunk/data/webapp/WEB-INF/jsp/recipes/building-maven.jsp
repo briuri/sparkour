@@ -19,7 +19,7 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.10.6</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.8</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions.</li>
 		<li>You should consider using a minimum of Maven <span class="rPN">3.2.5</span> to maximize the availability
 			and compatibility of plugins, such as <span class="rCW">maven-compiler-plugin</span>, <span class="rCW">addjars-maven-plugin</span>,
@@ -148,16 +148,16 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 	    <dependencies>
         	<dependency>
             	<groupId>org.apache.spark</groupId>
-            	<artifactId>spark-core_2.10</artifactId>
-            	<version>1.6.2</version>
+            	<artifactId>spark-core_2.11</artifactId>
+            	<version>2.0.0</version>
             	<scope>provided</scope>
         	</dependency>
         	<!-- Other managed dependencies (described below) -->
 	    </dependencies>
 	</bu:rCode>
 	
-	<li>The <span class="rCW">_2.10</span> suffix in the <span class="rK">artifactId</span> specifies a build of Spark that was compiled
-		with Scala 2.10. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
+	<li>The <span class="rCW">_2.11</span> suffix in the <span class="rK">artifactId</span> specifies a build of Spark that was compiled
+		with Scala 2.11. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
 		signifies that Spark is needed to compile the project, but does not need to be available at runtime or included
 		in an assembly JAR file. (Recall that Spark will already be installed on a Spark cluster executing your
 		application, so there is no need to provide a new copy at runtime).</li>
@@ -214,9 +214,9 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 			public final class JBuildingMaven {
 			
 				public static void main(String[] args) throws Exception {
-					SparkConf sparkConf = new SparkConf().setAppName("JBuildingMaven");
-					JavaSparkContext sc = new JavaSparkContext(sparkConf);
-			
+					SparkSession spark = SparkSession.builder().appName("JBuildingMaven").getOrCreate();
+					JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+								
 					// Create a simple RDD containing 4 numbers.
 					List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
 					JavaRDD<Integer> numbersListRdd = sc.parallelize(numbers);
@@ -225,7 +225,7 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 					CSVPrinter printer = new CSVPrinter(System.out, CSVFormat.DEFAULT);
 					printer.printRecord(numbersListRdd.collect());
 			
-					sc.stop();
+					spark.stop();
 				}
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
@@ -241,19 +241,18 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 			 */
 			object SBuildingMaven {
 				def main(args: Array[String]) {
-					val sparkConf = new SparkConf().setAppName("SBuildingMaven")
-					val sc = new SparkContext(sparkConf)
+					val spark = SparkSession.builder.appName("SBuildingMaven").getOrCreate()
 			
 					// Create a simple RDD containing 4 numbers.
 					val numbers = Array(1, 2, 3, 4)
-					val numbersListRdd = sc.parallelize(numbers)
+					val numbersListRdd = spark.sparkContext.parallelize(numbers)
 			
 					// Convert this RDD into CSV (using Java CSV Commons library).
 					val printer = new CSVPrinter(Console.out, CSVFormat.DEFAULT)
 					val javaArray: Array[java.lang.Integer] = numbersListRdd.collect() map java.lang.Integer.valueOf
 					printer.printRecords(javaArray)
 			
-					sc.stop()
+					spark.stop()
 				}
 			}
 		</bu:rCode>	
