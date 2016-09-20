@@ -44,7 +44,6 @@
 					<li><bu:rLink id="using-jdbc" /></li>
 					<li><bu:rLink id="controlling-schema" /></li>
 					<li>Using Hive Tables with Spark DataFrames</li>
-					<li>Working with Spark Datasets</li>
 				</ul></li>
 				<li><span class="rCategory">Practices</span><ul>
 					<li><bu:rLink id="building-maven" /></li>
