@@ -158,7 +158,7 @@ types of files, including <span class="rCW">SequenceFiles</span> containing key-
 	<bu:rTab index="1">
 		<bu:rCode lang="java">
 	        // Create an RDD from a similar array on the local filesystem
-	        JavaRDD<String> numbersFilesRdd = spark.sparkContext().textFile("random_numbers.txt");
+	        JavaRDD<String> numbersFileRdd = spark.sparkContext().textFile("random_numbers.txt");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
@@ -170,7 +170,7 @@ types of files, including <span class="rCW">SequenceFiles</span> containing key-
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
         	// Create an RDD from a similar array on the local filesystem
-        	val numbersFilesRdd = spark.sparkContext.textFile("random_numbers.txt")
+        	val numbersFileRdd = spark.sparkContext.textFile("random_numbers.txt")
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -216,7 +216,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		
 		        // 1000 Houston residents: How many books do you own?
 		        // Must convert from string data to ints first
-		        JavaRDD<Integer> houstonRdd = numbersFilesRdd.flatMap(x -> Arrays.asList(x.split(" ")))
+		        JavaRDD<Integer> houstonRdd = numbersFileRdd.flatMap(x -> Arrays.asList(x.split(" ")))
 		                                                     .map(x -> Integer.valueOf(x));
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
@@ -238,7 +238,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		
 		        // 1000 Houston residents: How many books do you own?
 		        // Must convert from string data to ints first
-		        val houstonRdd = numbersFilesRdd.flatMap(x => x.split(' '))
+		        val houstonRdd = numbersFileRdd.flatMap(x => x.split(' '))
 		                                        .map(x => x.toInt)
 			</bu:rCode>	
 		</bu:rTab>
