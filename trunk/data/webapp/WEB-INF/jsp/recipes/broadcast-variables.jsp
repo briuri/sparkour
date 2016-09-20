@@ -18,7 +18,8 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Broadcast variables existed in Spark as early as <span class="rPN">0.5.2</span>. Any modern version should work with this recipe.</li>
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher.
+			You may need to make modifications to use it on an older version of Spark.</li>
 	</ol>
 		
 	<a name="toc"></a>
@@ -69,7 +70,7 @@ to construct a distributed data structure after it has been broadcast.</p>
 			print(data[0])
 			
 			// Data as a broadcast variable
-			broadcastVar = sc.broadcast(data)
+			broadcastVar = spark.sparkContext.broadcast(data)
 			print(broadcastVar.value[0])
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
@@ -81,7 +82,7 @@ to construct a distributed data structure after it has been broadcast.</p>
 			println(data[0])
 			
 			// Data as a broadcast variable
-			val broadcastVar = sc.broadcast(data)
+			val broadcastVar = spark.sparkContext.broadcast(data)
 			println(broadcastVar.value[0])
 		</bu:rCode>	
 	</bu:rTab>
@@ -172,32 +173,33 @@ on the parts of the code related to broadcast variables for now.</p>
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
-				SQLContext sqlContext = new SQLContext(sc);
+				SparkSession spark = SparkSession.builder().appName("JBroadcastVariables").getOrCreate();
+				JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 		
 				// Register state data and schema as broadcast variables
-				DataFrame localDF = sqlContext.read().json("us_states.json");
+				Dataset<Row> localDF = spark.read().json("us_states.json");
 				Broadcast<List<Row>> broadcastStateData = sc.broadcast(localDF.collectAsList());
 				Broadcast<StructType> broadcastSchema = sc.broadcast(localDF.schema());
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-			    sqlContext = SQLContext(sc)
+			    spark = SparkSession.builder.appName("broadcast_variables").getOrCreate()
 			    
 			    # Register state data and schema as broadcast variables
-			    localDF = sqlContext.read.json("us_states.json")
-			    broadcastStateData = sc.broadcast(localDF.collect())
-			    broadcastSchema = sc.broadcast(localDF.schema)
+			    localDF = spark.read.json("us_states.json")
+			    broadcastStateData = spark.sparkContext.broadcast(localDF.collect())
+			    broadcastSchema = spark.sparkContext.broadcast(localDF.schema)
     		</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				val sqlContext = new SQLContext(sc)
+				val spark = SparkSession.builder.appName("SBroadcastVariables").getOrCreate()
 		
 				// Register state data and schema as broadcast variables
-				val localDF = sqlContext.read.json("us_states.json")
-				val broadcastStateData = sc.broadcast(localDF.collectAsList())
-				val broadcastSchema = sc.broadcast(localDF.schema)
+				val localDF = spark.read.json("us_states.json")
+				val broadcastStateData = spark.sparkContext.broadcast(localDF.collectAsList())
+				val broadcastSchema = spark.sparkContext.broadcast(localDF.schema)
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -212,28 +214,28 @@ on the parts of the code related to broadcast variables for now.</p>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				// Create a DataFrame based on the store locations.
-				DataFrame storesDF = sqlContext.read().json("store_locations.json");
+				Dataset<Row> storesDF = spark.read().json("store_locations.json");
 		
 				// Create a DataFrame of US state data with the broadcast variables.
-				DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), broadcastSchema.value());				
+				Dataset<Row> stateDF = spark.createDataFrame(broadcastStateData.value(), broadcastSchema.value());				
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame based on the store locations.
-			    storesDF = sqlContext.read.json("store_locations.json")
+			    storesDF = spark.read.json("store_locations.json")
 			
 			    # Create a DataFrame of US state data with the broadcast variables.
-    			stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
+    			stateDF = spark.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create a DataFrame based on the store locations.
-				val storesDF = sqlContext.read.json("store_locations.json")
+				val storesDF = spark.read.json("store_locations.json")
 
 				// Create a DataFrame of US state data with the broadcast variables.
-				val stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)				
+				val stateDF = spark.createDataFrame(broadcastStateData.value, broadcastSchema.value)				
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>		
@@ -246,7 +248,7 @@ on the parts of the code related to broadcast variables for now.</p>
 			<bu:rCode lang="java">
 				// Join the DataFrames to get an aggregate count of stores in each US Region
 				System.out.println("How many stores are in each US region?");
-				DataFrame joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
+				Dataset<Row> joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
 				joinedDF.show();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
