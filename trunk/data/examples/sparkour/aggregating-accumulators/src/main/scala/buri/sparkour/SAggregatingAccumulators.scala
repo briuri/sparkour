@@ -18,8 +18,7 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.{Row, SQLContext}
+import org.apache.spark.sql.{Row, SparkSession}
 
 /**
  * Uses accumulators to provide statistics on potentially incorrect data.
@@ -27,15 +26,13 @@ import org.apache.spark.sql.{Row, SQLContext}
 object SAggregatingAccumulators {
 
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SAggregatingAccumulators")
-		val sc = new SparkContext(sparkConf)
-		val sqlContext = new SQLContext(sc)
+		val spark = SparkSession.builder.appName("SAggregatingAccumulators").getOrCreate()
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		val heightCount = sc.accumulator(0)
+		val heightCount = spark.accumulator(0)
 
 		// Create an accumulator to store all questionable values.
-		val heightValues = sc.accumulator("")(StringAccumulatorParam)
+		val heightValues = spark.accumulator("")(StringAccumulatorParam)
 
 		// A function that checks for questionable values
 		def validate(row: Row) = {
@@ -56,7 +53,7 @@ object SAggregatingAccumulators {
 		println(s"$heightCount rows had questionable values.")
 		println(s"Questionable values: $heightValues")
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println

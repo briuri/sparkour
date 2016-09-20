@@ -18,9 +18,8 @@
 package buri.sparkour;
 
 import org.apache.spark.Accumulator;
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.VoidFunction;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.DataFrame;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
@@ -31,15 +30,13 @@ import org.apache.spark.sql.SQLContext;
 public final class JAggregatingAccumulators {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JAggregatingAccumulators");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder().appName("JAggregatingAccumulators").getOrCreate();
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		Accumulator<Integer> heightCount = sc.accumulator(0);
+		Accumulator<Integer> heightCount = spark.accumulator(0);
 
 		// Create an accumulator to store all questionable values.
-		Accumulator<String> heightValues = sc.accumulator("", new StringAccumulatorParam());
+		Accumulator<String> heightValues = spark.accumulator("", new StringAccumulatorParam());
 
 		// A function that checks for questionable values
 		VoidFunction<Row> validate = new VoidFunction<Row>() {
@@ -62,6 +59,6 @@ public final class JAggregatingAccumulators {
 		System.out.println(String.format("%d rows had questionable values.", heightCount.value()));
 		System.out.println(String.format("Questionable values: %s", heightValues.value()));
 
-		sc.stop();
+		spark.stop();
 	}
 }
