@@ -33,15 +33,73 @@
 <bu:rSection anchor="01" title="Introducing DataFrames" />
 
 <p>Most Spark tutorials dive into Resilient Distributed Datasets (RDDs) right away, loading file data with the Spark Core API (via <span class="rCW">textFile()</span>),
-and performing common transformations and actions on the raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions at a higher level. 
-The DataFrames API provides a tabular view of RDD data and allows you to use common relational database patterns without stringing together endless chains 
-of low-level operators. (In math terms, where the Core API gives you <span class="rCW">add()</span> and allows you to put it in a loop to perform multiplication, 
-the DataFrames API just provides <span class="rCW">multiply()</span> right out of the box).</p>
-	
-<p>DataFrames are optimized for distributed processing within Spark, and are also compatible with the DataFrame libraries offered in Python and R.
-You can create a DataFrame from a variety of sources, such as existing RDDs, relational database tables, Apache Hive tables, JSON, Parquet, and text files.
-With a schema that's either inferred from the data or specified as a configuration option, the data can immediately be traversed or transformed as a column-based table.</p>
-			
+and performing common transformations and actions on the raw data. In practice, you infrequently call on the Core API because Spark offers more useful abstractions at a higher level.
+As Spark has evolved, the DataFrames API and later the Dataset API were created to simplify data processing.</p>
+
+<ul>
+	<li><span class="rPN">DataFrames</span> provide a tabular view of RDD data and allow you to use common relational database patterns 
+	without stringing together endless chains of low-level operators. (For a math analogy, where the Core API gives you <span class="rCW">add()</span> 
+	and allows you to put it in a loop to perform multiplication, the DataFrames API just provides <span class="rCW">multiply()</span> right 
+	out of the box).</li>
+	<li><span class="rPN">Datasets</span> go one step further than DataFrames by providing strong typing -- the data inside a Dataset can be represented
+	with full-fledged classes, allowing certain classes of errors to be caught at compile time rather than at run time. As interpreted languages, Python and
+	R do not implement type safety. Therefore, Datasets can only be used in Java and Scala.</li> 
+	</li>
+</ul>
+
+<p>The DataFrames and Dataset classes were unified in Spark 2.0 to reduce confusion, but you might still be confused by the manner in which 
+this was implemented. Here are some rules of thumb for each language:</p>
+
+<ul>
+	<li>In <span class="rPN">Java</span>, <span class="rCW">DataFrame</span> was completely removed from the API. In its place, you will use a <span class="rCW">DataSet</span>
+	containing <span class="rCW">Row</span> objects, where <span class="rCW">Row</span> is a generic, untyped Java Virtual Machine (JVM) object. You
+	can consider <span class="rCW">Dataset[Row]</span> to be synonymous with <span class="rCW">DataFrame</span> conceptually.</li>
+	<li>In <span class="rPN">Python</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you will use regularly. Spark DataFrames are also
+	compatible with other Python data frame libraries, such as <span class="rCW">pandas</span>.</li> 
+	<li>In <span class="rPN">R</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you will use regularly. Spark DataFrames are also
+	compatible with R's built-in data frame support.</li>
+	<li>In <span class="rPN">Scala</span>, <span class="rCW">DataFrame</span> is now an alias representing a <span class="rCW">DataSet</span>
+	containing <span class="rCW">Row</span> objects, where <span class="rCW">Row</span> is a generic, untyped Java Virtual Machine (JVM) object.
+	You can consider <span class="rCW">Dataset[Row]</span> to be synonymous with <span class="rCW">DataFrame</span> conceptually.</li>
+</ul>
+
+<p>The table below summarizes which data types are available in each language, organized by Spark version.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Spark Version</th><th>Data Type</th>
+			<th>Java</th><th>Python</th><th>R</th><th>Scala</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1.6</td><td>RDD</td>
+			<td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td>
+		</tr><tr>
+			<td>1.6</td><td>DataFrame</td>
+			<td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td>
+		</tr><tr>
+			<td>1.6</td><td>Dataset</td>
+			<td class="center">&#10003;</td><td class="center"> </td><td class="center"> </td><td class="center">&#10003;</td>
+		</tr><tr class="highlight">
+			<td>2.0</td><td>RDD</td>
+			<td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003;</td>
+		</tr><tr class="highlight">
+			<td>2.0</td><td>DataFrame</td>
+			<td class="center"> </td><td class="center">&#10003;</td><td class="center">&#10003;</td><td class="center">&#10003; (alias)</td>
+		</tr><tr class="highlight">
+			<td>2.0</td><td>Dataset</td>
+			<td class="center">&#10003;</td><td class="center"> </td><td class="center"> </td><td class="center">&#10003;</td>
+		</tr>	
+	</tbody>
+</table>
+
+<p>This recipe will focus exclusively on untyped DataFrames, with the particulars of Datasets covered in a future recipe.
+You can create a DataFrame from a variety of sources, such as existing RDDs, relational database tables, Apache Hive tables, JSON, Parquet, and 
+text files. With a schema that's either inferred from the data or specified as a configuration option, the data can immediately be 
+traversed or transformed as a column-based table.</p>
+
 <h3>Downloading the Source Code</h3>
 
 <ol>
@@ -100,7 +158,7 @@ With a schema that's either inferred from the data or specified as a configurati
 
 <bu:rSection anchor="02" title="Creating the DataFrame" />
 
-<p>The <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.SQLContext">SQLContext</a></span> class is the entry point for
+<p>The <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.SparkSession">SparkSession</a></span> class is the entry point for
 	the DataFrames API. This class exposes a <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameReader">DataFrameReader</a></span>
 	named <span class="rCW">read</span> which can be used to create a 
 	<span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> from existing data in supported formats. 
@@ -109,7 +167,7 @@ With a schema that's either inferred from the data or specified as a configurati
 	You can also read from relational database tables via JDBC, as described in <bu:rLink id="using-jdbc" />.</p> 
 
 <ol>
-	<li>In our application, we create a <span class="rCW">SQLContext</span> and then create a <span class="rCW">DataFrame</span> from
+	<li>In our application, we create a <span class="rCW">SparkSession</span> and then create a <span class="rCW">DataFrame</span> from
 		a JSON file. The format of the JSON file requires that each line be an independent, well-formed JSON object
 		(and lines should not end with a comma). Pretty-printed JSON objects need to be compressed to a single line.</li>
 			
@@ -122,35 +180,31 @@ With a schema that's either inferred from the data or specified as a configurati
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
-				// Initialize the SQLContext
-				SQLContext sqlContext = new SQLContext(sc);
+				SparkSession spark = SparkSession.builder().appName("JWorkingDataFrames").getOrCreate();
 		
 				// Create a DataFrame based on the JSON results.
-				DataFrame rawDF = sqlContext.read().json("loudoun_d_primary_results_2016.json");
+				Dataset<Row> rawDF = spark.read().json("loudoun_d_primary_results_2016.json");
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-			    # Initialize the SQLContext
-			    sqlContext = SQLContext(sc)
+				spark = SparkSession.builder.appName("working_dataframes").getOrCreate()
 			
 			    # Create a DataFrame based on the JSON results.
-			    rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")
+			    rawDF = spark.read.json("loudoun_d_primary_results_2016.json")
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				# Initialize the SQLContext
-				sqlContext <- sparkRSQL.init(sc)
+				session <- sparkR.session()
 				
 				# Create a DataFrame based on the JSON results.
-				rawDF <- read.df(sqlContext, "loudoun_d_primary_results_2016.json", "json")					
+				rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")					
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				// Initialize the SQLContext
-				val sqlContext = new SQLContext(sc)
+				val spark = SparkSession.builder.appName("SWorkingDataFrames").getOrCreate()
 			
 				// Create a DataFrame based on the JSON results.
-				val rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")		
+				val rawDF = spark.read.json("loudoun_d_primary_results_2016.json")		
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -282,7 +336,7 @@ With a schema that's either inferred from the data or specified as a configurati
 				System.out.println("What order were candidates on the ballot?");
 				// Get the ballot order and discard the many duplicates (all VA ballots are the same)
 				// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-				DataFrame ballotDF = rawDF.select(rawDF.col("candidate_name"), rawDF.col("candidate_ballot_order"))
+				Dataset<Row> ballotDF = rawDF.select(rawDF.col("candidate_name"), rawDF.col("candidate_ballot_order"))
 					.dropDuplicates().orderBy("candidate_ballot_order").persist();
 				ballotDF.show();
 			</bu:rCode>
@@ -373,9 +427,9 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="java">
 				System.out.println("What order were candidates on the ballot (in descriptive terms)?");
 				// Load a reference table of friendly names for the ballot orders.
-				DataFrame friendlyDF = sqlContext.read().json("friendly_orders.json");
+				Dataset<Row> friendlyDF = spark.read().json("friendly_orders.json");
 				// Join the tables so the results show descriptive text
-				DataFrame joinedDF = ballotDF.join(friendlyDF, "candidate_ballot_order");
+				Dataset<Row> joinedDF = ballotDF.join(friendlyDF, "candidate_ballot_order");
 				// Hide the numeric column in the output.
 				joinedDF.select(joinedDF.col("candidate_name"), joinedDF.col("friendly_name")).show();
 			</bu:rCode>
@@ -383,7 +437,7 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="python">
 			    print("What order were candidates on the ballot (in descriptive terms)?")
 			    # Load a reference table of friendly names for the ballot orders.
-			    friendlyDF = sqlContext.read.json("friendly_orders.json")
+			    friendlyDF = spark.read.json("friendly_orders.json")
 			    # Join the tables so the results show descriptive text
 			    joinedDF = orderDF.join(friendlyDF, "candidate_ballot_order")
 			    # Hide the numeric column in the output.
@@ -393,7 +447,7 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="plain">
 				print("What order were candidates on the ballot (in descriptive terms)?")
 				# Load a reference table of friendly names for the ballot orders.
-				friendlyDF <- read.df(sqlContext, "friendly_orders.json", "json")
+				friendlyDF <- read.df("friendly_orders.json", "json")
 				# Join the tables so the results show descriptive text
 				joinedDF <- join(orderDF, friendlyDF, orderDF$candidate_ballot_order == friendlyDF$candidate_ballot_order)
 				# Hide the numeric column in the output.
@@ -403,7 +457,7 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="scala">
 				println("What order were candidates on the ballot (in descriptive terms)?")
 				// Load a reference table of friendly names for the ballot orders.
-				val friendlyDF = sqlContext.read.json("friendly_orders.json")
+				val friendlyDF = spark.read.json("friendly_orders.json")
 				// Join the tables so the results show descriptive text
 				val joinedDF = orderDF.join(friendlyDF, "candidate_ballot_order")
 				// Hide the numeric column in the output.
@@ -484,12 +538,12 @@ With a schema that's either inferred from the data or specified as a configurati
 			<bu:rCode lang="java">
 				System.out.println("How many votes did each candidate get?");
 				// Get just the candidate names and votes.
-				DataFrame candidateDF = rawDF.select(rawDF.col("candidate_name"), votesColumn);
+				Dataset<Row> candidateDF = rawDF.select(rawDF.col("candidate_name"), votesColumn);
 				// Group by candidate name and sum votes. Assign an alias to the sum so we can order on that column.
 				// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-				DataFrame groupedDF = candidateDF.groupBy("candidate_name")
+				Dataset<Row> groupedDF = candidateDF.groupBy("candidate_name")
 					.agg(sum("total_votes_int").alias("sum_column"));
-				DataFrame summaryDF = groupedDF.orderBy(groupedDF.col("sum_column").desc()).persist();
+				Dataset<Row> summaryDF = groupedDF.orderBy(groupedDF.col("sum_column").desc()).persist();
 				summaryDF.show();			
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
@@ -556,7 +610,7 @@ With a schema that's either inferred from the data or specified as a configurati
 				Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
 				// Get the precinct name, integer-based code, and integer-based votes,
 				// then filter on non-null codes.
-				DataFrame pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
+				Dataset<Row> pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
 					.filter("precinct_code_int is not null");
 				// Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
 				// Then, show the max row.
@@ -622,7 +676,8 @@ With a schema that's either inferred from the data or specified as a configurati
 
 <p>We used <span class="rCW">persist()</span> to optimize the operator chain for each of our data manipulations.
 We can also save the data more permanently using a <span class="rCW">DataFrameWriter</span>.
-The <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class 
+The <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class (or 
+<span class="rCW"><a href="https://spark.apache.org/docs/2.0.0/api/java/index.html?org/apache/spark/sql/Dataset.html">Dataset</a></span> class in Java)
 exposes a <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
 named <span class="rCW">write</span> which can be used to save a <span class="rCW">DataFrame</span>. There are four available write modes which can be specified, with 
 <span class="rV">error</span> being the default:</p>
