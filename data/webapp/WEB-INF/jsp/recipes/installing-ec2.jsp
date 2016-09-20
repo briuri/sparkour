@@ -358,20 +358,19 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
 			<bu:rCode lang="java">
-				// Initialize the session and context
+				// Initialize the session
 				SparkSession spark = SparkSession.builder().appName("JWordCount").getOrCreate();
- 				JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 			
-				// Load the README.md file for processing
-				JavaRDD<String> textFile = sc.textFile("README.md");
+				// Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
+				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
 				
 				// Output the line count (it should match the wc output from the command line)
 				System.out.println(textFile.count());
 			</bu:rCode>			
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> # Load the README.md file for processing
-				>>> textFile = spark.sparkContext.textFile("README.md")
+				>>> # Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
+				>>> textFile = spark.read.text("README.md").rdd
 				>>> # Output the line count (it should match the wc output from the command line)
 				>>> textFile.count()
 				>>> # Quit the shell
@@ -387,8 +386,8 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> // Load the README.md file for processing
-				scala> val textFile = spark.sparkContext.textFile("README.md")
+				scala> // Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
+				scala> val textFile = spark.read.text("README.md").rdd
 				scala> // Output the line count (it should match the wc output from the command line)
 				scala> textFile.count()
 				scala> // Quit the shell
