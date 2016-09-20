@@ -34,7 +34,7 @@
 		<li><a href="#02">Local and Standalone Mode</a></li>
 		<li><a href="#03">The Master and Worker UI</a></li>
 		<li><a href="#04">Running the Interactive Shells with a Cluster</a></li>
-		<li><a href="#05">The spark-ec2 Script</a></li>
+		<li><a href="#05">Looking Ahead: The spark-ec2 Script</a></li>
 		<li><a href="#06">Conclusion</a></li>		
 	</ul>
 </bu:rOverview>
@@ -194,9 +194,9 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	<bu:rCode lang="plain">
 		INFO Utils: Successfully started service 'sparkMaster' on port 7077.
 		INFO Master: Starting Spark master at spark://ip-172-31-24-101:7077
-		INFO Master: Running Spark version 1.6.2
+		INFO Master: Running Spark version 2.0.0
 		INFO Utils: Successfully started service 'MasterUI' on port 8080.
-		INFO MasterWebUI: Started MasterWebUI at http://172.31.24.101:8080
+		INFO MasterWebUI: Bound MasterWebUI to 0.0.0.0, and started at http://172.31.24.101:8080
 		INFO Utils: Successfully started service on port 6066.
 		INFO StandaloneRestServer: Started REST server for submitting applications on port 6066
 		INFO Master: I have been elected leader! New state: ALIVE
@@ -204,11 +204,12 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 
 	<li>On line 2 of the log output above, you can see the unique URL for this master, <span class="rCW">spark://ip-172-31-24-101:7077</span>.
 		This is the URL you specify when you want your application (or the interactive shells) to connect to this cluster. This is also
-		the URL that slaves use to register themselves with the master. The hostname in this URL must be network-accessible from
+		the URL that slaves use to register themselves with the master. The hostname or IP address in this URL must be network-accessible from
 		both your application and each slave.</li>
 	<li>On line 5 of the log output above, you can see the URL for the Master UI, <span class="rCW">http://172.31.24.101:8080</span>.
 		This URL can be opened in a web browser to monitor tasks and workers in the cluster. Spark defaults to the private IP address
-		of our EC2 instance. To access the URL from our local development environment, we need to replace the IP with the Public IP of the EC2 instance.</li>
+		of our EC2 instance. To access the URL from our local development environment, we need to replace the IP with the Public IP of the EC2 instance when we load it
+		in a web browser.</li>
 	<li>Copy the URLs into a text file so you can use them later. Then, exit your text editor and return to the command line.</li>
 	<li>Next, we'll start up a single slave on the same EC2 instance. Remember that a real cluster would have a separate instance for
 		each slave -- we are intentionally overloading this instance for training purposes.
@@ -227,13 +228,14 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
-		INFO Utils: Successfully started service 'sparkWorker' on port 33049.
-		INFO Worker: Starting Spark worker 172.31.24.101:33049 with 2 cores, 6.8 GB RAM
-		INFO Worker: Running Spark version 1.6.2
+		INFO Utils: Successfully started service 'sparkWorker' on port 37907.
+		INFO Worker: Starting Spark worker 172.31.24.101:37907 with 2 cores, 6.8 GB RAM
+		INFO Worker: Running Spark version 2.0.0
 		INFO Worker: Spark home: /opt/spark
 		INFO Utils: Successfully started service 'WorkerUI' on port 8081.
-		INFO WorkerWebUI: Started WorkerWebUI at http://172.31.24.101:8081
+		INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://172.31.24.101:8081
 		INFO Worker: Connecting to master ip-172-31-24-101:7077...
+		INFO TransportClientFactory: Successfully created connection to ip-172-31-24-101/172.31.24.101:7077 after 39 ms (0 ms spent in bootstraps)
 		INFO Worker: Successfully registered with master spark://ip-172-31-24-101:7077
 	</bu:rCode>
 
@@ -307,12 +309,12 @@ development environment, master, and slave at the same time.</p>
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
 			<bu:rCode lang="java">
-				JavaRDD<String> textFile = sc.textFile("README.md");
+				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
 				System.out.println(textFile.count());
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> textFile = sc.textFile("README.md")
+				>>> textFile = spark.read.text("README.md")
 				>>> textFile.count()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -322,7 +324,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> val textFile = sc.textFile("README.md")
+				scala> val textFile = spark.read.textFile("README.md")
 				scala> textFile.count()
 			</bu:rCode>	
 		</bu:rTab>
@@ -338,7 +340,7 @@ development environment, master, and slave at the same time.</p>
 		
 	<bu:rCode lang="bash">
 		# Stop the slave	
-		$SPARK_HOME/sbin/stop-slave.sh worker-20160226005447-172.31.24.101-32883
+		$SPARK_HOME/sbin/stop-slave.sh worker-20160920103856-172.31.24.101-37907
 	</bu:rCode>
 
 	<li>Refreshing the Master UI after this command shows the Worker as <span class="rCW">DEAD</span>. The Worker UI is also shut down
@@ -358,7 +360,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				> # The low-level Spark Core API containing <span class="rCW">textFile()</span>
+				> # The low-level Spark Core API containing "textFile()"
 				> # is not available in R, so we cannot attempt this example.				
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
@@ -396,8 +398,9 @@ development environment, master, and slave at the same time.</p>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				scala> // Quit the shell
-				scala> exit
+				scala> sys.exit
 			</bu:rCode>	
+			<p>When using a version of Spark built with Scala 2.10, the command to quit is simply "<span class="rCW">exit</span>".
 		</bu:rTab>
 	</bu:rTabs>
 
@@ -412,7 +415,7 @@ development environment, master, and slave at the same time.</p>
 	
 </ol>
 
-<bu:rSection anchor="05" title="The spark-ec2 Script" />
+<bu:rSection anchor="05" title="Looking Ahead: The spark-ec2 Script" />
 
 <p>Our minimal cluster employed the following official Spark scripts:</p>
 
