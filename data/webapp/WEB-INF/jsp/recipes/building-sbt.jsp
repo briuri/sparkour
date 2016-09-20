@@ -19,7 +19,7 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.10.6</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.8</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions.</li>
 		<li>SBT continues to mature, sometimes in ways that break backwards compatibility. You should consider using a minimum of SBT <span class="rPN">0.13.6</span> and
 			<span class="rCW">sbt-assembly</span> <span class="rPN">0.12.0</span>.</li>
@@ -111,9 +111,10 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 <bu:rCode lang="scala">
 	name := "BuildingSBT"
 	version := "1.0"
-	scalaVersion := "2.10.6"
+	scalaVersion := "2.11.8"
 
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.2"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -138,8 +139,8 @@ would be added here, although our example uses basic defaults.</p>
 			public final class JBuildingSBT {
 			
 				public static void main(String[] args) throws Exception {
-					SparkConf sparkConf = new SparkConf().setAppName("JBuildingSBT");
-					JavaSparkContext sc = new JavaSparkContext(sparkConf);
+					SparkSession spark = SparkSession.builder().appName("JBuildingSBT").getOrCreate();
+					JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 			
 					// Create a simple RDD containing 4 numbers.
 					List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
@@ -149,7 +150,7 @@ would be added here, although our example uses basic defaults.</p>
 					CSVPrinter printer = new CSVPrinter(System.out, CSVFormat.DEFAULT);
 					printer.printRecord(numbersListRdd.collect());
 			
-					sc.stop();
+					spark.stop();
 				}
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
@@ -165,19 +166,18 @@ would be added here, although our example uses basic defaults.</p>
 			 */
 			object SBuildingSBT {
 				def main(args: Array[String]) {
-					val sparkConf = new SparkConf().setAppName("SBuildingSBT")
-					val sc = new SparkContext(sparkConf)
+					val spark = SparkSession.builder.appName("SBuildingSBT").getOrCreate()
 			
 					// Create a simple RDD containing 4 numbers.
 					val numbers = Array(1, 2, 3, 4)
-					val numbersListRdd = sc.parallelize(numbers)
+					val numbersListRdd = spark.sparkContext.parallelize(numbers)
 			
 					// Convert this RDD into CSV (using Java CSV Commons library).
 					val printer = new CSVPrinter(Console.out, CSVFormat.DEFAULT)
 					val javaArray: Array[java.lang.Integer] = numbersListRdd.collect() map java.lang.Integer.valueOf
 					printer.printRecords(javaArray)
 			
-					sc.stop()
+					spark.stop()
 				}
 			}
 		</bu:rCode>	
@@ -189,11 +189,12 @@ would be added here, although our example uses basic defaults.</p>
 <h3>Managed Library Dependencies</h3>
 
 <p>Under the hood, SBT uses Apache Ivy to download dependencies from the Maven2 repository. You define your dependencies in your <span class="rCW">build.sbt</span> file with
-the format of <span class="rV">groupID % artifactID % revision</span>, which may look familiar to developers who have used Maven. In our example, we have 2
-dependencies, Commons CSV and Spark itself:</p>
+the format of <span class="rV">groupID % artifactID % revision</span>, which may look familiar to developers who have used Maven. In our example, we have 3
+dependencies, Commons CSV, Spark Core, and Spark SQL:</p>
 
 <bu:rCode lang="scala">
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.2"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -231,7 +232,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.10/buildingsbt_2.10-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -244,7 +245,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.10/buildingsbt_2.10-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -259,7 +260,8 @@ uses managed dependencies) to use this approach:</p>
 	<li>Update the <span class="rCW">build.sbt</span> file to remove the Commons CSV dependency.</li>
 	
 	<bu:rCode lang="scala">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.2"
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>	
 	
@@ -289,7 +291,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.10/buildingsbt_2.10-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -302,7 +304,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.10/buildingsbt_2.10-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -331,7 +333,8 @@ Spark documentation recommends creating a special JAR file containing both the a
  		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory will still get picked up automatically at compile time.</li>
 
 	<bu:rCode lang="bash">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "1.6.2" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0" % provided
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>
 	
@@ -351,7 +354,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 		
 	<bu:rCode lang="bash">
 		cd /opt/sparkour/building-sbt
-		less target/scala-2.10/BuildingSBT-assembly-1.0.jar | grep commons
+		less target/scala-2.11/BuildingSBT-assembly-1.0.jar | grep commons
 	</bu:rCode>
 	
 	<bu:rCode lang="bash">
@@ -386,7 +389,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
-					target/scala-2.10/BuildingSBT-assembly-1.0.jar
+					target/scala-2.11/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -398,7 +401,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
-					target/scala-2.10/BuildingSBT-assembly-1.0.jar
+					target/scala-2.11/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>	

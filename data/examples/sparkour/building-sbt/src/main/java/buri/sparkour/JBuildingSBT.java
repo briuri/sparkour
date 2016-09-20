@@ -17,9 +17,9 @@
 
 package buri.sparkour;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -36,8 +36,8 @@ import java.util.List;
 public final class JBuildingSBT {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JBuildingSBT");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+		SparkSession spark = SparkSession.builder().appName("JBuildingSBT").getOrCreate();
+		JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create a simple RDD containing 4 numbers.
 		List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
@@ -47,6 +47,6 @@ public final class JBuildingSBT {
 		CSVPrinter printer = new CSVPrinter(System.out, CSVFormat.DEFAULT);
 		printer.printRecord(numbersListRdd.collect());
 
-		sc.stop();
+		spark.stop();
 	}
 }
