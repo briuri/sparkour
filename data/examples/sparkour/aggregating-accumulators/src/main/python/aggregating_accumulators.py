@@ -16,8 +16,8 @@
 #
 
 from __future__ import print_function
-from pyspark import AccumulatorParam, SparkContext
-from pyspark.sql import SQLContext
+from pyspark import AccumulatorParam
+from pyspark.sql import SparkSession
 
 """
     Uses accumulators to provide statistics on potentially incorrect
@@ -45,14 +45,13 @@ class StringAccumulatorParam(AccumulatorParam):
         return s1.strip() + " " + s2.strip()
 
 if __name__ == "__main__":
-    sc = SparkContext(appName="aggregating_accumulators")
-    sqlContext = SQLContext(sc)
+	spark = SparkSession.builder.appName("aggregating_accumulators").getOrCreate()
 
     # Create an accumulator to count how many rows might be inaccurate.
-    heightCount = sc.accumulator(0)
+    heightCount = spark.accumulator(0)
 
     # Create an accumulator to store all questionable values.
-    heightValues = sc.accumulator("", StringAccumulatorParam())
+    heightValues = spark.accumulator("", StringAccumulatorParam())
 
     # Create a DataFrame from a file of names and heights in inches.
     heightDF = sqlContext.read.json("heights.json")
@@ -64,4 +63,4 @@ if __name__ == "__main__":
     print("{} rows had questionable values.".format(heightCount.value))
     print("Questionable values: {}".format(heightValues.value))
 
-    sc.stop()
+    spark.stop()
