@@ -18,17 +18,16 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 
 /**
  * 
  */
 object S@name_compiled@ {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("S@name_compiled@")
-		val sc = new SparkContext(sparkConf)
+		val spark = SparkSession.builder.appName("S@name_compiled@").getOrCreate()
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println

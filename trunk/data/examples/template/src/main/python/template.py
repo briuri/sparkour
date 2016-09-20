@@ -16,7 +16,7 @@
 #
 
 from __future__ import print_function
-from pyspark import SparkContext
+from pyspark.sql import SparkSession
 
 """
     camelCase used for variable names for consistency and
@@ -24,6 +24,6 @@ from pyspark import SparkContext
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="@name_interpreted@")
+	spark = SparkSession.builder.appName("@name_interpreted@").getOrCreate()
 
-    sc.stop()
+    spark.stop()

@@ -19,6 +19,6 @@
 #
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc <- sparkR.init()
+session <- sparkR.session()
 
 sparkR.stop()

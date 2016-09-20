@@ -17,8 +17,7 @@
 
 package buri.sparkour;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 
 /**
  * 
@@ -26,9 +25,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 public final class J@name_compiled@ {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("J@name_compiled@");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+		SparkSession spark = SparkSession.builder().appName("J@name_compiled@").getOrCreate();
 
-		sc.stop();
+		spark.stop();
 	}
 }
