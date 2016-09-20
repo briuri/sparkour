@@ -16,8 +16,7 @@
 #
 
 from __future__ import print_function
-from pyspark import SparkContext
-from pyspark.sql import SQLContext
+from pyspark.sql import SparkSession
 
 """
     Uses a broadcast variable to generate summary information
@@ -28,23 +27,22 @@ from pyspark.sql import SQLContext
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="broadcast_variables")
-    sqlContext = SQLContext(sc)
+    spark = SparkSession.builder.appName("broadcast_variables").getOrCreate()
 
     # Register state data and schema as broadcast variables
-    localDF = sqlContext.read.json("us_states.json")
-    broadcastStateData = sc.broadcast(localDF.collect())
-    broadcastSchema = sc.broadcast(localDF.schema)
+    localDF = spark.read.json("us_states.json")
+    broadcastStateData = spark.sparkContext.broadcast(localDF.collect())
+    broadcastSchema = spark.sparkContext.broadcast(localDF.schema)
 
     # Create a DataFrame based on the store locations.
-    storesDF = sqlContext.read.json("store_locations.json")
+    storesDF = spark.read.json("store_locations.json")
 
     # Create a DataFrame of US state data with the broadcast variables.
-    stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
+    stateDF = spark.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 
     # Join the DataFrames to get an aggregate count of stores in each US Region
     print("How many stores are in each US region?")
     joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count()
     joinedDF.show()
 
-    sc.stop()
+    spark.stop()
