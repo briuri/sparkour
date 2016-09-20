@@ -356,17 +356,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
-			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
-			<bu:rCode lang="java">
-				// Initialize the session
-				SparkSession spark = SparkSession.builder().appName("JWordCount").getOrCreate();
-			
-				// Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
-				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
-				
-				// Output the line count (it should match the wc output from the command line)
-				System.out.println(textFile.count());
-			</bu:rCode>			
+			<p><c:out value="${noJavaMessage}" escapeXml="false" /></p>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				>>> # Load the README.md file for processing as a Resilient Distributed Dataset (RDD)

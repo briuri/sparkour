@@ -36,14 +36,14 @@ object SWorkingRDDs {
 		val numbersListRdd = spark.sparkContext.parallelize(numbers)
 
 		// Create an RDD from a similar array on the local filesystem
-		val numbersFilesRdd = spark.sparkContext.textFile("random_numbers.txt")
+		val numbersFileRdd = spark.sparkContext.textFile("random_numbers.txt")
 
 		// 1000 Chicago residents: How many books do you own?
 		val chicagoRdd = numbersListRdd
 
 		// 1000 Houston residents: How many books do you own?
 		// Must convert from string data to ints first
-		val houstonRdd = numbersFilesRdd.flatMap(x => x.split(' '))
+		val houstonRdd = numbersFileRdd.flatMap(x => x.split(' '))
 										.map(x => x.toInt)
 
 		// How many have more than 30 in Chicago?
