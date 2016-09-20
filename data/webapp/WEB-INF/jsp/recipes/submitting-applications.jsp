@@ -46,14 +46,14 @@ just need to get your build dependencies in order.</p>
 <ol>
 	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
-	<li>You also need the development kit for your language. If developing for Spark 1.6.2, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
-		Python 2.6, R 3.1, or Scala 2.10, respectively. You probably already have the development kit for your language installed in your development
+	<li>You also need the development kit for your language. If developing for Spark 2.0.0, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
+		Python 2.6, R 3.1, or Scala 2.11, respectively. You probably already have the development kit for your language installed in your development
 		environment.</li>
 	<li>Finally, you need to link or include the core Spark libraries with your application. If you are using an Integrated Development Environment (IDE) like 
 		Eclipse or IntelliJ, the official Spark documentation provides instructions for 
 		<a href="http://spark.apache.org/docs/latest/programming-guide.html#linking-with-spark">adding Spark dependencies in Maven</a>. If you don't use Maven, 
 		you can manually track down the dependencies in your installed Spark directory:<ul>
-			<li>Java and Scala dependencies can be found in <span class="rCW">lib</span>.</li>
+			<li>Java and Scala dependencies can be found in <span class="rCW">jars</span> (or <span class="rCW">lib</span> for Spark 1.6).</li>
 			<li>Python dependencies can be found in <span class="rCW">python/pyspark</span>.</li>
 			<li>R dependencies can be found in <span class="rCW">R/lib</span>.</li>
 		</ul></li>
@@ -108,23 +108,23 @@ components installed, you should be able to review these instructions and adapt 
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
-		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 1.6.2 Pre-built for Hadoop 2.6 and later</span>,
-		this would be a <span class="rPN">2.10.x</span> version, and <i>not</i> a 2.11.x version unless you have explicitly
-		built Spark for 2.11.x from the source code.</p>
+		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 2.0.0 Pre-built for Hadoop 2.7 and later</span>,
+		this would be a <span class="rPN">2.11.x</span> version, and <i>not</i> a 2.10.x version unless you have explicitly
+		built Spark for 2.10.x from the source code.</p>
 		
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
 			cd ~
-			wget http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.tgz
+			wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz
 			
 			# Unpack Spark in the /opt directory
-			sudo tar zxvf scala-2.10.6.tgz -C /opt
+			sudo tar zxvf scala-2.11.8.tgz -C /opt
 			
 			# Update permissions on installation
-			sudo chown -R ec2-user:ec2-user /opt/scala-2.10.6
+			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.8
 			
 			# Create a symbolic link to make it easier to access
-			sudo ln -fs /opt/scala-2.10.6 /opt/scala
+			sudo ln -fs /opt/scala-2.11.8 /opt/scala
 			
 			#Edit your bash profile to add environment variables
 			vi ~/.bash_profile
@@ -184,23 +184,21 @@ steps of the development lifecycle. Build tools are covered in <bu:rLink id="bui
 			<bu:rCode lang="java">
 				package buri.sparkour;
 				
-				import org.apache.spark.SparkConf;
-				import org.apache.spark.api.java.JavaSparkContext;
+				import org.apache.spark.sql.SparkSession;
 				
 				/**
-				 * A simple application which merely initializes the spark context,
+				 * A simple application which merely initializes the spark session,
 				 * for the purposes of demonstrating how to submit an application to
 				 * Spark for execution.
 				 */
 				public final class JSubmittingApplications {
 				
 					public static void main(String[] args) throws Exception {
-						SparkConf sparkConf = new SparkConf().setAppName("JSubmittingApplications");
-						JavaSparkContext sc = new JavaSparkContext(sparkConf);
+						SparkSession spark = SparkSession.builder().appName("JSubmittingApplications").getOrCreate();
 				
-						System.out.println("You are using Spark " + sc.version());
+						System.out.println("You are using Spark " + spark.version());
 						
-						sc.stop();
+						spark.stop();
 					}
 				}
 			</bu:rCode>
@@ -208,30 +206,30 @@ steps of the development lifecycle. Build tools are covered in <bu:rLink id="bui
 			<bu:rCode lang="python">
 				from __future__ import print_function
 				
-				from pyspark import SparkContext
+				from pyspark.sql import SparkSession
 				
 				"""
-				    A simple application which merely initializes the spark context,
+				    A simple application which merely initializes the spark session,
 				    for the purposes of demonstrating how to submit an application to
 				    Spark for execution.
 				"""
 				if __name__ == "__main__":
-				    sc = SparkContext(appName="submitting_applications")
+					spark = SparkSession.builder.appName("submitting_applications").getOrCreate()
 				
-				    print("You are using Spark " + sc.version);
+				    print("You are using Spark " + spark.version);
 				    
-				    sc.stop()
+				    spark.stop()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				# A simple application which merely initializes the spark context,
+				# A simple application which merely initializes the spark session,
 				# for the purposes of demonstrating how to submit an application to
 				# Spark for execution.
 				
 				library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-				sc <- sparkR.init()
+				session <- sparkR.session()
 				
-				print("The SparkR context has initialized successfully.")
+				print("The SparkR session has initialized successfully.")
 				
 				sparkR.stop()
 			</bu:rCode>	
@@ -239,29 +237,27 @@ steps of the development lifecycle. Build tools are covered in <bu:rLink id="bui
 			<bu:rCode lang="scala">
 				package buri.sparkour
 				
-				import org.apache.spark.{SparkConf, SparkContext}
-				import org.apache.spark.SparkContext._
+				import org.apache.spark.sql.SparkSession
 				
 				/**
-				 * A simple application which merely initializes the spark context,
+				 * A simple application which merely initializes the spark session,
 				 * for the purposes of demonstrating how to submit an application to
 				 * Spark for execution.
 				 */
 				object SSubmittingApplications {
 					def main(args: Array[String]) {
-						val sparkConf = new SparkConf().setAppName("SSubmittingApplications")
-						val sc = new SparkContext(sparkConf)
+						val spark = SparkSession.builder.appName("SSubmittingApplications").getOrCreate()
 				
-						println("You are using Spark " + sc.version)
+						println("You are using Spark " + spark.version)
 						
-						sc.stop()
+						spark.stop()
 					}
 				}
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>		
 		
-	<li>The application is decidedly uninteresting, merely initializing a <span class="rCW">SparkContext</span>, printing a message, and stopping the <span class="rCW">SparkContext</span>.
+	<li>The application is decidedly uninteresting, merely initializing a <span class="rCW">SparkSession</span>, printing a message, and stopping the <span class="rCW">SparkContext</span>.
 	We are more concerned with getting the application executed right now, and will create more compelling programs in the next tutorial.</li>
 </ol>
 
@@ -393,7 +389,7 @@ we just need the top-level module or script name. Everything after the expected 
 				# Compile Java class and create JAR file
 				mkdir target/java
 				javac $SRC_PATH/java/$PACKAGE/JSubmittingApplications.java \
-					-classpath $SPARK_HOME/lib/spark-assembly-*.jar -d target/java
+					-classpath "$SPARK_HOME/jars/*" -d target/java
 				cd target/java
 				jar -cf ../JSubmittingApplications.jar *
 				cd ../..
@@ -426,7 +422,7 @@ we just need the top-level module or script name. Everything after the expected 
 				# Compile Scala class and create JAR file
 				mkdir target/scala
 				scalac $SRC_PATH/scala/$PACKAGE/SSubmittingApplications.scala \
-					-classpath $SPARK_HOME/lib/spark-assembly-*.jar -d target/scala
+					-classpath "$SPARK_HOME/jars/*" -d target/scala
 				cd target/scala
 				jar -cf ../SSubmittingApplications.jar *
 				cd ../..
@@ -441,7 +437,7 @@ we just need the top-level module or script name. Everything after the expected 
 	
 	<li>The complete set of low-level commands required to build and submit are explicitly shown here for your awareness.
 		In tutorials and recipes that follow, these commands are simplified through a helpful build script.</li>
-	<li>Submitting your application should result in a brief statement about your <span class="rCW">SparkContext</span>.</li>
+	<li>Submitting your application should result in a brief statement about Spark.</li>
 </ol>
 
 <h3>Deploy Modes</h3>
@@ -496,21 +492,14 @@ can be found in the official documentation.</p>
 		vi JavaWordCount.java
 	</bu:rCode>
 
-	<li>An assembly JAR file contains the compiled example classes and all of the necessary dependencies. If you look inside, you'll see tons of third-party classes.</li>
-
-	<bu:rCode lang="bash">
-		# Peek in the assembly JAR (it's big!)
-		less $SPARK_HOME/lib/spark-examples-1.6.2-hadoop2.6.0.jar
-		# (hold down spacebar to skim down, or hit 'q' to exit)
-	</bu:rCode>
-
 	<li>To submit this application in Local mode, you use the <span class="rCW">spark-submit</span> script, just as we did with the Python application.</li>
 
 	<bu:rCode lang="bash">
 		# Submit the JavaWordCount application
+		cd $SPARK_HOME
 		$SPARK_HOME/bin/spark-submit \
 			--class org.apache.spark.examples.JavaWordCount \
-			./lib/spark-examples-1.6.2-hadoop2.6.0.jar \
+			./examples/jars/spark-examples_*.jar \
 			$SPARK_HOME/README.md
 	</bu:rCode>
 
