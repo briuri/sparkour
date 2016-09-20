@@ -315,7 +315,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> textFile = spark.read.text("README.md").rdd
+				>>> textFile = spark.sparkContext.textFile("README.md")
 				>>> textFile.count()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -325,7 +325,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> val textFile = spark.read.text("README.md").rdd
+				scala> val textFile = spark.sparkContext.textFile("README.md")
 				scala> textFile.count()
 			</bu:rCode>	
 		</bu:rTab>

@@ -370,7 +370,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				>>> # Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
-				>>> textFile = spark.read.text("README.md").rdd
+				>>> textFile = spark.sparkContext.textFile("README.md")
 				>>> # Output the line count (it should match the wc output from the command line)
 				>>> textFile.count()
 				>>> # Quit the shell
@@ -387,7 +387,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				scala> // Load the README.md file for processing as a Resilient Distributed Dataset (RDD)
-				scala> val textFile = spark.read.text("README.md").rdd
+				scala> val textFile = spark.sparkContext.textFile("README.md")
 				scala> // Output the line count (it should match the wc output from the command line)
 				scala> textFile.count()
 				scala> // Quit the shell
