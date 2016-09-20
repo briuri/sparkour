@@ -18,7 +18,7 @@
 from __future__ import print_function
 import random
 from operator import add
-from pyspark import SparkContext
+from pyspark.sql import SparkSession
 
 """
     Performs a variety of RDD manipulations to show off 
@@ -29,7 +29,7 @@ from pyspark import SparkContext
     the Java, R, and Scala examples.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="workings_rdds")
+    spark = SparkSession.builder.appName("workings_rdds").getOrCreate()
 
     # Create an array of 1000 random numbers between 0 and 50.
     numbers = []
@@ -37,10 +37,10 @@ if __name__ == "__main__":
         numbers.append(random.randint(0, 50))
 
     # Create an RDD from the numbers array
-    numbersListRdd = sc.parallelize(numbers)
+    numbersListRdd = spark.sparkContext.parallelize(numbers)
 
     # Create an RDD from a similar array on the local filesystem
-    numbersFileRdd = sc.textFile("random_numbers.txt")
+    numbersFileRdd = spark.sparkContext.textFile("random_numbers.txt")
 
     # 1000 Chicago residents: How many books do you own?
     chicagoRdd = numbersListRdd
@@ -62,4 +62,4 @@ if __name__ == "__main__":
     totalBooks = chicagoRdd.union(houstonRdd).reduce(add)
     print("{} books in both cities.".format(totalBooks))
 
-    sc.stop()
+    spark.stop()

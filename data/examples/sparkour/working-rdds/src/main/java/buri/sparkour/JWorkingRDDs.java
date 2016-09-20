@@ -17,9 +17,8 @@
 
 package buri.sparkour;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -32,8 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class JWorkingRDDs {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JWorkingRDDs");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+		SparkSession spark = SparkSession.builder().appName("JWorkingRDDs").getOrCreate();
 
 		// Create an array of 1000 random numbers between 0 and 50.
 		List<Integer> numbers = new ArrayList<>();
@@ -42,10 +40,10 @@ public final class JWorkingRDDs {
 		}
 
 		// Create an RDD from the numbers array
-		JavaRDD<Integer> numbersListRdd = sc.parallelize(numbers);
+		JavaRDD<Integer> numbersListRdd = spark.sparkContext().parallelize(numbers);
 
 		// Create an RDD from a similar array on the local filesystem
-		JavaRDD<String> numbersFilesRdd = sc.textFile("random_numbers.txt");
+		JavaRDD<String> numbersFilesRdd = spark.sparkContext().textFile("random_numbers.txt");
 
 		// 1000 Chicago residents: How many books do you own?
 		JavaRDD<Integer> chicagoRdd = numbersListRdd;
@@ -67,6 +65,6 @@ public final class JWorkingRDDs {
 		Integer totalBooks = chicagoRdd.union(houstonRdd).reduce((x, y) -> x + y);
 		System.out.println(String.format("%s books in both cities.", totalBooks));
 
-		sc.stop();
+		spark.stop();
 	}
 }

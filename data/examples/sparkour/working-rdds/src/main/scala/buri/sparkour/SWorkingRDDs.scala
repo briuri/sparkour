@@ -20,24 +20,23 @@ package buri.sparkour
 
 import scala.util.Random
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 
 /**
  * Performs a variety of RDD manipulations to show off the data structure.
  */
 object SWorkingRDDs {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SWorkingRDDs")
-		val sc = new SparkContext(sparkConf)
+		val spark = SparkSession.builder.appName("SWorkingRDDs").getOrCreate()
 
 		// Create an array of 1000 random numbers between 0 and 50.
 		val numbers = Seq.fill(1000)(Random.nextInt(50))
 	
 		// Create an RDD from the numbers array
-		val numbersListRdd = sc.parallelize(numbers)
+		val numbersListRdd = spark.sparkContext.parallelize(numbers)
 
 		// Create an RDD from a similar array on the local filesystem
-		val numbersFilesRdd = sc.textFile("random_numbers.txt")
+		val numbersFilesRdd = spark.sparkContext.textFile("random_numbers.txt")
 
 		// 1000 Chicago residents: How many books do you own?
 		val chicagoRdd = numbersListRdd
@@ -59,7 +58,7 @@ object SWorkingRDDs {
 		val totalBooks = chicagoRdd.union(houstonRdd).reduce((x, y) => x + y)
 		println(s"$totalBooks books in both cities.")
 
-		sc.stop()
+		spark.sparkContext.stop()
 	}
 }
 // scalastyle:on println

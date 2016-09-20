@@ -674,6 +674,7 @@ named <span class="rCW">write</span> which can be used to save a <span class="rC
 <bu:rFooter>
 	<bu:rLinks>
 		<li><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html">Spark DataFrames</a> in the Spark Programming Guide</li>
+		<li><a href="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html">A Tale of Three Apache Spark APIs: RDDs, DataFrames, and Datasets</a></li>
 		<li><bu:rLink id="using-sql-udf" /></li>
 		<li><bu:rLink id="using-jdbc" /></li>
 		<li><bu:rLink id="controlling-schema" /></li>
