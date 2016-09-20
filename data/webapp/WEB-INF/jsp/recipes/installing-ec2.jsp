@@ -358,8 +358,12 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
 			<bu:rCode lang="java">
+				// Initialize the session and context
+				SparkSession spark = SparkSession.builder().appName("JWordCount").getOrCreate();
+ 				JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+			
 				// Load the README.md file for processing
-				JavaRDD<String> textFile = spark.sparkContext().textFile("README.md");
+				JavaRDD<String> textFile = sc.textFile("README.md");
 				
 				// Output the line count (it should match the wc output from the command line)
 				System.out.println(textFile.count());

@@ -309,7 +309,11 @@ development environment, master, and slave at the same time.</p>
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
 			<bu:rCode lang="java">
-				JavaRDD<String> textFile = spark.sparkContext().textFile("README.md");
+				// Initialize the session and context
+				SparkSession spark = SparkSession.builder().appName("JWordCount").getOrCreate();
+ 				JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+ 							
+				JavaRDD<String> textFile = sc.textFile("README.md");
 				System.out.println(textFile.count());
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="2">
