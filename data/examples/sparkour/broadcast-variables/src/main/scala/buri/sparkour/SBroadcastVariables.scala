@@ -18,8 +18,7 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 
 /**
  * Uses a broadcast variable to generate summary information
@@ -27,27 +26,25 @@ import org.apache.spark.sql.SQLContext
  */
 object SBroadcastVariables {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SBroadcastVariables")
-		val sc = new SparkContext(sparkConf)
-		val sqlContext = new SQLContext(sc)
+		val spark = SparkSession.builder.appName("SBroadcastVariables").getOrCreate()
 
 		// Register state data and schema as broadcast variables
-		val localDF = sqlContext.read.json("us_states.json")
-		val broadcastStateData = sc.broadcast(localDF.collectAsList())
-		val broadcastSchema = sc.broadcast(localDF.schema)
+		val localDF = spark.read.json("us_states.json")
+		val broadcastStateData = spark.sparkContext.broadcast(localDF.collectAsList())
+		val broadcastSchema = spark.sparkContext.broadcast(localDF.schema)
 
 		// Create a DataFrame based on the store locations.
-		val storesDF = sqlContext.read.json("store_locations.json")
+		val storesDF = spark.read.json("store_locations.json")
 
 		// Create a DataFrame of US state data with the broadcast variables.
-		val stateDF = sqlContext.createDataFrame(broadcastStateData.value, broadcastSchema.value)
+		val stateDF = spark.createDataFrame(broadcastStateData.value, broadcastSchema.value)
 
 		// Join the DataFrames to get an aggregate count of stores in each US Region
 		println("How many stores are in each US region?")
 		val joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count()
 		joinedDF.show()
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println

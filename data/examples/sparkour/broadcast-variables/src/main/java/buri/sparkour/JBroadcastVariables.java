@@ -19,12 +19,11 @@ package buri.sparkour;
 
 import java.util.List;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
-import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.StructType;
 
 /**
@@ -34,26 +33,25 @@ import org.apache.spark.sql.types.StructType;
 public final class JBroadcastVariables {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JBroadcastVariables");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder().appName("JBroadcastVariables").getOrCreate();
+		JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Register state data and schema as broadcast variables
-		DataFrame localDF = sqlContext.read().json("us_states.json");
+		Dataset<Row> localDF = spark.read().json("us_states.json");
 		Broadcast<List<Row>> broadcastStateData = sc.broadcast(localDF.collectAsList());
 		Broadcast<StructType> broadcastSchema = sc.broadcast(localDF.schema());
 
 		// Create a DataFrame based on the store locations.
-		DataFrame storesDF = sqlContext.read().json("store_locations.json");
+		Dataset<Row> storesDF = spark.read().json("store_locations.json");
 
 		// Create a DataFrame of US state data with the broadcast variables.
-		DataFrame stateDF = sqlContext.createDataFrame(broadcastStateData.value(), broadcastSchema.value());
+		Dataset<Row> stateDF = spark.createDataFrame(broadcastStateData.value(), broadcastSchema.value());
 
 		// Join the DataFrames to get an aggregate count of stores in each US Region
 		System.out.println("How many stores are in each US region?");
-		DataFrame joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
+		Dataset<Row> joinedDF = storesDF.join(stateDF, "state").groupBy("census_region").count();
 		joinedDF.show();
 
-		sc.stop();
+		spark.stop();
 	}
 }
