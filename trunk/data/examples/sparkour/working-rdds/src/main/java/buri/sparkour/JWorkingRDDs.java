@@ -18,6 +18,7 @@
 package buri.sparkour;
 
 import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
 
 import java.util.Arrays;
@@ -32,6 +33,7 @@ public final class JWorkingRDDs {
 
 	public static void main(String[] args) throws Exception {
 		SparkSession spark = SparkSession.builder().appName("JWorkingRDDs").getOrCreate();
+                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an array of 1000 random numbers between 0 and 50.
 		List<Integer> numbers = new ArrayList<>();
@@ -40,17 +42,17 @@ public final class JWorkingRDDs {
 		}
 
 		// Create an RDD from the numbers array
-		JavaRDD<Integer> numbersListRdd = spark.sparkContext().parallelize(numbers);
+		JavaRDD<Integer> numbersListRdd = sc.parallelize(numbers);
 
 		// Create an RDD from a similar array on the local filesystem
-		JavaRDD<String> numbersFilesRdd = spark.sparkContext().textFile("random_numbers.txt");
+		JavaRDD<String> numbersFileRdd = sc.textFile("random_numbers.txt");
 
 		// 1000 Chicago residents: How many books do you own?
 		JavaRDD<Integer> chicagoRdd = numbersListRdd;
 
 		// 1000 Houston residents: How many books do you own?
 		// Must convert from string data to ints first
-		JavaRDD<Integer> houstonRdd = numbersFilesRdd.flatMap(x -> Arrays.asList(x.split(" ")))
+		JavaRDD<Integer> houstonRdd = numbersFileRdd.flatMap(x -> Arrays.asList(x.split(" ")).iterator())
 													 .map(x -> Integer.valueOf(x));
 		
 		// How many have more than 30 in Chicago?
