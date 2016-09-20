@@ -18,8 +18,7 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{ArrayType, BooleanType, DateType, IntegerType, MapType, StringType, TimestampType, StructField, StructType}
 
 import java.util.Calendar
@@ -44,16 +43,14 @@ object SControllingSchema {
 	)
 	
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SControllingSchema")
-		val sc = new SparkContext(sparkConf)
-		val sqlContext = new SQLContext(sc)
+		val spark = SparkSession.builder.appName("SControllingSchema").getOrCreate()
 
 		// Create an RDD with sample data.
-		var caseRDD = sc.parallelize(buildSampleData())
+		var caseRDD = spark.sparkContext.parallelize(buildSampleData())
 
 		// Create a DataFrame from the RDD, inferring the schema from a case class.
 		println("RDD: Schema inferred from case class.")
-		var dataDF = sqlContext.createDataFrame(caseRDD)
+		var dataDF = spark.createDataFrame(caseRDD)
 		dataDF.printSchema()
 
 		// Use the DataFrame to generate an RDD of Rows for the next demonstration
@@ -62,20 +59,20 @@ object SControllingSchema {
 
 		// Create a DataFrame from the RDD, specifying a schema.
 		println("RDD: Schema programmatically specified.")
-		dataDF = sqlContext.createDataFrame(rowRDD, buildSchema())
+		dataDF = spark.createDataFrame(rowRDD, buildSchema())
 		dataDF.printSchema()
 
 		// Create a DataFrame from a JSON source, inferring the schema from all rows.
 		println("JSON: Schema inferred from all rows.")
-		dataDF = sqlContext.read.option("samplingRatio", "1.0").json("data.json")
+		dataDF = spark.read.option("samplingRatio", "1.0").json("data.json")
 		dataDF.printSchema()
 
 		// Create a DataFrame from a JSON source, specifying a schema.
 		println("JSON: Schema programmatically specified.")
-		dataDF = sqlContext.read.schema(buildSchema()).json("data.json")
+		dataDF = spark.read.schema(buildSchema()).json("data.json")
 		dataDF.printSchema()
 
-		sc.stop()
+		spark.stop()
 	}
 
 	/**

@@ -16,8 +16,7 @@
 #
 from __future__ import print_function
 import datetime
-from pyspark import SparkContext
-from pyspark.sql import Row, SQLContext
+from pyspark.sql import Row, SparkSession
 from pyspark.sql.types import ArrayType, BooleanType, DateType, IntegerType, MapType, StringType, TimestampType, StructField, StructType
 
 """
@@ -85,35 +84,34 @@ def build_schema():
     return schema
 
 if __name__ == "__main__":
-    sc = SparkContext(appName="controlling_schema")
-    sqlContext = SQLContext(sc)
+    spark = SparkSession.builder.appName("controlling_schema").getOrCreate()
 
     # Create an RDD with sample data.
-    dataRDD = sc.parallelize(build_sample_data())
+    dataRDD = spark.sparkContext.parallelize(build_sample_data())
 
     # Create a DataFrame from the RDD, inferring the schema from the first row.
     print("RDD: Schema inferred from first row.")
-    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=None)
+    dataDF = spark.createDataFrame(dataRDD, samplingRatio=None)
     dataDF.printSchema()
 
     # Create a DataFrame from the RDD, inferring the schema from a sampling of rows.
     print("RDD: Schema inferred from random sample.")
-    dataDF = sqlContext.createDataFrame(dataRDD, samplingRatio=0.6)
+    dataDF = spark.createDataFrame(dataRDD, samplingRatio=0.6)
     dataDF.printSchema()
 
     # Create a DataFrame from the RDD, specifying a schema.
     print("RDD: Schema programmatically specified.")
-    dataDF = sqlContext.createDataFrame(dataRDD, schema=build_schema())
+    dataDF = spark.createDataFrame(dataRDD, schema=build_schema())
     dataDF.printSchema()
     
     # Create a DataFrame from a JSON source, inferring the schema from all rows.
     print("JSON: Schema inferred from all rows.")
-    dataDF = sqlContext.read.option("samplingRatio", 1.0).json("data.json")
+    dataDF = spark.read.option("samplingRatio", 1.0).json("data.json")
     dataDF.printSchema()
 
     # Create a DataFrame from a JSON source, specifying a schema.
     print("JSON: Schema programmatically specified.")
-    dataDF = sqlContext.read.json("data.json", schema=build_schema())
+    dataDF = spark.read.json("data.json", schema=build_schema())
     dataDF.printSchema()
 
-    sc.stop()
+    spark.stop()

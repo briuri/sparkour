@@ -17,12 +17,11 @@
 
 package buri.sparkour;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.DataTypes;
 import org.apache.spark.sql.types.StructField;
 import org.apache.spark.sql.types.StructType;
@@ -40,16 +39,15 @@ import java.util.List;
 public final class JControllingSchema {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JControllingSchema");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder().appName("JControllingSchema").getOrCreate();
+                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an RDD with sample data.
 		JavaRDD<Record> beanRDD = sc.parallelize(buildSampleData());
 
 		// Create a DataFrame from the RDD, inferring the schema from a bean class.
 		System.out.println("RDD: Schema inferred from bean class.");
-		DataFrame dataDF = sqlContext.createDataFrame(beanRDD, Record.class);
+		Dataset<Row> dataDF = spark.createDataFrame(beanRDD, Record.class);
 		dataDF.printSchema();
 
 		// Use the DataFrame to generate an RDD of Rows for the next demonstration
@@ -58,20 +56,20 @@ public final class JControllingSchema {
 
 		// Create a DataFrame from the RDD, specifying a schema.
 		System.out.println("RDD: Schema programmatically specified.");
-		dataDF = sqlContext.createDataFrame(rowRDD, buildSchema());
+		dataDF = spark.createDataFrame(rowRDD, buildSchema());
 		dataDF.printSchema();
 
 		// Create a DataFrame from a JSON source, inferring the schema from all rows.
 		System.out.println("JSON: Schema inferred from all rows.");
-		dataDF = sqlContext.read().option("samplingRatio", "1.0").json("data.json");
+		dataDF = spark.read().option("samplingRatio", "1.0").json("data.json");
 		dataDF.printSchema();
 
 		// Create a DataFrame from a JSON source, specifying a schema.
 		System.out.println("JSON: Schema programmatically specified.");
-		dataDF = sqlContext.read().schema(buildSchema()).json("data.json");
+		dataDF = spark.read().schema(buildSchema()).json("data.json");
 		dataDF.printSchema();
 
-		sc.stop();
+		spark.stop();
 	}	
 
 	/**
