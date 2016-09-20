@@ -359,7 +359,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside a Java application.</p>
 			<bu:rCode lang="java">
 				// Load the README.md file for processing
-				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
+				JavaRDD<String> textFile = spark.sparkContext().textFile("README.md");
 				
 				// Output the line count (it should match the wc output from the command line)
 				System.out.println(textFile.count());
@@ -367,7 +367,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				>>> # Load the README.md file for processing
-				>>> textFile = spark.read.text("README.md")
+				>>> textFile = spark.sparkContext.textFile("README.md")
 				>>> # Output the line count (it should match the wc output from the command line)
 				>>> textFile.count()
 				>>> # Quit the shell
@@ -384,7 +384,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				scala> // Load the README.md file for processing
-				scala> val textFile = spark.read.textFile("README.md")
+				scala> val textFile = spark.sparkContext.textFile("README.md")
 				scala> // Output the line count (it should match the wc output from the command line)
 				scala> textFile.count()
 				scala> // Quit the shell

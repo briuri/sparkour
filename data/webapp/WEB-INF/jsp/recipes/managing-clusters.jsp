@@ -309,12 +309,12 @@ development environment, master, and slave at the same time.</p>
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would accomplish this example inside an application.</p>
 			<bu:rCode lang="java">
-				JavaRDD<String> textFile = spark.read().textFile("README.md").javaRDD();
+				JavaRDD<String> textFile = spark.sparkContext().textFile("README.md");
 				System.out.println(textFile.count());
 			</bu:rCode>	
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> textFile = spark.read.text("README.md")
+				>>> textFile = spark.sparkContext.textFile("README.md")
 				>>> textFile.count()
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
@@ -324,7 +324,7 @@ development environment, master, and slave at the same time.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> val textFile = spark.read.textFile("README.md")
+				scala> val textFile = spark.sparkContext.textFile("README.md")
 				scala> textFile.count()
 			</bu:rCode>	
 		</bu:rTab>
