@@ -19,10 +19,11 @@ package buri.sparkour;
 
 import static org.apache.spark.sql.functions.*;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Column;
-import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.SQLContext;
 
 /**
@@ -32,14 +33,10 @@ import org.apache.spark.sql.SQLContext;
 public final class JWorkingDataFrames {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JWorkingDataFrames");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-
-		// Initialize the SQLContext
-		SQLContext sqlContext = new SQLContext(sc);
+		SparkSession spark = SparkSession.builder().appName("JWorkingDataFrames").getOrCreate();
 
 		// Create a DataFrame based on the JSON results.
-		DataFrame rawDF = sqlContext.read().json("loudoun_d_primary_results_2016.json");
+		Dataset<Row> rawDF = spark.read().json("loudoun_d_primary_results_2016.json");
 
 		// Print the schema
 		rawDF.printSchema();
@@ -51,15 +48,15 @@ public final class JWorkingDataFrames {
 		System.out.println("What order were candidates on the ballot?");
 		// Get the ballot order and discard the many duplicates (all VA ballots are the same)
 		// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-		DataFrame ballotDF = rawDF.select(rawDF.col("candidate_name"), rawDF.col("candidate_ballot_order"))
+		Dataset<Row> ballotDF = rawDF.select(rawDF.col("candidate_name"), rawDF.col("candidate_ballot_order"))
 			.dropDuplicates().orderBy("candidate_ballot_order").persist();
 		ballotDF.show();
 
 		System.out.println("What order were candidates on the ballot (in descriptive terms)?");
 		// Load a reference table of friendly names for the ballot orders.
-		DataFrame friendlyDF = sqlContext.read().json("friendly_orders.json");
+		Dataset<Row> friendlyDF = spark.read().json("friendly_orders.json");
 		// Join the tables so the results show descriptive text
-		DataFrame joinedDF = ballotDF.join(friendlyDF, "candidate_ballot_order");
+		Dataset<Row> joinedDF = ballotDF.join(friendlyDF, "candidate_ballot_order");
 		// Hide the numeric column in the output.
 		joinedDF.select(joinedDF.col("candidate_name"), joinedDF.col("friendly_name")).show();
 
@@ -71,12 +68,12 @@ public final class JWorkingDataFrames {
 
 		System.out.println("How many votes did each candidate get?");
 		// Get just the candidate names and votes.
-		DataFrame candidateDF = rawDF.select(rawDF.col("candidate_name"), votesColumn);
+		Dataset<Row> candidateDF = rawDF.select(rawDF.col("candidate_name"), votesColumn);
 		// Group by candidate name and sum votes. Assign an alias to the sum so we can order on that column.
 		// Note the call to persist() -- we reuse this DataFrame later, so let's not execute it twice.
-		DataFrame groupedDF = candidateDF.groupBy("candidate_name")
+		Dataset<Row> groupedDF = candidateDF.groupBy("candidate_name")
 			.agg(sum("total_votes_int").alias("sum_column"));
-		DataFrame summaryDF = groupedDF.orderBy(groupedDF.col("sum_column").desc()).persist();
+		Dataset<Row> summaryDF = groupedDF.orderBy(groupedDF.col("sum_column").desc()).persist();
 		summaryDF.show();
 
 		System.out.println("Which polling station had the highest physical turnout?");
@@ -85,7 +82,7 @@ public final class JWorkingDataFrames {
 		Column precinctColumn = rawDF.col("precinct_code").cast("int").alias("precinct_code_int");
 		// Get the precinct name, integer-based code, and integer-based votes,
 		// then filter on non-null codes.
-		DataFrame pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
+		Dataset<Row> pollingDF = rawDF.select(rawDF.col("precinct_name"), precinctColumn, votesColumn)
 			.filter("precinct_code_int is not null");
 		// Group by precinct name and sum votes. Assign an alias to the sum so we can order on that column.
 		// Then, show the max row.
@@ -95,6 +92,6 @@ public final class JWorkingDataFrames {
 		System.out.println("Saving overall candidate summary as a new JSON dataset.");
 		summaryDF.write().mode("overwrite").json("target/json");
 
-		sc.stop();
+		spark.stop();
 	}
 }

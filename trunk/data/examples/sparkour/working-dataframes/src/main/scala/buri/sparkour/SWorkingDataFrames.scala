@@ -18,22 +18,17 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.{SQLContext, functions}
+import org.apache.spark.sql.{SparkSession, functions}
 
 /**
  * Performs a variety of DataFrames manipulations to show off the data structure.
  */
 object SWorkingDataFrames {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SWorkingDataFrames")
-		val sc = new SparkContext(sparkConf)
+		val spark = SparkSession.builder.appName("SWorkingDataFrames").getOrCreate()
 
-		// Initialize the SQLContext
-		val sqlContext = new SQLContext(sc)
-	
 		// Create a DataFrame based on the JSON results.
-		val rawDF = sqlContext.read.json("loudoun_d_primary_results_2016.json")
+		val rawDF = spark.read.json("loudoun_d_primary_results_2016.json")
 
 		// Print the schema
 		rawDF.printSchema()
@@ -51,7 +46,7 @@ object SWorkingDataFrames {
 	
 		println("What order were candidates on the ballot (in descriptive terms)?")
 		// Load a reference table of friendly names for the ballot orders.
-		val friendlyDF = sqlContext.read.json("friendly_orders.json")
+		val friendlyDF = spark.read.json("friendly_orders.json")
 		// Join the tables so the results show descriptive text
 		val joinedDF = orderDF.join(friendlyDF, "candidate_ballot_order")
 		// Hide the numeric column in the output.
@@ -87,7 +82,7 @@ object SWorkingDataFrames {
 		println("Saving overall candidate summary as a new JSON dataset.")
 		summaryDF.write.mode("overwrite").json("target/json")
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println

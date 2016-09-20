@@ -19,13 +19,10 @@
 # the data structure.
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc <- sparkR.init()
-
-# Initialize the SQLContext
-sqlContext <- sparkRSQL.init(sc)
+session <- sparkR.session()
 
 # Create a DataFrame based on the JSON results.
-rawDF <- read.df(sqlContext, "loudoun_d_primary_results_2016.json", "json")
+rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")
 
 # Print the schema
 printSchema(rawDF)
@@ -43,7 +40,7 @@ print(collect(orderDF))
 
 print("What order were candidates on the ballot (in descriptive terms)?")
 # Load a reference table of friendly names for the ballot orders.
-friendlyDF <- read.df(sqlContext, "friendly_orders.json", "json")
+friendlyDF <- read.df("friendly_orders.json", "json")
 # Join the tables so the results show descriptive text
 joinedDF <- join(orderDF, friendlyDF, orderDF$candidate_ballot_order == friendlyDF$candidate_ballot_order)
 # Hide the numeric column in the output.
