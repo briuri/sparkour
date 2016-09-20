@@ -15,13 +15,13 @@
 # limitations under the License.
 #
 
-# A simple application which merely initializes the spark context,
+# A simple application which merely initializes the spark session,
 # for the purposes of demonstrating how to submit an application to
 # Spark for execution.
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-sc <- sparkR.init()
+session <- sparkR.session()
 
-print("The SparkR context has initialized successfully.")
+print("The SparkR session has initialized successfully.")
 
 sparkR.stop()

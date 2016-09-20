@@ -17,22 +17,23 @@
 
 package buri.sparkour;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 
 /**
- * A simple application which merely initializes the spark context,
+ * A simple application which merely initializes the spark session,
  * for the purposes of demonstrating how to submit an application to
  * Spark for execution.
  */
 public final class JSubmittingApplications {
 
 	public static void main(String[] args) throws Exception {
-		SparkConf sparkConf = new SparkConf().setAppName("JSubmittingApplications");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+                SparkSession spark = SparkSession
+                    .builder()
+                    .appName("JSubmittingApplications")
+                    .getOrCreate();
 
-		System.out.println("You are using Spark " + sc.version());
+		System.out.println("You are using Spark " + spark.version());
 		
-		sc.stop();
+		spark.stop();
 	}
 }

@@ -17,16 +17,19 @@
 
 from __future__ import print_function
 
-from pyspark import SparkContext
+from pyspark.sql import SparkSession
 
 """
-    A simple application which merely initializes the spark context,
+    A simple application which merely initializes the spark session,
     for the purposes of demonstrating how to submit an application to
     Spark for execution.
 """
 if __name__ == "__main__":
-    sc = SparkContext(appName="submitting_applications")
+    spark = SparkSession\
+        .builder\
+        .appName("submitting_applications")\
+        .getOrCreate()
 
-    print("You are using Spark " + sc.version);
+    print("You are using Spark " + spark.version);
     
-    sc.stop()
+    spark.stop()

@@ -23,3 +23,10 @@ Spark Update (2016-06-28)
     Languages
     	OpenJDK 1.8.0_91
     (all other versions the same as base recipe)
+Spark Update (2016-09-20) (breaks compatibility with Spark 1.x)
+    Apache Spark 2.0.0 Prebuilt for Hadoop 2.7 and later
+    Languages
+        OpenJDK 1.8.0_101
+        Python 2.7.12
+        R 3.2.2
+        Scala 2.11.8
