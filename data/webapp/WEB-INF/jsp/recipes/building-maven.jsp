@@ -152,6 +152,12 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
             	<version>2.0.0</version>
             	<scope>provided</scope>
         	</dependency>
+	        <dependency>
+	            <groupId>org.apache.spark</groupId>
+	            <artifactId>spark-sql_2.11</artifactId>
+	            <version>2.0.0</version>
+	            <scope>provided</scope>
+	        </dependency>
         	<!-- Other managed dependencies (described below) -->
 	    </dependencies>
 	</bu:rCode>
