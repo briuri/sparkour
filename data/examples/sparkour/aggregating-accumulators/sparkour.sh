@@ -39,7 +39,7 @@ cd $SPARKOUR_HOME$ID
 
 if [ $LANGUAGE = "java" ]; then
     mkdir -p target/java
-    javac $SRC_PATH/java/$PACKAGE/*.java -classpath $SPARK_HOME/lib/spark-assembly-*.jar -d target/java -Xdiags:verbose
+    javac $SRC_PATH/java/$PACKAGE/*.java -classpath "$SPARK_HOME/jars/*" -d target/java -Xdiags:verbose
     cd target/java
     jar -cf ../J$NAME_COMPILED.jar *
     cd ../..
@@ -51,7 +51,7 @@ elif [ $LANGUAGE = "r" ]; then
     exit 1
 elif [ $LANGUAGE = "scala" ]; then
     mkdir -p target/scala
-    scalac $SRC_PATH/scala/$PACKAGE/*.scala -classpath $SPARK_HOME/lib/spark-assembly-*.jar -d target/scala
+    scalac $SRC_PATH/scala/$PACKAGE/*.scala -classpath "$SPARK_HOME/jars/*" -d target/scala
     cd target/scala
     jar -cf ../S$NAME_COMPILED.jar *
     cd ../..
