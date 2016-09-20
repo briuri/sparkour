@@ -126,7 +126,7 @@ within the cluster.</p>
 	        }
 	
 	        // Create an RDD from the numbers array
-	        JavaRDD<Integer> numbersListRdd = spark.sparkContext().parallelize(numbers);
+	        JavaRDD<Integer> numbersListRdd = sc.parallelize(numbers);
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
@@ -158,7 +158,7 @@ types of files, including <span class="rCW">SequenceFiles</span> containing key-
 	<bu:rTab index="1">
 		<bu:rCode lang="java">
 	        // Create an RDD from a similar array on the local filesystem
-	        JavaRDD<String> numbersFileRdd = spark.sparkContext().textFile("random_numbers.txt");
+	        JavaRDD<String> numbersFileRdd = sc.textFile("random_numbers.txt");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
