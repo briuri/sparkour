@@ -40,7 +40,7 @@ public final class JControllingSchema {
 
 	public static void main(String[] args) throws Exception {
 		SparkSession spark = SparkSession.builder().appName("JControllingSchema").getOrCreate();
-                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+		JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an RDD with sample data.
 		JavaRDD<Record> beanRDD = sc.parallelize(buildSampleData());
