@@ -18,7 +18,7 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 
 import org.apache.commons.csv.{CSVFormat, CSVPrinter}
 
@@ -29,19 +29,18 @@ import org.apache.commons.csv.{CSVFormat, CSVPrinter}
  */
 object SBuildingSBT {
 	def main(args: Array[String]) {
-		val sparkConf = new SparkConf().setAppName("SBuildingSBT")
-		val sc = new SparkContext(sparkConf)
+		val spark = SparkSession.builder.appName("SBuildingSBT").getOrCreate()
 
 		// Create a simple RDD containing 4 numbers.
 		val numbers = Array(1, 2, 3, 4)
-		val numbersListRdd = sc.parallelize(numbers)
+		val numbersListRdd = spark.sparkContext.parallelize(numbers)
 
 		// Convert this RDD into CSV (using Java CSV Commons library).
 		val printer = new CSVPrinter(Console.out, CSVFormat.DEFAULT)
 		val javaArray: Array[java.lang.Integer] = numbersListRdd.collect() map java.lang.Integer.valueOf
 		printer.printRecords(javaArray)
 
-		sc.stop()
+		spark.stop()
 	}
 }
 // scalastyle:on println
