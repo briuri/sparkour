@@ -216,8 +216,9 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		
 		        // 1000 Houston residents: How many books do you own?
 		        // Must convert from string data to ints first
-		        JavaRDD<Integer> houstonRdd = numbersFileRdd.flatMap(x -> Arrays.asList(x.split(" ")))
-		                                                     .map(x -> Integer.valueOf(x));
+				JavaRDD<Integer> houstonRdd = numbersFileRdd.flatMap(x -> Arrays.asList(x.split(" ")).iterator())
+					.map(x -> Integer.valueOf(x));
+
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
@@ -227,7 +228,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 			    # 1000 Houston residents: How many books do you own?
 			    # Must convert from file's string data to integers first
 			    houstonRdd = numbersFileRdd.flatMap(lambda x: x.split(' ')) \
-			                                  .map(lambda x: int(x))
+					.map(lambda x: int(x))
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
@@ -239,7 +240,7 @@ as a chain of operators. Let's create some chains to analyze our created RDDs. T
 		        // 1000 Houston residents: How many books do you own?
 		        // Must convert from string data to ints first
 		        val houstonRdd = numbersFileRdd.flatMap(x => x.split(' '))
-		                                        .map(x => x.toInt)
+					.map(x => x.toInt)
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>

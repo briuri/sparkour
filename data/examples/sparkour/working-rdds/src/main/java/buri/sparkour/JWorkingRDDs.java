@@ -33,7 +33,7 @@ public final class JWorkingRDDs {
 
 	public static void main(String[] args) throws Exception {
 		SparkSession spark = SparkSession.builder().appName("JWorkingRDDs").getOrCreate();
-                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+		JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an array of 1000 random numbers between 0 and 50.
 		List<Integer> numbers = new ArrayList<>();
@@ -53,7 +53,7 @@ public final class JWorkingRDDs {
 		// 1000 Houston residents: How many books do you own?
 		// Must convert from string data to ints first
 		JavaRDD<Integer> houstonRdd = numbersFileRdd.flatMap(x -> Arrays.asList(x.split(" ")).iterator())
-													 .map(x -> Integer.valueOf(x));
+				.map(x -> Integer.valueOf(x));
 		
 		// How many have more than 30 in Chicago?
 		Long moreThanThirty = chicagoRdd.filter(x -> x > 30).count();
