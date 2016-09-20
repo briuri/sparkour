@@ -37,8 +37,8 @@ EXAMPLES_PATH="/opt/examples/sparkour"
 EXAMPLE_PATH="$EXAMPLES_PATH/$ID"
 SRC_PATH="$EXAMPLE_PATH/src/main"
 OUTPUT_PATH="$EXAMPLE_PATH/target"
-JAVA_CP="$SPARK_HOME/lib/spark-assembly-1.6.2-hadoop2.6.0.jar" # Spark assembly
-JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar"       # building-sbt
+JAVA_CP="$SPARK_HOME/jars/*"                         # Spark Core
+JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar" # building-sbt
 
 # Asserts that an example exists before cleaning or zipping it.
 function assertExists {
@@ -70,14 +70,14 @@ function cleanExample {
 function compileExample {
     if [[ -d "$SRC_PATH/java" ]]; then
         mkdir -p $OUTPUT_PATH/java
-        javac $SRC_PATH/java/$PACKAGE/* -cp $JAVA_CP -d $OUTPUT_PATH/java
+        javac $SRC_PATH/java/$PACKAGE/* -cp "$JAVA_CP" -d $OUTPUT_PATH/java
     fi
     if [[ -d "$SRC_PATH/python" ]]; then
         python -m py_compile $SRC_PATH/python/*.py
     fi
     if [[ -d "$SRC_PATH/scala" ]]; then
         mkdir -p $OUTPUT_PATH/scala
-        scalac $SRC_PATH/scala/$PACKAGE/* -cp $JAVA_CP -d $OUTPUT_PATH/scala
+        scalac $SRC_PATH/scala/$PACKAGE/* -cp "$JAVA_CP" -d $OUTPUT_PATH/scala
     fi
 }
 
