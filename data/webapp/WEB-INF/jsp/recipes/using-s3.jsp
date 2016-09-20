@@ -69,6 +69,10 @@ application is a trade-off between maturity, security, and performance.</p>
 <bu:rTabs>
 	<bu:rTab index="1">
 		<bu:rCode lang="java">
+			// Initialize the session
+			SparkSession spark = SparkSession.builder().appName("JUsingS3").getOrCreate();
+			JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+			
 	        // Create an RDD from a file in the working directory
 	        JavaRDD<String> localRdd = sc.textFile("random_numbers.txt");
 	        
@@ -79,27 +83,30 @@ application is a trade-off between maturity, security, and performance.</p>
 	        JavaRDD<String> s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
 	        
 	        // Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/");
 	        
 	        // Save data to S3 using the s3a protocol
-	        localRdd.saveAsTextFile("s3a://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
+			# Initialize the session
+			spark = SparkSession.builder.appName("using_s3").getOrCreate()
+			
  			# Create an RDD from a file in the working directory
-    		localRdd = sc.textFile("random_numbers.txt")
+    		localRdd = spark.sparkContext.textFile("random_numbers.txt")
     		
     		# Create an RDD from a file in S3 using the s3n protocol
-    		s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt");
+    		s3nRdd = spark.sparkContext.textFile("s3n://sparkour-data/random_numbers.txt")
     		
     		# Create an RDD from a file in S3 using the s3a protocol
-    		s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
+    		s3aRdd = spark.sparkContext.textFile("s3a://sparkour-data/random_numbers.txt")
     		
     		# Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/")
 	        
 	        # Save data to S3 using the s3a protocol
-	        localRdd.saveAsTextFile("s3a://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/")
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="plain">
@@ -120,20 +127,23 @@ application is a trade-off between maturity, security, and performance.</p>
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="scala">
+			// Initialize the session
+			val spark = SparkSession.builder.appName("SUsingS3").getOrCreate()
+			
 	        // Create an RDD from a file in the working directory
         	val localRdd = sc.textFile("random_numbers.txt")
         	
         	// Create an RDD from a file in S3 using the s3n protocol
-        	val s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt");
+        	val s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt")
         	
         	// Create an RDD from a file in S3 using the s3a protocol
-        	val s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
+        	val s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt")
         	
     		# Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/")
 	        
 	        # Save data to S3 using the s3a protocol
-	        localRdd.saveAsTextFile("s3a://sparkour-data/saved_file.txt");
+	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/")
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -196,24 +206,24 @@ or SSH into the master node of the cluster. You should have already tested your 
 				// s3n Test
 				JavaRDD<String> textFile = sc.textFile("s3n://sparkour-data/myfile.txt");
 				System.out.println(textFile.count());
-				textFile.saveAsTextFile("s3n://sparkour-data/myfile.s3n.copy.txt");
+				textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/");
 				
 				// s3a Test
 				JavaRDD<String> textFile2 = sc.textFile("s3a://sparkour-data/myfile.txt");
 				System.out.println(textFile2.count());
-				textFile2.saveAsTextFile("s3a://sparkour-data/myfile.s3a.copy.txt");
+				textFile2.saveAsTextFile("s3a://sparkour-data/s3a-output-path/");
 			</bu:rCode>			
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				>>> # s3n Test
 				>>> textFile = sc.textFile("s3n://sparkour-data/myfile.txt")
 				>>> textFile.count()
-				>>> textFile.saveAsTextFile("s3n://sparkour-data/myfile.s3n.copy.txt")
+				>>> textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/")
 				
 				>>> # s3a Test
 				>>> textFile = sc.textFile("s3a://sparkour-data/myfile.txt")
 				>>> textFile.count()
-				>>> textFile.saveAsTextFile("s3a://sparkour-data/myfile.s3a.copy.txt")
+				>>> textFile.saveAsTextFile("s3a://sparkour-data/s3a-output-path/")
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<p>The low-level Spark Core API containing <span class="rCW">textFile()</span> is not available in R, so we
@@ -221,14 +231,12 @@ or SSH into the master node of the cluster. You should have already tested your 
 			<a href="${filesUrlBase}/using-s3-dataframe.json">a simple JSON dataset</a> to your S3 bucket for use in this test.</p>
 			<bu:rCode lang="plain">
 				> # s3n Test
-				> sqlContext <- sparkRSQL.init(sc)
-				> people <- read.df(sqlContext, "s3n://sparkour-data/using-s3-dataframe.json", "json")
+				> people <- read.df("s3n://sparkour-data/using-s3-dataframe.json", "json")
 				> head(people)
 				> write.df(people, "s3n://sparkour-data/using-s3-dataframe.s3n.parquet")
 				
 				> # s3a Test
-				> sqlContext <- sparkRSQL.init(sc)
-				> people <- read.df(sqlContext, "s3a://sparkour-data/using-s3-dataframe.json", "json")
+				> people <- read.df("s3a://sparkour-data/using-s3-dataframe.json", "json")
 				> head(people)
 				> write.df(people, "s3a://sparkour-data/using-s3-dataframe.s3a.parquet")
 			</bu:rCode>
@@ -237,12 +245,12 @@ or SSH into the master node of the cluster. You should have already tested your 
 				scala> # s3n Test
 				scala> val textFile = sc.textFile("s3n://sparkour-data/myfile.txt")
 				scala> textFile.count()
-				scala> textFile.saveAsTextFile("s3n://sparkour-data/myfile.s3n.copy.txt")
+				scala> textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/")
 				
 				scala> # s3a Test
 				scala> val textFile = sc.textFile("s3a://sparkour-data/myfile.txt")
 				scala> textFile.count()
-				scala> textFile.saveAsTextFile("s3a://sparkour-data/myfile.s3a.copy.txt")
+				scala> textFile.saveAsTextFile("s3a://sparkour-data/s3a-output-path/")
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -258,8 +266,8 @@ or SSH into the master node of the cluster. You should have already tested your 
 	java.io.IOException: No FileSystem for scheme: s3n
 </bu:rCode>
 
-<p>This message is specific to distributions of Apache Spark <span class="rPN">Pre-built for Hadoop 2.6 and later</span> (as of March 2016), which
-accidentally omit some important dependencies from the distribution. If you see this error message, you can use the <span class="rK">--packages</span>
+<p>This message appears when dependencies are missing from your Apache Spark distribution.
+If you see this error message, you can use the <span class="rK">--packages</span>
 parameter and Spark will use Maven to locate the missing dependencies and distribute them
 to the cluster. Alternately, you can use <span class="rK">--jars</span> if you manually downloaded the dependencies already.
 These parameters also works on the <span class="rCW">spark-submit</span> script.</p>
@@ -268,25 +276,25 @@ These parameters also works on the <span class="rCW">spark-submit</span> script.
 	<bu:rTab index="1">
 		<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run an application with the <span class="rCW">spark-submit</span> script.</p>
 		<bu:rCode lang="bash">
-			./bin/spark-submit \
+			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.6.0 \
+				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2 \
 				--class buri.sparkour.ImaginaryApplication bundledAssembly.jar applicationArgs
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="bash">
-			./bin/pyspark --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.6.0
+			$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077 \
+				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="bash">
-			./bin/sparkR --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.6.0
+			$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077 \
+				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="bash">
-			./bin/spark-shell --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.6.0
+			$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077 \
+				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
@@ -297,10 +305,12 @@ These parameters also works on the <span class="rCW">spark-submit</span> script.
 	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found
 </bu:rCode>
 
-<p>This message appears when your bundled version of Hadoop is too old. If you see this error message, you should download a 
-recent Hadoop 2.7.x distribution and unzip it in your development environment to get the necessary JAR files. This workaround requires
-a specific, older version of an AWS JAR (1.7.4) that might not be available in the EC2 Maven Repository, so the <span class="rK">--packages</span>
-parameter is not a good solution. Instead, we use <span class="rK">--jars</span> to point to our manually downloaded dependencies.
+<p>This message appears when dependencies are missing from your Apache Spark distribution.
+<p>If you see this error message, you should download a recent Hadoop 2.7.x distribution and 
+unzip it in your development environment to get the necessary JAR files. This workaround requires
+a specific, older version of an AWS JAR (1.7.4) that might not be available in the EC2 Maven Repository, 
+so the <span class="rK">--packages</span> parameter is not a good solution. 
+Instead, we use <span class="rK">--jars</span> to point to our manually downloaded dependencies.
 This parameter also works on the <span class="rCW">spark-submit</span> script.</p>
 	
 <bu:rTabs>
@@ -350,6 +360,19 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 	</bu:rTab>
 </bu:rTabs>
 
+
+<h3>AWS Error Message: One or more objects could not be deleted</h3>
+
+<bu:rCode lang="plain">
+	com.amazonaws.services.s3.model.MultiObjectDeleteException: 
+		Status Code: 0, AWS Service: null, AWS Request ID: null, AWS Error Code: null, 
+		AWS Error Message: One or more objects could not be deleted, S3 Extended Request ID: null
+</bu:rCode>
+
+<p>This message occurs with Spark 2.0.0 when trying to write data into a bucket over <span class="rCW">s3a</span>. I'm currently in the process of figuring out
+why this occurs, since it did not occur in Spark 1.6. You can track the progress of this work in the
+<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-19">SPARKOUR-19</a> ticket.</p>
+		
 <bu:rFooter>
 	<bu:rLinks>
 		<li><a href="https://wiki.apache.org/hadoop/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
