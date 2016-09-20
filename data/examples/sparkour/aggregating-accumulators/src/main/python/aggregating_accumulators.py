@@ -45,7 +45,7 @@ class StringAccumulatorParam(AccumulatorParam):
         return s1.strip() + " " + s2.strip()
 
 if __name__ == "__main__":
-	spark = SparkSession.builder.appName("aggregating_accumulators").getOrCreate()
+    spark = SparkSession.builder.appName("aggregating_accumulators").getOrCreate()
 
     # Create an accumulator to count how many rows might be inaccurate.
     heightCount = spark.accumulator(0)
