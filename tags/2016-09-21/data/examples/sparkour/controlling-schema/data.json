@@ -1,0 +1,3 @@
+{"name":"Alex","num_pets":3,"paid_in_full":true,"preferences":{"preferred_appointment_day":"Monday","preferred_vet":"Dr. Smith"},"registered_on":"2015-01-01","visits":["2015-02-01 11:00:00.0","2015-02-02 10:45:00.0"]}
+{"name":"Beth","num_pets":2,"paid_in_full":false,"preferences":{"preferred_vet":"Dr. Travis"},"registered_on":"2013-01-01","visits":["2015-01-15 12:15:00.0","2015-02-01 11:15:00.0"]}
+{"name":"Charlie","num_pets":1,"paid_in_full":true,"preferences":{},"registered_on":"2016-05-01","visits":[]}

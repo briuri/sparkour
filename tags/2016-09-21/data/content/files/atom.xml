@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Sparkour</title>
+	<subtitle>An open-source collection of programming recipes for Apache Spark</subtitle>
+	<link href="https://sparkour.urizone.net/" />
+	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
+	
+	<updated>2016-09-21T10:00:00Z</updated>
+	
+	<author><name>Brian Uri!</name></author>
+	<id>https://sparkour.urizone.net/</id>
+	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
+	<icon>https://sparkour.urizone.net/favicon.ico</icon>
+	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
+
+	<entry>
+		<id>https://sparkour.urizone.net/</id>
+		<link href="https://sparkour.urizone.net/" />
+		<updated>2016-09-21T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated to use the new features available in Spark 2.0.0, such as the SparkSession
+			and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
+			need of solid documentation.	
+		</summary>
+	</entry>
+		
+	<entry>
+		<id>https://sparkour.urizone.net/</id>
+		<link href="https://sparkour.urizone.net/" />
+		<updated>2016-06-28T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated and tested against Spark 1.6.2.	
+		</summary>
+	</entry>
+</feed>
+
+

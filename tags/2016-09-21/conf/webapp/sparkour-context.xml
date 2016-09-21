@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	">
+
+	<util:map id="recipeTitles">
+    	<entry key="sparkour-conventions"		value="Tutorial #0: Sparkour Conventions" />
+    	<entry key="spark-nutshell" 			value="Tutorial #1: Apache Spark in a Nutshell" />
+    	<entry key="installing-ec2" 			value="Tutorial #2: Installing Spark on Amazon EC2" />
+    	<entry key="managing-clusters" 			value="Tutorial #3: Managing Spark Clusters" />
+    	<entry key="submitting-applications" 	value="Tutorial #4: Writing and Submitting a Spark Application" />
+    	<entry key="working-rdds" 				value="Tutorial #5: Working with Spark Resilient Distributed Datasets (RDDs)" />
+    	
+    	<entry key="working-dataframes" 		value="Working with Spark DataFrames" />
+    	<entry key="using-sql-udf"			 	value="Using SQL and User-Defined Functions with Spark DataFrames" />
+    	<entry key="using-jdbc"			 		value="Using JDBC with Spark DataFrames" />
+    	<entry key="controlling-schema"	 		value="Controlling the Schema of a Spark DataFrame" />
+    	<entry key="building-sbt" 				value="Building Spark Applications with SBT" />
+    	<entry key="building-maven"				value="Building Spark Applications with Maven" />
+    	<entry key="broadcast-variables"		value="Improving Spark Performance with Broadcast Variables" />
+    	<entry key="aggregating-accumulators"	value="Aggregating Results with Spark Accumulators" />
+    	    	
+    	<entry key="spark-ec2" 					value="Managing a Spark Cluster with the spark-ec2 Script" />
+    	<entry key="configuring-s3" 			value="Configuring Amazon S3 as a Spark Data Source" />
+    	<entry key="using-s3" 					value="Configuring Spark to Use Amazon S3" />
+    	<entry key="s3-vpc-endpoint"			value="Configuring an S3 VPC Endpoint for a Spark Cluster" />
+	</util:map>       
+</beans>
