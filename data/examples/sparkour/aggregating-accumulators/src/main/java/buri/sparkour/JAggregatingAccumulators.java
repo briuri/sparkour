@@ -37,7 +37,6 @@ public final class JAggregatingAccumulators {
                 LongAccumulator heightCount = spark.sparkContext().longAccumulator();
 
 		// Create an accumulator to store all questionable values.
-                // The built-in CollectionAccumulator does something similar.
                 StringAccumulator heightValues = new StringAccumulator();
                 spark.sparkContext().register(heightValues);
 
