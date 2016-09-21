@@ -31,14 +31,14 @@ public final class JAggregatingAccumulators {
 
 	public static void main(String[] args) throws Exception {
 		SparkSession spark = SparkSession.builder().appName("JAggregatingAccumulators").getOrCreate();
-                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+		JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an accumulator to count how many rows might be inaccurate.
-                LongAccumulator heightCount = spark.sparkContext().longAccumulator();
+		LongAccumulator heightCount = spark.sparkContext().longAccumulator();
 
 		// Create an accumulator to store all questionable values.
-                StringAccumulator heightValues = new StringAccumulator();
-                spark.sparkContext().register(heightValues);
+		StringAccumulator heightValues = new StringAccumulator();
+		spark.sparkContext().register(heightValues);
 
 		// A function that checks for questionable values
 		VoidFunction<Row> validate = new VoidFunction<Row>() {

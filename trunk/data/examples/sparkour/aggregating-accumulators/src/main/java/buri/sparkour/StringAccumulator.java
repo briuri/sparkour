@@ -27,42 +27,42 @@ import org.apache.spark.util.AccumulatorV2;
  */
 public class StringAccumulator extends AccumulatorV2<String, String> {
 
-    private String _value;
+	private String _value;
 
-    private static final String DEFAULT_INITIAL_VALUE = "";
+	private static final String DEFAULT_INITIAL_VALUE = "";
 
-    public StringAccumulator() {
-        this(DEFAULT_INITIAL_VALUE);
-    }
+	public StringAccumulator() {
+		this(DEFAULT_INITIAL_VALUE);
+	}
 
-    public StringAccumulator(String initialValue) {
-        if (initialValue == null) {
-            initialValue = DEFAULT_INITIAL_VALUE;
-        }
-        _value = initialValue;
-    }
+	public StringAccumulator(String initialValue) {
+		if (initialValue == null) {
+			initialValue = DEFAULT_INITIAL_VALUE;
+		}
+		_value = initialValue;
+	}
 
-    public void add(String value) {
-        _value = value() + " " + value.trim();
-    }
+	public void add(String value) {
+		_value = value() + " " + value.trim();
+	}
 
-    public StringAccumulator copy() {
-        return (new StringAccumulator(value()));
-    }
+	public StringAccumulator copy() {
+		return (new StringAccumulator(value()));
+	}
 
-    public boolean isZero() {
-        return (value().length() == 0);
-    }
+	public boolean isZero() {
+		return (value().length() == 0);
+	}
 
-    public void merge(AccumulatorV2<String, String> other) {
-        this.add(other.value());
-    }
+	public void merge(AccumulatorV2<String, String> other) {
+		this.add(other.value());
+	}
 
-    public void reset() {
-        _value = DEFAULT_INITIAL_VALUE;
-    }
+	public void reset() {
+		_value = DEFAULT_INITIAL_VALUE;
+	}
 
-    public String value() {
-        return (_value);
-    }
+	public String value() {
+		return (_value);
+	}
 }
