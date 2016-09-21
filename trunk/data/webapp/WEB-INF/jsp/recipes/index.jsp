@@ -81,6 +81,9 @@
 					<li>Monitoring Your Cluster with the REST API</li>
 					<li>Capturing Metrics with slf4j</li>
 				</ul></li>
+				<li><span class="rCategory">Notebooks</span><ul>
+					<li>Installing Apache Zeppelin with a Spark Interpreter</li>
+				</ul></li>
 				<li><span class="rCategory">Security</span><ul>
 					<li>Adding Authentication to Spark UIs</li>
 					<li>Running Spark over SSL</li>

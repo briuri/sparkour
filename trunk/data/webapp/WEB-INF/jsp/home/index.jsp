@@ -28,6 +28,11 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-09-21">
+		All recipes have been updated to use the new features available in Spark 2.0.0, such as the <span class="rCW">SparkSession</span>
+		and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
+		need of solid documentation.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-06-28">
 		All recipes have been updated and tested against Spark 1.6.2.
 	</bu:newsUpdate>
@@ -49,14 +54,14 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
 		to execute your Spark application.
 	</bu:newsUpdate>	
-	<bu:newsUpdate date="2016-04-13">
-		<bu:rLink id="s3-vpc-endpoint" />
-		shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources from a private subnet 
-		without a Network Address Translation (NAT) instance or Internet Gateway.
-	</bu:newsUpdate>
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">	
+		<bu:newsUpdate date="2016-04-13">
+			<bu:rLink id="s3-vpc-endpoint" />
+			shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources from a private subnet 
+			without a Network Address Translation (NAT) instance or Internet Gateway.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-04-07">
 			All recipes have been updated and tested against Spark 1.6.1.
 		</bu:newsUpdate>

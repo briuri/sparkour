@@ -12,7 +12,7 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 <div class="license">
 	<ul>
 		<li>Core Libraries<ul>
-			<li><a href="https://spark.apache.org/">Apache Spark 1.6.2</a>
+			<li><a href="https://spark.apache.org/">Apache Spark 2.0.0</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Core data processing engine (unmodified).</li>
 			<li><a href="http://jstl.java.net/">JSTL 1.2.1</a>

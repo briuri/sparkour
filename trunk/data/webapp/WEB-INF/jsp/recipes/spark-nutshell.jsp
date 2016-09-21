@@ -137,7 +137,7 @@ requirements.</p>
 		performance concern.</li>
 </ul>
 
-<p>My personal recommendation (as a developer with 19 years of Java experience, 2 years of Python experience, and miscellaneous dabbling in the other languages) would
+<p>My personal recommendation (as a developer with 20 years of Java experience, 2 years of Python experience, and miscellaneous dabbling in the other languages) would
 be to favour Python for learning and smaller applications, and Scala for enterprise projects. There's absolutely nothing wrong with writing Spark code in Java, but it 
 sometimes feels unnecessarily inflexible, like running a marathon with shoes one size too small. Until the R API is more mature, I would only consider R
 if I had specific requirements for pulling parts of Spark into an existing R environment. Feel free to disregard these recommendations if they don't align with your views.</p>
