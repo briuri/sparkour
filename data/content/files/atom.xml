@@ -17,6 +17,17 @@
 		<id>https://sparkour.urizone.net/</id>
 		<link href="https://sparkour.urizone.net/" />
 		<updated>2016-09-21T10:00:00Z</updated>
+		<title type="html">Website Statistics</title>
+		<summary type="html">
+			Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!&lt;br /&gt;
+			&lt;img src=&apos;/images/stats-160921.png&apos; class=&apos;diagram border&apos; title=&apos;Visitor Stats&apos; width=&apos;589&apos; height=&apos;264&apos; /&gt;
+		</summary>
+	</entry>
+	
+	<entry>
+		<id>https://sparkour.urizone.net/</id>
+		<link href="https://sparkour.urizone.net/" />
+		<updated>2016-09-20T10:00:00Z</updated>
 		<title type="html">Spark Update</title>
 		<summary type="html">
 			All recipes have been updated to use the new features available in Spark 2.0.0, such as the SparkSession
