@@ -23,6 +23,11 @@ from pyspark.sql import SparkSession
     Uses accumulators to provide statistics on potentially incorrect
     data.
 
+    This example still uses the deprecated Accumulator API from
+    Spark 1.x. The AccumlatorV2 from Spark 2.0.0 has not yet
+    been implemented in PySpark. You can track this work in
+    https://issues.apache.org/jira/browse/SPARK-16861
+
     camelCase used for variable names for consistency and
     ease of translation across the prevailing style of
     the Java, R, and Scala examples.
