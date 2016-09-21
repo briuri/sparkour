@@ -22,7 +22,7 @@ import org.apache.spark.util.AccumulatorV2
 
 /**
  * A custom accumulator for string concatenation
-
+ *
  * Contrived example -- see recipe for caveats. The built-in
  * CollectionAccumulator does something similar but more elegantly.
  */

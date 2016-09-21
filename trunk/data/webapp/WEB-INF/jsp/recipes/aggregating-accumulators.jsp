@@ -18,10 +18,13 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>Accumulators existed in Spark as early as <span class="rPN">0.5.2</span>. Any modern version should work with this recipe.
-			You should also be aware that the Accumulator API will be changing dramatically in Spark 2.0 
-			(<a href="https://issues.apache.org/jira/browse/SPARK-14654">SPARK-14654</a>).</li>
-		<li>The SparkR API does not yet support accumulators. You can track the progress of this work in the
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher
+			to take advantage of the latest Accumulator API changes.
+			You may need to make modifications to use it on an older version of Spark.</li>	
+		<li> The Python examples still uses the older API because PySpark does not yet support the new 
+			<span class="rCW">AccumulatorV2</span> enhancements. You can track the progress of this work in the 
+			<a href="https://issues.apache.org/jira/browse/SPARK-16861">SPARK-16861</a> ticket.</p>
+		<li>The SparkR API does not yet support accumulators at all. You can track the progress of this work in the
 			<a href="https://issues.apache.org/jira/browse/SPARK-6815">SPARK-6815</a> ticket.</li>  
 	</ol>
 		
@@ -140,19 +143,19 @@ questionable values. (With a larger set of real data, this type of validation co
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				// Create an accumulator to count how many rows might be inaccurate.
-				Accumulator<Integer> heightCount = sc.accumulator(0);
+				LongAccumulator heightCount = spark.sparkContext().longAccumulator();
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 				# Create an accumulator to count how many rows might be inaccurate.
-			    heightCount = sc.accumulator(0)
+				heightCount = spark.sparkContext.accumulator(0)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create an accumulator to count how many rows might be inaccurate.
-				val heightCount = sc.accumulator(0)
+				val heightCount = spark.sparkContext.longAccumulator
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -168,21 +171,47 @@ questionable values. (With a larger set of real data, this type of validation co
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				/**
-				 * A custom accumulator for string concatenation Contrived example -- see recipe
-				 * for caveats.
+				 * A custom accumulator for string concatenation
+				 *
+				 * Contrived example -- see recipe for caveats. The built-in
+				 * CollectionAccumulator does something similar but more elegantly.
 				 */
-				public class StringAccumulatorParam implements AccumulatorParam<String> {
+				public class StringAccumulator extends AccumulatorV2<String, String> {
 				
-					public String zero(String initialValue) {
-						return (initialValue);
+					private String _value = "";
+				
+					public StringAccumulator() {
+						this("");
 					}
 				
-					public String addInPlace(String s1, String s2) {
-						return (s1.trim() + " " + s2.trim());
+					public StringAccumulator(String initialValue) {
+						if (initialValue != null) {
+							_value = initialValue;
+						}
 					}
 				
-					public String addAccumulator(String s1, String s2) {
-						return (addInPlace(s1, s2));
+					public void add(String value) {
+						_value = value() + " " + value.trim();
+					}
+				
+					public StringAccumulator copy() {
+						return (new StringAccumulator(value()));
+					}
+				
+					public boolean isZero() {
+						return (value().length() == 0);
+					}
+				
+					public void merge(AccumulatorV2<String, String> other) {
+						add(other.value());
+					}
+				
+					public void reset() {
+						_value = "";
+					}
+				
+					public String value() {
+						return (_value);
 					}
 				}
 			</bu:rCode>
@@ -203,40 +232,67 @@ questionable values. (With a larger set of real data, this type of validation co
 			<bu:rCode lang="scala">
 				/**
 				 * A custom accumulator for string concatenation
-				 * Contrived example -- see recipe for caveats.
+				 *
+				 * Contrived example -- see recipe for caveats. The built-in
+				 * CollectionAccumulator does something similar but more elegantly.
 				 */
-				object StringAccumulatorParam extends AccumulatorParam[String] {
-					def zero(initialValue: String): String = {
-						""
+				class StringAccumulator(private var _value: String) extends AccumulatorV2[String, String] {
+				
+					def this() {
+						this("")
 					}
-								
-					def addInPlace(s1: String, s2: String): String = {
-						s1.trim + " " + s2.trim
+				
+					override def add(newValue: String): Unit = {
+						_value = value + " " + newValue.trim
+					}
+				
+					override def copy(): StringAccumulator = {
+						new StringAccumulator(value) 
+					}
+				
+					override def isZero(): Boolean = {
+						value.length() == 0
+					}
+				
+					override def merge(other: AccumulatorV2[String, String]): Unit = {
+						add(other.value)
+					}
+				
+					override def reset(): Unit = {
+						_value = ""
+					}
+				
+					override def value(): String = {
+						_value
 					}
 				}
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>				
 	
-	<li>With the custom accumulator defined, we can use it in our application.</li>
+	<li>The Java and Scala custom accumulators extend from the new <span class="rCW">AccumulatorV2</span>
+	abstract class, while the Python approach uses the older, deprecated <span class="rCW">AccumulatorParam</span>
+	interface. With a custom accumulator defined, we can use it in our application.</li>
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				// Create an accumulator to store all questionable values.
-				Accumulator<String> heightValues = sc.accumulator("", new StringAccumulatorParam());
+				StringAccumulator heightValues = new StringAccumulator();
+				spark.sparkContext().register(heightValues);
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create an accumulator to store all questionable values.
-			    heightValues = sc.accumulator("", StringAccumulatorParam())
+			    heightValues = spark.sparkContext.accumulator("", StringAccumulatorParam())
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create an accumulator to store all questionable values.
-				val heightValues = sc.accumulator("")(StringAccumulatorParam)
+				val heightValues = new StringAccumulator()
+				spark.sparkContext.register(heightValues)
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>	
@@ -292,7 +348,7 @@ questionable values. (With a larger set of real data, this type of validation co
 		<bu:rTab index="1">
 			<bu:rCode lang="java">
 				// Create a DataFrame from a file of names and heights in inches.
-				DataFrame heightDF = sqlContext.read().json("heights.json");
+				Dataset<Row> heightDF = spark.read().json("heights.json");
 		
 				// Validate the data with the function.
 				heightDF.javaRDD().foreach(validate);
@@ -300,7 +356,7 @@ questionable values. (With a larger set of real data, this type of validation co
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
 			    # Create a DataFrame from a file of names and heights in inches.
-			    heightDF = sqlContext.read.json("heights.json")
+			    heightDF = spark.read.json("heights.json")
 			
 			    # Validate the data with the function.
 			    heightDF.foreach(lambda x : validate(x))
@@ -310,7 +366,7 @@ questionable values. (With a larger set of real data, this type of validation co
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Create a DataFrame from a file of names and heights in inches.
-				val heightDF = sqlContext.read.json("heights.json")
+				val heightDF = spark.read.json("heights.json")
 		
 				// Validate the data with the function.
 				heightDF.foreach(validate)
@@ -339,8 +395,8 @@ questionable values. (With a larger set of real data, this type of validation co
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
 				// Show how many questionable values were found and what they were.
-				println(s"$heightCount rows had questionable values.")
-				println(s"Questionable values: $heightValues")
+				println(s"${heightCount.value} rows had questionable values.")
+				println(s"Questionable values: ${heightValues.value}")
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>			
