@@ -17,11 +17,12 @@
 
 package buri.sparkour;
 
-import org.apache.spark.Accumulator;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.apache.spark.util.LongAccumulator;
 
 /**
  * Uses accumulators to provide statistics on potentially incorrect data.
@@ -30,12 +31,15 @@ public final class JAggregatingAccumulators {
 
 	public static void main(String[] args) throws Exception {
 		SparkSession spark = SparkSession.builder().appName("JAggregatingAccumulators").getOrCreate();
+                JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		Accumulator<Integer> heightCount = spark.sparkContext().accumulator(0)
+                LongAccumulator heightCount = spark.sparkContext().longAccumulator();
 
 		// Create an accumulator to store all questionable values.
-		Accumulator<String> heightValues = spark.sparkContext().accumulator("", new StringAccumulatorParam());
+                // The built-in CollectionAccumulator does something similar.
+                StringAccumulator heightValues = new StringAccumulator();
+                spark.sparkContext().register(heightValues);
 
 		// A function that checks for questionable values
 		VoidFunction<Row> validate = new VoidFunction<Row>() {
