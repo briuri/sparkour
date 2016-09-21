@@ -27,19 +27,16 @@ import org.apache.spark.util.AccumulatorV2;
  */
 public class StringAccumulator extends AccumulatorV2<String, String> {
 
-	private String _value;
-
-	private static final String DEFAULT_INITIAL_VALUE = "";
+	private String _value = "";
 
 	public StringAccumulator() {
-		this(DEFAULT_INITIAL_VALUE);
+		this("");
 	}
 
 	public StringAccumulator(String initialValue) {
-		if (initialValue == null) {
-			initialValue = DEFAULT_INITIAL_VALUE;
+		if (initialValue != null) {
+                    _value = initialValue;
 		}
-		_value = initialValue;
 	}
 
 	public void add(String value) {
@@ -55,11 +52,11 @@ public class StringAccumulator extends AccumulatorV2<String, String> {
 	}
 
 	public void merge(AccumulatorV2<String, String> other) {
-		this.add(other.value());
+		add(other.value());
 	}
 
 	public void reset() {
-		_value = DEFAULT_INITIAL_VALUE;
+		_value = "";
 	}
 
 	public String value() {

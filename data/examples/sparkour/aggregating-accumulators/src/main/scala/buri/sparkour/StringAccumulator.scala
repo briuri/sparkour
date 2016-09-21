@@ -18,18 +18,41 @@
 // scalastyle:off println
 package buri.sparkour
 
-import org.apache.spark.AccumulatorParam
+import org.apache.spark.util.AccumulatorV2
 
 /**
  * A custom accumulator for string concatenation
- * Contrived example -- see recipe for caveats.
+
+ * Contrived example -- see recipe for caveats. The built-in
+ * CollectionAccumulator does something similar but more elegantly.
  */
-object StringAccumulatorParam extends AccumulatorParam[String] {
-	def zero(initialValue: String): String = {
-		""
-	}
-				
-	def addInPlace(s1: String, s2: String): String = {
-		s1.trim + " " + s2.trim
-	}
+class StringAccumulator(private var _value: String) extends AccumulatorV2[String, String] {
+
+    def this() {
+        this("")
+    }
+
+    override def add(newValue: String): Unit = {
+        _value = value + " " + newValue.trim
+    }
+
+    override def copy(): StringAccumulator = {
+        new StringAccumulator(value) 
+    }
+
+    override def isZero(): Boolean = {
+        value.length() == 0
+    }
+
+    override def merge(other: AccumulatorV2[String, String]): Unit = {
+        add(other.value)
+    }
+
+    override def reset(): Unit = {
+        _value = ""
+    }
+
+    override def value(): String = {
+        _value
+    }
 }
