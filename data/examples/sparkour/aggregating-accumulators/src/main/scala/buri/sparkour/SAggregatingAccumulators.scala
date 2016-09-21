@@ -33,8 +33,8 @@ object SAggregatingAccumulators {
 		val heightCount = spark.sparkContext.longAccumulator
 
 		// Create an accumulator to store all questionable values.
-                val heightValues = new StringAccumulator()
-                spark.sparkContext.register(heightValues)
+		val heightValues = new StringAccumulator()
+		spark.sparkContext.register(heightValues)
 
 		// A function that checks for questionable values
 		def validate(row: Row) = {
