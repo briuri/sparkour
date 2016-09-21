@@ -19,6 +19,7 @@
 package buri.sparkour
 
 import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.util.LongAccumulator
 
 /**
  * Uses accumulators to provide statistics on potentially incorrect data.
@@ -29,10 +30,11 @@ object SAggregatingAccumulators {
 		val spark = SparkSession.builder.appName("SAggregatingAccumulators").getOrCreate()
 
 		// Create an accumulator to count how many rows might be inaccurate.
-		val heightCount = spark.sparkContext.accumulator(0)
+		val heightCount = spark.sparkContext.longAccumulator
 
 		// Create an accumulator to store all questionable values.
-		val heightValues = spark.sparkContext.accumulator("")(StringAccumulatorParam)
+                val heightValues = new StringAccumulator()
+                spark.sparkContext.register(heightValues)
 
 		// A function that checks for questionable values
 		def validate(row: Row) = {
@@ -50,8 +52,8 @@ object SAggregatingAccumulators {
 		heightDF.foreach(validate(_))
 
 		// Show how many questionable values were found and what they were.
-		println(s"$heightCount rows had questionable values.")
-		println(s"Questionable values: $heightValues")
+		println(s"${heightCount.value} rows had questionable values.")
+		println(s"Questionable values: ${heightValues.value}")
 
 		spark.stop()
 	}
