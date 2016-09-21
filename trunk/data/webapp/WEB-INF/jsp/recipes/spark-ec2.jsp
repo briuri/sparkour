@@ -24,14 +24,9 @@
 	
 	<h3>Target Versions</h3>
 	<ol>
-		<li>With the <span class="rCW">spark-ec2</span> script from a specific version of Apache Spark, you can launch a cluster running
+		<li>With the <span class="rCW">spark-ec2</span> script for a specific version of Apache Spark, you can launch a cluster running
 			the same, or any earlier, version of Spark. For consistency between your launch environment (which is probably also your development
 			environment) and the cluster, you should use the same version of Spark everywhere.</li>
-		<li>The script included in Spark 1.6.2 omits "1.6.2" as a valid version number, so it can only be used to create clusters up to versions 1.6.1.
-			You can track the progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK-16257">SPARK-16257</a> ticket. Advanced
-			users can hand-edit their <span class="rCW">spark_ec2.py</span> file and manually insert 1.6.2 into the following variables:
-			<span class="rCW">SPARK_EC2_VERSION</span>, <span class="rCW">VALID_SPARK_VERSIONS</span>, <span class="rCW">SPARK_TACHYON_MAP</span>,
-			<span class="rCW">DEFAULT_SPARK_EC2_BRANCH</span>.</li> 
 		<li>The <span class="rCW">spark-ec2</span> script only supports three versions of Hadoop right now: Hadoop 1.0.4, Hadoop 2.4.0, or
 			the Cloudera Distribution with Hadoop (CDH) 4.2.0. If you have application dependencies that require another version of Hadoop,
 			you will need to manually set up the cluster without the script. These tutorials may be useful in
@@ -44,13 +39,48 @@
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
-		<li><a href="#01">Pre-Launch Configuration</a></li>
-		<li><a href="#02">Script Parameters</a></li>
-		<li><a href="#03">Managing the Cluster</a></li>
+		<li><a href="#01">Downloading the Script</a></li>
+		<li><a href="#02">Pre-Launch Configuration</a></li>
+		<li><a href="#03">Script Parameters</a></li>
+		<li><a href="#04">Managing the Cluster</a></li>
 	</ul>
 </bu:rOverview>
 
-<bu:rSection anchor="01" title="Pre-Launch Configuration" />
+<bu:rSection anchor="01" title="Downloading the Script" />
+
+<p>The <span class="rCW">spark-ec2</span> script was detached from the main Spark distribution in Spark 2.0.0 and needs to be downloaded separately. If you 
+are using an older version of spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. Please note that the
+script included in Spark 1.6.2 omits "1.6.2" as a valid version number, so it can only be used to create clusters up to version 1.6.1. You can track the 
+progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK-16257">SPARK-16257</a> ticket.</p>
+
+<ol>
+	<li>If you are running Spark 2.x and need to download the script, visit the <a href="https://github.com/amplab/spark-ec2">AMPLab spark-ec2 repository</a>. In the 
+	<span class="rK">Branch:</span> dropdown menu, select <span class="rV">branch-2.0</span>, then open the <span class="rK">Clone or download</span> dropdown menu as shown
+	in the image below. Hovering the mouse over the <span class="rAB">Download ZIP</span> button will show you the download URL.</li>
+	
+	<img src="${localImagesUrlBase}/script-download.png" width="750" height="320" title="Downloading the Script" class="diagram border" />
+	
+	<li>Download the script to your launch environment and place the files into your Spark distribution.</li>
+	
+	<bu:rCode lang="bash">
+		# Download a ZIP of the script (you can also use Git if you prefer)
+		cd ~
+		wget https://github.com/amplab/spark-ec2/archive/branch-2.0.zip
+		
+		# Unpack the script into your Spark distribution and set permissions
+		sudo unzip branch-2.0.zip -d $SPARK_HOME
+		mv $SPARK_HOME/spark-ec2-branch-2.0 $SPARK_HOME/ec2
+		sudo chown -R ec2-user:ec2-user $SPARK_HOME/ec2
+		
+		# Confirm that script exists by checking the version.
+		$SPARK_HOME/ec2/spark-ec2 --version
+		
+		# Output should be "spark-ec2 2.0.0"		
+	</bu:rCode>
+	
+</ol>
+
+<bu:rSection anchor="02" title="Pre-Launch Configuration" />
 
 <p>Before running the <span class="rCW">spark-ec2</span> script, you must:</p>
 
@@ -175,7 +205,7 @@ Below is a checklist of important details you should have on hand before you run
 		isn't immediately open to the world's friendliest hackers.</li>
 </ul>
 
-<bu:rSection anchor="02" title="Script Parameters" />
+<bu:rSection anchor="03" title="Script Parameters" />
 
 <p>The <span class="rCW">spark-ec2</span> script exposes a variety of configuration options. The most commonly used options are described below, and
 there are other options available for advanced users. Calling the script with the <span class="rK">--help</span> parameter 
@@ -232,7 +262,7 @@ displays the complete list.</p>
 	</ul></li>
 </ul>	
 
-<bu:rSection anchor="03" title="Managing the Cluster" />
+<bu:rSection anchor="04" title="Managing the Cluster" />
 
 <h3>Launching the Cluster</h3>
 
@@ -249,7 +279,7 @@ displays the complete list.</p>
 		--authorized-address=12.34.56.78/32 \
 		--slaves=1 \
 		--instance-type=m4.large \
-		--spark-version=1.6.2 \
+		--spark-version=2.0.0 \
 		--hadoop-major-version=yarn \
 		--instance-profile-name=sparkour-cluster \
 		launch sparkour-cluster
@@ -272,12 +302,15 @@ The result of the script is a <span class="rPN">master</span> and a <span class=
 		Launched 1 slave in us-east-1d, regid = r-0b0dbfa0
 		Launched master in us-east-1d, regid = r-bcfc4117
 		Waiting for AWS to propagate instance metadata...
+		Applying tags to master nodes
+		Applying tags to slave nodes
 		Waiting for cluster to enter 'ssh-ready' state....
 	</bu:rCode>
 	
 	<li>It may take several minutes to pass this point, during which the script will periodically attempt to SSH into the instances using their Public DNS names.
 	These attempts will fail until the cluster has entered the <span class="rCW">'ssh-ready'</span> state. You can monitor progress on the EC2 Dashboard -- 
-	when the Status Checks succeed, the script should be able to SSH successfully.</li>
+	when the Status Checks succeed, the script should be able to SSH successfully. (It has taken my script as long as 16 minutes for SSH to connect, even after the Status Checks
+	are succeeding, so patience is a requirement).</li>
 	
 	<img src="${localImagesUrlBase}/status-checks.png" width="750" height="158" title="The cluster may take several minutes to launch." class="diagram border" />
 
