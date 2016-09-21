@@ -35,7 +35,7 @@ public class StringAccumulator extends AccumulatorV2<String, String> {
 
 	public StringAccumulator(String initialValue) {
 		if (initialValue != null) {
-                    _value = initialValue;
+			_value = initialValue;
 		}
 	}
 
