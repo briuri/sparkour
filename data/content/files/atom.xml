@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-09-21T10:00:00Z</updated>
+	<updated>2016-09-22T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -14,8 +14,20 @@
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
 	<entry>
-		<id>https://sparkour.urizone.net/</id>
-		<link href="https://sparkour.urizone.net/" />
+		<id>https://sparkour.urizone.net/?2016-09-22</id>
+		<link href="https://sparkour.urizone.net/?2016-09-22" />
+		<updated>2016-09-22T10:00:00Z</updated>
+		<title type="html">Installing and Configuring Apache Zeppelin</title>
+		<summary type="html">
+			This recipe explains how to install Apache Zeppelin and configure it to work with Spark. Interactive notebooks 
+			such as Zeppelin make it easier for analysts (who may not be software developers) to harness the power of Spark
+			through iterative exploration and built-in visualizations.
+		</summary>
+	</entry>
+	
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-09-21</id>
+		<link href="https://sparkour.urizone.net/?2016-09-21" />
 		<updated>2016-09-21T10:00:00Z</updated>
 		<title type="html">Website Statistics</title>
 		<summary type="html">
@@ -25,8 +37,8 @@
 	</entry>
 	
 	<entry>
-		<id>https://sparkour.urizone.net/</id>
-		<link href="https://sparkour.urizone.net/" />
+		<id>https://sparkour.urizone.net/?2016-09-20</id>
+		<link href="https://sparkour.urizone.net/?2016-09-20" />
 		<updated>2016-09-20T10:00:00Z</updated>
 		<title type="html">Spark Update</title>
 		<summary type="html">
@@ -37,8 +49,8 @@
 	</entry>
 		
 	<entry>
-		<id>https://sparkour.urizone.net/</id>
-		<link href="https://sparkour.urizone.net/" />
+		<id>https://sparkour.urizone.net/?2016-06-28</id>
+		<link href="https://sparkour.urizone.net/?2016-06-28" />
 		<updated>2016-06-28T10:00:00Z</updated>
 		<title type="html">Spark Update</title>
 		<summary type="html">
