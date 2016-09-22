@@ -12,7 +12,7 @@
     <ul class="tabsMenu tabsTocMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
         <li><a href=".tab-2">Spark Development (8)</a></li>
-        <li><a href=".tab-3">Spark Integration (4)</a></li>
+        <li><a href=".tab-3">Spark Integration (5)</a></li>
     </ul>
     <div class="tabContentPane tabTocContentPane">
     	<bu:rTab index="1">
@@ -82,7 +82,7 @@
 					<li>Capturing Metrics with slf4j</li>
 				</ul></li>
 				<li><span class="rCategory">Notebooks</span><ul>
-					<li>Installing Apache Zeppelin with a Spark Interpreter</li>
+					<li><bu:rLink id="installing-zeppelin" /></li>
 				</ul></li>
 				<li><span class="rCategory">Security</span><ul>
 					<li>Adding Authentication to Spark UIs</li>

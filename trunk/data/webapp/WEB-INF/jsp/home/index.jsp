@@ -28,6 +28,12 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-09-22">
+		<bu:rLink id="installing-zeppelin" />
+		explains how to install Apache Zeppelin and configure it to work with Spark. Interactive notebooks 
+		such as Zeppelin make it easier for analysts (who may not be software developers) to harness the power of Spark
+		through iterative exploration and built-in visualizations.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-09-21">
 		Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!<br /> 
 		<img src="${imagesUrlBase}/stats-160921.png" width="589" height="264" title="Visitor Stats" class="diagram border" />
@@ -40,27 +46,27 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 	<bu:newsUpdate date="2016-06-28">
 		All recipes have been updated and tested against Spark 1.6.2.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-05-07">
-		<bu:rLink id="aggregating-accumulators" />
-		explains how to use accumulators to aggregate results in a Spark application.
-		Accumulators provide a safe way for multiple Spark workers to contribute information to
-		a shared variable, which can then be read by the application driver.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-05-04">
-		<bu:rLink id="controlling-schema" />
-		demonstrates different strategies for defining the schema of a DataFrame built from various data sources (using
-		RDD and JSON as examples). Schemas can be inferred from metadata or the data itself, or programmatically specified in advance
-		in your application.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-04-14">
-		<bu:rLink id="broadcast-variables" />
-		explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
-		broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
-		to execute your Spark application.
-	</bu:newsUpdate>	
 
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">	
+		<bu:newsUpdate date="2016-05-07">
+			<bu:rLink id="aggregating-accumulators" />
+			explains how to use accumulators to aggregate results in a Spark application.
+			Accumulators provide a safe way for multiple Spark workers to contribute information to
+			a shared variable, which can then be read by the application driver.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-05-04">
+			<bu:rLink id="controlling-schema" />
+			demonstrates different strategies for defining the schema of a DataFrame built from various data sources (using
+			RDD and JSON as examples). Schemas can be inferred from metadata or the data itself, or programmatically specified in advance
+			in your application.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-04-14">
+			<bu:rLink id="broadcast-variables" />
+			explains how to use broadcast variables to distribute immutable reference data across a Spark cluster. Using
+			broadcast variables can improve performance by reducing the amount of network traffic and data serialization required 
+			to execute your Spark application.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-04-13">
 			<bu:rLink id="s3-vpc-endpoint" />
 			shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources from a private subnet 

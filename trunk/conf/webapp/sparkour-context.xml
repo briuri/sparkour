@@ -29,5 +29,6 @@
     	<entry key="configuring-s3" 			value="Configuring Amazon S3 as a Spark Data Source" />
     	<entry key="using-s3" 					value="Configuring Spark to Use Amazon S3" />
     	<entry key="s3-vpc-endpoint"			value="Configuring an S3 VPC Endpoint for a Spark Cluster" />
+    	<entry key="installing-zeppelin"		value="Installing and Configuring Apache Zeppelin" />
 	</util:map>       
 </beans>
