@@ -369,9 +369,9 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 		AWS Error Message: One or more objects could not be deleted, S3 Extended Request ID: null
 </bu:rCode>
 
-<p>This message occurs with Spark 2.0.0 when trying to write data into a bucket over <span class="rCW">s3a</span>. I'm currently in the process of figuring out
-why this occurs, since it did not occur in Spark 1.6. You can track the progress of this work in the
-<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-19">SPARKOUR-19</a> ticket.</p>
+<p>This message occurs when your IAM Role does not have the proper permissions to delete objects in the S3 bucket. When you write to S3,
+several temporary files are saved during the task. These files are deleted once the write operation is complete, so your EC2 instance
+must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Role policy, as shown in <bu:rLink id="configuring-s3" anchor="#s3a-config" />.</p>
 		
 <bu:rFooter>
 	<bu:rLinks>

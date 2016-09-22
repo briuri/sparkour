@@ -124,7 +124,7 @@ decision based on the principle of least-privilege). The way you secure your buc
 					},
 					"Effect": "Allow",
 					"Action": [
-						"s3:Get*", "s3:List*", "s3:PutObject"
+						"s3:Delete*", "s3:Get*", "s3:List*", "s3:PutObject"
 					],
 					"Resource": "arn:aws:s3:::bucket-name/*"
 				}
@@ -144,7 +144,7 @@ decision based on the principle of least-privilege). The way you secure your buc
 					},
 					"Effect": "Allow",
 					"Action": [
-						"s3:Get*", "s3:List*", "s3:PutObject"
+						"s3:Delete*", "s3:Get*", "s3:List*", "s3:PutObject"
 					],
 					"Resource": "arn:aws:s3:::sparkour-data/*"
 				}
@@ -170,7 +170,7 @@ decision based on the principle of least-privilege). The way you secure your buc
 	<li>If this copy worked correctly, the permissions are set up properly, and you are now ready to configure Spark to work with <span class="rCW">s3n</span>.</li>
 </ol>
 
-<h3>Configuring Your Bucket for s3a</h3>
+<a name="s3a-config"></a><h3>Configuring Your Bucket for s3a</h3>
 
 <p>To support the role-based style of authentication, we create a policy that can be attached to an IAM Role on your worker nodes.</p>
 
@@ -194,7 +194,7 @@ decision based on the principle of least-privilege). The way you secure your buc
 				{
 					"Effect": "Allow",
 					"Action": [
-						"s3:Get*", "s3:List*", "s3:PutObject"
+						"s3:Delete*", "s3:Get*", "s3:List*", "s3:PutObject"
 					],
 					"Resource": "arn:aws:s3:::sparkour-data/*"
 				}
