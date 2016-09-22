@@ -86,11 +86,11 @@ of your application much less than some "copyleft" licenses.</p>
 		This greatly reduces the barrier of entry for developers who already know at least one of these languages. 
 		The official documentation includes code samples in multiple languages as well.</li>
 
-	<img src="${localImagesUrlBase}/components.png" width="686" height="170" title="Spark includes modules supporting a broad set of use cases." class="diagram border" />
+	<img src="${localImagesUrlBase}/components.png" width="686" height="169" title="Spark includes modules supporting a broad set of use cases." class="diagram border" />
 
 	<li><span class="rPN">Generality</span>: Spark includes four targeted libraries built on top of its Core API, as shown in the image above.
 		<span class="rPN">Spark Streaming</span> supports streaming data sources (such as Twitter feeds) while <span class="rPN">Spark SQL</span> provides options for exploring and mining
-		data in ways much closer to the mental model of a data analyst. <span class="rPN">MLLib</span> enables machine learning use cases and <span class="rPN">GraphX</span>
+		data in ways much closer to the mental model of a data analyst. <span class="rPN">ML / MLLib</span> enables machine learning use cases and <span class="rPN">GraphX</span>
 		is available for graph computation. Previously, each of these areas might have been served by a different tool that needed to be integrated into your solution. Spark makes
 		it easy to combine these libraries into a single application without extra integration or the need to learn the idiosyncrasies of unrelated tools. In addition,
 		<a href="http://spark-packages.org/">Spark Packages</a> provides an easy way to discover and integrate third-party tools and libraries.</li>
