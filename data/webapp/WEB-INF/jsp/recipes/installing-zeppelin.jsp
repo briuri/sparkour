@@ -183,7 +183,7 @@ in the Zeppelin documentation.</p>
 
 <h3>java.lang.NoSuchMethodError: scala.runtime.VolatileByteRef.create(B)Lscala/runtime/VolatileByteRef;</h3>
 
-<p>This error appears when there is a mismatch between Scala versions. Make sure that the Zeppelin distribution you have
+<p>This error appears in the Zeppelin logs when there is a mismatch between Scala versions. Make sure that the Zeppelin distribution you have
 installed was built with the same version of Scala as your Spark distribution, as described in the "Installing Apache Zeppelin" section.</p>
 	
 <bu:rFooter>
