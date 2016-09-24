@@ -49,7 +49,7 @@
 <bu:rSection anchor="01" title="Downloading the Script" />
 
 <p>The <span class="rCW">spark-ec2</span> script was detached from the main Spark distribution in Spark 2.0.0 and needs to be downloaded separately. If you 
-are using an older version of spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. Please note that the
+are using an older version of Spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. Please note that the
 script included in Spark 1.6.2 omits "1.6.2" as a valid version number, so it can only be used to create clusters up to version 1.6.1. You can track the 
 progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK-16257">SPARK-16257</a> ticket.</p>
 
