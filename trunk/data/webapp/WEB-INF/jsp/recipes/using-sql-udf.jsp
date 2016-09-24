@@ -136,7 +136,7 @@ You can even mix and match approaches at different points in your processing pip
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				session <- sparkR.session()
+				sparkR.session()
 				
 				# Create a DataFrame based on the JSON results.
 				rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")					

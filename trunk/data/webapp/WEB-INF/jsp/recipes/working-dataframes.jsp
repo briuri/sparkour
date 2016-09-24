@@ -195,7 +195,7 @@ traversed or transformed as a column-based table.</p>
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<bu:rCode lang="plain">
-				session <- sparkR.session()
+				sparkR.session()
 				
 				# Create a DataFrame based on the JSON results.
 				rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")					
