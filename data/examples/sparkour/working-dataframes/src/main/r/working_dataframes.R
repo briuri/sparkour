@@ -19,7 +19,7 @@
 # the data structure.
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-session <- sparkR.session()
+sparkR.session()
 
 # Create a DataFrame based on the JSON results.
 rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")

@@ -23,7 +23,7 @@ install.packages("rjson", repos="http://cran.r-project.org")
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
 library(rjson)
 
-session <- sparkR.session()
+sparkR.session()
 
 # Load properties from file
 properties <- fromJSON(file="db-properties.json")

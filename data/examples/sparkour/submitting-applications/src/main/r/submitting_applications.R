@@ -20,7 +20,7 @@
 # Spark for execution.
 
 library(SparkR, lib.loc = c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
-session <- sparkR.session()
+sparkR.session()
 
 print("The SparkR session has initialized successfully.")
 
