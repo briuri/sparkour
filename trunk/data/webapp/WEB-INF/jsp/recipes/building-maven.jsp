@@ -20,7 +20,8 @@
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
 		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.8</span>. You are welcome to use different versions,
-			but you may need to change the version numbers in the instructions.</li>
+			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
+			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.0.0 use Scala 2.11.</li>
 		<li>You should consider using a minimum of Maven <span class="rPN">3.2.5</span> to maximize the availability
 			and compatibility of plugins, such as <span class="rCW">maven-compiler-plugin</span>, <span class="rCW">addjars-maven-plugin</span>,
 			<span class="rCW">maven-shade-plugin</span>, and <span class="rCW">scala-maven-plugin</span>.</li>
