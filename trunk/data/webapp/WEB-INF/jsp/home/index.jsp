@@ -36,7 +36,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-09-21">
 		Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!<br /> 
-		<img src="${imagesUrlBase}/stats-160921.png" width="589" height="264" title="Visitor Stats" class="diagram border" />
+		<img src="${imagesUrlBase}/stats-160921.png" width="589" height="240" title="Visitor Stats" class="diagram border" />
 	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-09-20">
 		All recipes have been updated to use the new features available in Spark 2.0.0, such as the <span class="rCW">SparkSession</span>
