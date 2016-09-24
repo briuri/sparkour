@@ -11,7 +11,7 @@
 <div class="tabsContainer">
     <ul class="tabsMenu tabsTocMenu">
     	<li><a href=".tab-1">Spark Tutorials (6)</a></li>
-        <li><a href=".tab-2">Spark Development (8)</a></li>
+        <li><a href=".tab-2">Spark Development (9)</a></li>
         <li><a href=".tab-3">Spark Integration (5)</a></li>
     </ul>
     <div class="tabContentPane tabTocContentPane">
@@ -43,13 +43,14 @@
 					<li><bu:rLink id="using-sql-udf" /></li>
 					<li><bu:rLink id="using-jdbc" /></li>
 					<li><bu:rLink id="controlling-schema" /></li>
+					<li><bu:rLink id="understanding-sparksession" /></li>
 					<li>Using Hive Tables with Spark DataFrames</li>
 				</ul></li>
 				<li><span class="rCategory">Practices</span><ul>
 					<li><bu:rLink id="building-maven" /></li>
 					<li><bu:rLink id="building-sbt" /></li>
-					<li><bu:rLink id="broadcast-variables" /></li>
 					<li><bu:rLink id="aggregating-accumulators" /></li>
+					<li><bu:rLink id="broadcast-variables" /></li>
 					<li>Simplifying Java Applications with Lambda Expressions</li>
 					<li>Writing Unit Tests</li>
 				</ul></li>

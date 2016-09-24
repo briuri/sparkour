@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-09-22T10:00:00Z</updated>
+	<updated>2016-09-24T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,17 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2016-09-24</id>
+		<link href="https://sparkour.urizone.net/?2016-09-24" />
+		<updated>2016-09-24T10:00:00Z</updated>
+		<title type="html">Understanding the SparkSession in Spark 2.0</title>
+		<summary type="html">
+			This recipe introduces the new SparkSession class from Spark 2.0, which provides a unified entry point
+			for all of the various Context classes previously found in Spark 1.x.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-09-22</id>
 		<link href="https://sparkour.urizone.net/?2016-09-22" />
@@ -45,16 +56,6 @@
 			All recipes have been updated to use the new features available in Spark 2.0.0, such as the SparkSession
 			and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
 			need of solid documentation.	
-		</summary>
-	</entry>
-		
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-06-28</id>
-		<link href="https://sparkour.urizone.net/?2016-06-28" />
-		<updated>2016-06-28T10:00:00Z</updated>
-		<title type="html">Spark Update</title>
-		<summary type="html">
-			All recipes have been updated and tested against Spark 1.6.2.	
 		</summary>
 	</entry>
 </feed>
