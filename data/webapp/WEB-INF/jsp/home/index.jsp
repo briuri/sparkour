@@ -28,6 +28,11 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-09-24">
+		<bu:rLink id="understanding-sparksession" />
+		introduces the new <span class="rCW">SparkSession</span> class from Spark 2.0, which provides a unified entry point
+		for all of the various Context classes previously found in Spark 1.x.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2016-09-22">
 		<bu:rLink id="installing-zeppelin" />
 		explains how to install Apache Zeppelin and configure it to work with Spark. Interactive notebooks 
@@ -43,12 +48,11 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
 		need of solid documentation.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-06-28">
-		All recipes have been updated and tested against Spark 1.6.2.
-	</bu:newsUpdate>
-
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
-	<div id="oldNews" class="hidden">	
+	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2016-06-28">
+			All recipes have been updated and tested against Spark 1.6.2.
+		</bu:newsUpdate>	
 		<bu:newsUpdate date="2016-05-07">
 			<bu:rLink id="aggregating-accumulators" />
 			explains how to use accumulators to aggregate results in a Spark application.
@@ -126,7 +130,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		<bu:newsUpdate date="2016-03-01">	
 			Welcome to Sparkour! 
 			To kick things off, I have released 5 sequential <a href="${recipesUrl}">tutorials</a>, which should give you a solid foundation for mastering Spark.
-			My long-term goal is to publish one or two new standalone recipes per week until the end of time. Help me improve Sparkour
+			My long-term goal is to publish a few new recipes each month until the end of time. Help me improve Sparkour
 			by submitting bugs and improvement suggestions on the <a href="${issuesUrl}">Issues</a> page.
 		</bu:newsUpdate>	
 		<bu:newsUpdate date="2016-02-22">
