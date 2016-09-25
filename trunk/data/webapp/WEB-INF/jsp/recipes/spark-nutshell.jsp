@@ -37,7 +37,7 @@ tools for logging and monitoring progress and status. Profiling metrics are easi
 decision on when to improve performance with additional workers or code changes.</p> 
 
 <p>Spark increases processing efficiency by implementing <span class="rPN">Resilient Distributed Datasets</span> (RDDs), which are
-immutable, fault-tolerant collections of objects. RDDs are foundation for all high-level Spark objects (such as <span class="rPN">DataFrames</span>
+immutable, fault-tolerant collections of objects. RDDs are the foundation for all high-level Spark objects (such as <span class="rPN">DataFrames</span>
 and <span class="rPN">Datasets</span>) and can be built from any arbitrary data, such as a text file in Amazon S3,
 or an array of integers in the application itself. With Spark, your application can perform <span class="rPN">transformations</span>
 on RDDs to create new RDDs, or <span class="rPN">actions</span> that return the result of some computation. Spark transformations
@@ -127,7 +127,7 @@ requirements.</p>
 		commands in real-time.</li>
 	<li>From a <span class="rPN">feature completeness</span> perspective, Scala is the obvious choice. Spark itself is written in Scala, and APIs in the other three languages
 		are built on top of the Scala API, as shown in the image below. New features are published to the Scala API first, and it may take a few releases for the features to
-		propogate up to the other APIs. R is the least feature-complete at the moment, but active development work continues to improve this situation.</li> 
+		propagate up to the other APIs. R is the least feature-complete at the moment, but active development work continues to improve this situation.</li> 
 
 	<img src="${localImagesUrlBase}/languages.png" width="750" height="336" title="Spark includes APIs in Java, Scala, Python, and R." class="diagram border" />
 	
