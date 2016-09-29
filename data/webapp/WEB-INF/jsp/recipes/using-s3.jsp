@@ -305,8 +305,7 @@ These parameters also works on the <span class="rCW">spark-submit</span> script.
 	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found
 </bu:rCode>
 
-<p>This message appears when dependencies are missing from your Apache Spark distribution.
-<p>If you see this error message, you should download a recent Hadoop 2.7.x distribution and 
+<p>This message appears when dependencies are missing from your Apache Spark distribution. If you see this error message, you should download a recent Hadoop 2.7.x distribution and 
 unzip it in your development environment to get the necessary JAR files. This workaround requires
 a specific, older version of an AWS JAR (1.7.4) that might not be available in the EC2 Maven Repository, 
 so the <span class="rK">--packages</span> parameter is not a good solution. 
