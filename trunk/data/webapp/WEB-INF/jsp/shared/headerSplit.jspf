@@ -1,7 +1,7 @@
 	<title><c:out value="${pageTitle}" /> | Sparkour</title>
 	<spring:url var="recipesUrl" value="/recipes" />
 	<spring:url var="licenseUrl" value="/license" />
-	<c:set var="issuesUrl" value="https://ddmsence.atlassian.net/projects/SPARKOUR" />
+	<c:set var="issuesUrl" value="https://ddmsence.atlassian.net/projects/SPARKOUR/summary" />
 	<c:set var="discussionUrl" value="http://groups.google.com/group/sparkour" />
 </head>
 <body>
