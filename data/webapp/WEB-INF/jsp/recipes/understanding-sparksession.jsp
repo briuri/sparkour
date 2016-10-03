@@ -234,7 +234,7 @@ operations are directly available in <span class="rCW">SparkSession</span>. Oper
 			sparkConf = SparkConf()
 			sc = SparkContext(conf=sparkConf)
 			sqlContext = SQLContext(sc)
-			df = sc.read.json("data.json)
+			df = sc.read.json("data.json")
 			tables = sc.tables()
 			
 			# Spark 2.x
