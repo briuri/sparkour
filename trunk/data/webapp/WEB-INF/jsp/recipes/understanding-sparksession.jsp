@@ -334,10 +334,10 @@ when you create your <span class="rCW">SparkSession</span> and include the neces
 
 <bu:rFooter>
 	<bu:rLinks>
-		<li><a href="https://spark.apache.org/docs/2.0.0/api/java/org/apache/spark/sql/SparkSession.html">SparkSession</a> in the Java API Documentation</li>
-		<li><a href="https://spark.apache.org/docs/2.0.0/api/python/pyspark.sql.html#pyspark.sql.SparkSession">SparkSession</a> in the Python API Documentation</li>
-		<li><a href="https://spark.apache.org/docs/2.0.0/api/R/sparkR.session.html">SparkSession</a> in the R API Documentation</li>
-		<li><a href="https://spark.apache.org/docs/2.0.0/api/scala/index.html#org.apache.spark.sql.SparkSession">SparkSession</a> in the Scala API Documentation</li>
+		<li><a href="https://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/SparkSession.html">SparkSession</a> in the Java API Documentation</li>
+		<li><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.SparkSession">SparkSession</a> in the Python API Documentation</li>
+		<li><a href="https://spark.apache.org/docs/latest/api/R/sparkR.session.html">SparkSession</a> in the R API Documentation</li>
+		<li><a href="https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.SparkSession">SparkSession</a> in the Scala API Documentation</li>
 	</bu:rLinks>
 	
 	<bu:rChangeLog>

@@ -21,7 +21,7 @@
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
 		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.8</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
-			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.0.0 use Scala 2.11.</li>
+			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.0.x use Scala 2.11.</li>
 		<li>SBT continues to mature, sometimes in ways that break backwards compatibility. You should consider using a minimum of SBT <span class="rPN">0.13.6</span> and
 			<span class="rCW">sbt-assembly</span> <span class="rPN">0.12.0</span>.</li>
 	</ol>
@@ -114,8 +114,8 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 	version := "1.0"
 	scalaVersion := "2.11.8"
 
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.1"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -194,8 +194,8 @@ the format of <span class="rV">groupID % artifactID % revision</span>, which may
 dependencies, Commons CSV, Spark Core, and Spark SQL:</p>
 
 <bu:rCode lang="scala">
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.1"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -261,8 +261,8 @@ uses managed dependencies) to use this approach:</p>
 	<li>Update the <span class="rCW">build.sbt</span> file to remove the Commons CSV dependency.</li>
 	
 	<bu:rCode lang="scala">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0"
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0"
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1"
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.1"
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>	
 	
@@ -334,8 +334,8 @@ Spark documentation recommends creating a special JAR file containing both the a
  		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory will still get picked up automatically at compile time.</li>
 
 	<bu:rCode lang="bash">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.0" % provided
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.0" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.0.1" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.0.1" % provided
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>
 	

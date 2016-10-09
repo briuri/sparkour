@@ -32,3 +32,7 @@ Spark Update (2016-09-20) (breaks compatibility with Spark 1.x)
         Python 2.7.12
         R 3.2.2
         Scala 2.11.8
+Spark Update (2016-10-09)
+    Amazon Linux AMI 2016.09
+	Apache Spark 2.0.1 Prebuilt for Hadoop 2.7 and later
+	(all other versions the same as previous update)
