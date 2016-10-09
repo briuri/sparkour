@@ -46,7 +46,7 @@ just need to get your build dependencies in order.</p>
 <ol>
 	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
-	<li>You also need the development kit for your language. If developing for Spark 2.0.0, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
+	<li>You also need the development kit for your language. If developing for Spark 2.0.x, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
 		Python 2.6, R 3.1, or Scala 2.11, respectively. You probably already have the development kit for your language installed in your development
 		environment.</li>
 	<li>Finally, you need to link or include the core Spark libraries with your application. If you are using an Integrated Development Environment (IDE) like 
@@ -68,7 +68,7 @@ components installed, you should be able to review these instructions and adapt 
 		<p>If you intend to write any Spark applications with Java, you should consider updating to Java 8. This version
 		of Java introduced <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expressions</a>
 		which reduce the pain of writing repetitive boilerplate code while making the resulting code more similar to
-		Python or Scala code. Sparkour Java examples employ Lambda Expressions heavily, and Java 7 support may go away in Spark 2.0.0. 
+		Python or Scala code. Sparkour Java examples employ Lambda Expressions heavily, and Java 7 support may go away in Spark 2.x. 
 		The Amazon Linux AMI comes with Java 7, but it's easy to switch versions:</p>
 
 		<bu:rCode lang="bash">
@@ -108,7 +108,7 @@ components installed, you should be able to review these instructions and adapt 
 	</bu:rTab><bu:rTab index="4">	
 		<p>Scala is not in the Amazon Linux package repository, and must be 
 		downloaded separately. You should use the same version of Scala that was
-		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 2.0.0 Pre-built for Hadoop 2.7 and later</span>,
+		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 2.0.1 Pre-built for Hadoop 2.7 and later</span>,
 		this would be a <span class="rPN">2.11.x</span> version, and <i>not</i> a 2.10.x version unless you have explicitly
 		built Spark for 2.10.x from the source code.</p>
 		

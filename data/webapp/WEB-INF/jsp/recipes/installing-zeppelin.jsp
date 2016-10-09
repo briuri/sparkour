@@ -18,7 +18,7 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe uses Apache Zeppelin <span class="rPN">0.6.1</span>, which is the first version built with Scala 
-			2.11 and intended for Spark 2.0.0. If you are targeting Spark 1.x, you should use Zeppelin 
+			2.11 and intended for Spark 2.0.x. If you are targeting Spark 1.x, you should use Zeppelin 
 			<span class="rPN">0.6.0</span>.</li> 
 	</ol>
 		

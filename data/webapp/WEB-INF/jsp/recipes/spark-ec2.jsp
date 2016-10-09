@@ -75,7 +75,7 @@ progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK
 		# Confirm that script exists by checking the version.
 		$SPARK_HOME/ec2/spark-ec2 --version
 		
-		# Output should be "spark-ec2 2.0.0"		
+		# Output should be "spark-ec2 2.0.1"		
 	</bu:rCode>
 	
 </ol>
@@ -279,7 +279,7 @@ displays the complete list.</p>
 		--authorized-address=12.34.56.78/32 \
 		--slaves=1 \
 		--instance-type=m4.large \
-		--spark-version=2.0.0 \
+		--spark-version=2.0.1 \
 		--hadoop-major-version=yarn \
 		--instance-profile-name=sparkour-cluster \
 		launch sparkour-cluster

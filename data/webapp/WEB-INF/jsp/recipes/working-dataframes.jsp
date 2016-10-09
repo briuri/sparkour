@@ -678,7 +678,7 @@ traversed or transformed as a column-based table.</p>
 <p>We used <span class="rCW">persist()</span> to optimize the operator chain for each of our data manipulations.
 We can also save the data more permanently using a <span class="rCW">DataFrameWriter</span>.
 The <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrame">DataFrame</a></span> class (or 
-<span class="rCW"><a href="https://spark.apache.org/docs/2.0.0/api/java/index.html?org/apache/spark/sql/Dataset.html">Dataset</a></span> class in Java)
+<span class="rCW"><a href="https://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/sql/Dataset.html">Dataset</a></span> class in Java)
 exposes a <span class="rCW"><a href="https://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameWriter">DataFrameWriter</a></span>
 named <span class="rCW">write</span> which can be used to save a <span class="rCW">DataFrame</span>. There are four available write modes which can be specified, with 
 <span class="rV">error</span> being the default:</p>

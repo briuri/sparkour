@@ -18,7 +18,7 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.0</span> or higher.
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.x</span> or higher.
 			You may need to make modifications to use it on an older version of Spark.</li>
 		<li>The examples in this recipe employ the mySQL Connector/J <span class="rPN">5.1.38</span> library to communicate with a mySQL database,
 			but any relational database with a JVM-compatible connector library should suffice.</li> 
@@ -575,7 +575,7 @@ rather than updating the existing one.</p>
 <h3>org.apache.spark.sql.execution.datasources.jdbc.DefaultSource does not allow create table as select.</h3>
 
 <p>You may encounter this error when trying to write to a JDBC table with R's <span class="rCW">write.df()</span> function
-in Spark 1.6 or lower. You will need to upgrade to Spark 2.0.0 to write to tables in R.</p> 
+in Spark 1.6 or lower. You will need to upgrade to Spark 2.0.x to write to tables in R.</p> 
 
 <h3>Schema Variations</h3>
 
