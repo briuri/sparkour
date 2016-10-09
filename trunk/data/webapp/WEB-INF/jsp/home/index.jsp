@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2016-10-09">
+		All recipes have been updated and tested against Spark 2.0.1.
+	</bu:newsUpdate>	
 	<bu:newsUpdate date="2016-09-24">
 		<bu:rLink id="understanding-sparksession" />
 		introduces the new <span class="rCW">SparkSession</span> class from Spark 2.0, which provides a unified entry point
