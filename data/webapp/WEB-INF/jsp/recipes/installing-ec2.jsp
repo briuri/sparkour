@@ -249,7 +249,7 @@ For now, we use a pre-built distribution which already contains a common set of 
 		<span class="rK">Download type</span>: <span class="rV">Direct Download</span></li>
 	<li>The download link in the 4th bullet dynamically updates based on your choices, as seen in the image below.</li>
 	
-	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="239" title="Getting a download link for Apache Spark" class="diagram border" />
+	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="289" title="Getting a download link for Apache Spark" class="diagram border" />
 	
 	<li>Right-click on the download link and Copy it into your clipboard so it can be pasted onto your EC2 instance. It may not be the same
 		as the link in the example script below. From your EC2 instance, type these commands:</li>
