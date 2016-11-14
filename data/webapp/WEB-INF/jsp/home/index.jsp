@@ -147,7 +147,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 
 <h2>About the Author</h2>
 
-<p><img src="${imagesUrlBase}/author.jpg" width="104" height="120" title="BU" class="border" align="left" />
+<p><img src="${imagesUrlBase}/author.jpg" width="120" height="120" title="BU" class="border" align="left" />
 <a href="https://www.linkedin.com/in/urizone">Brian Uri!</a> is a software engineer at the advanced analytics company,
 <a href="http://www.novetta.com/">Novetta</a>, where he provides technical leadership, data strategy, and business development support
 across multiple Department of Defense / Intelligence Community projects. He has over a decade of experience in software development 
