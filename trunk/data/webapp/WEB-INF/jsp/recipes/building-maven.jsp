@@ -288,11 +288,14 @@ and Scala):</p>
 	</bu:rTab><bu:rTab index="3">
 		<c:out value="${noMessage}" escapeXml="false" />
 	</bu:rTab><bu:rTab index="4">
+		<p>The <span class="rV">provided</span> scope prevents the Scala base classes from being bundled into your application package (assuming that Scala is already provided in the target
+			runtime environment.</p>
 		<bu:rCode lang="xml">
 		    <dependency>
 		        <groupId>org.scala-lang</groupId>
 		        <artifactId>scala-library</artifactId>
-		        <version>2.10.6</version>
+		        <version>2.11.8</version>
+		        <scope>provided</scope>
 		    </dependency>
 		    <dependency>
 		        <groupId>org.apache.commons</groupId>
