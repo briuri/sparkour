@@ -137,7 +137,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 			by submitting bugs and improvement suggestions on the <a href="${issuesUrl}">Issues</a> page.
 		</bu:newsUpdate>	
 		<bu:newsUpdate date="2016-02-22">
-			The Sparkour website is online. Visiting <span class="rCW">sparkour.net</span> will redirect you here if you forget the full hostname.
+			The Sparkour website is online.
 		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-02-15">		
 			The idea for Sparkour was conceived during the President's Day ice storm.
