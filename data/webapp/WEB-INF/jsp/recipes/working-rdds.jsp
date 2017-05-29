@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private as of Spark 1.4.0, no R examples are included in this tutorial.</p>" />
+<c:set var="noRMessage" value="<p>The SparkR library is designed to provide high-level APIs such as Spark DataFrames. Because the low-level Spark Core API was made private in Spark 1.4.0, no R examples are included in this tutorial.</p>" />
 
 <bu:rOverview publishDate="2016-02-29">
 	<h3>Synopsis</h3>

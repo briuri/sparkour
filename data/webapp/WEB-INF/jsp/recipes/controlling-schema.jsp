@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noRMessage" value="<p>Because the low-level Spark Core API was made private as of Spark 1.4.0, no RDD-based examples are included in this recipe.</p>" />
+<c:set var="noRMessage" value="<p>Because the low-level Spark Core API was made private in Spark 1.4.0, no RDD-based examples are included in this recipe.</p>" />
 
 <bu:rOverview publishDate="2016-05-01">
 	<h3>Synopsis</h3>

@@ -21,9 +21,11 @@
 		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.x</span> or higher
 			to take advantage of the latest Accumulator API changes.
 			You may need to make modifications to use it on an older version of Spark.</li>	
-		<li> The Python examples still uses the older API because PySpark does not yet support the new 
-			<span class="rCW">AccumulatorV2</span> enhancements. You can track the progress of this work in the 
-			<a href="https://issues.apache.org/jira/browse/SPARK-16861">SPARK-16861</a> ticket.</p>
+		<li> The Python examples still uses the older API because PySpark did not support the new 
+			<span class="rCW">AccumulatorV2</span> enhancements until Spark 2.1.0 
+			(see the <a href="https://issues.apache.org/jira/browse/SPARK-16861">SPARK-16861</a> ticket). I will update
+			this recipe soon -- you can track the progress of this work in the 
+			<a href="https://ddmsence.atlassian.net/browse/SPARKOUR-24">SPARKOUR-24</a> ticket.</li>
 		<li>The SparkR API does not yet support accumulators at all. You can track the progress of this work in the
 			<a href="https://issues.apache.org/jira/browse/SPARK-6815">SPARK-6815</a> ticket.</li>  
 	</ol>

@@ -5,14 +5,24 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2016-10-09T10:00:00Z</updated>
+	<updated>2016-05-29T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
-	<rights type="html">&amp;copy; 2016 by Brian Uri!. Released under Apache License 2.0.</rights>
+	<rights type="html">&amp;copy; 2016 - 2017 by Brian Uri!. Released under Apache License 2.0.</rights>
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2017-05-29</id>
+		<link href="https://sparkour.urizone.net/?2017-05-29" />
+		<updated>2017-05-29T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated and tested for Spark 2.1.1.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2016-10-09</id>
 		<link href="https://sparkour.urizone.net/?2016-10-09" />
@@ -54,18 +64,6 @@
 		<summary type="html">
 			Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!&lt;br /&gt;
 			&lt;img src=&apos;/images/stats-160921.png&apos; class=&apos;diagram border&apos; title=&apos;Visitor Stats&apos; width=&apos;589&apos; height=&apos;264&apos; /&gt;
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2016-09-20</id>
-		<link href="https://sparkour.urizone.net/?2016-09-20" />
-		<updated>2016-09-20T10:00:00Z</updated>
-		<title type="html">Spark Update</title>
-		<summary type="html">
-			All recipes have been updated to use the new features available in Spark 2.0.0, such as the SparkSession
-			and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
-			need of solid documentation.	
 		</summary>
 	</entry>
 </feed>

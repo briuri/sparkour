@@ -156,7 +156,7 @@ Group you created earlier.</p>
 		instance type. This is a modest, general-purpose server with 2 cores and 8GB of memory that is sufficient for our
 		testing purposes. In later recipes, we will discuss how to profile your Spark workload and use the optimal
 		configuration of compute-optimized or memory-optimized instance types.<br /><br />Be aware that EC2 instances incur charges
-		whenever they are running ($0.12 per hour for m4.large, as of February 2016). If you are a new AWS user
+		whenever they are running ($0.10 per hour for m4.large, as of May 2017). If you are a new AWS user
 		operating on a tight budget, you can take advantage of the Free Tier by selecting <span class="rV">t2.micro</span>.
 		You get 750 free hours of running time per month, but performance will be slower, and you'll lose the ability to run applications with multiple cores.<br /><br />
 		Select <span class="rAB">Next: Configure Instance Details</span> after you have made your selection.</li>
@@ -167,7 +167,7 @@ Group you created earlier.</p>
 	<li>On <span class="rPN">Step 4: Add Storage</span>, keep all of the default values. Elastic Block Store (EBS) is
 		Amazon's network-attached storage solution, and the Amazon Linux AMI requires at least 8 GB of storage. This is
 		enough for our initial tests, and we can attach more Volumes later on as needed. Be aware that EBS Volumes incur charges
-		based on their allocated size ($0.10 per GB per month, as of February 2016), regardless of whether they are actually attached
+		based on their allocated size ($0.10 per GB per month, as of May 2017), regardless of whether they are actually attached
 		to a running EC2 instance. Select <span class="rAB">Next: Tag Instance</span>.</li>	
 	<li>On <span class="rPN">Step 5: Tag Instance</span>, set <span class="rK">Name</span> to a value like <span class="rV">sparkour-app</span>.
 		You can assign other arbitrary tags as needed, and it's considered a best practice to establish consistent and granular
@@ -244,12 +244,12 @@ For now, we use a pre-built distribution which already contains a common set of 
 		<a href="http://spark.apache.org/downloads.html">Apache Spark Download</a> page. We need to generate a download
 		link which we can access from our EC2 instance. 
 		Make selections for the first three bullets on the page as follows:<br /><br />
-		<span class="rK">Spark release</span>: <span class="rV">2.0.1 (Oct 03 2016)</span><br />
+		<span class="rK">Spark release</span>: <span class="rV">2.1.1 (May 02 2017)</span><br />
 		<span class="rK">Package type</span>: <span class="rV">Pre-built for Hadoop 2.7 and later</span><br />
 		<span class="rK">Download type</span>: <span class="rV">Direct Download</span></li>
 	<li>The download link in the 4th bullet dynamically updates based on your choices, as seen in the image below.</li>
 	
-	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="289" title="Getting a download link for Apache Spark" class="diagram border" />
+	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="217" title="Getting a download link for Apache Spark" class="diagram border" />
 	
 	<li>Right-click on the download link and Copy it into your clipboard so it can be pasted onto your EC2 instance. It may not be the same
 		as the link in the example script below. From your EC2 instance, type these commands:</li>
@@ -257,13 +257,13 @@ For now, we use a pre-built distribution which already contains a common set of 
 	<bu:rCode lang="bash">
 		# Download Spark to the ec2-user's home directory
 		cd ~
-		wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.1-bin-hadoop2.7.tgz
+		wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
 		
 		# Unpack Spark in the /opt directory
-		sudo tar zxvf spark-2.0.1-bin-hadoop2.7.tgz -C /opt
+		sudo tar zxvf spark-2.1.1-bin-hadoop2.7.tgz -C /opt
 		
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs spark-2.0.1-bin-hadoop2.7 /opt/spark
+		sudo ln -fs spark-2.1.1-bin-hadoop2.7 /opt/spark
 	</bu:rCode>
 
 	<li>To complete your installation, set the <span class="rCW">SPARK_HOME</span>
