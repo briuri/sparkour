@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2017-05-29">
+		All recipes have been updated and tested against Spark 2.1.1.
+	</bu:newsUpdate>	
 	<bu:newsUpdate date="2016-10-09">
 		All recipes have been updated and tested against Spark 2.0.1.
 	</bu:newsUpdate>	
@@ -42,17 +45,17 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		such as Zeppelin make it easier for analysts (who may not be software developers) to harness the power of Spark
 		through iterative exploration and built-in visualizations.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-09-21">
-		Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!<br /> 
-		<img src="${imagesUrlBase}/stats-160921.png" width="589" height="240" title="Visitor Stats" class="diagram border" />
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-09-20">
-		All recipes have been updated to use the new features available in Spark 2.0.0, such as the <span class="rCW">SparkSession</span>
-		and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
-		need of solid documentation.
-	</bu:newsUpdate>
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2016-09-21">
+			Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!<br /> 
+			<img src="${imagesUrlBase}/stats-160921.png" width="589" height="240" title="Visitor Stats" class="diagram border" />
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-09-20">
+			All recipes have been updated to use the new features available in Spark 2.0.0, such as the <span class="rCW">SparkSession</span>
+			and the new Accumulator API. I will focus exclusively on Spark 2.x in future recipes, as that is the release most in 
+			need of solid documentation.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-06-28">
 			All recipes have been updated and tested against Spark 1.6.2.
 		</bu:newsUpdate>	

@@ -31,9 +31,8 @@
 		<li>Apache Hadoop started supporting the <span class="rCW">s3n</span> protocol in version 0.18.0, so any recent version should suffice.
 			The <span class="rCW">s3a</span> protocol was introduced in version 
 			<a href="https://issues.apache.org/jira/browse/HADOOP-10400">2.6.0</a>, but is still maturing. 
-			Several important issues were corrected in <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a>,
-			and even more are planned in the not-yet-released <a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>. 
-			You should consider <span class="rPN">2.7.0</span> to be the minimum recommended version.</li>
+			Several important issues were corrected in <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a> and
+			<a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>. You should consider <span class="rPN">2.8.0</span> to be the minimum recommended version.</li>
 	</ol>
 		
 	<a name="toc"></a>

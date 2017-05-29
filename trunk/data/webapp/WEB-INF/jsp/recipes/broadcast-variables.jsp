@@ -2,7 +2,7 @@
 <bu:rTabHandlers />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<c:set var="noRMessage" value="<p>Because the low-level Spark Core API was made private as of Spark 1.4.0, broadcast variables are not available in SparkR.</p>" />
+<c:set var="noRMessage" value="<p>Because the low-level Spark Core API was made private in Spark 1.4.0, broadcast variables are not available in SparkR.</p>" />
 
 <bu:rOverview publishDate="2016-04-14">
 	<h3>Synopsis</h3>

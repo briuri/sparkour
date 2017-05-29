@@ -150,13 +150,13 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
         	<dependency>
             	<groupId>org.apache.spark</groupId>
             	<artifactId>spark-core_2.11</artifactId>
-            	<version>2.0.1</version>
+            	<version>2.1.1</version>
             	<scope>provided</scope>
         	</dependency>
 	        <dependency>
 	            <groupId>org.apache.spark</groupId>
 	            <artifactId>spark-sql_2.11</artifactId>
-	            <version>2.0.1</version>
+	            <version>2.1.1</version>
 	            <scope>provided</scope>
 	        </dependency>
         	<!-- Other managed dependencies (described below) -->

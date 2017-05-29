@@ -36,7 +36,7 @@
 <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. You can store unlimited data in S3
 although there is a 5 TB maximum on individual files. Data is organized into S3 <span class="rPN">buckets</span> with various options for access control and versioning.
 The monthly cost is based upon the number of API calls your application makes and the amount of space 
-your data takes up ($0.03 per GB per month, as of March 2016). Transfer of data between S3 and an EC2 instance is free.</p>
+your data takes up ($0.03 per GB per month, as of May 2017). Transfer of data between S3 and an EC2 instance is free.</p>
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the AWS services
 is very much a work in progress. Your success in getting things working is very dependent on specific versions of the various libraries, the protocol you use, and possibly even the weather forecast.
@@ -90,8 +90,8 @@ decision based on the principle of least-privilege). The way you secure your buc
 	5 TB in size, and supports authentication with Identity and Access Management (IAM) Roles. With IAM Roles, you assign an IAM Role to your worker nodes and then attach policies
 	granting access to your S3 bucket. No secret keys are involved, and the risk of accidentally disseminating keys or committing them in version control is reduced.
 	<span class="rCW">s3a</span> support was introduced in <a href="https://issues.apache.org/jira/browse/HADOOP-10400">Hadoop 2.6.0</a>, but several important issues
-	were corrected in version <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a> (with more on the horizon in 
-	<a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>). You should consider 2.7.0 to be the minimum required version of Hadoop to use this protocol.</li>
+	were corrected in version <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a> and <a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>.
+	You should consider 2.8.0 to be the minimum required version of Hadoop to use this protocol.</li>
 </ol>
 
 <p>As you can see, the protocol you select is a trade-off between maturity, security, and performance. This decision drives your approach for bucket access control.</p>

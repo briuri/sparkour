@@ -49,9 +49,7 @@
 <bu:rSection anchor="01" title="Downloading the Script" />
 
 <p>The <span class="rCW">spark-ec2</span> script was detached from the main Spark distribution in Spark 2.0.0 and needs to be downloaded separately. If you 
-are using an older version of Spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. Please note that the
-script included in Spark 1.6.2 omits "1.6.2" as a valid version number, so it can only be used to create clusters up to version 1.6.1. You can track the 
-progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK-16257">SPARK-16257</a> ticket.</p>
+are using an older version of Spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. 
 
 <ol>
 	<li>If you are running Spark 2.x and need to download the script, visit the <a href="https://github.com/amplab/spark-ec2">AMPLab spark-ec2 repository</a>. In the 
@@ -75,7 +73,7 @@ progress of this bug in the <a href="https://issues.apache.org/jira/browse/SPARK
 		# Confirm that script exists by checking the version.
 		$SPARK_HOME/ec2/spark-ec2 --version
 		
-		# Output should be "spark-ec2 2.0.1"		
+		# Output should be "spark-ec2 2.1.1"		
 	</bu:rCode>
 	
 </ol>
@@ -279,7 +277,7 @@ displays the complete list.</p>
 		--authorized-address=12.34.56.78/32 \
 		--slaves=1 \
 		--instance-type=m4.large \
-		--spark-version=2.0.1 \
+		--spark-version=2.1.1 \
 		--hadoop-major-version=yarn \
 		--instance-profile-name=sparkour-cluster \
 		launch sparkour-cluster
