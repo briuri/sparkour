@@ -60,6 +60,8 @@ function assertNew {
 function cleanExample {
     rm -rf $OUTPUT_PATH/*
     rm -f $SRC_PATH/python/*.pyc
+    rm -rf $EXAMPLE_PATH/metastore_db
+    rm -rf $EXAMPLE_PATH/spark-warehouse
     if [[ -f "$EXAMPLE_PATH/build.sbt" ]]; then
         rm -rf $EXAMPLE_PATH/project/project/target/*
         rm -rf $EXAMPLE_PATH/project/target/*
