@@ -15,16 +15,16 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 			<li><a href="https://spark.apache.org/">Apache Spark 2.1.1</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Core data processing engine (unmodified).</li>
-			<li><a href="http://jstl.java.net/">JSTL 1.2.1</a>
-				(<a href="http://glassfish.java.net/public/CDDL+GPL.html">CDDL 1.0</a>):
+			<li><a href="https://javaee.github.io/jstl-api/">JSTL 1.2.1</a>
+				(<a href="https://javaee.github.io/jstl-api/LICENSE">CDDL 1.0</a>):
 				View rendering (unmodified).</li>
-			<li><a href="http://logback.qos.ch/">Logback 1.1.5</a>
+			<li><a href="http://logback.qos.ch/">Logback 1.2.3</a>
 				(<a href="http://logback.qos.ch/license.html">LGPL 2.1</a>):
 				Logging (unmodified).</li>
-			<li><a href="http://www.slf4j.org/">SLF4J 1.7.16</a>
+			<li><a href="http://www.slf4j.org/">SLF4J 1.7.25</a>
 				(<a href="http://www.slf4j.org/license.html">MIT License</a>):
 				Logging (unmodified).</li>
-			<li><a href="http://projects.spring.io/spring-framework/">Spring Framework 4.2.4</a>
+			<li><a href="http://projects.spring.io/spring-framework/">Spring Framework 4.3.8</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Dependency injection and web application framework (unmodified).</li>
 		</ul></li>
@@ -46,7 +46,7 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 		</ul></li>
 		
 		<li>Scaffolding<ul>
-			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.0.32</a>
+			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.0.44</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>): 
 				Deployment and application testing (unmodified).</li>
 			<li><a href="http://code.google.com/p/hamcrest/">Hamcrest 1.3</a> 
