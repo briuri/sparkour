@@ -21,11 +21,6 @@
 		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.x</span> or higher
 			to take advantage of the latest Accumulator API changes.
 			You may need to make modifications to use it on an older version of Spark.</li>	
-		<li> The Python examples still uses the older API because PySpark did not support the new 
-			<span class="rCW">AccumulatorV2</span> enhancements until Spark 2.1.0 
-			(see the <a href="https://issues.apache.org/jira/browse/SPARK-16861">SPARK-16861</a> ticket). I will update
-			this recipe soon -- you can track the progress of this work in the 
-			<a href="https://ddmsence.atlassian.net/browse/SPARKOUR-24">SPARKOUR-24</a> ticket.</li>
 		<li>The SparkR API does not yet support accumulators at all. You can track the progress of this work in the
 			<a href="https://issues.apache.org/jira/browse/SPARK-6815">SPARK-6815</a> ticket.</li>  
 	</ol>
@@ -64,7 +59,7 @@ accumulators for other data types. You should consider using accumulators under 
 Remember that transformations are "lazy" and not executed until your processing pipeline has reached an action. Because of this,
 an accumulator employed inside a transformation is not actually touched until a subsequent action is triggered.</p>
 
-<p>You should limit your use of accumulators to Spark actions for several reasons. For one, Spark guarantees that an accumulator 
+<p>You should limit your use of accumulators to run within Spark actions for several reasons. For one, Spark guarantees that an accumulator 
 employed in an action runs exactly one time, but no such guarantee covers accumulators in transformations. If a task fails for
 a hardware reason and is then re-executed, you might get duplicate values (or no value at all) written to an accumulator inside a transformation.
 Spark also employs <span class="rPN">speculative execution</span> (duplicating a task on a free worker in case a slow-running worker fails) which
@@ -434,6 +429,9 @@ full-fledged Spark operations might be more appropriate.</p>
 	<bu:rChangeLog>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2017-06-04: Reviewed Python source code for AccumulatorV2 changes in Spark 2.1.0. 
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-24">SPARKOUR-24</a>). Syntax remains the same, although the
+			exposed accumulator functions have been refactored to use AccumulatorV2 under the hood.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
