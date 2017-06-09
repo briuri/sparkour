@@ -73,7 +73,7 @@ are using an older version of Spark, you will find the script in your Spark dist
 		# Confirm that script exists by checking the version.
 		$SPARK_HOME/ec2/spark-ec2 --version
 		
-		# Output should be "spark-ec2 2.1.1"		
+		# Output should be "spark-ec2 2.0.0". "2.0.0" is the version of the script itself, not Spark's version.		
 	</bu:rCode>
 	
 </ol>
