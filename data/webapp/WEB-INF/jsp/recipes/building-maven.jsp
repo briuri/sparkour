@@ -79,16 +79,16 @@ commands. Refer to the <a href="http://maven.apache.org/guides/">Maven Documenta
 
 	<bu:rCode lang="bash">
 		# Download Maven to the ec2-user's home directory
-		wget http://apache.mirrors.ionfish.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+		wget http://www-us.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz
 		
 		# Unpack Maven in the /opt directory
-		sudo tar zxvf apache-maven-3.3.9-bin.tar.gz -C /opt
+		sudo tar zxvf apache-maven-3.5.0-bin.tar.gz -C /opt
 		 
 		# Update permissions on installation
-		sudo chown -R ec2-user:ec2-user /opt/apache-maven-3.3.9
+		sudo chown -R ec2-user:ec2-user /opt/apache-maven-3.5.0
 		 
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs /opt/apache-maven-3.3.9 /opt/maven
+		sudo ln -fs /opt/apache-maven-3.5.0 /opt/maven
 		 
 		#Edit your bash profile to add environment variables
 		vi ~/.bash_profile
@@ -179,7 +179,7 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 				<plugin>
 		            <groupId>org.apache.maven.plugins</groupId>
 		            <artifactId>maven-compiler-plugin</artifactId>
-		            <version>3.5.1</version>
+		            <version>3.6.1</version>
 		            <configuration>
 		                <source>1.8</source>
 		                <target>1.8</target>
@@ -486,7 +486,7 @@ Spark documentation recommends creating a special JAR file containing both the a
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>2.4.3</version>
+            <version>3.0.0</version>
             <executions>
                 <execution>
                     <phase>package</phase>
