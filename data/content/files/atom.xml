@@ -19,7 +19,7 @@
 		<updated>2017-05-29T10:00:00Z</updated>
 		<title type="html">Spark Update</title>
 		<summary type="html">
-			All recipes have been updated and tested for Spark 2.1.1.
+			All recipes have been updated and tested for Spark 2.1.1 and Scala 2.11.11.
 		</summary>
 	</entry>
 	

@@ -99,11 +99,11 @@ important paths and files:</p>
 	<li><span class="rCW">target</span>: This directory is where SBT places compiled classes and JAR files.</li>
 </ul>
 
-<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 13.9.1.</p>
+<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 0.13.15.</p>
 
 <bu:rCode lang="bash">
 	# SBT Properties File: controls version of sbt tool
-	sbt.version=13.9.1
+	sbt.version=0.13.15
 </bu:rCode>
 
 <p>The <span class="rCW">build.sbt</span> file is a Scala-based file containing properties about the project. Earlier versions of SBT required the file to
@@ -123,7 +123,7 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 would be added here, although our example uses basic defaults.</p>
 
 <bu:rCode lang="scala">
-	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.2")
+	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.4")
 </bu:rCode>
 
 <p>Finally, we have two very simple Spark applications (in Java and Scala) that we use to demonstrate SBT. Each application has a dependency on 
@@ -327,7 +327,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 		<span class="rCW">project/assembly.sbt</span> file:</li>
 
 	<bu:rCode lang="scala">
-		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.2")
+		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.4")
 	</bu:rCode>
 
  	<li>Update the <span class="rCW">build.sbt</span> file to mark the Spark dependency as <span class="rV">provided</span>. This prevents it from being included in the assembly JAR.

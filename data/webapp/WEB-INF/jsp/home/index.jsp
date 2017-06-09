@@ -29,7 +29,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 
 <div id="newsFeed">
 	<bu:newsUpdate date="2017-05-29">
-		All recipes have been updated and tested against Spark 2.1.1.
+		All recipes have been updated and tested against Spark 2.1.1 and Scala 2.11.11.
 	</bu:newsUpdate>	
 	<bu:newsUpdate date="2016-10-09">
 		All recipes have been updated and tested against Spark 2.0.1.
