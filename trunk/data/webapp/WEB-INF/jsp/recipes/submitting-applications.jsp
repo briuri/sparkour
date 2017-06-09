@@ -111,20 +111,22 @@ components installed, you should be able to review these instructions and adapt 
 		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 2.1.1 Pre-built for Hadoop 2.7 and later</span>,
 		this would be a <span class="rPN">2.11.x</span> version, and <i>not</i> a 2.10.x version unless you have explicitly
 		built Spark for 2.10.x from the source code.</p>
+		<p>At this time, no versions of Spark support Scala 2.12.x. You can track the progress on this work in the
+		<a href="https://issues.apache.org/jira/browse/SPARK-14220">SPARK-14220</a> ticket.</p>
 		
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
 			cd ~
-			wget http://downloads.lightbend.com/scala/2.11.8/scala-2.11.8.tgz
+			wget http://downloads.lightbend.com/scala/2.11.11/scala-2.11.11.tgz
 			
 			# Unpack Spark in the /opt directory
-			sudo tar zxvf scala-2.11.8.tgz -C /opt
+			sudo tar zxvf scala-2.11.11.tgz -C /opt
 			
 			# Update permissions on installation
-			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.8
+			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.11
 			
 			# Create a symbolic link to make it easier to access
-			sudo ln -fs /opt/scala-2.11.8 /opt/scala
+			sudo ln -fs /opt/scala-2.11.11 /opt/scala
 			
 			#Edit your bash profile to add environment variables
 			vi ~/.bash_profile
