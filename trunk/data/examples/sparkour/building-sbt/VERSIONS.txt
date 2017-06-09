@@ -45,3 +45,5 @@ Spark Update (2017-05-29)
         Python 2.7.12
         R 3.3.3
         Scala 2.11.11
+    SBT 0.13.15
+        sbt-assembly 0.14.4
