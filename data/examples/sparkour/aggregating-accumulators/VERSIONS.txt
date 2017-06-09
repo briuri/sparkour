@@ -35,5 +35,6 @@ Spark Update (2017-05-29)
     Apache Spark 2.1.1 Prebuilt for Hadoop 2.7 and later
     Languages
         OpenJDK 1.8.0_131
+        Python 2.7.12
         R 3.3.3
-	(all other versions the same as previous update)
+        Scala 2.11.11

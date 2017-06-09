@@ -19,7 +19,7 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.8</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.11</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
 			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.0.x use Scala 2.11.</li>
 		<li>You should consider using a minimum of Maven <span class="rPN">3.2.5</span> to maximize the availability
@@ -294,7 +294,7 @@ and Scala):</p>
 		    <dependency>
 		        <groupId>org.scala-lang</groupId>
 		        <artifactId>scala-library</artifactId>
-		        <version>2.11.8</version>
+		        <version>2.11.11</version>
 		        <scope>provided</scope>
 		    </dependency>
 		    <dependency>
