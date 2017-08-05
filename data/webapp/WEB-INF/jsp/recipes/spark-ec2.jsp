@@ -277,7 +277,7 @@ displays the complete list.</p>
 		--authorized-address=12.34.56.78/32 \
 		--slaves=1 \
 		--instance-type=m4.large \
-		--spark-version=2.1.1 \
+		--spark-version=2.2.0 \
 		--hadoop-major-version=yarn \
 		--instance-profile-name=sparkour-cluster \
 		launch sparkour-cluster

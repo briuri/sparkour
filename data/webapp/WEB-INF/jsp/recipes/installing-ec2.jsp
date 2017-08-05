@@ -244,12 +244,12 @@ For now, we use a pre-built distribution which already contains a common set of 
 		<a href="http://spark.apache.org/downloads.html">Apache Spark Download</a> page. We need to generate a download
 		link which we can access from our EC2 instance. 
 		Make selections for the first three bullets on the page as follows:<br /><br />
-		<span class="rK">Spark release</span>: <span class="rV">2.1.1 (May 02 2017)</span><br />
+		<span class="rK">Spark release</span>: <span class="rV">2.2.0 (Jul 11 2017)</span><br />
 		<span class="rK">Package type</span>: <span class="rV">Pre-built for Hadoop 2.7 and later</span><br />
 		<span class="rK">Download type</span>: <span class="rV">Direct Download</span></li>
 	<li>The download link in the 4th bullet dynamically updates based on your choices, as seen in the image below.</li>
 	
-	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="217" title="Getting a download link for Apache Spark" class="diagram border" />
+	<img src="${localImagesUrlBase}/spark-download.png" width="750" height="214" title="Getting a download link for Apache Spark" class="diagram border" />
 	
 	<li>Right-click on the download link and Copy it into your clipboard so it can be pasted onto your EC2 instance. It may not be the same
 		as the link in the example script below. From your EC2 instance, type these commands:</li>
@@ -257,13 +257,13 @@ For now, we use a pre-built distribution which already contains a common set of 
 	<bu:rCode lang="bash">
 		# Download Spark to the ec2-user's home directory
 		cd ~
-		wget https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+		wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
 		
 		# Unpack Spark in the /opt directory
-		sudo tar zxvf spark-2.1.1-bin-hadoop2.7.tgz -C /opt
+		sudo tar zxvf spark-2.2.0-bin-hadoop2.7.tgz -C /opt
 		
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs spark-2.1.1-bin-hadoop2.7 /opt/spark
+		sudo ln -fs spark-2.2.0-bin-hadoop2.7 /opt/spark
 	</bu:rCode>
 
 	<li>To complete your installation, set the <span class="rCW">SPARK_HOME</span>
