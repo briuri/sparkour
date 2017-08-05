@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2017-08-05">
+		All recipes have been updated and tested against Spark 2.2.0.
+	</bu:newsUpdate>	
 	<bu:newsUpdate date="2017-05-29">
 		All recipes have been updated and tested against Spark 2.1.1 and Scala 2.11.11.
 	</bu:newsUpdate>	

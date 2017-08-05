@@ -114,8 +114,8 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 	version := "1.0"
 	scalaVersion := "2.11.11"
 
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.1.1"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.1.1"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -194,8 +194,8 @@ the format of <span class="rV">groupID % artifactID % revision</span>, which may
 dependencies, Commons CSV, Spark Core, and Spark SQL:</p>
 
 <bu:rCode lang="scala">
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.1.1"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.1.1"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -261,8 +261,8 @@ uses managed dependencies) to use this approach:</p>
 	<li>Update the <span class="rCW">build.sbt</span> file to remove the Commons CSV dependency.</li>
 	
 	<bu:rCode lang="scala">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.1.1"
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.1.1"
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>	
 	
@@ -334,8 +334,8 @@ Spark documentation recommends creating a special JAR file containing both the a
  		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory will still get picked up automatically at compile time.</li>
 
 	<bu:rCode lang="bash">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.1.1" % provided
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.1.1" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0" % provided
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>
 	
