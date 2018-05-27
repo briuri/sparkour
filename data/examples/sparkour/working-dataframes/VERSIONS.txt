@@ -50,3 +50,11 @@ Spark Update (2017-08-05)
         Python 2.7.12
         R 3.3.3
         Scala 2.11.11
+Spark Update (2018-05-27)
+    Amazon Linux AMI 2018.03
+    Apache Spark 2.3.0 Prebuilt for Hadoop 2.7 and later
+    Languages
+        OpenJDK 1.8.0_171
+        Python 2.7.14
+        R 3.4.1
+        Scala 2.11.12
