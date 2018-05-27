@@ -158,8 +158,8 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 
 <p><img src="${imagesUrlBase}/author.jpg" width="120" height="120" title="BU" class="border" align="left" />
 <a href="https://www.linkedin.com/in/urizone">Brian Uri!</a> is a solutions architect at the advanced analytics company,
-<a href="http://www.novetta.com/">Novetta</a>. He has over a decade of experience in software development 
-and government data standards, with relevant certifications in Apache Hadoop and Amazon Web Services.</p>
+<a href="http://www.novetta.com/">Novetta</a>. He has over 15 years of experience in software engineering, government data standards, 
+and proposal writing, with relevant certifications in Apache Hadoop and Amazon Web Services.</p>
 
 <p>Sparkour was conceived in February 2016 as a way for Brian to learn Apache Spark while scratching an itch to create more open-source software. 
 Brian is also the creator of the open-source library, <a href="https://ddmsence.urizone.net/">DDMSence</a>.</p> 
