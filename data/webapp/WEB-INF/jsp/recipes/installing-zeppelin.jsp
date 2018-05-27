@@ -17,7 +17,7 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>This recipe uses Apache Zeppelin <span class="rPN">0.7.1</span>, which supports Spark 2.1.x. If you are targeting Spark 1.x, you should use Zeppelin 
+		<li>This recipe uses Apache Zeppelin <span class="rPN">0.7.3</span>, which supports Spark 2.2.x. If you are targeting Spark 1.x, you should use Zeppelin 
 			<span class="rPN">0.6.0</span>.</li> 
 	</ol>
 		
@@ -53,8 +53,8 @@ new engines to be supported in the future.</p>
 <ol>
 	<li>Visit the <a href="http://zeppelin.apache.org/download.html">Apache Zeppelin - Download</a> page to find the
 		download link for the binary distribution you need. Because of Scala and Spark version differences, you should
-		download Zeppelin <span class="rPN">0.7.1</span> to use with Spark 2.1.x, <span class="rPN">0.6.1</span> to use with Spark 2.0.x, 
-		or <span class="rPN">0.6.0</span> to use with Spark 1.x. While it's theoretically possible to get newer versions of Zeppelin to work with
+		download Zeppelin <span class="rPN">0.7.3</span> to use with Spark 2.2.x or <span class="rPN">0.6.0</span> to use with Spark 1.x. 
+		While it's theoretically possible to get newer versions of Zeppelin to work with
 		older versions of Spark, you may end up spending more time than desired troubleshooting arcane version errors.</li>
 					
 	<li>On a web-accessible server, download and unpack the binary distribution.</li>
@@ -62,16 +62,16 @@ new engines to be supported in the future.</p>
 	<bu:rCode lang="bash">
 		# Download the Zeppelin binary to the home directory.
 		cd ~
-		wget http://www-us.apache.org/dist/zeppelin/zeppelin-0.7.1/zeppelin-0.7.1-bin-all.tgz
+		wget http://www-us.apache.org/dist/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz
 	
 		# Unpack Zeppelin in the /opt directory
-		sudo tar zxvf zeppelin-0.7.1-bin-all.tgz -C /opt
+		sudo tar zxvf zeppelin-0.7.3-bin-all.tgz -C /opt
 	
 		# Update permissions on installation
-		sudo chown -R ec2-user:ec2-user /opt/zeppelin-0.7.1-bin-all/
+		sudo chown -R ec2-user:ec2-user /opt/zeppelin-0.7.3-bin-all/
 	
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs /opt/zeppelin-0.7.1-bin-all /opt/zeppelin
+		sudo ln -fs /opt/zeppelin-0.7.3-bin-all /opt/zeppelin
 	</bu:rCode>
 	
 	<li>To complete your installation, add Zeppelin into your <span class="rCW">PATH</span>
@@ -129,7 +129,7 @@ new engines to be supported in the future.</p>
 		
 	<img src="${localImagesUrlBase}/notebook-home.png" width="750" height="333" title="Zeppelin Home Page" class="diagram border" />
 	
-	<li>Select the <span class="rPN">Basic Features (Spark)</span> note (called <span class="rPN">Zeppelin Tutorial</span> in Zeppelin 0.6.1).
+	<li>Expand the <span class="rPN">Zeppelin Tutorial</span> and select the <span class="rPN">Basic Features (Spark)</span> note.
 	On your first visit, you will be taken to a Settings page listing all of the installed Interpreters, as shown below. 
 	Scroll down this list and select <class="rAB">Save</class>.</li>
 	
@@ -195,6 +195,7 @@ installed was built with the same version of Scala as your Spark distribution, a
 	
 	<bu:rChangeLog>
 		<li>2017-06-09: Updated for Zeppelin 0.7.1.	(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-25">SPARKOUR-25</a>).</li>
+		<li>2018-05-27: Updated for Zeppelin 0.7.3.	(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-28">SPARKOUR-28</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 

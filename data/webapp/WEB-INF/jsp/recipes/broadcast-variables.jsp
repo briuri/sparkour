@@ -18,7 +18,7 @@
 
 	<h3>Target Versions</h3>
 	<ol>
-		<li>The example code used in this recipe is written for Spark <span class="rPN">2.0.x</span> or higher.
+		<li>The example code used in this recipe is written for Spark <span class="rPN">2.x</span> or higher.
 			You may need to make modifications to use it on an older version of Spark.</li>
 	</ol>
 		

@@ -194,7 +194,7 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	<bu:rCode lang="plain">
 		INFO Utils: Successfully started service 'sparkMaster' on port 7077.
 		INFO Master: Starting Spark master at spark://ip-172-31-24-101:7077
-		INFO Master: Running Spark version 2.2.0
+		INFO Master: Running Spark version 2.3.0
 		INFO Utils: Successfully started service 'MasterUI' on port 8080.
 		INFO MasterWebUI: Bound MasterWebUI to 0.0.0.0, and started at http://172.31.24.101:8080
 		INFO Utils: Successfully started service on port 6066.
@@ -230,7 +230,7 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	<bu:rCode lang="plain">
 		INFO Utils: Successfully started service 'sparkWorker' on port 37907.
 		INFO Worker: Starting Spark worker 172.31.24.101:37907 with 2 cores, 6.8 GB RAM
-		INFO Worker: Running Spark version 2.2.0
+		INFO Worker: Running Spark version 2.3.0
 		INFO Worker: Spark home: /opt/spark
 		INFO Utils: Successfully started service 'WorkerUI' on port 8081.
 		INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://172.31.24.101:8081

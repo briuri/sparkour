@@ -239,7 +239,7 @@ displays the complete list.</p>
 		<li><span class="rK">--master-instance-type</span>: Optionally set a different instance type for the master (defaults to the overall instance type for the cluster).</li>	
 		<li><span class="rK">--master-opts</span>: Optionally pass additional configuration properties to the master.</li>
 		<li><span class="rK">--spark-version</span>: Optionally choose the version of Spark to install. During the launch, the script will download 
-			and build the desired version of Spark from a configurable GitHub repository (defaults to the version of Spark the script came from).</li>
+			and build the desired version of Spark from a configurable GitHub repository.</li>
 		<li><span class="rK">--spark-git-repo / --spark-ec2-git-repo / --spark-ec2-git-branch</span>: Optionally specify an alternate location
 			for downloading Spark and Amazon Machine Images (AMIs) for the instances (defaults to the official GitHub repository).</li>
 		<li><span class="rK">--hadoop-major-version</span>: Optionally set to <span class="rV">1</span> for Hadoop 1.0.4, <span class="rV">2</span> for CDH 4.0.2,
@@ -345,6 +345,12 @@ of one of the Spark nodes.</p>
 		<span class="rK">--private-ips</span> parameter), or your launch environment cannot locate the cluster over its DNS service.</li>
 </ol>
 
+<h3>Don't know about Spark version: &lt;version&gt;</h3>
+
+<p>This message appears when you specify a <span class="rCW">spark-version</span> parameter that is not in the list of values known to the script. The script is not always kept up 
+to date, and may not know about the most recent releases of Spark. To fix this, edit the script, <span class="rCW">$SPARK_HOME/ec2/spark_ec2.py</span>. Around line 57, find the array of <span class="rCW">VALID_SPARK_VERSIONS</span>
+and add the version you wish to use. This value is used to build the URL to the GitHub repository containing the version of Spark to download and deploy.</p>
+
 <h3>Validating the Cluster</h3>
 
 <ol>					
@@ -425,6 +431,7 @@ of one of the Spark nodes.</p>
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-7">SPARKOUR-7</a>).</li>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2018-05-27: Added error information about unknown Spark versions.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
