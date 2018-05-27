@@ -445,7 +445,7 @@ both network and disk operations as well as data serialization, so it is complex
 <bu:rSection anchor="04" title="Conclusion" />	
 
 <p>Congratulations! You have now programmed a simple application against the Spark Core API to process small datasets. The patterns and practices from this tutorial apply across
-all of the Spark components (e.g. Spark SQL and MLLib). In practice, you will probably end up using the high-level Spark components more often than the Core API.</p>
+all of the Spark components (e.g. Spark SQL and MLlib). In practice, you will probably end up using the high-level Spark components more often than the Core API.</p>
 
 <p>This is the final sequential tutorial, and you are now ready to dive into one of the more targeted recipes that focus on specific
 aspects of Spark use. The recipe, <bu:rLink id="working-dataframes" />, is a good next step to consider.

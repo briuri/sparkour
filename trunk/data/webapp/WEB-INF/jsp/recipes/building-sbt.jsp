@@ -19,9 +19,9 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.11</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.12</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
-			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.0.x use Scala 2.11.</li>
+			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.x use Scala 2.11.</li>
 		<li>SBT continues to mature, sometimes in ways that break backwards compatibility. You should consider using a minimum of SBT <span class="rPN">0.13.6</span> and
 			<span class="rCW">sbt-assembly</span> <span class="rPN">0.12.0</span>.</li>
 	</ol>
@@ -99,11 +99,11 @@ important paths and files:</p>
 	<li><span class="rCW">target</span>: This directory is where SBT places compiled classes and JAR files.</li>
 </ul>
 
-<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 0.13.15.</p>
+<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 1.1.5.</p>
 
 <bu:rCode lang="bash">
 	# SBT Properties File: controls version of sbt tool
-	sbt.version=0.13.15
+	sbt.version=1.1.5
 </bu:rCode>
 
 <p>The <span class="rCW">build.sbt</span> file is a Scala-based file containing properties about the project. Earlier versions of SBT required the file to
@@ -112,10 +112,12 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 <bu:rCode lang="scala">
 	name := "BuildingSBT"
 	version := "1.0"
-	scalaVersion := "2.11.11"
+	scalaVersion := "2.11.12"
 
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
+	resolvers += Resolver.bintrayIvyRepo("com.eed3si9n", "sbt-plugins")
+	
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -123,7 +125,7 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 would be added here, although our example uses basic defaults.</p>
 
 <bu:rCode lang="scala">
-	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.4")
+	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.6")
 </bu:rCode>
 
 <p>Finally, we have two very simple Spark applications (in Java and Scala) that we use to demonstrate SBT. Each application has a dependency on 
@@ -194,8 +196,8 @@ the format of <span class="rV">groupID % artifactID % revision</span>, which may
 dependencies, Commons CSV, Spark Core, and Spark SQL:</p>
 
 <bu:rCode lang="scala">
-	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
-	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
+	libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.0"
+	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.0"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
 
@@ -261,8 +263,8 @@ uses managed dependencies) to use this approach:</p>
 	<li>Update the <span class="rCW">build.sbt</span> file to remove the Commons CSV dependency.</li>
 	
 	<bu:rCode lang="scala">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0"
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0"
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.0"
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.0"
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>	
 	
@@ -327,15 +329,15 @@ Spark documentation recommends creating a special JAR file containing both the a
 		<span class="rCW">project/assembly.sbt</span> file:</li>
 
 	<bu:rCode lang="scala">
-		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.4")
+		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.6")
 	</bu:rCode>
 
  	<li>Update the <span class="rCW">build.sbt</span> file to mark the Spark dependency as <span class="rV">provided</span>. This prevents it from being included in the assembly JAR.
  		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory will still get picked up automatically at compile time.</li>
 
 	<bu:rCode lang="bash">
-		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.2.0" % provided
-		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.2.0" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.0" % provided
+		libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.3.0" % provided
 		//libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 	</bu:rCode>
 	
@@ -418,6 +420,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 	<bu:rChangeLog>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2018-05-27: Updated for SBT 1.1.5.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 

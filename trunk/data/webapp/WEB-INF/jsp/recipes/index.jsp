@@ -34,7 +34,7 @@
 			<ul>
 				<li><span class="rCategory">Libraries: Spark GraphX</span><ul>
 				</ul></li>
-				<li><span class="rCategory">Libraries: Spark MLLib Library</span><ul>
+				<li><span class="rCategory">Libraries: Spark MLlib Library</span><ul>
 				</ul></li>
 				<li><span class="rCategory">Libraries: Spark Streaming</span><ul>
 				</ul></li>

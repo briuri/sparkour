@@ -12,7 +12,7 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 <div class="license">
 	<ul>
 		<li>Core Libraries<ul>
-			<li><a href="https://spark.apache.org/">Apache Spark 2.2.0</a>
+			<li><a href="https://spark.apache.org/">Apache Spark 2.3.0</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Core data processing engine (unmodified).</li>
 			<li><a href="https://javaee.github.io/jstl-api/">JSTL 1.2.1</a>
@@ -46,7 +46,7 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 		</ul></li>
 		
 		<li>Scaffolding<ul>
-			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.0.44</a>
+			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.5.29</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>): 
 				Deployment and application testing (unmodified).</li>
 			<li><a href="http://code.google.com/p/hamcrest/">Hamcrest 1.3</a> 
