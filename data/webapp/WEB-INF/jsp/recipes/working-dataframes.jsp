@@ -153,7 +153,7 @@ traversed or transformed as a column-based table.</p>
 	<li>As a topical example dataset, we use the results of the March 2016 Virginia Primary Election for President. The file,
 		<span class="rCW">loudoun_d_primary_results_2016.json</span>, is included with the source code and contains the results of the Democratic Primary
 		across precincts in Loudoun County. (The original CSV source data was downloaded from the <a href="http://results.elections.virginia.gov/primary.html">Virginia Department
-		of Elections</a>, trimmed down to one county, and converted to JSON with a <a href="https://code.urizone.net/svn/sparkour/trunk/data/examples/sparkour/working-dataframes/src/main/python/csv_to_json.py">simple Python script</a>).
+		of Elections</a>, trimmed down to one county, and converted to JSON with a <a href="https://github.com/briuri/sparkour/blob/master/data/examples/sparkour/working-dataframes/src/main/python/csv_to_json.py">simple Python script</a>).
 		</li>
 </ol>
 

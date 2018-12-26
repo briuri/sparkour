@@ -3,7 +3,7 @@
 <%@ include file="../shared/headerSplit.jspf" %>
 
 <p>Sparkour is Copyright &copy; 2016 - 2019 by Brian Uri!. 
-The <a href="https://code.urizone.net/svn/sparkour/trunk/">Sparkour source code</a>
+The <a href="https://github.com/briuri/sparkour.git">Sparkour source code</a>
 is published under the Apache License 2.0. 
 The complete text of this license can be found <a href="#apache">below</a>.</p>
 
