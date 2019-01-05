@@ -22,9 +22,11 @@
 # to run any examples.
 #
 
-USAGE="Usage: build.sh [clean|create|zip] id [name_compiled] [name_interpreted]\n
+USAGE="Usage:\n
     \tbuild.sh create some-example SomeExample some_example\n
     \tbuild.sh clean some-example\n
+    \tbuild.sh run some-example\n
+    \tbuild.sh run all\n
     \tbuild.sh zip some-example\n
     \tbuild.sh zip all"
 
@@ -32,13 +34,16 @@ COMMAND=$1
 ID=$2
 NAME_COMPILED=$3
 NAME_INTERPRETED=$4
+SPARK_VERSION=`head -1 $SPARK_HOME/RELEASE | awk '{print $2}'`
+PROJECT_PATH="/opt/git/sparkour"
 PACKAGE="buri/sparkour"
-EXAMPLES_PATH="/opt/examples/sparkour"
+EXAMPLES_PATH="$PROJECT_PATH/data/examples/sparkour"
 EXAMPLE_PATH="$EXAMPLES_PATH/$ID"
 SRC_PATH="$EXAMPLE_PATH/src/main"
 OUTPUT_PATH="$EXAMPLE_PATH/target"
-JAVA_CP="$SPARK_HOME/jars/*"                         # Spark Core
-JAVA_CP="$JAVA_CP:/opt/examples/lib/commons-csv-1.2.jar" # building-sbt
+LOG_PATH="$PROJECT_PATH/data/examples/log"
+JAVA_CP="$SPARK_HOME/jars/*"                                           # Spark Core
+JAVA_CP="$JAVA_CP:$PROJECT_PATH/data/examples/lib/commons-csv-1.2.jar" # building-sbt
 
 # Asserts that an example exists before cleaning or zipping it.
 function assertExists {
@@ -101,9 +106,31 @@ function createExample {
     echo "Next, run 'svn add' and 'svn propset svn:ignore \"*\" target'."
 }
 
+# Iterates over all examples and runs the sparkour.sh script for each.
+function runAll {
+    for RUN_EXAMPLE in $EXAMPLES_PATH/*; do
+        RUN_SIMPLE_FILENAME=$(basename "$RUN_EXAMPLE")
+        bash ./build.sh run $RUN_SIMPLE_FILENAME
+    done
+}
+
+# Runs the sparkour.sh script for an example.
+function runExample {
+    if [[ $ID != "building-maven" && $ID != "building-sbt" && $ID != "submitting-applications" ]]; then
+        OUTPUT_FILE="$LOG_PATH/`date +%Y-%m-%d`-$SPARK_VERSION.txt"
+        echo "Running sparkour.sh for $ID to $OUTPUT_FILE"
+        printf "### $ID ###" >> $OUTPUT_FILE
+        for LANGUAGE in "java" "python" "r" "scala"; do
+            printf "\n$LANGUAGE\n" >> $OUTPUT_FILE
+            bash $EXAMPLES_PATH/$ID/sparkour.sh $LANGUAGE >> $OUTPUT_FILE
+        done
+        printf "\n" >> $OUTPUT_FILE
+    fi
+}
+
 # Iterates over all examples and creates a ZIP archive for each.
 function zipAll {
-    for ZIP_EXAMPLE in /opt/examples/sparkour/*; do
+    for ZIP_EXAMPLE in $EXAMPLES_PATH/*; do
         ZIP_SIMPLE_FILENAME=$(basename "$ZIP_EXAMPLE")
         bash ./build.sh zip $ZIP_SIMPLE_FILENAME
     done
@@ -122,14 +149,21 @@ if [[ -z $1 || -z $2 || ($1 = "create" && (-z $3 || -z $4)) ]]; then
 fi
 set -e
 
-if [ $COMMAND = "create" ]; then
+if [[ $COMMAND = "run" && $ID = "all" ]]; then
+    runAll
+elif  [[ $COMMAND = "zip" && $ID = "all" ]]; then
+    zipAll
+elif [ $COMMAND = "create" ]; then
     assertNew
     createExample
 elif [ $COMMAND = "clean" ]; then
     assertExists
     cleanExample
-elif [[ $COMMAND = "zip" && $ID = "all" ]]; then
-    zipAll
+elif [ $COMMAND = "run" ]; then
+    assertExists
+    compileExample
+    runExample
+    cleanExample
 elif [ $COMMAND = "zip" ]; then
     assertExists
     compileExample
