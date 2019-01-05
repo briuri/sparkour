@@ -37,7 +37,7 @@ if __name__ == "__main__":
     # Register as a SQL-accessible table
     rawDF.createOrReplaceTempView("votes")
 
-    print("Who was on the ballet?")
+    print("Who was on the ballot?")
     # Get all distinct candidate names from the DataFrame
     query = "SELECT DISTINCT candidate_name FROM votes"
     spark.sql(query).show()

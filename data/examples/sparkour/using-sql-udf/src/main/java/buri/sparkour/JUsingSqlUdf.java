@@ -40,7 +40,7 @@ public final class JUsingSqlUdf {
 		// Register as a SQL-accessible table
 		rawDF.createOrReplaceTempView("votes");
 
-		System.out.println("Who was on the ballet?");
+		System.out.println("Who was on the ballot?");
 		// Get all distinct candidate names from the DataFrame
 		String query = "SELECT DISTINCT candidate_name FROM votes";
 		spark.sql(query).show();
