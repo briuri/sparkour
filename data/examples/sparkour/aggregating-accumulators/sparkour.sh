@@ -48,7 +48,7 @@ elif [ $LANGUAGE = "python" ]; then
 	APP_ARGS="$SRC_PATH/python/${NAME_INTERPRETED}.py ${APP_ARGS}"
 elif [ $LANGUAGE = "r" ]; then
     echo "This example uses the Spark Core API, which is not exposed through SparkR."
-    exit 1
+    exit 0
 elif [ $LANGUAGE = "scala" ]; then
     mkdir -p target/scala
     scalac $SRC_PATH/scala/$PACKAGE/*.scala -classpath "$SPARK_HOME/jars/*" -d target/scala
