@@ -27,7 +27,7 @@ rawDF <- read.df("loudoun_d_primary_results_2016.json", "json")
 # Register as a SQL-accessible table
 createOrReplaceTempView(rawDF, "votes")
 
-print("Who was on the ballet?")
+print("Who was on the ballot?")
 # Get all distinct candidate names from the DataFrame
 query <- "SELECT DISTINCT candidate_name FROM votes"
 print(collect(sql(query)))
