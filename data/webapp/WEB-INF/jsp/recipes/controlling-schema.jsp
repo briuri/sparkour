@@ -485,11 +485,11 @@ the SparkR API.</p>
 				 |-- num_pets: long (nullable = true)
 				 |-- paid_in_full: boolean (nullable = true)
 				 |-- preferences: map (nullable = true)
-				 |    |-- key: string
-				 |    |-- value: string (valueContainsNull = true)
+				 |    |-- key: null
+				 |    |-- value: null (valueContainsNull = true)
 				 |-- registered_on: timestamp (nullable = true)
 				 |-- visits: array (nullable = true)
-				 |    |-- element: timestamp (containsNull = true)
+				 |    |-- element: null (containsNull = true)
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="3">
 			<c:out value="${noRMessage}" escapeXml="false" />
