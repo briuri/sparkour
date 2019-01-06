@@ -34,6 +34,7 @@ COMMAND=$1
 ID=$2
 NAME_COMPILED=$3
 NAME_INTERPRETED=$4
+MANUAL_EXAMPLES=("building-maven" "building-sbt" "submitting-applications" "using-jdbc")
 SPARK_VERSION=`head -1 $SPARK_HOME/RELEASE | awk '{print $2}'`
 PROJECT_PATH="/opt/git/sparkour"
 PACKAGE="buri/sparkour"
@@ -116,7 +117,9 @@ function runAll {
 
 # Runs the sparkour.sh script for an example.
 function runExample {
-    if [[ $ID != "building-maven" && $ID != "building-sbt" && $ID != "submitting-applications" ]]; then
+    if [[ "${MANUAL_EXAMPLES[*]}" == *"$ID"* ]]; then
+        echo "Skipping $ID because it must be manually run."
+    else
         OUTPUT_FILE="$LOG_PATH/`date +%Y-%m-%d`-$SPARK_VERSION.txt"
         echo "Running sparkour.sh for $ID to $OUTPUT_FILE"
         printf "### $ID ###" >> $OUTPUT_FILE
