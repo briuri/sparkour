@@ -36,7 +36,7 @@
 <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. You can store unlimited data in S3
 although there is a 5 TB maximum on individual files. Data is organized into S3 <span class="rPN">buckets</span> with various options for access control and versioning.
 The monthly cost is based upon the number of API calls your application makes and the amount of space 
-your data takes up ($0.023 per GB per month, as of May 2018). Transfer of data between S3 and an EC2 instance is free.</p>
+your data takes up ($0.023 per GB per month, as of January 2019). Transfer of data between S3 and an EC2 instance is free.</p>
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the AWS services
 is very much a work in progress. Your success in getting things working is very dependent on specific versions of the various libraries, the protocol you use, and possibly even the weather forecast.

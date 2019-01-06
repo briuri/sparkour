@@ -79,16 +79,16 @@ commands. Refer to the <a href="http://maven.apache.org/guides/">Maven Documenta
 
 	<bu:rCode lang="bash">
 		# Download Maven to the ec2-user's home directory
-		wget http://www-us.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz
+		wget http://apache.mirrors.hoobly.com/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
 		
 		# Unpack Maven in the /opt directory
-		sudo tar zxvf apache-maven-3.5.0-bin.tar.gz -C /opt
+		sudo tar zxvf apache-maven-3.6.0-bin.tar.gz -C /opt
 		 
 		# Update permissions on installation
-		sudo chown -R ec2-user:ec2-user /opt/apache-maven-3.5.0
+		sudo chown -R ec2-user:ec2-user /opt/apache-maven-3.6.0
 		 
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs /opt/apache-maven-3.5.0 /opt/maven
+		sudo ln -fs /opt/apache-maven-3.6.0 /opt/maven
 		 
 		#Edit your bash profile to add environment variables
 		vi ~/.bash_profile
@@ -150,13 +150,13 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
         	<dependency>
             	<groupId>org.apache.spark</groupId>
             	<artifactId>spark-core_2.11</artifactId>
-            	<version>2.3.0</version>
+            	<version>2.4.0</version>
             	<scope>provided</scope>
         	</dependency>
 	        <dependency>
 	            <groupId>org.apache.spark</groupId>
 	            <artifactId>spark-sql_2.11</artifactId>
-	            <version>2.3.0</version>
+	            <version>2.4.0</version>
 	            <scope>provided</scope>
 	        </dependency>
         	<!-- Other managed dependencies (described below) -->
