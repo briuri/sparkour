@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2019-01-06T10:00:00Z</updated>
+	<updated>2019-01-22T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,17 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2019-01-22</id>
+		<link href="https://sparkour.urizone.net/?2019-01-22" />
+		<updated>2019-01-22T10:00:00Z</updated>
+		<title type="html">Python Update</title>
+		<summary type="html">
+			&lt;u&gt;Tutorial #4: Writing and Submitting a Spark Application&lt;/u&gt; has been updated
+			with instructions for using Python 3. All recipes have been tested against Python 3.6.7.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2019-01-06</id>
 		<link href="https://sparkour.urizone.net/?2019-01-06" />
