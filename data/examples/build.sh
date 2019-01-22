@@ -66,6 +66,7 @@ function assertNew {
 function cleanExample {
     rm -rf $OUTPUT_PATH/*
     rm -f $SRC_PATH/python/*.pyc
+    rm -rf $SRC_PATH/python/__pycache__
     rm -rf $EXAMPLE_PATH/metastore_db
     rm -rf $EXAMPLE_PATH/spark-warehouse
     if [[ -f "$EXAMPLE_PATH/build.sbt" ]]; then
@@ -81,7 +82,7 @@ function compileExample {
         javac $SRC_PATH/java/$PACKAGE/* -cp "$JAVA_CP" -d $OUTPUT_PATH/java
     fi
     if [[ -d "$SRC_PATH/python" ]]; then
-        python -m py_compile $SRC_PATH/python/*.py
+        python3 -m py_compile $SRC_PATH/python/*.py
     fi
     if [[ -d "$SRC_PATH/scala" ]]; then
         mkdir -p $OUTPUT_PATH/scala
