@@ -44,10 +44,10 @@ However, you probably already have a development environment tuned just the way 
 just need to get your build dependencies in order.</p>
 
 <ol>
-	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (7 or higher) installed. These components allow you
+	<li>Regardless of <a href="/recipes/spark-nutshell/#05">which language you use</a>, you'll need Apache Spark and a Java Runtime Environment (8 or higher) installed. These components allow you
 		to submit your application to a Spark cluster (or run it in Local mode).</li>
-	<li>You also need the development kit for your language. If developing for Spark 2.x, you would want a <i>minimum</i> of Java Development Kit (JDK) 7,
-		Python 2.6, R 3.1, or Scala 2.11, respectively. You probably already have the development kit for your language installed in your development
+	<li>You also need the development kit for your language. If developing for Spark 2.x, you would want a <i>minimum</i> of Java Development Kit (JDK) 8,
+		Python 3.0, R 3.1, or Scala 2.11, respectively. You probably already have the development kit for your language installed in your development
 		environment.</li>
 	<li>Finally, you need to link or include the core Spark libraries with your application. If you are using an Integrated Development Environment (IDE) like 
 		Eclipse or IntelliJ, the official Spark documentation provides instructions for 
@@ -89,7 +89,51 @@ components installed, you should be able to review these instructions and adapt 
 			# (Should display a version number)
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
-		<p>The instance has Python pre-installed as part of the Amazon Linux image, so you do not need to do anything else.</p>
+		<p>Because the Amazon Linux image requires Python 2 as a core system dependency, you should install Python 3 in parallel without removing Python 2.</p>
+
+		<bu:rCode lang="bash">
+			# Confirm that Linux has Python 2 as a default.
+			sudo python --version
+			# (Should display a 2.x version number)
+			
+			# Confirm that Python 3 is not yet installed.
+			sudo python3 --version
+			# (Should show "No such file or directory")
+			
+			# Install Python 3
+			sudo yum install python36
+			# (Hit 'y' to proceed)
+			
+			# Confirm that Python 3 is now installed.
+			sudo python3 --version
+			# (Should display a 3.x version number)
+			
+			#Edit your bash profile to add environment variables
+			vi ~/.bash_profile
+		</bu:rCode>
+
+		<p>To complete your installation, set the <span class="rCW">PYSPARK_PYTHON</span>
+		environment variable so it takes effect when you login to the EC2 instance. This variable determines which version of Python is used by Spark.</p>
+		
+		<bu:rCode lang="bash">
+			# Insert this lines into your .bash_profile:
+			export PYSPARK_PYTHON=python3
+			
+			# Then exit the text editor and return to the command line.
+		</bu:rCode>
+
+		<p>You need to reload the environment variables (or logout and login again) so
+		they take effect.</p>
+		
+		<bu:rCode lang="bash">
+			# Reload environment variables
+			source ~/.bash_profile
+			
+			# Start the Python shell to confirm the Python version number
+			cd $SPARK_HOME
+			$SPARK_HOME/bin/pyspark
+			# (Should display a 3.x version number for Python)		
+		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<p>The R environment is available in the Amazon Linux package repository.</p>
 		<bu:rCode lang="bash">
@@ -543,6 +587,8 @@ so you don't incur unexpected charges.</p>
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-4">SPARKOUR-4</a>).</li>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2019-01-22: Updated for Python 3.x
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-33">SPARKOUR-33</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 

@@ -28,6 +28,10 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2019-01-22">
+		<bu:rLink id="submitting-applications" />
+		has been updated which instructions for installing Python 3. All Python recipes have been tested against Python 3.6.7.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2019-01-06">
 		Happy New Year! All recipes have been updated and tested against Spark 2.4.0. I have also incorporated some behind-the-scenes automation to
 		streamline regression testing and make it easier for me to stay in sync with future Spark releases.
@@ -38,25 +42,25 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 	<bu:newsUpdate date="2017-08-05">
 		All recipes have been updated and tested against Spark 2.2.0.
 	</bu:newsUpdate>	
-	<bu:newsUpdate date="2017-05-29">
-		All recipes have been updated and tested against Spark 2.1.1 and Scala 2.11.11.
-	</bu:newsUpdate>	
-	<bu:newsUpdate date="2016-10-09">
-		All recipes have been updated and tested against Spark 2.0.1.
-	</bu:newsUpdate>	
-	<bu:newsUpdate date="2016-09-24">
-		<bu:rLink id="understanding-sparksession" />
-		introduces the new <span class="rCW">SparkSession</span> class from Spark 2.0, which provides a unified entry point
-		for all of the various Context classes previously found in Spark 1.x.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2016-09-22">
-		<bu:rLink id="installing-zeppelin" />
-		explains how to install Apache Zeppelin and configure it to work with Spark. Interactive notebooks 
-		such as Zeppelin make it easier for analysts (who may not be software developers) to harness the power of Spark
-		through iterative exploration and built-in visualizations.
-	</bu:newsUpdate>
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2017-05-29">
+			All recipes have been updated and tested against Spark 2.1.1 and Scala 2.11.11.
+		</bu:newsUpdate>	
+		<bu:newsUpdate date="2016-10-09">
+			All recipes have been updated and tested against Spark 2.0.1.
+		</bu:newsUpdate>	
+		<bu:newsUpdate date="2016-09-24">
+			<bu:rLink id="understanding-sparksession" />
+			introduces the new <span class="rCW">SparkSession</span> class from Spark 2.0, which provides a unified entry point
+			for all of the various Context classes previously found in Spark 1.x.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2016-09-22">
+			<bu:rLink id="installing-zeppelin" />
+			explains how to install Apache Zeppelin and configure it to work with Spark. Interactive notebooks 
+			such as Zeppelin make it easier for analysts (who may not be software developers) to harness the power of Spark
+			through iterative exploration and built-in visualizations.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2016-09-21">
 			Website statistics prove that developers love Sparkour (except on the weekends). Thanks for your continued support!<br /> 
 			<img src="${imagesUrlBase}/stats-160921.png" width="589" height="240" title="Visitor Stats" class="diagram border" />
