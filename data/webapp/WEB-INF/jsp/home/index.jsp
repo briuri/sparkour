@@ -30,7 +30,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <div id="newsFeed">
 	<bu:newsUpdate date="2019-01-22">
 		<bu:rLink id="submitting-applications" />
-		has been updated which instructions for installing Python 3. All Python recipes have been tested against Python 3.6.7.
+		has been updated with instructions for installing Python 3. All Python recipes have been tested against Python 3.6.7.
 	</bu:newsUpdate>
 	<bu:newsUpdate date="2019-01-06">
 		Happy New Year! All recipes have been updated and tested against Spark 2.4.0. I have also incorporated some behind-the-scenes automation to
