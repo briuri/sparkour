@@ -24,9 +24,9 @@
 	
 	<h3>Target Versions</h3>
 	<ol>
-		<li>With the <span class="rCW">spark-ec2</span> script for a specific version of Apache Spark, you can launch a cluster running
-			the same, or any earlier, version of Spark. For consistency between your launch environment (which is probably also your development
-			environment) and the cluster, you should use the same version of Spark everywhere.</li>
+		<li>The <span class="rCW">spark-ec2</span> script dynamically locates your target version of Spark in GitHub. Any version of Spark should work,
+			although you will need to edit the <span class="rCW">spark-ec2.py</span> for newer versions. Around line 57, find the array of 
+			<span class="rCW">VALID_SPARK_VERSIONS</span> and add the version you wish to use.</li>
 		<li>The <span class="rCW">spark-ec2</span> script only supports three versions of Hadoop right now: Hadoop 1.0.4, Hadoop 2.4.0, or
 			the Cloudera Distribution with Hadoop (CDH) 4.2.0. If you have application dependencies that require another version of Hadoop,
 			you will need to manually set up the cluster without the script. These tutorials may be useful in

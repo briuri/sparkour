@@ -244,7 +244,7 @@ For now, we use a pre-built distribution which already contains a common set of 
 		<a href="http://spark.apache.org/downloads.html">Apache Spark Download</a> page. We need to generate a download
 		link which we can access from our EC2 instance. 
 		Make selections for the first two bullets on the page as follows:<br /><br />
-		<span class="rK">Spark release</span>: <span class="rV">2.4.0 (Nov 02 2018)</span><br />
+		<span class="rK">Spark release</span>: <span class="rV">2.4.3 (May 07 2019)</span><br />
 		<span class="rK">Package type</span>: <span class="rV">Pre-built for Hadoop 2.7 and later</span></li>
 	<li>Follow the link in the 3rd bullet to reach a list of Apache Download Mirrors. Under <span class="rPN">HTTP</span>, find the mirror site closest to you and 
 	copy the download link to your clipboard so it can be pasted onto your EC2 instance. It may not be the same
@@ -253,16 +253,16 @@ For now, we use a pre-built distribution which already contains a common set of 
 	<bu:rCode lang="bash">
 		# Download Spark to the ec2-user's home directory
 		cd ~
-		wget http://www.gtlib.gatech.edu/pub/apache/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz 
+		wget http://apache.mirrors.pair.com/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz 
 		
 		# Unpack Spark in the /opt directory
-		sudo tar zxvf spark-2.4.0-bin-hadoop2.7.tgz -C /opt
+		sudo tar zxvf spark-2.4.3-bin-hadoop2.7.tgz -C /opt
 		
 		# Update permissions on installation
-		sudo chown -R ec2-user:ec2-user /opt/spark-2.4.0-bin-hadoop2.7
+		sudo chown -R ec2-user:ec2-user /opt/spark-2.4.3-bin-hadoop2.7
 		 
 		# Create a symbolic link to make it easier to access
-		sudo ln -fs spark-2.4.0-bin-hadoop2.7 /opt/spark		
+		sudo ln -fs spark-2.4.3-bin-hadoop2.7 /opt/spark		
 	</bu:rCode>
 
 	<li>To complete your installation, set the <span class="rCW">SPARK_HOME</span>

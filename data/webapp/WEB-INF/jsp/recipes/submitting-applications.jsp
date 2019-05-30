@@ -150,26 +150,26 @@ components installed, you should be able to review these instructions and adapt 
 			> # (Hit 'n' to quit without saving workspace)
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">	
-		<p>Scala is not in the Amazon Linux package repository, and must be 
-		downloaded separately. You should use the same version of Scala that was
-		used to build your copy of Apache Spark. In the case of <span class="rPN">Spark 2.4.0 Pre-built for Hadoop 2.7 and later</span>,
-		this would be a <span class="rPN">2.11.x</span> version, and <i>not</i> a 2.10.x or 2.12.x version unless you have explicitly
-		built Spark for those Scala versions from the source code. (For the first time, experimental support for Scala 2.12.x is
-		included with Spark 2.4.0, so it should be easier to use Scala 2.12.x with future versions of Spark).</p>
-		
+		<p>Scala is not in the Amazon Linux package repository, and must be downloaded separately. You should use the same version of Scala that was
+		used to build your copy of Apache Spark. 
+		<ul>
+			<li>Pre-built distributions of Spark 1.x were compiled with Scala 2.10.</li>
+			<li>Pre-built distributions of Spark 2.4.1 and earlier were compiled with Scala 2.11.</li>
+			<li>Pre-built distributions of Spark 2.4.2 and later are compiled with Scala 2.12.</li>
+		</ul>
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
 			cd ~
-			wget http://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.tgz
+			wget http://downloads.lightbend.com/scala/2.12.8/scala-2.12.8.tgz
 			
 			# Unpack Spark in the /opt directory
-			sudo tar zxvf scala-2.11.12.tgz -C /opt
+			sudo tar zxvf scala-2.12.8.tgz -C /opt
 			
 			# Update permissions on installation
-			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.12
+			sudo chown -R ec2-user:ec2-user /opt/scala-2.12.8
 			
 			# Create a symbolic link to make it easier to access
-			sudo ln -fs /opt/scala-2.11.12 /opt/scala
+			sudo ln -fs /opt/scala-2.12.8 /opt/scala
 			
 			#Edit your bash profile to add environment variables
 			vi ~/.bash_profile
@@ -432,7 +432,7 @@ we just need the top-level module or script name. Everything after the expected 
 				export PACKAGE="buri/sparkour"
 				
 				# Compile Java class and create JAR file
-				mkdir target/java
+				mkdir -p target/java
 				javac $SRC_PATH/java/$PACKAGE/JSubmittingApplications.java \
 					-classpath "$SPARK_HOME/jars/*" -d target/java
 				cd target/java
@@ -465,7 +465,7 @@ we just need the top-level module or script name. Everything after the expected 
 				export PACKAGE="buri/sparkour"
 				
 				# Compile Scala class and create JAR file
-				mkdir target/scala
+				mkdir -p target/scala
 				scalac $SRC_PATH/scala/$PACKAGE/SSubmittingApplications.scala \
 					-classpath "$SPARK_HOME/jars/*" -d target/scala
 				cd target/scala

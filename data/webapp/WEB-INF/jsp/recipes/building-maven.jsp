@@ -19,9 +19,15 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.12</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.12.8</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
-			distribution of Spark. Pre-built distributions of Spark 1.x use Scala 2.10, while pre-built distributions of Spark 2.x use Scala 2.11.</li>
+			distribution of Spark:
+			<ul>
+				<li>Pre-built distributions of Spark 1.x use Scala 2.10.</li>
+				<li>Pre-built distributions of Spark 2.4.1 and earlier use Scala 2.11.</li>
+				<li>Pre-built distributions of Spark 2.4.2 and later use Scala 2.12.</li>
+			</ul>
+		</li>	
 		<li>You should consider using a minimum of Maven <span class="rPN">3.2.5</span> to maximize the availability
 			and compatibility of plugins, such as <span class="rCW">maven-compiler-plugin</span>, <span class="rCW">addjars-maven-plugin</span>,
 			<span class="rCW">maven-shade-plugin</span>, and <span class="rCW">scala-maven-plugin</span>.</li>
@@ -149,22 +155,22 @@ will default to a file named <span class="rV">pom.xml</span>.</p>
 	    <dependencies>
         	<dependency>
             	<groupId>org.apache.spark</groupId>
-            	<artifactId>spark-core_2.11</artifactId>
-            	<version>2.4.0</version>
+            	<artifactId>spark-core_2.12</artifactId>
+            	<version>2.4.3</version>
             	<scope>provided</scope>
         	</dependency>
 	        <dependency>
 	            <groupId>org.apache.spark</groupId>
-	            <artifactId>spark-sql_2.11</artifactId>
-	            <version>2.4.0</version>
+	            <artifactId>spark-sql_2.12</artifactId>
+	            <version>2.4.3</version>
 	            <scope>provided</scope>
 	        </dependency>
         	<!-- Other managed dependencies (described below) -->
 	    </dependencies>
 	</bu:rCode>
 	
-	<li>The <span class="rCW">_2.11</span> suffix in the <span class="rK">artifactId</span> specifies a build of Spark that was compiled
-		with Scala 2.11. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
+	<li>The <span class="rCW">_2.12</span> suffix in the <span class="rK">artifactId</span> specifies a build of Spark that was compiled
+		with Scala 2.12. Adding a <span class="rK">scope</span> of <span class="rV">provided</span>
 		signifies that Spark is needed to compile the project, but does not need to be available at runtime or included
 		in an assembly JAR file. (Recall that Spark will already be installed on a Spark cluster executing your
 		application, so there is no need to provide a new copy at runtime).</li>
@@ -294,7 +300,7 @@ and Scala):</p>
 		    <dependency>
 		        <groupId>org.scala-lang</groupId>
 		        <artifactId>scala-library</artifactId>
-		        <version>2.11.12</version>
+		        <version>2.12.8</version>
 		        <scope>provided</scope>
 		    </dependency>
 		    <dependency>

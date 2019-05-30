@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2019-05-30">
+		All recipes have been updated and tested against Spark 2.4.3 and Scala 2.12.8.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2019-01-22">
 		<bu:rLink id="submitting-applications" />
 		has been updated with instructions for installing Python 3. All Python recipes have been tested against Python 3.6.7.
@@ -36,14 +39,14 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 		Happy New Year! All recipes have been updated and tested against Spark 2.4.0. I have also incorporated some behind-the-scenes automation to
 		streamline regression testing and make it easier for me to stay in sync with future Spark releases.
 	</bu:newsUpdate>
-	<bu:newsUpdate date="2018-05-27">
-		All recipes have been updated and tested against Spark 2.3.0 and Scala 2.11.12.
-	</bu:newsUpdate>
-	<bu:newsUpdate date="2017-08-05">
-		All recipes have been updated and tested against Spark 2.2.0.
-	</bu:newsUpdate>	
 	<div id="newsFeedControl" class="expand"><a href="#" onClick="return false;">more...</a></div>	
 	<div id="oldNews" class="hidden">
+		<bu:newsUpdate date="2018-05-27">
+			All recipes have been updated and tested against Spark 2.3.0 and Scala 2.11.12.
+		</bu:newsUpdate>
+		<bu:newsUpdate date="2017-08-05">
+			All recipes have been updated and tested against Spark 2.2.0.
+		</bu:newsUpdate>
 		<bu:newsUpdate date="2017-05-29">
 			All recipes have been updated and tested against Spark 2.1.1 and Scala 2.11.11.
 		</bu:newsUpdate>	
