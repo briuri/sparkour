@@ -153,23 +153,24 @@ components installed, you should be able to review these instructions and adapt 
 		<p>Scala is not in the Amazon Linux package repository, and must be downloaded separately. You should use the same version of Scala that was
 		used to build your copy of Apache Spark. 
 		<ul>
-			<li>Pre-built distributions of Spark 1.x were compiled with Scala 2.10.</li>
-			<li>Pre-built distributions of Spark 2.4.1 and earlier were compiled with Scala 2.11.</li>
-			<li>Pre-built distributions of Spark 2.4.2 and later are compiled with Scala 2.12.</li>
+			<li>Pre-built distributions of Spark 1.x use Scala 2.10.</li>
+			<li>Pre-built distributions of Spark 2.4.1 and earlier use Scala 2.11.</li>
+			<li>Pre-built distributions of Spark 2.4.2 use Scala 2.12.</li>
+			<li>Pre-built distributions of Spark 2.4.3 and later use Scala 2.11.</li>
 		</ul>
 		<bu:rCode lang="bash">
 			# Download Scala to the ec2-user's home directory
 			cd ~
-			wget http://downloads.lightbend.com/scala/2.12.8/scala-2.12.8.tgz
+			wget http://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.tgz
 			
 			# Unpack Spark in the /opt directory
-			sudo tar zxvf scala-2.12.8.tgz -C /opt
+			sudo tar zxvf scala-2.11.12.tgz -C /opt
 			
 			# Update permissions on installation
-			sudo chown -R ec2-user:ec2-user /opt/scala-2.12.8
+			sudo chown -R ec2-user:ec2-user /opt/scala-2.11.12
 			
 			# Create a symbolic link to make it easier to access
-			sudo ln -fs /opt/scala-2.12.8 /opt/scala
+			sudo ln -fs /opt/scala-2.11.12 /opt/scala
 			
 			#Edit your bash profile to add environment variables
 			vi ~/.bash_profile

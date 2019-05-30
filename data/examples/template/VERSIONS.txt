@@ -14,4 +14,4 @@ Base Recipe (YYYY-MM-DD)
         OpenJDK 1.8.0_201
         Python 3.6.8
         R 3.4.1
-        Scala 2.12.8
+        Scala 2.11.12

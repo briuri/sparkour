@@ -1,6 +1,6 @@
 name := "BuildingSBT"
 version := "1.0"
-scalaVersion := "2.12.8"
+scalaVersion := "2.11.12"
 
 resolvers += Resolver.bintrayIvyRepo("com.eed3si9n", "sbt-plugins")
 

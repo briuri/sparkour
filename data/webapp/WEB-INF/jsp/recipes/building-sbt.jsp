@@ -19,13 +19,14 @@
 	<h3>Target Versions</h3>
 	<ol>
 		<li>This recipe is independent of any specific version of Spark or Hadoop.</li>
-		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.12.8</span>. You are welcome to use different versions,
+		<li>This recipe uses Java <span class="rPN">8</span> and Scala <span class="rPN">2.11.12</span>. You are welcome to use different versions,
 			but you may need to change the version numbers in the instructions. Make sure to use the same version of Scala as the one used to build your
 			distribution of Spark:
 			<ul>
 				<li>Pre-built distributions of Spark 1.x use Scala 2.10.</li>
 				<li>Pre-built distributions of Spark 2.4.1 and earlier use Scala 2.11.</li>
-				<li>Pre-built distributions of Spark 2.4.2 and later use Scala 2.12.</li>
+				<li>Pre-built distributions of Spark 2.4.2 use Scala 2.12.</li>
+				<li>Pre-built distributions of Spark 2.4.3 and later use Scala 2.11.</li>
 			</ul>
 		</li>	
 		<li>SBT continues to mature, sometimes in ways that break backwards compatibility. You should consider using a minimum of SBT <span class="rPN">0.13.6</span> and
@@ -118,7 +119,7 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 <bu:rCode lang="scala">
 	name := "BuildingSBT"
 	version := "1.0"
-	scalaVersion := "2.12.8"
+	scalaVersion := "2.11.12"
 
 	resolvers += Resolver.bintrayIvyRepo("com.eed3si9n", "sbt-plugins")
 	
@@ -241,7 +242,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.12/buildingsbt_2.12-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -254,7 +255,7 @@ on that dependency's website or in the <a href="http://search.maven.org/">Maven 
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--packages org.apache.commons:commons-csv:1.2 \
-					target/scala-2.12/buildingsbt_2.12-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -300,7 +301,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.12/buildingsbt_2.12-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -313,7 +314,7 @@ uses managed dependencies) to use this approach:</p>
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
 					--jars lib/commons-csv-1.2.jar \
-					target/scala-2.12/buildingsbt_2.12-1.0.jar
+					target/scala-2.11/buildingsbt_2.11-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>
@@ -363,7 +364,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 		
 	<bu:rCode lang="bash">
 		cd /opt/sparkour/building-sbt
-		less target/scala-2.12/BuildingSBT-assembly-1.0.jar | grep commons
+		less target/scala-2.11/BuildingSBT-assembly-1.0.jar | grep commons
 	</bu:rCode>
 	
 	<bu:rCode lang="bash">
@@ -398,7 +399,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.JBuildingSBT \
-					target/scala-2.12/BuildingSBT-assembly-1.0.jar
+					target/scala-2.11/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="2">
 			<c:out value="${noMessage}" escapeXml="false" />
@@ -410,7 +411,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 				cd /opt/sparkour/building-sbt
 				$SPARK_HOME/bin/spark-submit \
 					--class buri.sparkour.SBuildingSBT \
-					target/scala-2.12/BuildingSBT-assembly-1.0.jar
+					target/scala-2.11/BuildingSBT-assembly-1.0.jar
 			</bu:rCode>	
 		</bu:rTab>
 	</bu:rTabs>	
