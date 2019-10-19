@@ -118,3 +118,16 @@ Spark Update (2019-05-30)
         maven-compiler-plugin 3.6.1
         maven-shade-plugin 3.0.0
         scala-maven-plugin 3.2.2
+Spark Update (2019-10-19)
+    Amazon Linux AMI 2018.03
+    Apache Spark 2.4.4 Prebuilt for Hadoop 2.7 and later
+    Languages
+        OpenJDK 1.8.0_222
+        Python 3.6.8
+        R 3.4.1
+        Scala 2.11.12
+    Apache Maven 3.6.0
+        addjars-maven-plugin 1.0.5
+        maven-compiler-plugin 3.6.1
+        maven-shade-plugin 3.0.0
+        scala-maven-plugin 3.2.2

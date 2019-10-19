@@ -97,3 +97,13 @@ Spark Update (2019-05-30)
         Scala 2.11.12
     SBT 1.2.8
         sbt-assembly 0.14.9
+Spark Update (2019-10-19)
+    Amazon Linux AMI 2018.03
+    Apache Spark 2.4.4 Prebuilt for Hadoop 2.7 and later
+    Languages
+        OpenJDK 1.8.0_222
+        Python 3.6.8
+        R 3.4.1
+        Scala 2.11.12
+    SBT 1.2.8
+        sbt-assembly 0.14.9

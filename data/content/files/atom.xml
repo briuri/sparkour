@@ -5,7 +5,7 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2019-05-30T10:00:00Z</updated>
+	<updated>2019-10-19T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
@@ -13,6 +13,16 @@
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2019-10-19</id>
+		<link href="https://sparkour.urizone.net/?2019-10-19" />
+		<updated>2019-10-19T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated and tested for Spark 2.4.4.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2019-05-30</id>
 		<link href="https://sparkour.urizone.net/?2019-05-30" />

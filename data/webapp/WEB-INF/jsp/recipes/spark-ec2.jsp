@@ -52,7 +52,7 @@
 are using an older version of Spark, you will find the script in your Spark distribution at <span class="rCW">$SPARK_HOME/ec2</span>. 
 
 <ol>
-	<li>If you are running Spark 2.x and need to download the script, visit the <a href="https://github.com/amplab/spark-ec2">AMPLab spark-ec2 repository</a>. In the 
+	<li>If you are running Spark 2.x and need to download the script, visit the <a href="https://github.com/amplab/spark-ec2/tree/branch-2.0">AMPLab spark-ec2 repository</a>. In the 
 	<span class="rK">Branch:</span> dropdown menu, select <span class="rV">branch-2.0</span>, then open the <span class="rK">Clone or download</span> dropdown menu as shown
 	in the image below. Hovering the mouse over the <span class="rAB">Download ZIP</span> button will show you the download URL.</li>
 	
