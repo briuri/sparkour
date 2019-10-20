@@ -28,6 +28,9 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>What's New? <a href="${filesUrlBase}/atom.xml"><img src="${imagesUrlBase}/atom.png" width="20" height="20" title="Atom Feed" /></a></h2>
 
 <div id="newsFeed">
+	<bu:newsUpdate date="2019-10-20">
+		<bu:rLink id="configuring-s3" /> and <bu:rLink id="using-s3" /> have been updated to reflect the deprecation of the <span class="rCW">s3n</span> protocol in favor of <span class="rCW">s3a</span>.
+	</bu:newsUpdate>
 	<bu:newsUpdate date="2019-10-19">
 		All recipes have been updated and tested against Spark 2.4.4.
 	</bu:newsUpdate>

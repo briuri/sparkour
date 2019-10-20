@@ -7,20 +7,15 @@
 <bu:rOverview publishDate="2016-03-06">
 	<h3>Synopsis</h3>
 	<p>This recipe provides the steps needed to securely connect an Apache Spark cluster running on Amazon Elastic Compute Cloud (EC2) 
-	to data stored in Amazon Simple Storage Service (S3). It contains instructions for both the classic <span class="rCW">s3n</span>
-	protocol and the newer, but still maturing, <span class="rCW">s3a</span> protocol. Coordinating the versions of the various required
-	libraries is the most difficult part -- writing application code for S3 is very straightforward.</p>
+	to data stored in Amazon Simple Storage Service (S3), using the <span class="rCW">s3a</span> protocol. 
+	Coordinating the versions of the various required libraries is the most difficult part -- writing application code for S3 is very straightforward.</p>
 
 	<h3>Prerequisites</h3>
 	<ol>
-		<li>You need a working Spark cluster, as described in <bu:rLink id="spark-ec2" />.<ul>
-			<li>For the <span class="rCW">s3n</span> protocol, the cluster must be configured with the <span class="rK">--copy-aws-credentials</span> parameter.</li>
-			<li>For the <span class="rCW">s3a</span> protocol, the cluster must be configured with an Identity & Access Management (IAM) Role
-				via <span class="rK">--instance-profile-name</span>.</li>
-		</ul></li>
-		<li>You need an access-controlled S3 bucket available for Spark consumption, as described in <bu:rLink id="configuring-s3" />.<ul>
-			<li>For the <span class="rCW">s3n</span> protocol, the bucket must have a bucket policy granting access to the owner of the access keys.</li>
-			<li>For the <span class="rCW">s3a</span> protocol, the IAM Role of the cluster instances must have a policy granting access to the bucket.</li>
+		<li>You need a working Spark cluster, as described in <bu:rLink id="spark-ec2" />. The cluster must be configured with an Identity & Access 
+			Management (IAM) Role via <span class="rK">--instance-profile-name</span>.</li>
+		<li>You need an access-controlled S3 bucket available for Spark consumption, as described in <bu:rLink id="configuring-s3" />. 
+			The IAM Role of the cluster instances must have a policy granting access to the bucket.</li>
 		</ul></li>
 	</ol>		
 
@@ -28,41 +23,35 @@
 	<ol>
 		<li>Spark depends on Apache Hadoop and Amazon Web Services (AWS) for libraries that communicate with Amazon S3. 
 			As such, <span class="rPN">any version</span> of Spark should work with this recipe.</li>
-		<li>Apache Hadoop started supporting the <span class="rCW">s3n</span> protocol in version 0.18.0, so any recent version should suffice.
-			The <span class="rCW">s3a</span> protocol was introduced in version 
-			<a href="https://issues.apache.org/jira/browse/HADOOP-10400">2.6.0</a>, but is still maturing. 
-			Several important issues were corrected in <a href="https://issues.apache.org/jira/browse/HADOOP-11571">2.7.0</a> and
-			<a href="https://issues.apache.org/jira/browse/HADOOP-11694">2.8.0</a>. You should consider <span class="rPN">2.8.0</span> to be the minimum recommended version.</li>
+		<li>Apache Hadoop started supporting the <span class="rCW">s3a</span> protocol in version 2.6.0, 
+			but several important issues were corrected in Hadoop 2.7.0 and Hadoop 2.8.0. You should consider 
+			<span class="rPN">2.8.0</span> to be the minimum recommended version.</li>			
 	</ol>
 		
 	<a name="toc"></a>
 	<h3>Section Links</h3>
 	<ul>
 		<li><a href="#01">S3 Support in Spark</a></li>
-		<li><a href="#02">Testing the Protocols</a></li>
+		<li><a href="#02">Testing the s3a Protocol</a></li>
 	</ul>
 </bu:rOverview>
 
 <bu:rSection anchor="01" title="S3 Support in Spark" />
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the 
-AWS services is very much a work in progress. Hadoop offers 3 protocols for working with Amazon S3's REST API, and the protocol you select for your
-application is a trade-off between maturity, security, and performance.</p>
-
+AWS services can feel a little finicky. We will skip over two older protocols for this recipe:</p>
 <ol>
-	<li>The <span class="rCW">s3</span> protocol is supported in Hadoop, but does not work with Apache Spark unless you are using the AWS version of Spark in Elastic MapReduce (EMR).
-		We can safely ignore this protocol for now.</li>
-	<li>The <span class="rCW">s3n</span> protocol is Hadoop's older protocol for connecting to S3. Implemented with a third-party library (JetS3t), it provides rudimentary support
-	for files up to 5 GB in size and uses AWS secret API keys to run. This "shared secret" approach is brittle, and no longer the preferred best practice within AWS. It also conflates
-	the concepts of users and roles, as the worker node communicating with S3 presents itself as the person tied to the access keys.</li>
-	<li>The <span class="rCW">s3a</span> protocol is successor to <span class="rCW">s3n</span> but is not mature yet. Implemented directly on top of AWS APIs, it is faster, handles files up to
-	5 TB in size, and supports authentication with Identity and Access Management (IAM) Roles. With IAM Roles, you assign an IAM Role to your worker nodes and then attach policies
-	granting access to your S3 bucket. If you want to use this protocol with an older version of Hadoop, you might find success by downloading specific JAR files from a 2.7.x 
-	distribution, as described in this recipe. For example, the Spark cluster created with the <span class="rCW">spark-ec2</span> script only supports 
-	Hadoop 2.4 right now, so if you built your cluster with that script, additional JAR files are necessary.</li>
+	<li>The <span class="rCW">s3</span> protocol is supported in Hadoop, but does not work with Apache Spark unless you are using the AWS version of Spark in Elastic MapReduce (EMR).</li>
+	<li>The <span class="rCW">s3n</span> protocol is Hadoop's older protocol for connecting to S3. This deprecated protocol has major limitations, including a brittle security approach
+		that requires the use of AWS secret API keys to run.</li>
 </ol>
 
-<p>S3 can be incorporated into your Spark application wherever a string-based file path is accepted in the code. An example of each protocol (using the bucket name, 
+<p>We focus on the <span class="rCW">s3a</span> protocol, which is the most modern protocol available. Implemented directly on top of AWS APIs, <span class="rCW">s3a</span> is 
+scalable, handles files up to 5 TB in size, and supports authentication with Identity and Access Management (IAM) Roles. With IAM Roles, you assign an IAM Role to your 
+worker nodes and then attach policies granting access to your S3 bucket. No secret keys are involved, and the risk of accidentally disseminating keys or committing them in 
+version control is reduced.</p>
+
+<p>S3 can be incorporated into your Spark application wherever a string-based file path is accepted in the code. An example (using the bucket name, 
 <span class="rCW">sparkour-data</span>) is shown below.</p>
 
 <bu:rTabs>
@@ -75,16 +64,10 @@ application is a trade-off between maturity, security, and performance.</p>
 	        // Create an RDD from a file in the working directory
 	        JavaRDD<String> localRdd = sc.textFile("random_numbers.txt");
 	        
-	        // Create an RDD from a file in S3 using the s3n protocol
-	        JavaRDD<String> s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt");
-	        
-	        // Create an RDD from a file in S3 using the s3a protocol
+	        // Create an RDD from a file in S3
 	        JavaRDD<String> s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt");
 	        
-	        // Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/");
-	        
-	        // Save data to S3 using the s3a protocol
+	        // Save data to S3
 	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/");
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
@@ -94,34 +77,22 @@ application is a trade-off between maturity, security, and performance.</p>
 			
  			# Create an RDD from a file in the working directory
     		localRdd = spark.sparkContext.textFile("random_numbers.txt")
-    		
-    		# Create an RDD from a file in S3 using the s3n protocol
-    		s3nRdd = spark.sparkContext.textFile("s3n://sparkour-data/random_numbers.txt")
-    		
-    		# Create an RDD from a file in S3 using the s3a protocol
+   		
+    		# Create an RDD from a file in S3
     		s3aRdd = spark.sparkContext.textFile("s3a://sparkour-data/random_numbers.txt")
-    		
-    		# Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/")
-	        
-	        # Save data to S3 using the s3a protocol
+        
+	        # Save data to S3
 	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/")
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="plain">
 			# Create a SparkR DataFrame from a local text file
 			localRdd <- read.df(sqlContext, "data.json")
-			
-			# Create a SparkR DataFrame from a file in S3 using the s3n protocol
-			s3nRdd <- read.df(sqlContext, "s3n://sparkour-data/data.json")
-			
-			# Create a SparkR DataFrame from a file in S3 using the s3a protocol
+		
+			# Create a SparkR DataFrame from a file in S3
 			s3aRdd <- read.df(sqlContext, "s3a://sparkour-data/data.json")
 			
-			# Save as Parquet file using the s3n protocol
-			write.df(localRdd, "s3n://sparkour-data/data.parquet")
-			
-			# Save as Parquet file using the s3a protocol
+			# Save as Parquet file
 			write.df(localRdd, "s3a://sparkour-data/data.parquet")			
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
@@ -131,17 +102,11 @@ application is a trade-off between maturity, security, and performance.</p>
 			
 	        // Create an RDD from a file in the working directory
         	val localRdd = sc.textFile("random_numbers.txt")
-        	
-        	// Create an RDD from a file in S3 using the s3n protocol
-        	val s3nRdd = sc.textFile("s3n://sparkour-data/random_numbers.txt")
-        	
-        	// Create an RDD from a file in S3 using the s3a protocol
+       	
+        	// Create an RDD from a file in S3
         	val s3aRdd = sc.textFile("s3a://sparkour-data/random_numbers.txt")
         	
-    		# Save data to S3 using the s3n protocol
-	        localRdd.saveAsTextFile("s3n://sparkour-data/output-path/")
-	        
-	        # Save data to S3 using the s3a protocol
+	        # Save data to S3
 	        localRdd.saveAsTextFile("s3a://sparkour-data/output-path/")
 		</bu:rCode>	
 	</bu:rTab>
@@ -156,7 +121,7 @@ as described in <bu:rLink id="configuring-s3" />.</p>
 for more fine-grained control of S3. To maximize your security, you should not use any of the Authentication properties that require you to write secret keys
 to a properties file.</p>
 
-<bu:rSection anchor="02" title="Testing the Protocols" />
+<bu:rSection anchor="02" title="Testing the s3a Protocol" />
 
 <p>The simplest way to confirm that your Spark cluster is handling S3 protocols correctly is to point a Spark interactive shell 
 at the cluster and run a simple chain of operators. You can either start up an interactive shell on your development environment 
@@ -164,7 +129,7 @@ or SSH into the master node of the cluster. You should have already tested your 
 <bu:rLink id="configuring-s3" />, so you can focus any troubleshooting efforts solely on the Spark and Hadoop side of the equation.</p> 
 
 <ol>
-	<li>Start the shell. Your secret keys or IAM Role should already be configured within the cluster.</li>
+	<li>Start the shell. Your Spark cluster's EC2 instances should already be configured with an IAM Role.</li>
 	
 	<bu:rTabs>
 		<bu:rTab index="1">
@@ -195,31 +160,18 @@ or SSH into the master node of the cluster. You should have already tested your 
 
 	<li>Once the shell has started, pull a file from your S3 bucket and run a simple action on it. 
 		Remember that transformations are lazy, so simply calling <span class="rCW">textFile()</span> 
-		on a file path does not actually do anything until a subsequent action. Use either <span class="rCW">s3n</span> or <span class="rCW">s3a</span>
-		as a path prefix, depending on which protocol your cluster is configured for.</li>
+		on a file path does not actually do anything until a subsequent action.</li>
 				
 	<bu:rTabs>
 		<bu:rTab index="1">
 			<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run this test inside an application.</p>
 			<bu:rCode lang="java">
-				// s3n Test
-				JavaRDD<String> textFile = sc.textFile("s3n://sparkour-data/myfile.txt");
-				System.out.println(textFile.count());
-				textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/");
-				
-				// s3a Test
 				JavaRDD<String> textFile2 = sc.textFile("s3a://sparkour-data/myfile.txt");
 				System.out.println(textFile2.count());
 				textFile2.saveAsTextFile("s3a://sparkour-data/s3a-output-path/");
 			</bu:rCode>			
 		</bu:rTab><bu:rTab index="2">
 			<bu:rCode lang="python">
-				>>> # s3n Test
-				>>> textFile = sc.textFile("s3n://sparkour-data/myfile.txt")
-				>>> textFile.count()
-				>>> textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/")
-				
-				>>> # s3a Test
 				>>> textFile = sc.textFile("s3a://sparkour-data/myfile.txt")
 				>>> textFile.count()
 				>>> textFile.saveAsTextFile("s3a://sparkour-data/s3a-output-path/")
@@ -229,24 +181,12 @@ or SSH into the master node of the cluster. You should have already tested your 
 			try to create a DataFrame instead. You should upload 
 			<a href="${filesUrlBase}/using-s3-dataframe.json">a simple JSON dataset</a> to your S3 bucket for use in this test.</p>
 			<bu:rCode lang="plain">
-				> # s3n Test
-				> people <- read.df("s3n://sparkour-data/using-s3-dataframe.json", "json")
-				> head(people)
-				> write.df(people, "s3n://sparkour-data/using-s3-dataframe.s3n.parquet")
-				
-				> # s3a Test
 				> people <- read.df("s3a://sparkour-data/using-s3-dataframe.json", "json")
 				> head(people)
 				> write.df(people, "s3a://sparkour-data/using-s3-dataframe.s3a.parquet")
 			</bu:rCode>
 		</bu:rTab><bu:rTab index="4">
 			<bu:rCode lang="scala">
-				scala> # s3n Test
-				scala> val textFile = sc.textFile("s3n://sparkour-data/myfile.txt")
-				scala> textFile.count()
-				scala> textFile.saveAsTextFile("s3n://sparkour-data/s3n-output-path/")
-				
-				scala> # s3a Test
 				scala> val textFile = sc.textFile("s3a://sparkour-data/myfile.txt")
 				scala> textFile.count()
 				scala> textFile.saveAsTextFile("s3a://sparkour-data/s3a-output-path/")
@@ -259,18 +199,16 @@ or SSH into the master node of the cluster. You should have already tested your 
 	<li>If the code fails, it will likely fail for one of the reasons described below.</li>
 </ol>
 
-<h3>No FileSystem for scheme: s3n</h3>
+<h3>Class org.apache.hadoop.fs.s3a.S3AFileSystem not found</h3>
 
 <bu:rCode lang="plain">
-	java.io.IOException: No FileSystem for scheme: s3n
+	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found
 </bu:rCode>
-
-<p>This message appears when dependencies are missing from your Apache Spark distribution.
-If you see this error message, you can use the <span class="rK">--packages</span>
-parameter and Spark will use Maven to locate the missing dependencies and distribute them
-to the cluster. Alternately, you can use <span class="rK">--jars</span> if you manually downloaded the dependencies already.
-These parameters also works on the <span class="rCW">spark-submit</span> script.</p>
-
+<p>This message appears when you're using the <span class="rCW">s3a</span> protocol and 
+dependencies are missing from your Apache Spark distribution (<span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span>).
+You can automatically load the dependencies from the EC2 Maven Repository with the <span class="rK">--packages</span> parameter. 
+This parameter also works on the <span class="rCW">spark-submit</span> script.</p>
+	
 <bu:rTabs>
 	<bu:rTab index="1">
 		<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run an application with the <span class="rCW">spark-submit</span> script.</p>
@@ -298,19 +236,11 @@ These parameters also works on the <span class="rCW">spark-submit</span> script.
 	</bu:rTab>
 </bu:rTabs>
 
-<h3>Class org.apache.hadoop.fs.s3a.S3AFileSystem not found</h3>
+<p>I have confirmed that these specific versions of <span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span> work. If you are using an alternate
+Hadoop version, you may need to play around with different versions of <span class="rCW">aws-java-sdk</span> to find a compatible pair. When in doubt, you can download 
+a Hadoop distribution locally and use the local <span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span> JAR files with 
+the <span class="rCW">--jars</span> parameter.</p>
 
-<bu:rCode lang="plain">
-	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found
-</bu:rCode>
-
-<p>This message appears when dependencies are missing from your Apache Spark distribution. If you see this error message, you should download a recent Hadoop 2.7.x distribution and 
-unzip it in your development environment to get the necessary JAR files. This workaround requires
-a specific, older version of an AWS JAR (1.7.4) that might not be available in the EC2 Maven Repository, 
-so the <span class="rK">--packages</span> parameter is not a good solution. 
-Instead, we use <span class="rK">--jars</span> to point to our manually downloaded dependencies.
-This parameter also works on the <span class="rCW">spark-submit</span> script.</p>
-	
 <bu:rTabs>
 	<bu:rTab index="1">
 		<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run an application with the <span class="rCW">spark-submit</span> script.</p>
@@ -358,6 +288,17 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 	</bu:rTab>
 </bu:rTabs>
 
+<h3>No FileSystem for scheme: s3n</h3>
+
+<bu:rCode lang="plain">
+	java.io.IOException: No FileSystem for scheme: s3n
+</bu:rCode>
+
+<p>(This message is no longer relevant now that the s3a protocol is mature, but I'm including it here because many people search for the error message on Google and arrive here).</p>
+
+<p>This message appears when you're using the <span class="rCW">s3n</span> protocol and 
+dependencies are missing from your Apache Spark distribution (<span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span>). 
+See the example code for the <span class="rCW">S3AFileSystem</span> error above to resolve this error.
 
 <h3>AWS Error Message: One or more objects could not be deleted</h3>
 
@@ -373,7 +314,7 @@ must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Ro
 		
 <bu:rFooter>
 	<bu:rLinks>
-		<li><a href="https://wiki.apache.org/hadoop/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
+		<li><a href="https://cwiki.apache.org/confluence/display/HADOOP2/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
 		<li><a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">Available Configuration Options for Hadoop-AWS</a></li>
 		<li><bu:rLink id="s3-vpc-endpoint" /></li>
 		<!--
@@ -386,6 +327,8 @@ must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Ro
 	<bu:rChangeLog>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2019-10-20: Updated to focus solely on s3a, now that s3n is fully deprecated 
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-34">SPARKOUR-34</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
