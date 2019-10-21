@@ -228,15 +228,15 @@ manual  steps in favour of automation with the <span class="rCW">spark-ec2</span
 	</bu:rCode>
 	
 	<bu:rCode lang="plain">
-		INFO Utils: Successfully started service 'sparkWorker' on port 37907.
-		INFO Worker: Starting Spark worker 172.31.24.101:37907 with 2 cores, 6.8 GB RAM
-		INFO Worker: Running Spark version 2.4.4
-		INFO Worker: Spark home: /opt/spark
-		INFO Utils: Successfully started service 'WorkerUI' on port 8081.
-		INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://172.31.24.101:8081
-		INFO Worker: Connecting to master ip-172-31-24-101:7077...
-		INFO TransportClientFactory: Successfully created connection to ip-172-31-24-101/172.31.24.101:7077 after 39 ms (0 ms spent in bootstraps)
-		INFO Worker: Successfully registered with master spark://ip-172-31-24-101:7077
+		INFO Utils: Successfully started service 'sparkWorker' on port 35621.
+		INFO Worker: Starting Spark worker 172.31.24.101:35621 with 2 cores, 6.5 GB RAM
+ 		INFO Worker: Running Spark version 2.4.4
+ 		INFO Worker: Spark home: /opt/spark
+ 		INFO Utils: Successfully started service 'WorkerUI' on port 8081.
+ 		INFO WorkerWebUI: Bound WorkerWebUI to 0.0.0.0, and started at http://ip-172-31-24-101.ec2.internal:8081
+ 		INFO Worker: Connecting to master ip-172-31-24-101:7077...
+ 		INFO TransportClientFactory: Successfully created connection to ip-172-31-24-101/172.31.24.101:7077 after 62 ms (0 ms spent in bootstraps)
+ 		INFO Worker: Successfully registered with master spark://ip-172-31-24-101.ec2.internal:7077
 	</bu:rCode>
 
 	<li>On line 6 of the log output above, you can see the URL for the Worker UI, <span class="rCW">http://172.31.24.101:8081</span>.
