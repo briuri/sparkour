@@ -126,8 +126,8 @@ Spark Update (2019-10-19)
         Python 3.6.8
         R 3.4.1
         Scala 2.11.12
-    Apache Maven 3.6.0
+    Apache Maven 3.6.2
         addjars-maven-plugin 1.0.5
-        maven-compiler-plugin 3.6.1
-        maven-shade-plugin 3.0.0
-        scala-maven-plugin 3.2.2
+        maven-compiler-plugin 3.8.1
+        maven-shade-plugin 3.2.1
+        scala-maven-plugin 4.2.4

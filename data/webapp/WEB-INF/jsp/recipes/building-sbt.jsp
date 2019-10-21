@@ -132,7 +132,7 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 would be added here, although our example uses basic defaults.</p>
 
 <bu:rCode lang="scala">
-	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.9")
+	addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.10")
 </bu:rCode>
 
 <p>Finally, we have two very simple Spark applications (in Java and Scala) that we use to demonstrate SBT. Each application has a dependency on 
@@ -336,7 +336,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 		<span class="rCW">project/assembly.sbt</span> file:</li>
 
 	<bu:rCode lang="scala">
-		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.9")
+		addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.10")
 	</bu:rCode>
 
  	<li>Update the <span class="rCW">build.sbt</span> file to mark the Spark dependency as <span class="rV">provided</span>. This prevents it from being included in the assembly JAR.
