@@ -18,9 +18,9 @@
 	<spring:url var="imagesUrlBase" value="/images" />	
 	<spring:url var="jsUrlBase" value="/js" />	
 	<c:set var="localImagesUrlBase" value="${imagesUrlBase}${imagesPath}" />
-	<script type="text/javascript" src="${jsUrlBase}/jquery-2.2.1.min.js"></script>
-	<script type="text/javascript" src="${jsUrlBase}/jquery.slicknav-1.0.2.min.js"></script>
-	<script type="text/javascript" src="${jsUrlBase}/js.cookie-2.1.0.js"></script>
+	<script type="text/javascript" src="${jsUrlBase}/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="${jsUrlBase}/jquery.slicknav-1.0.10.min.js"></script>
+	<script type="text/javascript" src="${jsUrlBase}/js.cookie-2.2.1.min.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/shCore-3.0.83.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/shBrushes-3.0.83.js"></script>
 	<script type="text/javascript" src="${jsUrlBase}/sparkour.js"></script>
@@ -34,7 +34,7 @@
 		});
 	</script>
 	<link href='https://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="${cssUrlBase}/jquery.slicknav-1.0.2.css" />
+	<link type="text/css" rel="stylesheet" href="${cssUrlBase}/jquery.slicknav-1.0.10.css" />
 	<link type="text/css" rel="stylesheet" href="${cssUrlBase}/shCore-3.0.83.css" />
 	<link type="text/css" rel="stylesheet" href="${cssUrlBase}/shThemeDefault-3.0.83.css" />
 	<link type="text/css" rel="stylesheet" href="${cssUrlBase}/sparkour.css" />

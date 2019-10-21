@@ -15,47 +15,46 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 			<li><a href="https://spark.apache.org/">Apache Spark 2.4.4</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Core data processing engine (unmodified).</li>
+		</ul></li>
+		
+		<li>Website Server-side Libraries<ul>
+			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.5.42</a>
+				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>): 
+				Deployment and application testing (unmodified).</li>
+			<li><a href="http://code.google.com/p/hamcrest/">Hamcrest 1.3</a> 
+				(<a href="http://opensource.org/licenses/BSD-3-Clause">BSD License</a>):
+				Unit testing (unmodified).</li>
 			<li><a href="https://javaee.github.io/jstl-api/">JSTL 1.2.1</a>
 				(<a href="https://javaee.github.io/jstl-api/LICENSE">CDDL 1.0</a>):
 				View rendering (unmodified).</li>
+			<li><a href="http://junit.org/">JUnit 4.12</a> 
+				(<a href="http://opensource.org/licenses/cpl1.0.php">CPL 1.0</a>):
+				Unit testing (unmodified).</li>
 			<li><a href="http://logback.qos.ch/">Logback 1.2.3</a>
 				(<a href="http://logback.qos.ch/license.html">LGPL 2.1</a>):
 				Logging (unmodified).</li>
-			<li><a href="http://www.slf4j.org/">SLF4J 1.7.25</a>
+			<li><a href="http://www.slf4j.org/">SLF4J 1.7.28</a>
 				(<a href="http://www.slf4j.org/license.html">MIT License</a>):
 				Logging (unmodified).</li>
-			<li><a href="http://projects.spring.io/spring-framework/">Spring Framework 4.3.8</a>
+			<li><a href="http://projects.spring.io/spring-framework/">Spring Framework 4.3.25</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
-				Dependency injection and web application framework (unmodified).</li>
-		</ul></li>
-		
-		<li>View Plug-ins<ul>
-			<li><a href="http://jquery.com/">jQuery 2.2.1</a>
+				Dependency injection and web application framework (unmodified).</li>			
+		</ul></li>		
+					
+		<li>Website Client-side Libraries<ul>
+			<li><a href="http://jquery.com/">jQuery 3.4.1</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Dynamic UI (unmodified).</li>
-			<li><a href="https://github.com/js-cookie/js-cookie">js.cookie 2.1.0</a>
+			<li><a href="https://github.com/js-cookie/js-cookie">js.cookie 2.2.1</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Browser cookie management (unmodified).</li>
-
-			<li><a href="http://slicknav.com/">SlickNav 1.0.2</a>
+			<li><a href="https://slicknav.io/">SlickNav 1.0.10</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Mobile UI (with modified stylesheets).</li>
 			<li><a href="http://alexgorbatchev.com/SyntaxHighlighter/">SyntaxHighlighter 3.0.83</a>
 				(<a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>):
 				Code formatting (with modified stylesheets).</li>
 		</ul></li>
-		
-		<li>Scaffolding<ul>
-			<li><a href="http://tomcat.apache.org/">Apache Tomcat 8.5.29</a>
-				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>): 
-				Deployment and application testing (unmodified).</li>
-			<li><a href="http://code.google.com/p/hamcrest/">Hamcrest 1.3</a> 
-				(<a href="http://opensource.org/licenses/BSD-3-Clause">BSD License</a>):
-				Unit testing (unmodified).</li>
-			<li><a href="http://junit.org/">JUnit 4.12</a> 
-				(<a href="http://opensource.org/licenses/cpl1.0.php">CPL 1.0</a>):
-				Unit testing (unmodified).</li>
-		</ul></li>	
 	</ul>
 </div>
 
