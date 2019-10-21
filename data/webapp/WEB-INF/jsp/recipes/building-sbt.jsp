@@ -106,11 +106,11 @@ important paths and files:</p>
 	<li><span class="rCW">target</span>: This directory is where SBT places compiled classes and JAR files.</li>
 </ul>
 
-<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 1.2.8.</p>
+<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 1.3.3.</p>
 
 <bu:rCode lang="bash">
 	# SBT Properties File: controls version of sbt tool
-	sbt.version=1.2.8
+	sbt.version=1.3.3
 </bu:rCode>
 
 <p>The <span class="rCW">build.sbt</span> file is a Scala-based file containing properties about the project. Earlier versions of SBT required the file to
@@ -429,6 +429,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
 		<li>2018-05-27: Updated for SBT 1.1.5.</li>
 		<li>2019-01-06: Updated for SBT 1.2.8.</li>
+		<li>2019-10-19: Updated for SBT 1.3.3.</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
