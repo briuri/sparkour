@@ -340,7 +340,7 @@ Spark documentation recommends creating a special JAR file containing both the a
 	</bu:rCode>
 
  	<li>Update the <span class="rCW">build.sbt</span> file to mark the Spark dependency as <span class="rV">provided</span>. This prevents it from being included in the assembly JAR.
- 		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory will still get picked up automatically at compile time.</li>
+ 		You can also restore the Commons CSV dependency if you want, although our local copy in the <span class="rCW">lib/</span> directory still gets picked up automatically at compile time.</li>
 
 	<bu:rCode lang="bash">
 		libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.4" % provided

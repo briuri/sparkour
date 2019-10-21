@@ -177,7 +177,7 @@ You can even mix and match approaches at different points in your processing pip
 		</bu:rTab>
 	</bu:rTabs>
 	
-	<li>Make sure that the name you assign to the temporary table is not a reserved SQL keyword. Spark will allow such a name, but
+	<li>Make sure that the name you assign to the temporary table is not a reserved SQL keyword. Spark allows such a name, but
 		this may lead to query syntax errors whose cause is not immediately apparent.</li>  
 </ol>
 

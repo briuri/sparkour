@@ -54,7 +54,7 @@ are using an older version of Spark, you will find the script in your Spark dist
 <ol>
 	<li>If you are running Spark 2.x and need to download the script, visit the <a href="https://github.com/amplab/spark-ec2/tree/branch-2.0">AMPLab spark-ec2 repository</a>. In the 
 	<span class="rK">Branch:</span> dropdown menu, select <span class="rV">branch-2.0</span>, then open the <span class="rK">Clone or download</span> dropdown menu as shown
-	in the image below. Hovering the mouse over the <span class="rAB">Download ZIP</span> button will show you the download URL.</li>
+	in the image below. Hover the mouse over the <span class="rAB">Download ZIP</span> button to see the download URL.</li>
 	
 	<img src="${localImagesUrlBase}/script-download.png" width="750" height="320" title="Downloading the Script" class="diagram border" />
 	
@@ -178,7 +178,7 @@ attach new permission policies to an existing Role than it is to terminate the e
 	<li>On <span class="rPN">Step 2. Select Role Type</span>, select <span class="rV">Amazon EC2</span> to establish
 		that this role will be applied to EC2 instances. Go to the <span class="rAB">Next Step</span>.</li>
 	<li>Step 3 is skipped based on your previous selection. On <span class="rPN">Step 4. Attach Policy</span>, 
-		do not select any policies. (We will add policies in other recipes when we need our instance to 
+		do not select any policies. (We add policies in other recipes when we need our instance to 
 		access other services). Go to the <span class="rAB">Next Step</span>.</li>
 	<li>On <span class="rPN">Step 5. Review</span>, select <span class="rAB">Create Role</span>. You return
 		to the Roles dashboard, and should see your new role listed on the dashboard.</li>

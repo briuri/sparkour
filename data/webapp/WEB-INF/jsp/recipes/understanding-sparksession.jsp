@@ -31,7 +31,7 @@
 you need to instantiate before writing Spark applications. <span class="rCW">SparkSession</span> provides a single entry point to perform many
 operations that were previously scattered across multiple classes, and also provides accessor methods to these older classes for maximum compatibility.</p> 
 
-<p>In interactive environments, such as the Spark Shell or interactive notebooks, a <span class="rCW">SparkSession</span> will already be created for you
+<p>In interactive environments, such as the Spark Shell or interactive notebooks, a <span class="rCW">SparkSession</span> is already be created for you
 in a variable named <span class="rCW">spark</span>. For consistency, you should use this name when you create one in your own application. 
 You can create a new <span class="rCW">SparkSession</span> through a Builder pattern which uses a "fluent interface" style of coding to build a new object by chaining
 methods together. Spark properties can be passed in, as shown in these examples:</p>
@@ -79,7 +79,7 @@ methods together. Spark properties can be passed in, as shown in these examples:
 	</bu:rTab>
 </bu:rTabs>
 
-<p>At the end of your application, calling <span class="rCW">stop()</span> on the <span class="rCW">SparkSession</span> will implicitly stop any nested Context classes.</p>
+<p>At the end of your application, calling <span class="rCW">stop()</span> on the <span class="rCW">SparkSession</span> implicitly stops any nested Context classes.</p>
  
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -111,7 +111,7 @@ existing code should still work in Spark 2.0. When you are ready to modernize yo
 <h3>SparkConf</h3>
 
 <p>Previously, this class was required to initialize configuration properties used by the <span class="rCW">SparkContext</span>, as well as set runtime properties
-while an application was running. Now, all initialization occurs through the <span class="rCW">SparkSession</span> builder class. You will still use this class
+while an application was running. Now, all initialization occurs through the <span class="rCW">SparkSession</span> builder class. You still use this class
 (via the <span class="rCW">conf</span> accessor) to set runtime properties, but do not need to manually create it.</p>
 
 <bu:rTabs>
@@ -163,7 +163,7 @@ while an application was running. Now, all initialization occurs through the <sp
 <h3>SparkContext and JavaSparkContext</h3>
 
 <p>You will continue to use these classes (via the <span class="rCW">sparkContext</span> accessor) to perform operations that require the Spark Core API, such as working with accumulators,
-broadcast variables, or low-level RDDs. However, you will not need to manually create it.</p>
+broadcast variables, or low-level RDDs. However, you do not need to manually create them.</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -275,7 +275,7 @@ operations are directly available in <span class="rCW">SparkSession</span>. Oper
 
 <h3>HiveContext</h3>
 
-<p>The <span class="rCW">HiveContext</span> is completely superceded by <span class="rCW">SparkSession</span>. You will need enable Hive support
+<p>The <span class="rCW">HiveContext</span> is completely superceded by <span class="rCW">SparkSession</span>. You need enable Hive support
 when you create your <span class="rCW">SparkSession</span> and include the necessary Hive library dependencies in your classpath.</p>
 
 <bu:rTabs>

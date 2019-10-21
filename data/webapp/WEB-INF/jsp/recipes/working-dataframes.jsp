@@ -52,12 +52,12 @@ As Spark has evolved, the DataFrames API and later the Dataset API were created 
 this was implemented. Here are some rules of thumb for each language:</p>
 
 <ul>
-	<li>In <span class="rPN">Java</span>, <span class="rCW">DataFrame</span> was completely removed from the API. In its place, you will use a <span class="rCW">DataSet</span>
+	<li>In <span class="rPN">Java</span>, <span class="rCW">DataFrame</span> was completely removed from the API. In its place, you use a <span class="rCW">DataSet</span>
 	containing <span class="rCW">Row</span> objects, where <span class="rCW">Row</span> is a generic, untyped Java Virtual Machine (JVM) object. You
 	can consider <span class="rCW">Dataset[Row]</span> to be synonymous with <span class="rCW">DataFrame</span> conceptually.</li>
-	<li>In <span class="rPN">Python</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you will use regularly. Spark DataFrames are also
+	<li>In <span class="rPN">Python</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you use regularly. Spark DataFrames are also
 	compatible with other Python data frame libraries, such as <span class="rCW">pandas</span>.</li> 
-	<li>In <span class="rPN">R</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you will use regularly. Spark DataFrames are also
+	<li>In <span class="rPN">R</span>, <span class="rCW">DataFrame</span> is still a full-fledged object that you use regularly. Spark DataFrames are also
 	compatible with R's built-in data frame support.</li>
 	<li>In <span class="rPN">Scala</span>, <span class="rCW">DataFrame</span> is now an alias representing a <span class="rCW">DataSet</span>
 	containing <span class="rCW">Row</span> objects, where <span class="rCW">Row</span> is a generic, untyped Java Virtual Machine (JVM) object.
@@ -96,7 +96,7 @@ this was implemented. Here are some rules of thumb for each language:</p>
 	</tbody>
 </table>
 
-<p>This recipe will focus exclusively on untyped DataFrames, with the particulars of Datasets covered in a future recipe.
+<p>This recipe focuses exclusively on untyped DataFrames, with the particulars of Datasets covered in a future recipe.
 You can create a DataFrame from a variety of sources, such as existing RDDs, relational database tables, Apache Hive tables, JSON, Parquet, and 
 text files. With a schema that's either inferred from the data or specified as a configuration option, the data can immediately be 
 traversed or transformed as a column-based table.</p>

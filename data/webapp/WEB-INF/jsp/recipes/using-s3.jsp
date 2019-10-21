@@ -39,7 +39,7 @@
 <bu:rSection anchor="01" title="S3 Support in Spark" />
 
 <p>There are no S3 libraries in the core Apache Spark project. Spark uses libraries from Hadoop to connect to S3, and the integration between Spark, Hadoop, and the 
-AWS services can feel a little finicky. We will skip over two older protocols for this recipe:</p>
+AWS services can feel a little finicky. We skip over two older protocols for this recipe:</p>
 <ol>
 	<li>The <span class="rCW">s3</span> protocol is supported in Hadoop, but does not work with Apache Spark unless you are using the AWS version of Spark in Elastic MapReduce (EMR).</li>
 	<li>The <span class="rCW">s3n</span> protocol is Hadoop's older protocol for connecting to S3. This deprecated protocol has major limitations, including a brittle security approach
@@ -251,7 +251,7 @@ contain dependencies that conflict with the libraries needed in modern Hadoop ve
 	java.lang.NoClassDefFoundError: org/apache/hadoop/fs/StreamCapabilities
 </bu:rCode>
 
-<p>To integrate modern Hadoop versions, you will need to download a "Pre-built with user-provided Apache Hadoop" distribution of Spark and add Hadoop to your classpath, as shown in
+<p>To integrate modern Hadoop versions, you need to download a "Pre-built with user-provided Apache Hadoop" distribution of Spark and add Hadoop to your classpath, as shown in
 <a href="https://spark.apache.org/docs/latest/hadoop-provided.html">Using Spark's "Hadoop Free" Build</a> from the official documentation.</p>
 
 <h3>No FileSystem for scheme: s3n</h3>

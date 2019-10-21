@@ -61,7 +61,7 @@ this conversion over a JDBC connection.</p>
 
 	<li>The example source code for each language is in a subdirectory of <span class="rCW">src/main</span> with that language's name.
 		There is also a <span class="rCW">setup-mysql.sql</span> script that creates a test database, a test user, and a test table
-		for use in this recipe. You will need to insert the IP address range of the Spark cluster that will be executing your application
+		for use in this recipe. You need to insert the IP address range of the Spark cluster that will be executing your application
 		(as <span class="rK">&lt;subnetOfSparkCluster&gt;</span> on line 9 and 12). If you just plan on running in Local mode, your local IP address will suffice.
 		You'll also need to create a password that the cluster can use to connect to the database (as <span class="rK">&lt;password&gt;</span> on line 9).
 		
@@ -145,8 +145,8 @@ this conversion over a JDBC connection.</p>
 		# Oracle now requires you to login to their portal to download the thin client JAR file.
 	</bu:rCode>
 	
-	<li>If you plan to run these applications on a Spark cluster (as opposed to Local mode), you will need to download the JDBC
-		connector library to each node in your cluster as well. You will also need to edit your <span class="rCW">$SPARK_HOME/conf/spark-defaults.conf</span>
+	<li>If you plan to run these applications on a Spark cluster (as opposed to Local mode), you need to download the JDBC
+		connector library to each node in your cluster as well. You also need to edit your <span class="rCW">$SPARK_HOME/conf/spark-defaults.conf</span>
 		file to include the connector library in the necessary classpaths. For added security, the JDBC library must be loaded when the 
 		cluster	is first started, so simply passing it in as an application dependency with <span class="rCW">--jars</span> 
 		is insufficient.</li>
@@ -158,7 +158,7 @@ this conversion over a JDBC connection.</p>
 	
 	<li>You are now ready to run the example applications. A helper script, <span class="rCW">sparkour.sh</span> is 
 	included to compile, bundle, and submit applications in all languages. If you want to run the application in Local mode,
-	you will need to pass the JDBC library in with the <span class="rK">--driver-class-path</span> parameter. If you are
+	you need to pass the JDBC library in with the <span class="rK">--driver-class-path</span> parameter. If you are
 	submitting the application to a cluster with a <span class="rCW">spark-defaults.conf</span> file configured as shown in the
 	previous step, specifying the <span class="rK">--master</span> is sufficient.</li>
 		
@@ -438,7 +438,7 @@ all write operations involve the INSERT SQL statement, so there is no way to use
 It turns out that the source data was improperly measured, and everyone in the table is actually 2 pounds
 heavier than the data suggests. We load the data into a DataFrame, add 2 pounds to every weight
 value, and then save the new data into a new database table. Remember that Spark RDDs (the low-level data
-structure underneath the DataFrame) are immutable, so these operations will involve making new DataFrames
+structure underneath the DataFrame) are immutable, so these operations involve making new DataFrames
 rather than updating the existing one.</p>
 
 <ol>
@@ -564,7 +564,7 @@ rather than updating the existing one.</p>
 		
 	<li>Because this operation is running in <span class="rCW">error</span> mode,
 		the <span class="rCW">updated_people</span> table cannot already exist. You
-		will need to drop the table in the database if you want to run the application
+		need to drop the table in the database if you want to run the application
 		more than once.</li>
 	
 	<bu:rCode lang="sql">
@@ -575,7 +575,7 @@ rather than updating the existing one.</p>
 <h3>org.apache.spark.sql.execution.datasources.jdbc.DefaultSource does not allow create table as select.</h3>
 
 <p>You may encounter this error when trying to write to a JDBC table with R's <span class="rCW">write.df()</span> function
-in Spark 1.6 or lower. You will need to upgrade to Spark 2.x to write to tables in R.</p> 
+in Spark 1.6 or lower. You need to upgrade to Spark 2.x to write to tables in R.</p> 
 
 <h3>Schema Variations</h3>
 

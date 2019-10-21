@@ -88,7 +88,7 @@ resource management is not a unique Spark concept, and you can swap in one of th
 	<li>As a <span class="rPN">worker</span> node in a cluster, this server is responsible for task execution.</li>
 </ol>
 
-<p>Sometimes, these roles will overlap on the same server. For example, you probably use the same server as both a development environment and a launch environment.
+<p>Sometimes, these roles overlap on the same server. For example, you probably use the same server as both a development environment and a launch environment.
 When you're doing rapid development with a test cluster, you might reuse the master node as a development environment to reduce the feedback loop between compiling and running
 your code. Later in this tutorial, we reuse the same server to create a cluster where a master and a worker are running on the same EC2 instance -- this demonstrates
 clustering concepts without forcing us to pay for an additional instance.</p>

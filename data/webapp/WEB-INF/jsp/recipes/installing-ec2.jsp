@@ -89,7 +89,7 @@ practice to always assign an IAM Role to new instances, because a new Role canno
 	<li>On <span class="rPN">Step 2. Select Role Type</span>, select <span class="rV">Amazon EC2</span> to establish
 		that this role will be applied to EC2 instances. Go to the <span class="rAB">Next Step</span>.</li>
 	<li>Step 3 is skipped based on your previous selection. On <span class="rPN">Step 4. Attach Policy</span>, 
-		do not select any policies. (We will add policies in other recipes
+		do not select any policies. (We add policies in other recipes
 		when we need our instance to access other services). Go to the <span class="rAB">Next Step</span>.</li>
 	<li>On <span class="rPN">Step 5. Review</span>, select <span class="rAB">Create Role</span>. You return
 		to the Roles dashboard, and should see your new role listed on the dashboard.</li>
@@ -154,11 +154,11 @@ Group you created earlier.</p>
 		adjust the Sparkour script examples to match your chosen distribution.</li>
 	<li>On <span class="rPN">Step 2: Choose Instance Type</span>, select the <span class="rV">m4.large</span>
 		instance type. This is a modest, general-purpose server with 2 cores and 8GB of memory that is sufficient for our
-		testing purposes. In later recipes, we will discuss how to profile your Spark workload and use the optimal
+		testing purposes. In later recipes, we discuss how to profile your Spark workload and use the optimal
 		configuration of compute-optimized or memory-optimized instance types.<br /><br />Be aware that EC2 instances incur charges
 		whenever they are running ($0.096 per hour for m5.large, as of January 2019). If you are a new AWS user
 		operating on a tight budget, you can take advantage of the Free Tier by selecting <span class="rV">t2.micro</span>.
-		You get 750 free hours of running time per month, but performance will be slower, and you'll lose the ability to run applications with multiple cores.<br /><br />
+		You get 750 free hours of running time per month, but performance is slower, and you'll lose the ability to run applications with multiple cores.<br /><br />
 		Select <span class="rAB">Next: Configure Instance Details</span> after you have made your selection.</li>
 	<li>On <span class="rPN">Step 3: Configure Instance Details</span>, set <span class="rK">IAM role</span> to the IAM Role
 		you created earlier. Toggle the <span class="rK">Enable termination protection</span> checkbox to ensure that you
@@ -297,7 +297,7 @@ For now, we use a pre-built distribution which already contains a common set of 
 		cp $SPARK_HOME/conf/log4j.properties.template $SPARK_HOME/conf/log4j.properties
 		vi $SPARK_HOME/conf/log4j.properties
 		# (on line 19 of the file, change the log level from INFO to ERROR)
-		# (Note that this will suppress some of the output needed in the tutorials)
+		# (Note that this suppresses some of the output referenced in the tutorials)
 		
 		# log4j.rootCategory=ERROR, console
 		
@@ -387,7 +387,7 @@ This example counts the number of lines in the <span class="rCW">README.md</span
 	</bu:rTabs>
 	
 	<li>For now, we just want to make sure that the shell executes the commands properly and return the correct value.
-		We will explore what's going on under the hood in the last tutorial.</li>
+		We explore what's going on under the hood in the last tutorial.</li>
 </ol>
 
 <bu:rSection anchor="03" title="Conclusion" />

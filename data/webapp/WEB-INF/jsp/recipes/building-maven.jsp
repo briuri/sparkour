@@ -133,8 +133,7 @@ important paths and files:</p>
 </ul>
 
 <p>The Project Object Model (POM) file is the primary Maven artifact. In this case, there are 4 POM files, each of which builds the example in a different way. We can
-designate a specific file with the <span class="rK">--file</span> parameter. In the absence of this parameter, Maven
-will default to a file named <span class="rV">pom.xml</span>.</p>
+designate a specific file with the <span class="rK">--file</span> parameter. In the absence of this parameter, Maven defaults to a file named <span class="rV">pom.xml</span>.</p>
 
 <p>Each example POM file has some configuration in common:</p>
 

@@ -96,7 +96,7 @@ new engines to be supported in the future.</p>
 		# (Should display a version number)
 	</bu:rCode>
 		
-	<li>By default, Zeppelin will run on port 8080. If you have other software already using this port,
+	<li>By default, Zeppelin runs on port 8080. If you have other software already using this port,
 		you'll need to assign a different one. For example, the Spark Master UI also uses port 8080,
 		so installing Zeppelin on the same server as a master node will cause conflicts.</li>
 	
@@ -110,7 +110,7 @@ new engines to be supported in the future.</p>
 		#  then save the file and return to the command line)
 	</bu:rCode>
 	
-	<li>Finally, start up Zeppelin. Log files will be in <span class="rCW">/opt/zeppelin/logs</span> if you
+	<li>Finally, start up Zeppelin. Log files are found in <span class="rCW">/opt/zeppelin/logs</span> if you
 		need to troubleshoot anything.</li>
 		
 	<bu:rCode lang="bash">
@@ -130,12 +130,12 @@ new engines to be supported in the future.</p>
 	<img src="${localImagesUrlBase}/notebook-home.png" width="750" height="333" title="Zeppelin Home Page" class="diagram border" />
 	
 	<li>Expand the <span class="rPN">Zeppelin Tutorial</span> and select the <span class="rPN">Basic Features (Spark)</span> note.
-	On your first visit, you will be taken to a Settings page listing all of the installed Interpreters, as shown below. 
+	On your first visit, you are taken to a Settings page listing all of the installed Interpreters, as shown below. 
 	Scroll down this list and select <class="rAB">Save</class>.</li>
 	
 	<img src="${localImagesUrlBase}/notebook-settings.png" width="750" height="682" title="Zeppelin Settings" class="diagram border" />
 	
-	<li>The Basic Features note will appear onscreen, with multiple panes, as shown below. The top pane shows a welcome message,
+	<li>The Basic Features note appears onscreen, with multiple panes, as shown below. The top pane shows a welcome message,
 		the next pane down provides some Scala code to generate sample data, and the three smaller panes provide some SQL code to query the data and
 		generate visualizations. These panes are called <span class="rPN">Paragraphs</span>. You can refer to the 
 		<a href="https://zeppelin.apache.org/docs/latest/">Zeppelin Documentation</a>
@@ -143,11 +143,11 @@ new engines to be supported in the future.</p>
 		
 	<img src="${localImagesUrlBase}/notebook-welcome.png" width="750" height="686" title="Basic Features" class="diagram border" />
 	
-	<li>Select the &#x25b7; icon in the upper right corner of the <span class="rPN">Load data into table</span> paragraph. This will
-		load sample data out of Amazon S3 so it can be explored.</li>
-	<li>Select the &#x25b7; icon in one of the 3 visualization paragraphs. This will execute a SQL query against the sample
+	<li>Select the &#x25b7; icon in the upper right corner of the <span class="rPN">Load data into table</span> paragraph. This
+		loads sample data out of Amazon S3 so it can be explored.</li>
+	<li>Select the &#x25b7; icon in one of the 3 visualization paragraphs. This executes a SQL query against the sample
 		data and render the results as some form of chart. You can select different chart types (e.g. table, bar, pie) and
-		the results will be re-rendered without re-executing the query. You can also edit the SQL query on the fly to run
+		the results are re-rendered without re-executing the query. You can also edit the SQL query on the fly to run
 		a different query.</li>
 	<li>If running each Paragraph works without errors, Zeppelin has been installed successfully.</li>
 </ol>
@@ -163,7 +163,7 @@ very straightforward to point at an existing Spark cluster instead.</p>
 		page.</li>
 	<li>Scroll down the list to the Spark Interpreter. As shown in the image below, the default Interpreter has its
 		<span class="rK">master</span> property set to <span class="rV">local[*]</span>. This means that running a paragraph
-		will use a local Spark cluster with as many cores as available.</li> 
+		uses a local Spark cluster with as many cores as available.</li> 
 
 	<img src="${localImagesUrlBase}/interpreter-local.png" width="750" height="235" title="Spark Interpreter Settings" class="diagram border" />
 

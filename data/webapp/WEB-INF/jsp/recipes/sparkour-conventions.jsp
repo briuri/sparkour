@@ -33,7 +33,7 @@
 		a user interface (UI).</li>
 	<li><span class="rK">Field Name</span> denotes the name of a form field in a UI or an XML element name.</li>
 	<li><span class="rV">Field Value</span> denotes the value that you would enter into a form field or an XML element. 
-		Example values in a recipe will generally include a <span class="rV">sparkour-</span> prefix. Feel free to 
+		Example values in a recipe generally include a <span class="rV">sparkour-</span> prefix. Feel free to 
 		customize this with a token relevant to your own work.</li>
 	<li><span class="rCW">code word</span> denotes technical coding concepts, such as the names
 		of classes and variables, or the name of a Linux command line utility.</li>
@@ -52,7 +52,7 @@
 </bu:rCode>
 
 <p>Code samples employ the Java, Python, R, or Scala programming languages. If the example
-	has been translated into multiple languages, a separate box appears for each employed language. These boxes will show code
+	has been translated into multiple languages, a separate box appears for each employed language. These boxes show code
 	in Python by default, but you can change the language and use the &#128190; icon to save your preferred language.</p>
 
 <bu:rTabs>
@@ -102,7 +102,7 @@
 	</bu:rTab>
 </bu:rTabs>
 
-<p>Code intended for the Spark interactive shells will include the shell prompt at the beginning of each line:</p>
+<p>Code intended for the Spark interactive shells includes the shell prompt at the beginning of each line:</p>
 
 <bu:rTabs>
 	<bu:rTab index="1">
