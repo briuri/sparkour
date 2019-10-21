@@ -182,7 +182,7 @@ attach new permission policies to an existing Role than it is to terminate the e
 		access other services). Go to the <span class="rAB">Next Step</span>.</li>
 	<li>On <span class="rPN">Step 5. Review</span>, select <span class="rAB">Create Role</span>. You return
 		to the Roles dashboard, and should see your new role listed on the dashboard.</li>
-	<li>Exit this dashboard and return to the list of AWS service offerings by selecting the "cube" icon in the upper left corner.</li>
+	<li>Exit this dashboard and return to the list of AWS service offerings by selecting the "AWS" icon in the upper left corner.</li>
 </ol>
 
 <h3>Gathering VPC Details</h3>

@@ -518,7 +518,7 @@ the SparkR API.</p>
 		of data. Each <span class="rCW">StructField</span> provides
 		the column name, preferred data type, and whether null values
 		are allowed. Spark provides built-in support of a variety of
-		data types (e.g. String, Binary, Boolean, Date, Timestamp, Decimal, 
+		data types (e.g., String, Binary, Boolean, Date, Timestamp, Decimal, 
 		Double, Float, Byte, Integer, Long, Short, Array, and Map).</li>
 		
 	<bu:rTabs>
@@ -793,7 +793,7 @@ performance impact of this operation, you should consider programmatically speci
 	</bu:rTabs>
 	
 	<li>To avoid the inference step completely, we can specify a schema. The code pattern you see below can easily
-		be applied to any input format supported within a DataFrameReader (e.g. JDBC and Parquet).</li>
+		be applied to any input format supported within a DataFrameReader (e.g., JDBC and Parquet).</li>
 
 	<bu:rTabs>
 		<bu:rTab index="1">

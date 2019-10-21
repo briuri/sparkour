@@ -78,22 +78,20 @@ practice to always assign an IAM Role to new instances, because a new Role canno
 <ol>
 	<li>Login to your <a href="https://console.aws.amazon.com/">AWS Management Console</a> and select the 
 		<span class="rPN">Identity &amp; Access	Management</span> service.</li>
-	<li>Navigate to <span class="rMI">Roles</span> in the left side menu, and then select
-		<span class="rAB">Create New Role</span> at the top of the page, as seen in the image below. 
+	<li>Navigate to <span class="rMI">Roles</span> in the left side menu, and then select <span class="rAB">Create role</span>. 
 		This starts a wizard workflow to create a new role.</li>
 		
 	<img src="${localImagesUrlBase}/iam-roles.png" width="500" height="266" title="Creating an IAM Role for the Spark instance" class="diagram border" />
 	
-	<li>On <span class="rPN">Step 1. Set Role Name</span>, set the <span class="rK">Role Name</span> to a value
-		like <span class="rV">sparkour-app</span> and go to the <span class="rAB">Next Step</span>.</li>
-	<li>On <span class="rPN">Step 2. Select Role Type</span>, select <span class="rV">Amazon EC2</span> to establish
-		that this role will be applied to EC2 instances. Go to the <span class="rAB">Next Step</span>.</li>
-	<li>Step 3 is skipped based on your previous selection. On <span class="rPN">Step 4. Attach Policy</span>, 
-		do not select any policies. (We add policies in other recipes
-		when we need our instance to access other services). Go to the <span class="rAB">Next Step</span>.</li>
-	<li>On <span class="rPN">Step 5. Review</span>, select <span class="rAB">Create Role</span>. You return
+	<li>On <span class="rPN">Step 1. Create role</span>, select <span class="rK">AWS service</span> as the type of trusted entity.
+		Choose <span class="rK">EC2</span> as the service that will use this role. Select <span class="rMI">Next: Permissions</span>.</li>
+	<li>On <span class="rPN">Step 2. Create role</span>, do not select any policies. (We add policies in other recipes
+		when we need our instance to access other services). Go to the <span class="rAB">Next: Tags</span>.</li>
+	<li>On <span class="rPN">Step 3. Create role</span>, do not create any tags. Go to the <span class="rAB">Next: Review</span>.</li>
+	<li>On <span class="rPN">Step 4. Create role</span>, set the <span class="rK">Role name</span> to a value
+		like <span class="rV">sparkour-app</span>. 	Select <span class="rAB">Create role</span>. You return
 		to the Roles dashboard, and should see your new role listed on the dashboard.</li>
-	<li>Exit this dashboard and return to the list of AWS service offerings by selecting the "cube" icon in the upper left corner.</li>
+	<li>Exit this dashboard and return to the list of AWS service offerings by selecting the "AWS" icon in the upper left corner.</li>
 </ol>
 
 <h3>Creating a Security Group</h3>
@@ -152,7 +150,7 @@ Group you created earlier.</p>
 		(based on Red Hat) and comes preinstalled with useful extras like Java, Python, and the AWS command line tools.
 		If you are an advanced user, you're welcome to select an alternate option, although you may need to install extra dependencies or
 		adjust the Sparkour script examples to match your chosen distribution.</li>
-	<li>On <span class="rPN">Step 2: Choose Instance Type</span>, select the <span class="rV">m4.large</span>
+	<li>On <span class="rPN">Step 2: Choose Instance Type</span>, select the <span class="rV">m5.large</span>
 		instance type. This is a modest, general-purpose server with 2 cores and 8GB of memory that is sufficient for our
 		testing purposes. In later recipes, we discuss how to profile your Spark workload and use the optimal
 		configuration of compute-optimized or memory-optimized instance types.<br /><br />Be aware that EC2 instances incur charges
@@ -167,9 +165,10 @@ Group you created earlier.</p>
 	<li>On <span class="rPN">Step 4: Add Storage</span>, keep all of the default values. Elastic Block Store (EBS) is
 		Amazon's network-attached storage solution, and the Amazon Linux AMI requires at least 8 GB of storage. This is
 		enough for our initial tests, and we can attach more Volumes later on as needed. Be aware that EBS Volumes incur charges
-		based on their allocated size ($0.10 per GB per month, as of January 2019), regardless of whether they are actually attached
+		based on their allocated size ($0.10 per GB per month, as of October 2019), regardless of whether they are actually attached
 		to a running EC2 instance. Select <span class="rAB">Next: Tag Instance</span>.</li>	
-	<li>On <span class="rPN">Step 5: Tag Instance</span>, set <span class="rK">Name</span> to a value like <span class="rV">sparkour-app</span>.
+	<li>On <span class="rPN">Step 5: Tag Instance</span>, select <span class="rAB">Add Tag</span> and create a new tag with the key, <span class="rK">Name</span>,
+		and a value like <span class="rV">sparkour-app</span>.
 		You can assign other arbitrary tags as needed, and it's considered a best practice to establish consistent and granular
 		tagging conventions once you move beyond having a single instance.
 		Select <span class="rAB">Next: Configure Security Group</span>.</li>

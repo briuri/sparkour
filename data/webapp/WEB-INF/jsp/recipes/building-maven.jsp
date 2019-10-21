@@ -207,7 +207,7 @@ designate a specific file with the <span class="rK">--file</span> parameter. In 
 	                </executions>
 	            </plugin>       		
         		
-        		<!-- Other plugins (e.g. unmanaged dependency handling or assembly JARs) (described below) -->
+        		<!-- Other plugins (e.g., unmanaged dependency handling or assembly JARs) (described below) -->
 	        </plugins>
 	    </build>
 	</bu:rCode>

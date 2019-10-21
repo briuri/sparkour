@@ -495,7 +495,7 @@ the driver is physically co-located near the workers to reduce any network laten
 <ul>
 	<li>If the location where you are running <span class="rCW">spark-submit</span> is sufficiently close to the cluster already, the <span class="rV">client</span> deploy mode
 		simply places the driver on the same instance that the script was run. This is the default approach.</li>
-	<li>If the <span class="rCW">spark-submit</span> location is very far from the cluster (e.g. your cluster is in another AWS region), you can reduce network latency
+	<li>If the <span class="rCW">spark-submit</span> location is very far from the cluster (e.g., your cluster is in another AWS region), you can reduce network latency
 		by placing the driver on a node within the cluster with the <span class="rV">cluster</span> deploy mode.</li>
 </ul>
 

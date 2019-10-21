@@ -110,7 +110,7 @@ Instead, consider using Spark if some of these conditions apply to your scenario
 	<li>You are starting a new data processing application.</li>
 	<li>You expect to have massive datasets (on the order of petabytes).</li>
 	<li>You expect to integrate with a variety of data sources or the Hadoop ecosystem.</li>
-	<li>You expect to need more than one of Spark's libraries (e.g. MLlib and SQL) in the same application.</li>
+	<li>You expect to need more than one of Spark's libraries (e.g., MLlib and SQL) in the same application.</li>
 	<li>Your data processing workflow is a pipeline of iterative steps that might be refined in multiple passes fairly dynamically.</li>
 	<li>Your data processing workflow would be limited by the rigidity or performance of Hadoop MapReduce.</li>
 </ol>

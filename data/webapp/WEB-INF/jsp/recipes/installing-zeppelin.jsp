@@ -146,7 +146,7 @@ new engines to be supported in the future.</p>
 	<li>Select the &#x25b7; icon in the upper right corner of the <span class="rPN">Load data into table</span> paragraph. This
 		loads sample data out of Amazon S3 so it can be explored.</li>
 	<li>Select the &#x25b7; icon in one of the 3 visualization paragraphs. This executes a SQL query against the sample
-		data and render the results as some form of chart. You can select different chart types (e.g. table, bar, pie) and
+		data and render the results as some form of chart. You can select different chart types (e.g., table, bar, pie) and
 		the results are re-rendered without re-executing the query. You can also edit the SQL query on the fly to run
 		a different query.</li>
 	<li>If running each Paragraph works without errors, Zeppelin has been installed successfully.</li>
