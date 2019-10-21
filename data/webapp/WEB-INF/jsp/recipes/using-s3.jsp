@@ -25,7 +25,7 @@
 			As such, <span class="rPN">any version</span> of Spark should work with this recipe.</li>
 		<li>Apache Hadoop started supporting the <span class="rCW">s3a</span> protocol in version 2.6.0, 
 			but several important issues were corrected in Hadoop 2.7.0 and Hadoop 2.8.0. You should consider 
-			<span class="rPN">2.8.0</span> to be the minimum recommended version.</li>			
+			<span class="rPN">2.7.2</span> to be the minimum recommended version.</li>			
 	</ol>
 		
 	<a name="toc"></a>
@@ -204,10 +204,10 @@ or SSH into the master node of the cluster. You should have already tested your 
 <bu:rCode lang="plain">
 	java.lang.ClassNotFoundException: Class org.apache.hadoop.fs.s3a.S3AFileSystem not found
 </bu:rCode>
-<p>This message appears when you're using the <span class="rCW">s3a</span> protocol and 
-dependencies are missing from your Apache Spark distribution (<span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span>).
-You can automatically load the dependencies from the EC2 Maven Repository with the <span class="rK">--packages</span> parameter. 
-This parameter also works on the <span class="rCW">spark-submit</span> script.</p>
+
+<p>This message appears when you're using the <span class="rCW">s3a</span> protocol and dependencies are missing from your Apache Spark distribution. 
+If you're using a Spark distribution that was "Pre-built for Apache Hadoop 2.7 and later", you can automatically load the dependencies from the EC2 
+Maven Repository with the <span class="rK">--packages</span> parameter. This parameter also works on the <span class="rCW">spark-submit</span> script.</p>
 	
 <bu:rTabs>
 	<bu:rTab index="1">
@@ -215,78 +215,44 @@ This parameter also works on the <span class="rCW">spark-submit</span> script.</
 		<bu:rCode lang="bash">
 			$SPARK_HOME/bin/spark-submit \
 				--master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2 \
+				--packages org.apache.hadoop:hadoop-aws:2.7.7 \
 				--class buri.sparkour.ImaginaryApplication bundledAssembly.jar applicationArgs
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="bash">
 			$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
+				--packages org.apache.hadoop:hadoop-aws:2.7.7
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="3">
 		<bu:rCode lang="bash">
 			$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
+				--packages org.apache.hadoop:hadoop-aws:2.7.7
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="4">
 		<bu:rCode lang="bash">
 			$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077 \
-				--packages com.amazonaws:aws-java-sdk-pom:1.10.34,org.apache.hadoop:hadoop-aws:2.7.2
+				--packages org.apache.hadoop:hadoop-aws:2.7.7
 		</bu:rCode>	
 	</bu:rTab>
 </bu:rTabs>
 
-<p>I have confirmed that these specific versions of <span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span> work. If you are using an alternate
-Hadoop version, you may need to play around with different versions of <span class="rCW">aws-java-sdk</span> to find a compatible pair. When in doubt, you can download 
-a Hadoop distribution locally and use the local <span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span> JAR files with 
-the <span class="rCW">--jars</span> parameter.</p>
+<p>The solution gets trickier if you want to take advantage of the <span class="rCW">s3a</span> improvements in Hadoop 2.8.x and higher. Spark's "Pre-built for Apache Hadoop 2.7 and later" distributions
+contain dependencies that conflict with the libraries needed in modern Hadoop versions, so using the <span class="rK">--packages</span> parameter will lead to error messages such as:</p>
 
-<bu:rTabs>
-	<bu:rTab index="1">
-		<p><c:out value="${noJavaMessage}" escapeXml="false" /> Here is how you would run an application with the <span class="rCW">spark-submit</span> script.</p>
-		<bu:rCode lang="bash">
-			# Set environment variables for readability
-			export HADOOP_HOME=/opt/hadoop-2.7.2
-			export LIB_PATH=share/hadoop/tools/lib
-			
-			# Submit an application with extra JAR dependencies
-			$SPARK_HOME/bin/spark-submit \
-				--master spark://ip-172-31-24-101:7077 \
-				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar \
-				--class buri.sparkour.ImaginaryApplication bundledAssembly.jar applicationArgs
-		</bu:rCode>
-	</bu:rTab><bu:rTab index="2">
-		<bu:rCode lang="bash">
-			# Set environment variables for readability
-			export HADOOP_HOME=/opt/hadoop-2.7.2
-			export LIB_PATH=share/hadoop/tools/lib
-			
-			# Run shell with extra JAR dependencies 
-			$SPARK_HOME/bin/pyspark --master spark://ip-172-31-24-101:7077 \
-				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
-		</bu:rCode>
-	</bu:rTab><bu:rTab index="3">
-		<bu:rCode lang="bash">
-			# Set environment variables for readability
-			export HADOOP_HOME=/opt/hadoop-2.7.2
-			export LIB_PATH=share/hadoop/tools/lib
-			
-			# Run shell with extra JAR dependencies
-			$SPARK_HOME/bin/sparkR --master spark://ip-172-31-24-101:7077 \
-				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
-		</bu:rCode>
-	</bu:rTab><bu:rTab index="4">
-		<bu:rCode lang="bash">
-			# Set environment variables for readability
-			export HADOOP_HOME=/opt/hadoop-2.7.2
-			export LIB_PATH=share/hadoop/tools/lib
-			
-			# Run shell with extra JAR dependencies
-			$SPARK_HOME/bin/spark-shell --master spark://ip-172-31-24-101:7077 \
-				--jars $HADOOP_HOME/$LIB_PATH/aws-java-sdk-1.7.4.jar,$HADOOP_HOME/$LIB_PATH/hadoop-aws-2.7.2.jar
-		</bu:rCode>	
-	</bu:rTab>
-</bu:rTabs>
+<bu:rCode lang="plain">
+	java.lang.IllegalAccessError: tried to access method org.apache.hadoop.metrics2.lib.MutableCounterLong.<init>([...])V from class org.apache.hadoop.fs.s3a.S3AInstrumentation
+</bu:rCode>
+
+<bu:rCode lang="plain">
+	java.lang.NoClassDefFoundError: org/apache/hadoop/fs/StorageStatistics
+</bu:rCode>
+
+<bu:rCode lang="plain">
+	java.lang.NoClassDefFoundError: org/apache/hadoop/fs/StreamCapabilities
+</bu:rCode>
+
+<p>To integrate modern Hadoop versions, you will need to download a "Pre-built with user-provided Apache Hadoop" distribution of Spark and add Hadoop to your classpath, as shown in
+<a href="https://spark.apache.org/docs/latest/hadoop-provided.html">Using Spark's "Hadoop Free" Build</a> from the official documentation.</p>
 
 <h3>No FileSystem for scheme: s3n</h3>
 
@@ -294,11 +260,9 @@ the <span class="rCW">--jars</span> parameter.</p>
 	java.io.IOException: No FileSystem for scheme: s3n
 </bu:rCode>
 
-<p>(This message is no longer relevant now that the s3a protocol is mature, but I'm including it here because many people search for the error message on Google and arrive here).</p>
-
-<p>This message appears when you're using the <span class="rCW">s3n</span> protocol and 
-dependencies are missing from your Apache Spark distribution (<span class="rCW">aws-java-sdk</span> and <span class="rCW">hadoop-aws</span>). 
-See the example code for the <span class="rCW">S3AFileSystem</span> error above to resolve this error.
+<p>(<span class="rCW">s3n</span> is no longer relevant now that the <span class="rCW">s3a</span> protocol is mature, but I'm including this because many people search for the error message on Google and arrive here). 
+This message appears when you're using the <span class="rCW">s3n</span> protocol and dependencies are missing from your Apache Spark distribution. 
+See the <span class="rCW">S3AFileSystem</span> error above for ways to correct this.</p>
 
 <h3>AWS Error Message: One or more objects could not be deleted</h3>
 
@@ -316,6 +280,7 @@ must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Ro
 	<bu:rLinks>
 		<li><a href="https://cwiki.apache.org/confluence/display/HADOOP2/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
 		<li><a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">Available Configuration Options for Hadoop-AWS</a></li>
+		<li><a href="<a href="https://spark.apache.org/docs/latest/hadoop-provided.html">Using Spark's "Hadoop Free" Build</a></li>
 		<li><bu:rLink id="s3-vpc-endpoint" /></li>
 		<!--
 			https://github.com/apache/hadoop/blob/trunk/hadoop-tools/hadoop-aws/src/site/markdown/tools/hadoop-aws/index.md

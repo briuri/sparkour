@@ -87,7 +87,7 @@ Identity and Access Management (IAM) Roles. With IAM Roles, you assign an IAM Ro
 involved, and the risk of accidentally disseminating keys or committing them in version control is reduced.</p>
 
 <p><span class="rCW">s3a</span> support was introduced in Hadoop 2.6.0, but several important issues were corrected in Hadoop 2.7.0 and Hadoop 2.8.0. 
-You should consider 2.8.0 to be the minimum required version of Hadoop to use this protocol.</p>
+You should consider 2.7.2 to be the minimum required version of Hadoop to use this protocol.</p>
 
 <a name="s3a-config"></a><h3>Configuring Your Bucket for s3a</h3>
 
