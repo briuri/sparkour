@@ -59,8 +59,7 @@ just need to get your build dependencies in order.</p>
 		</ul></li>
 </ol>
 
-<p>Python is pre-installed on our EC2 instance as part of the Amazon Linux distribution, so no further work is needed to use that language. Instructions for configuring
-the EC2 instance to use other programming languages are shown beolw. If your personal development environment (outside of EC2) does not already have the right 
+<p>Instructions for installing each programming language on your EC2 instance are shown below. If your personal development environment (outside of EC2) does not already have the right 
 components installed, you should be able to review these instructions and adapt them to your unique environment.</p>
 
 <bu:rTabs>

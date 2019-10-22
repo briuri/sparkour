@@ -38,7 +38,7 @@ and resources in S3 require an Internet Gateway to be established in the VPC. Ho
 is available. In this case, you can establish a VPC Endpoint, which enables secure connections to S3 without the extra expense of a NAT instance. (Normally, a NAT instance would be
 needed to allow instances in the private subnet to share the Internet Gateway of a nearby public subnet).</p>
 
-<p>Currently, S3 is the only Amazon service accessible over a VPC Endpoint, but other services are expected to adopt Endpoints in the future. 
+<p>S3 is one of several Amazon service accessible over a VPC Endpoint, and other services are expected to adopt Endpoints in the future. 
 Using a VPC Endpoint to access S3 also improves your cluster's security posture, as traffic between the cluster and S3 never leaves the Amazon network.</p>  
 
 <bu:rSection anchor="02" title="Establishing the VPC Endpoint" />
@@ -49,29 +49,29 @@ Using a VPC Endpoint to access S3 also improves your cluster's security posture,
 	<li>Navigate to <span class="rMI">Endpoints</span> in the left side menu, and then select
 		<span class="rAB">Create Endpoint</span> at the top of the page. 
 		This starts a wizard workflow to create a new Endpoint.</li>
-	<li>On <span class="rPN">Step 1. Configure Endpoint</span>, set the <span class="rK">VPC</span> to 
-		the VPC containing your Spark cluster or other EC2 instances. In this example, we're using the Default VPC
-		provided with the base AWS account, as shown in the image below.</li>
+	<li>Select <span class="rV">com.amazonaws.us-east-1.s3</span> as the AWS <span class="rK">Service Name</span>, as shown
+		in the image below.
 		
-	<img src="${localImagesUrlBase}/configure-endpoint.png" width="600" height="585" title="Configuring a VPC Endpoint to S3" class="diagram border" />
-	
+		<img src="${localImagesUrlBase}/configure-endpoint.png" width="600" height="342" title="Configuring a VPC Endpoint to S3" class="diagram border" />
+		
+	<li>Set the <span class="rK">VPC</span> to the VPC containing your Spark cluster or other EC2 instances. In this example, we're using the Default VPC
+		provided with the base AWS account.</li>
+	<li>Select the route table corresponding to subnets that need access to the Endpoint. In this example, the default VPC has a route table attached
+		to the four default subnets. Any EC2 instance in any of the subnets are able to use the Endpoint, unless
+		we explicitly configure an access control policy on the previous page.</li>
 	<li>Like all AWS services, you can attach policies for fine-grained access control to the VPC Endpoint. You
 		can also configure bucket policies in S3 to control access <i>from</i> specific Endpoints. In this example,
 		we're using the <span class="rV">Full Access</span> policy on the Endpoint. The recipe,
-		<bu:rLink id="configuring-s3" />, shows how to configure bucket policies. Go to the <span class="rAB">Next Step</span>.</li>
-	<li>On <span class="rPN">Step 2. Configure Route Tables</span>, select the route table corresponding to 
-		subnets that need access to the Endpoint. In this example, the default VPC has a route table attached
-		to the four default subnets. Any EC2 instance in any of the subnets are able to use the Endpoint, unless
-		we explicitly configure an access control policy on the previous page.</li>
+		<bu:rLink id="configuring-s3" />, shows how to configure bucket policies.</li>
 	<li>Before you proceed, make sure that there is no active communication between your Spark cluster and S3.
-		Any active connections are dropped when the Endpoint is established. When ready, go to <span class="rAB">Create Endpoint</span>.
-		You should see "Endpoint created" as a status message. Go to <span class="rAB">View Endpoints</span>
+		Any active connections are dropped when the Endpoint is established. When ready, select <span class="rAB">Create endpoint</span>.
+		You should see "The following VPC Endpoint was created" as a status message. Go to <span class="rAB">Close</span>
 		to return to the list of Endpoints.</li>
 	<li>From the VPC Dashboard, navigate to <span class="rMI">Route Tables</span> and then select the modified route table
 		in the dashboard. Details about the route table appear in the lower pane, as seen in the image below. Select the
 		<span class="rPN">Routes</span> tab.</li>
 	
-	<img src="${localImagesUrlBase}/routes.png" width="692" height="452" title="Showing the Routes in the Route Table" class="diagram border" />
+	<img src="${localImagesUrlBase}/routes.png" width="700" height="356" title="Showing the Routes in the Route Table" class="diagram border" />
 	
 	<li>Routes are processed in order from most specific to least specific. In this example, there is a route for local
 		traffic within the VPC, a new route pointing to our new S3 VPC Endpoint, and a catch-all route pointing to the
@@ -93,7 +93,7 @@ you can temporarily detach the Internet Gateway from the VPC:</p>
 	<li>From the VPC Dashboard, navigate to <span class="rMI">Internet Gateways</span> in the left side menu, 
 		and then select the Internet Gateway attached to your VPC, as shown in the image below.</li>
 	
-	<img src="${localImagesUrlBase}/internet-gateways.png" width="700" height="308" title="Managing Internet Gateways in the VPC Dashboard" class="diagram border" />
+	<img src="${localImagesUrlBase}/internet-gateways.png" width="700" height="178" title="Managing Internet Gateways in the VPC Dashboard" class="diagram border" />
 	
 	<li>Select <span class="rAB">Detach from VPC</span> and then try the connection tests from the other recipe again.
 		If your VPC Endpoint is configured properly, the connection between EC2 and S3 will continue to work without the 

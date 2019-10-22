@@ -153,7 +153,7 @@ If you encounter authorization errors when running the script with this policy, 
 
 <p>By deploying your cluster in Amazon EC2, you gain access to other AWS service offerings such as Amazon S3 for data storage. Your cluster nodes
 need permission to access these services (separate from the permissions used to launch the cluster in the first place).
-Most Spark tutorials suggest that you pass your secret API keys to the instances as environment variables.
+Older Spark tutorials suggest that you pass your secret API keys to the instances as environment variables.
 This brittle "shared secret" approach is no longer a best practice in AWS, although it is the only way to use some older AWS integration libraries. (For example,
 the Hadoop library implementing the <span class="rCW">s3n</span> protocol for loading Amazon S3 data only accepts secret keys).</p>
 
@@ -167,20 +167,18 @@ attach new permission policies to an existing Role than it is to terminate the e
 
 <ol>
 	<li>Go to the <span class="rPN">Identity &amp; Access Management</span> service, if you are not already there.</li>
-	<li>Navigate to <span class="rMI">Roles</span> in the left side menu, and then select
-		<span class="rAB">Create New Role</span> at the top of the page, as seen in the image below. 
+	<li>Navigate to <span class="rMI">Roles</span> in the left side menu, and then select <span class="rAB">Create role</span>. 
 		This starts a wizard workflow to create a new role.</li>
 		
 	<img src="${localImagesUrlBase}/iam-roles.png" width="500" height="266" title="Creating an IAM Role for the Spark cluster" class="diagram border" />
 	
-	<li>On <span class="rPN">Step 1. Set Role Name</span>, set the <span class="rK">Role Name</span> to a value
-		like <span class="rV">sparkour-cluster</span> and go to the <span class="rAB">Next Step</span>.</li>
-	<li>On <span class="rPN">Step 2. Select Role Type</span>, select <span class="rV">Amazon EC2</span> to establish
-		that this role will be applied to EC2 instances. Go to the <span class="rAB">Next Step</span>.</li>
-	<li>Step 3 is skipped based on your previous selection. On <span class="rPN">Step 4. Attach Policy</span>, 
-		do not select any policies. (We add policies in other recipes when we need our instance to 
-		access other services). Go to the <span class="rAB">Next Step</span>.</li>
-	<li>On <span class="rPN">Step 5. Review</span>, select <span class="rAB">Create Role</span>. You return
+	<li>On <span class="rPN">Step 1. Create role</span>, select <span class="rK">AWS service</span> as the type of trusted entity.
+		Choose <span class="rK">EC2</span> as the service that will use this role. Select <span class="rMI">Next: Permissions</span>.</li>
+	<li>On <span class="rPN">Step 2. Create role</span>, do not select any policies. (We add policies in other recipes
+		when we need our instance to access other services). Go to the <span class="rAB">Next: Tags</span>.</li>
+	<li>On <span class="rPN">Step 3. Create role</span>, do not create any tags. Go to the <span class="rAB">Next: Review</span>.</li>
+	<li>On <span class="rPN">Step 4. Create role</span>, set the <span class="rK">Role name</span> to a value
+		like <span class="rV">sparkour-app</span>. 	Select <span class="rAB">Create role</span>. You return
 		to the Roles dashboard, and should see your new role listed on the dashboard.</li>
 	<li>Exit this dashboard and return to the list of AWS service offerings by selecting the "AWS" icon in the upper left corner.</li>
 </ol>
@@ -213,7 +211,7 @@ displays the complete list.</p>
 	<li><span class="rPN">Identity Options</span><ul>
 		<li><span class="rK">AWS_SECRET_ACCESS_KEY / AWS_ACCESS_KEY_ID</span>: These credentials are tied to your AWS user account, and allow you to run the script.
 			You can <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html">create new keys</a> if you have lost the old ones,
-			by visiting the IAM User dashboard, selecting a user, selecting <span class="rAB">Users Actions</span>, and choosing <span class="rMI">Manage Access Keys</span>.
+			by visiting the IAM User dashboard, selecting a user, selecting the <span class="rAB">Security credentials</span> tab, and choosing <span class="rMI">Create access key</span>.
 			We merely set them as environment variables as a best practice, so they are not stored anywhere on the machine containing your script.</li>
 		<li><span class="rK">--key-pair / --identity-file</span>: These credentials allow the script to SSH into the cluster instances. You can <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair">create an EC2 Key Pair</a>
 			if you haven't already. The identity file must be installed in the launch environment where the script is run and must have permissions of <span class="rCW">400</span> (readable

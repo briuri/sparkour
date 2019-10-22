@@ -461,7 +461,7 @@ make sure to terminate it so you also stop incurring charges for the attached EB
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shared-variables">Shared Variables</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#shuffle-operations">Shuffle Operations</a> in the Spark Programming Guide</li>
 		<li><a href="http://spark.apache.org/docs/latest/programming-guide.html#understanding-closures-a-nameclosureslinka">Understanding Closures</a> in the Spark Programming Guide</li>	
-		<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
+		<li><a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2011/EECS-2011-82.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></li>
 		<li><a href="https://databricks.com/blog/2016/07/14/a-tale-of-three-apache-spark-apis-rdds-dataframes-and-datasets.html">A Tale of Three Apache Spark APIs: RDDs, DataFrames, and Datasets</a></li>
 		<li><bu:rLink id="broadcast-variables" /></li>
 		<li><bu:rLink id="aggregating-accumulators" /></li>
