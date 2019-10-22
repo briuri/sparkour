@@ -97,21 +97,14 @@ commands. Refer to the <a href="http://www.scala-sbt.org/0.13/docs/">SBT Referen
 important paths and files:</p>
 
 <ul>
-	<li><span class="rCW">build.properties</span>: This file controls the version of SBT. Different projects can use different versions of the tool in the same development environment.</li>
 	<li><span class="rCW">build.sbt</span>: This file contains important properties about the project.</li>
 	<li><span class="rCW">lib/</span>: This directory contains any unmanaged library dependencies that you have downloaded locally.</li>
+	<li><span class="rCW">project/build.properties</span>: This file controls the version of SBT. Different projects can use different versions of the tool in the same development environment.</li>
 	<li><span class="rCW">project/assembly.sbt</span>: This file contains configuration for the <span class="rCW">sbt-assembly</span> plugin, which allows you to create a Spark assembly JAR.</li>
 	<li><span class="rCW">src/main/java</span>: This directory is where SBT expects to find Java source code.</li>
 	<li><span class="rCW">src/main/scala</span>: This directory is where SBT expects to find Scala source code.</li>
 	<li><span class="rCW">target</span>: This directory is where SBT places compiled classes and JAR files.</li>
 </ul>
-
-<p>The <span class="rCW">build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 1.3.3.</p>
-
-<bu:rCode lang="bash">
-	# SBT Properties File: controls version of sbt tool
-	sbt.version=1.3.3
-</bu:rCode>
 
 <p>The <span class="rCW">build.sbt</span> file is a Scala-based file containing properties about the project. Earlier versions of SBT required the file to
 be double-spaced, but this restriction has been removed in newer releases. The syntax of the <span class="rK">libraryDependencies</span> setting is covered in the next section.</p>
@@ -127,6 +120,13 @@ be double-spaced, but this restriction has been removed in newer releases. The s
 	libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.4"
 	libraryDependencies += "org.apache.commons" % "commons-csv" % "1.2"
 </bu:rCode>	
+
+<p>The <span class="rCW">project/build.properties</span> file always contains a single property identifying the SBT version. In our example, that version is 1.3.3.</p>
+
+<bu:rCode lang="bash">
+	# SBT Properties File: controls version of sbt tool
+	sbt.version=1.3.3
+</bu:rCode>
 
 <p>The <span class="rCW">project/assembly.sbt</span> file includes the <span class="rCW">sbt-assembly</span> plugin in the build. Additional configuration for the plugin
 would be added here, although our example uses basic defaults.</p>
