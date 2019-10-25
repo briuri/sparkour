@@ -280,7 +280,7 @@ must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Ro
 	<bu:rLinks>
 		<li><a href="https://cwiki.apache.org/confluence/display/HADOOP2/AmazonS3">Amazon S3</a> in the Hadoop Wiki</li>
 		<li><a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">Available Configuration Options for Hadoop-AWS</a></li>
-		<li><a href="<a href="https://spark.apache.org/docs/latest/hadoop-provided.html">Using Spark's "Hadoop Free" Build</a></li>
+		<li><a href="https://spark.apache.org/docs/latest/hadoop-provided.html">Using Spark's "Hadoop Free" Build</a></li>
 		<li><bu:rLink id="s3-vpc-endpoint" /></li>
 		<!--
 			https://github.com/apache/hadoop/blob/trunk/hadoop-tools/hadoop-aws/src/site/markdown/tools/hadoop-aws/index.md
