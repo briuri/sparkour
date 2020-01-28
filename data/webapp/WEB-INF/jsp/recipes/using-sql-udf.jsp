@@ -547,20 +547,19 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 	
 <bu:rTabs>
 	<bu:rTab index="1">
-		<p>There is no good way to create a full-fledged Java UDF that can be used as a method call. Instead, you need to register
-		the UDF in the <span class="rCW">SQLContext</span> as we did before, and then use <span class="rCW">callUDF()</span> to insert
-		it into your chain of operators.<p>
-		
 		<bu:rCode lang="java">
 			import org.apache.spark.sql.DataFrame;
 			import org.apache.spark.sql.SqlContext; 
+			import org.apache.spark.sql.expressions.UserDefinedFunction;
 			import org.apache.spark.sql.types.DataTypes;
-			
+
 			// Define the UDF
-			spark.udf().register("udfUppercase", (String string) -> string.toUpperCase(), DataTypes.StringType);
+			UserDefinedFunction udfUppercase = udf(
+				(String s) -> s.toUpperCase(), DataTypes.StringType
+			);
 
 			// Convert a whole column to uppercase with a UDF.
-			Dataset<Row> newDF = oldDF.withColumn("name_upper", callUDF("udfUppercase", oldDF.col("name")));
+			Dataset<Row> newDF = oldDF.withColumn("name_upper", udfUppercase.apply(col("name")));
 		</bu:rCode>
 	</bu:rTab><bu:rTab index="2">
 		<bu:rCode lang="python">
@@ -600,6 +599,8 @@ using SQL. The contrived example below shows how we would define and use a UDF d
 	<bu:rChangeLog>
 		<li>2016-09-20: Updated for Spark 2.0.0. Code may not be backwards compatible with Spark 1.6.x
 			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-18">SPARKOUR-18</a>).</li>
+		<li>2020-01-28: Updated SQL-less UDF example in Java to use new Java UDF API introduced in Spark 2.3.
+			(<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-42">SPARKOUR-42</a>).</li>
 	</bu:rChangeLog>
 </bu:rFooter>
 
