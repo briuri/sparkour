@@ -2,7 +2,7 @@
 <c:set var="pageTitle" value="License" />
 <%@ include file="../shared/headerSplit.jspf" %>
 
-<p>Sparkour is Copyright &copy; 2016 - 2019 by Brian Uri!. 
+<p>Sparkour is Copyright &copy; 2016 - 2020 by Brian Uri!. 
 The <a href="https://github.com/briuri/sparkour.git">Sparkour source code</a>
 is published under the Apache License 2.0. 
 The complete text of this license can be found <a href="#apache">below</a>.</p>
@@ -12,7 +12,7 @@ The complete text of this license can be found <a href="#apache">below</a>.</p>
 <div class="license">
 	<ul>
 		<li>Core Libraries<ul>
-			<li><a href="https://spark.apache.org/">Apache Spark 2.4.4</a>
+			<li><a href="https://spark.apache.org/">Apache Spark 2.4.5</a>
 				(<a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>):
 				Core data processing engine (unmodified).</li>
 		</ul></li>

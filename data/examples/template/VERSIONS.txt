@@ -9,10 +9,9 @@ for me.
 
 Base Recipe (YYYY-MM-DD)
     Amazon Linux AMI 2018.03
-    Apache Spark 2.4.4 Prebuilt for Hadoop 2.7 and later
+    Apache Spark 2.4.5 Prebuilt for Hadoop 2.7 and later
     Languages
-        OpenJDK 1.8.0_222
-        Python 3.6.8
+        OpenJDK 1.8.0_242 (Amazon Corretto)
+        Python 3.6.10
         R 3.4.1
         Scala 2.11.12
-    Amazon Linux AMI 2018.03

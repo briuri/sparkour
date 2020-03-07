@@ -156,13 +156,13 @@ designate a specific file with the <span class="rK">--file</span> parameter. In 
         	<dependency>
             	<groupId>org.apache.spark</groupId>
             	<artifactId>spark-core_2.11</artifactId>
-            	<version>2.4.4</version>
+            	<version>2.4.5</version>
             	<scope>provided</scope>
         	</dependency>
 	        <dependency>
 	            <groupId>org.apache.spark</groupId>
 	            <artifactId>spark-sql_2.11</artifactId>
-	            <version>2.4.4</version>
+	            <version>2.4.5</version>
 	            <scope>provided</scope>
 	        </dependency>
         	<!-- Other managed dependencies (described below) -->

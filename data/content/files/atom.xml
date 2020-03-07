@@ -5,14 +5,24 @@
 	<link href="https://sparkour.urizone.net/" />
 	<link rel="self" href="https://sparkour.urizone.net/atom.xml" />
 	
-	<updated>2019-10-20T10:00:00Z</updated>
+	<updated>2020-03-07T10:00:00Z</updated>
 	
 	<author><name>Brian Uri!</name></author>
 	<id>https://sparkour.urizone.net/</id>
-	<rights type="html">&amp;copy; 2016 - 2019 by Brian Uri!. Released under Apache License 2.0.</rights>
+	<rights type="html">&amp;copy; 2016 - 2020 by Brian Uri!. Released under Apache License 2.0.</rights>
 	<icon>https://sparkour.urizone.net/favicon.ico</icon>
 	<logo>https://sparkour.urizone.net/images/logo-50.png</logo>
 
+	<entry>
+		<id>https://sparkour.urizone.net/?2020-03-07</id>
+		<link href="https://sparkour.urizone.net/?2020-03-07" />
+		<updated>2020-03-07T10:00:00Z</updated>
+		<title type="html">Spark Update</title>
+		<summary type="html">
+			All recipes have been updated and tested for Spark 2.4.5.
+		</summary>
+	</entry>
+	
 	<entry>
 		<id>https://sparkour.urizone.net/?2019-10-20</id>
 		<link href="https://sparkour.urizone.net/?2019-10-20" />
@@ -40,28 +50,6 @@
 		<title type="html">Spark Update</title>
 		<summary type="html">
 			All recipes have been updated and tested for Spark 2.4.3.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2019-01-22</id>
-		<link href="https://sparkour.urizone.net/?2019-01-22" />
-		<updated>2019-01-22T10:00:00Z</updated>
-		<title type="html">Python Update</title>
-		<summary type="html">
-			&lt;u&gt;Tutorial #4: Writing and Submitting a Spark Application&lt;/u&gt; has been updated
-			with instructions for using Python 3. All recipes have been tested against Python 3.6.7.
-		</summary>
-	</entry>
-	
-	<entry>
-		<id>https://sparkour.urizone.net/?2019-01-06</id>
-		<link href="https://sparkour.urizone.net/?2019-01-06" />
-		<updated>2019-01-06T10:00:00Z</updated>
-		<title type="html">Spark Update</title>
-		<summary type="html">
-			Happy New Year! All recipes have been updated and tested against Spark 2.4.0. I have also incorporated some behind-the-scenes automation to
-			streamline regression testing and make it easier for me to stay in sync with future Spark releases.
 		</summary>
 	</entry>	
 </feed>
