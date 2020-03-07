@@ -1,0 +1,796 @@
+### aggregating-accumulators ###
+java
+3 rows had questionable values.
+Questionable values:  85 1 102
+
+python
+3 rows had questionable values.
+Questionable values:  85 1 102
+
+r
+This example uses the Spark Core API, which is not exposed through SparkR.
+
+scala
+3 rows had questionable values.
+Questionable values:  85 1 102
+
+### broadcast-variables ###
+java
+How many stores are in each US region?
++-------------+-----+
+|census_region|count|
++-------------+-----+
+|      Midwest|   77|
+|        South|  117|
+|         West|  222|
+|    Northeast|   59|
++-------------+-----+
+
+
+python
+How many stores are in each US region?
++-------------+-----+
+|census_region|count|
++-------------+-----+
+|      Midwest|   77|
+|        South|  117|
+|         West|  222|
+|    Northeast|   59|
++-------------+-----+
+
+
+r
+This example uses the Spark Core API, which is not exposed through SparkR.
+
+scala
+How many stores are in each US region?
++-------------+-----+
+|census_region|count|
++-------------+-----+
+|      Midwest|   77|
+|        South|  117|
+|         West|  222|
+|    Northeast|   59|
++-------------+-----+
+
+
+### controlling-schema ###
+java
+RDD: Schema inferred from bean class.
+root
+ |-- name: string (nullable = true)
+ |-- numPets: long (nullable = false)
+ |-- paidInFull: boolean (nullable = false)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registeredOn: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: date (containsNull = true)
+
+RDD: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+JSON: Schema inferred from all rows.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: struct (nullable = true)
+ |    |-- preferred_appointment_day: string (nullable = true)
+ |    |-- preferred_vet: string (nullable = true)
+ |-- registered_on: string (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+JSON: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+
+python
+RDD: Schema inferred from first row.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: timestamp (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+RDD: Schema inferred from random sample.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: timestamp (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+RDD: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+JSON: Schema inferred from all rows.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: struct (nullable = true)
+ |    |-- preferred_appointment_day: string (nullable = true)
+ |    |-- preferred_vet: string (nullable = true)
+ |-- registered_on: string (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+JSON: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+
+r
+Loading required package: methods
+
+Attaching package: ‘SparkR’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, filter, lag, na.omit, predict, sd, var, window
+
+The following objects are masked from ‘package:base’:
+
+    as.data.frame, colnames, colnames<-, drop, endsWith, intersect,
+    rank, rbind, sample, startsWith, subset, summary, transform, union
+
+Warning message:
+package ‘SparkR’ was built under R version 3.4.4 
+Spark package found in SPARK_HOME: /opt/spark
+Java ref type org.apache.spark.sql.SparkSession id 1 
+[1] "JSON: Schema inferred from all rows."
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: struct (nullable = true)
+ |    |-- preferred_appointment_day: string (nullable = true)
+ |    |-- preferred_vet: string (nullable = true)
+ |-- registered_on: string (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+[1] "JSON: Schema programmatically specified."
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+scala
+RDD: Schema inferred from case class.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = false)
+ |-- paid_in_full: boolean (nullable = false)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: date (containsNull = true)
+
+RDD: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+JSON: Schema inferred from all rows.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: long (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: struct (nullable = true)
+ |    |-- preferred_appointment_day: string (nullable = true)
+ |    |-- preferred_vet: string (nullable = true)
+ |-- registered_on: string (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+
+JSON: Schema programmatically specified.
+root
+ |-- name: string (nullable = true)
+ |-- num_pets: integer (nullable = true)
+ |-- paid_in_full: boolean (nullable = true)
+ |-- preferences: map (nullable = true)
+ |    |-- key: string
+ |    |-- value: string (valueContainsNull = true)
+ |-- registered_on: date (nullable = true)
+ |-- visits: array (nullable = true)
+ |    |-- element: timestamp (containsNull = true)
+
+
+### using-sql-udf ###
+java
+Who was on the ballot?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++---------------+
+|sum_total_votes|
++---------------+
+|          36149|
++---------------+
+
+How many votes did each candidate get?
++------------------+---------------+
+|    candidate_name|sum_total_votes|
++------------------+---------------+
+|   Hillary Clinton|          21180|
+|    Bernie Sanders|          14730|
+|Martin J. O'Malley|            239|
++------------------+---------------+
+
+Which polling station had the highest physical turnout?
++-------------+---------------+
+|precinct_name|sum_total_votes|
++-------------+---------------+
+| 314 - LEGACY|            652|
++-------------+---------------+
+
+
+python
+Who was on the ballot?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++---------------+
+|sum_total_votes|
++---------------+
+|        36149.0|
++---------------+
+
+How many votes did each candidate get?
++------------------+---------------+
+|    candidate_name|sum_total_votes|
++------------------+---------------+
+|   Hillary Clinton|        21180.0|
+|    Bernie Sanders|        14730.0|
+|Martin J. O'Malley|          239.0|
++------------------+---------------+
+
+Which polling station had the highest physical turnout?
++-------------+---------------+
+|precinct_name|sum_total_votes|
++-------------+---------------+
+| 314 - LEGACY|          652.0|
++-------------+---------------+
+
+
+r
+Loading required package: methods
+
+Attaching package: ‘SparkR’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, filter, lag, na.omit, predict, sd, var, window
+
+The following objects are masked from ‘package:base’:
+
+    as.data.frame, colnames, colnames<-, drop, endsWith, intersect,
+    rank, rbind, sample, startsWith, subset, summary, transform, union
+
+Warning message:
+package ‘SparkR’ was built under R version 3.4.4 
+Spark package found in SPARK_HOME: /opt/spark
+Java ref type org.apache.spark.sql.SparkSession id 1 
+[1] "Who was on the ballot?"
+      candidate_name
+1     Bernie Sanders
+2    Hillary Clinton
+3 Martin J. O'Malley
+[1] "What order were candidates on the ballot?"
+      candidate_name candidate_ballot_order
+1    Hillary Clinton                      1
+2 Martin J. O'Malley                      2
+3     Bernie Sanders                      3
+[1] "What order were candidates on the ballot (in descriptive terms)?"
+      candidate_name       friendly_name
+1    Hillary Clinton     First on Ballot
+2 Martin J. O'Malley In Middle of Ballot
+3     Bernie Sanders      Last on Ballot
+[1] "How many votes were cast?"
+  sum_total_votes
+1           36149
+[1] "How many votes did each candidate get?"
+      candidate_name sum_total_votes
+1    Hillary Clinton           21180
+2     Bernie Sanders           14730
+3 Martin J. O'Malley             239
+[1] "Which polling station had the highest physical turnout?"
+  precinct_name sum_total_votes
+1  314 - LEGACY             652
+
+scala
+Who was on the ballot?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++---------------+
+|sum_total_votes|
++---------------+
+|          36149|
++---------------+
+
+How many votes did each candidate get?
++------------------+---------------+
+|    candidate_name|sum_total_votes|
++------------------+---------------+
+|   Hillary Clinton|          21180|
+|    Bernie Sanders|          14730|
+|Martin J. O'Malley|            239|
++------------------+---------------+
+
+Which polling station had the highest physical turnout?
++-------------+---------------+
+|precinct_name|sum_total_votes|
++-------------+---------------+
+| 314 - LEGACY|            652|
++-------------+---------------+
+
+
+### working-dataframes ###
+java
+root
+ |-- DESCRIPTION: string (nullable = true)
+ |-- candidateId: string (nullable = true)
+ |-- candidate_ballot_order: string (nullable = true)
+ |-- candidate_name: string (nullable = true)
+ |-- districtId: string (nullable = true)
+ |-- district_type: string (nullable = true)
+ |-- election_date: string (nullable = true)
+ |-- election_name: string (nullable = true)
+ |-- election_type: string (nullable = true)
+ |-- in_precinct: string (nullable = true)
+ |-- last_name: string (nullable = true)
+ |-- locality_code: string (nullable = true)
+ |-- locality_name: string (nullable = true)
+ |-- negative_votes: string (nullable = true)
+ |-- null: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- officeId: string (nullable = true)
+ |-- office_ballot_order: string (nullable = true)
+ |-- office_name: string (nullable = true)
+ |-- party: string (nullable = true)
+ |-- precinct_code: string (nullable = true)
+ |-- precinct_name: string (nullable = true)
+ |-- referendumId: string (nullable = true)
+ |-- referendum_title: string (nullable = true)
+ |-- total_votes: string (nullable = true)
+
+Who was on the ballet?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++--------------------+
+|sum(total_votes_int)|
++--------------------+
+|               36149|
++--------------------+
+
+How many votes did each candidate get?
++------------------+----------+
+|    candidate_name|sum_column|
++------------------+----------+
+|   Hillary Clinton|     21180|
+|    Bernie Sanders|     14730|
+|Martin J. O'Malley|       239|
++------------------+----------+
+
+Which polling station had the highest physical turnout?
++-------------+----------+
+|precinct_name|sum_column|
++-------------+----------+
+| 314 - LEGACY|       652|
++-------------+----------+
+
+Saving overall candidate summary as a new JSON dataset.
+
+python
+root
+ |-- DESCRIPTION: string (nullable = true)
+ |-- candidateId: string (nullable = true)
+ |-- candidate_ballot_order: string (nullable = true)
+ |-- candidate_name: string (nullable = true)
+ |-- districtId: string (nullable = true)
+ |-- district_type: string (nullable = true)
+ |-- election_date: string (nullable = true)
+ |-- election_name: string (nullable = true)
+ |-- election_type: string (nullable = true)
+ |-- in_precinct: string (nullable = true)
+ |-- last_name: string (nullable = true)
+ |-- locality_code: string (nullable = true)
+ |-- locality_name: string (nullable = true)
+ |-- negative_votes: string (nullable = true)
+ |-- null: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- officeId: string (nullable = true)
+ |-- office_ballot_order: string (nullable = true)
+ |-- office_name: string (nullable = true)
+ |-- party: string (nullable = true)
+ |-- precinct_code: string (nullable = true)
+ |-- precinct_name: string (nullable = true)
+ |-- referendumId: string (nullable = true)
+ |-- referendum_title: string (nullable = true)
+ |-- total_votes: string (nullable = true)
+
+Who was on the ballet?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++--------------------+
+|sum(total_votes_int)|
++--------------------+
+|               36149|
++--------------------+
+
+How many votes did each candidate get?
++------------------+----------+
+|    candidate_name|sum_column|
++------------------+----------+
+|   Hillary Clinton|     21180|
+|    Bernie Sanders|     14730|
+|Martin J. O'Malley|       239|
++------------------+----------+
+
+Which polling station had the highest physical turnout?
++-------------+----------+
+|precinct_name|sum_column|
++-------------+----------+
+| 314 - LEGACY|       652|
++-------------+----------+
+
+Saving overall candidate summary as a new JSON dataset.
+
+r
+Loading required package: methods
+
+Attaching package: ‘SparkR’
+
+The following objects are masked from ‘package:stats’:
+
+    cov, filter, lag, na.omit, predict, sd, var, window
+
+The following objects are masked from ‘package:base’:
+
+    as.data.frame, colnames, colnames<-, drop, endsWith, intersect,
+    rank, rbind, sample, startsWith, subset, summary, transform, union
+
+Warning message:
+package ‘SparkR’ was built under R version 3.4.4 
+Spark package found in SPARK_HOME: /opt/spark
+Java ref type org.apache.spark.sql.SparkSession id 1 
+root
+ |-- DESCRIPTION: string (nullable = true)
+ |-- candidateId: string (nullable = true)
+ |-- candidate_ballot_order: string (nullable = true)
+ |-- candidate_name: string (nullable = true)
+ |-- districtId: string (nullable = true)
+ |-- district_type: string (nullable = true)
+ |-- election_date: string (nullable = true)
+ |-- election_name: string (nullable = true)
+ |-- election_type: string (nullable = true)
+ |-- in_precinct: string (nullable = true)
+ |-- last_name: string (nullable = true)
+ |-- locality_code: string (nullable = true)
+ |-- locality_name: string (nullable = true)
+ |-- negative_votes: string (nullable = true)
+ |-- null: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- officeId: string (nullable = true)
+ |-- office_ballot_order: string (nullable = true)
+ |-- office_name: string (nullable = true)
+ |-- party: string (nullable = true)
+ |-- precinct_code: string (nullable = true)
+ |-- precinct_name: string (nullable = true)
+ |-- referendumId: string (nullable = true)
+ |-- referendum_title: string (nullable = true)
+ |-- total_votes: string (nullable = true)
+[1] "Who was on the ballet?"
+      candidate_name
+1     Bernie Sanders
+2    Hillary Clinton
+3 Martin J. O'Malley
+[1] "What order were candidates on the ballot?"
+SparkDataFrame[candidate_name:string, candidate_ballot_order:string]
+      candidate_name candidate_ballot_order
+1    Hillary Clinton                      1
+2 Martin J. O'Malley                      2
+3     Bernie Sanders                      3
+[1] "What order were candidates on the ballot (in descriptive terms)?"
+      candidate_name       friendly_name
+1    Hillary Clinton     First on Ballot
+2 Martin J. O'Malley In Middle of Ballot
+3     Bernie Sanders      Last on Ballot
+[1] "How many votes were cast?"
+  sum(total_votes_int)
+1                36149
+[1] "How many votes did each candidate get?"
+SparkDataFrame[candidate_name:string, sum_column:bigint]
+      candidate_name sum_column
+1    Hillary Clinton      21180
+2     Bernie Sanders      14730
+3 Martin J. O'Malley        239
+[1] "Which polling station had the highest physical turnout?"
+  precinct_name sum_column
+1  314 - LEGACY        652
+[1] "Saving overall candidate summary as a new JSON dataset."
+
+scala
+root
+ |-- DESCRIPTION: string (nullable = true)
+ |-- candidateId: string (nullable = true)
+ |-- candidate_ballot_order: string (nullable = true)
+ |-- candidate_name: string (nullable = true)
+ |-- districtId: string (nullable = true)
+ |-- district_type: string (nullable = true)
+ |-- election_date: string (nullable = true)
+ |-- election_name: string (nullable = true)
+ |-- election_type: string (nullable = true)
+ |-- in_precinct: string (nullable = true)
+ |-- last_name: string (nullable = true)
+ |-- locality_code: string (nullable = true)
+ |-- locality_name: string (nullable = true)
+ |-- negative_votes: string (nullable = true)
+ |-- null: array (nullable = true)
+ |    |-- element: string (containsNull = true)
+ |-- officeId: string (nullable = true)
+ |-- office_ballot_order: string (nullable = true)
+ |-- office_name: string (nullable = true)
+ |-- party: string (nullable = true)
+ |-- precinct_code: string (nullable = true)
+ |-- precinct_name: string (nullable = true)
+ |-- referendumId: string (nullable = true)
+ |-- referendum_title: string (nullable = true)
+ |-- total_votes: string (nullable = true)
+
+Who was on the ballet?
++------------------+
+|    candidate_name|
++------------------+
+|    Bernie Sanders|
+|   Hillary Clinton|
+|Martin J. O'Malley|
++------------------+
+
+What order were candidates on the ballot?
++------------------+----------------------+
+|    candidate_name|candidate_ballot_order|
++------------------+----------------------+
+|   Hillary Clinton|                     1|
+|Martin J. O'Malley|                     2|
+|    Bernie Sanders|                     3|
++------------------+----------------------+
+
+What order were candidates on the ballot (in descriptive terms)?
++------------------+-------------------+
+|    candidate_name|      friendly_name|
++------------------+-------------------+
+|   Hillary Clinton|    First on Ballot|
+|Martin J. O'Malley|In Middle of Ballot|
+|    Bernie Sanders|     Last on Ballot|
++------------------+-------------------+
+
+How many votes were cast?
++--------------------+
+|sum(total_votes_int)|
++--------------------+
+|               36149|
++--------------------+
+
+How many votes did each candidate get?
++------------------+----------+
+|    candidate_name|sum_column|
++------------------+----------+
+|   Hillary Clinton|     21180|
+|    Bernie Sanders|     14730|
+|Martin J. O'Malley|       239|
++------------------+----------+
+
+Which polling station had the highest physical turnout?
++-------------+----------+
+|precinct_name|sum_column|
++-------------+----------+
+| 314 - LEGACY|       652|
++-------------+----------+
+
+Saving overall candidate summary as a new JSON dataset.
+
+### working-rdds ###
+java
+393 Chicago residents have more than 30 books.
+50 is the most number of books owned in either city.
+50157 books in both cities.
+
+python
+403 Chicago residents have more than 30 books.
+50 is the most number of books owned in either city.
+50151 books in both cities.
+
+r
+This example uses the Spark Core API, which is not exposed through SparkR.
+
+scala
+417 Chicago residents have more than 30 books.
+50 is the most number of books owned in either city.
+50399 books in both cities.
+
