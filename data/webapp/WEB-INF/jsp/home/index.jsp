@@ -177,7 +177,7 @@ that address common developer needs in Java, Python, R, and Scala. The entire tr
 <h2>About the Author</h2>
 
 <p><img src="${imagesUrlBase}/author.jpg" width="120" height="120" title="BU" class="border" align="left" />
-<a href="https://www.linkedin.com/in/urizone">Brian Uri!</a> is a solutions architect at
+<a href="https://www.linkedin.com/in/urizone">Brian Uri!</a> works at
 <a href="https://www.accenture.com/us-en/services/us-federal-government/national-security">Accenture Federal Services</a>.
 He has nearly 20 years of experience in software engineering, proposal writing, and government data standards,
 with relevant certifications in Amazon Web Services and Apache Hadoop.</p>
