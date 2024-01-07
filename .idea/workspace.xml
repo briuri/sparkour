@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated bio and copyright years.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/webapp/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/appspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/appspec.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/cleanWebapps.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/cleanWebapps.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/startTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/startTomcat.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/stopTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/stopTomcat.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/license.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/license.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-aop-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-beans-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-support-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-core-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-expression-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-web-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-webmvc-4.3.25.RELEASE.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tomcat/servlet-api-8.5.42.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparkour.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sparkour.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/JSessionIdFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/PageControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/PageControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/StubObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/buri/sparkour/StubObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/web/JSessionIdFilterTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,10 +44,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2FgA48bFLR6sxsskD95gaagLTT4" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -31,11 +58,18 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/workspace/sparkour&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/workspace/sparkour/lib/jakarta&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
@@ -86,7 +120,13 @@
       <workItem from="1664903193127" duration="108000" />
       <workItem from="1664903305495" duration="546000" />
       <workItem from="1692370024122" duration="28000" />
-      <workItem from="1702344582715" duration="21000" />
+      <workItem from="1702344582715" duration="220000" />
+      <workItem from="1704032976419" duration="2000" />
+      <workItem from="1704472722241" duration="32000" />
+      <workItem from="1704473286225" duration="765000" />
+      <workItem from="1704645107562" duration="611000" />
+      <workItem from="1704647546967" duration="270000" />
+      <workItem from="1704649284697" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -95,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1664903799835</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated bio and copyright years.">
+      <option name="closed" value="true" />
+      <created>1702344619734</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702344619734</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +162,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrated sparkour project from Eclipse to IntelliJ IDEA." />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated sparkour project from Eclipse to IntelliJ IDEA." />
+    <MESSAGE value="Updated bio and copyright years." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated bio and copyright years." />
   </component>
 </project>

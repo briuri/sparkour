@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="sparkour" default="compile" basedir=".">
-	
+
 	<!-- Prerequisites:
-		A Tomcat instance should be installed at output/tomcat (targeting Tomcat 8.0.32).
+		A Tomcat instance should be installed at output/tomcat (targeting Tomcat 10.1.17).
 	-->
-	
+
 	<!-- Source Properties -->
 	<property name="sparkour.version" value="1.0.0" />
 	<property name="conf.dir" value="conf" />
@@ -22,27 +22,27 @@
 	<property name="staging.jars.dir" value="${staging.dir}/jars" />
 	<property name="staging.test.dir" value="${staging.dir}/test" />
 	<property name="staging.webapp.dir" value="${staging.dir}/webapp" />
-	
+
 	<!-- Deploy Properties -->
 	<property name="deploy.dir" value="${output.dir}/deploy" />
 	<property name="deploy.content.dir" value="/workspace/aws-stage/urizone-content/sparkour" />
 	<property name="deploy.webapp.home" value="out/tomcat" />
 	<property name="deploy.webapp.dir" value="${deploy.webapp.home}/webapps" />
-	
+
 	<!-- Classpaths -->
 	<path id="classpath.main">
-		<fileset dir="${lib.main.dir}/javax" includes="*.jar" />
+		<fileset dir="${lib.main.dir}/jakarta" includes="*.jar" />
 		<fileset dir="${lib.main.dir}/logback" includes="*.jar" />
 		<fileset dir="${lib.main.dir}/spring" includes="*.jar" />
 		<fileset dir="${lib.main.dir}/tomcat" includes="*.jar" />
-	</path>	
+	</path>
 	<path id="classpath.test">
 		<path refid="classpath.main" />
 		<pathelement location="${compile.main.dir}" />
 		<pathelement location="${compile.test.dir}" />
 		<fileset dir="${lib.test.dir}" includes="*.jar" />
 	</path>
-	
+
 	<!-- Property Filesets -->
 	<!-- These files need to be present in the classpath to run unit tests -->
 	<fileset dir="${conf.dir}/webapp" id="files.test.properties">
@@ -61,7 +61,7 @@
 		<include name="sparkour.tld" />
 		<include name="web.xml" />
 	</fileset>
-	
+
 	<!-- Data Filesets -->
 	<!-- These files are pushed to Amazon S3 for the live site -->
 	<fileset dir="${data.dir}/content" id="files.content">
@@ -70,19 +70,19 @@
 	<!-- These files are used by AWS CodeDeploy to deploy the live site -->
 	<fileset dir="${data.dir}/deploy" id="files.deploy">
 		<include name="*" />
-	</fileset>	
+	</fileset>
 	<!-- These files are the zipped up examples -->
 	<fileset dir="${data.dir}/examples/zip" id="files.examples">
 		<include name="*" />
-	</fileset>	
+	</fileset>
 	<!-- These files are bundled in the webapp WAR file -->
 	<fileset dir="${data.dir}/webapp" id="files.webapp">
 		<include name="**/**" />
 	</fileset>
-		
+
 	<!-- Definitions -->
 	<presetdef name="compile">
-		<javac includeantruntime="false" debug="true" deprecation="false" optimize="true" source="1.8" target="1.8" />
+		<javac includeantruntime="false" debug="true" deprecation="false" optimize="true" />
 	</presetdef>
 	<presetdef name="deleteQuiet">
 		<delete includeemptydirs="true" failonerror="false" quiet="true" />
@@ -98,12 +98,12 @@
 				<lib dir="${staging.dir}/@{stagingDir}/WEB-INF/lib" />
 				<fileset dir="${staging.dir}/@{stagingDir}">
 					<exclude name="WEB-INF/classes/**" />
-					<exclude name="WEB-INF/lib/**" />				
+					<exclude name="WEB-INF/lib/**" />
 				</fileset>
-			</war>	
+			</war>
 		</sequential>
 	</macrodef>
-	
+
 	<!-- Public Targets -->
 	<target name="clean" description="Deletes the temporary build directories">
 		<deleteQuiet dir="${compile.main.dir}" />
@@ -112,21 +112,21 @@
 		<deleteQuiet dir="${deploy.dir}" />
 		<deleteQuiet dir="${deploy.webapp.dir}/ROOT" />
 	</target>
-	
+
 	<target name="compile" description="Compiles, copies properties, and stages exploded WAR file">
 		<filter filtersfile="${conf.dir}/sparkour.tokens"/>
 		<mkdir dir="${compile.main.dir}" />
 		<mkdir dir="${compile.test.dir}" />
-		
+
 		<!-- Compile main and test classes (in separate output directories) -->
 		<compile srcdir="${src.main.dir}" destdir="${compile.main.dir}" classpathref="classpath.main" />
 		<compile srcdir="${src.test.dir}" destdir="${compile.test.dir}" classpathref="classpath.test" />
-		
+
 		<!-- Copy properties for Eclipse operations -->
 		<copy todir="${compile.test.dir}" filtering="true" flatten="true">
 			<fileset refid="files.test.properties" />
-		</copy>			
-				
+		</copy>
+
 		<!-- Build the JAR file -->
 		<jar destfile="${staging.jars.dir}/sparkour-${sparkour.version}.jar">
 			<fileset dir="${compile.main.dir}">
@@ -138,27 +138,27 @@
 				<attribute name="Specification-Vendor" value="Brian Uri!"/>
 				<attribute name="Implementation-Title" value="sparkour"/>
 				<attribute name="Implementation-Version" value="${sparkour.version}"/>
-				<attribute name="Implementation-Vendor" value="Brian Uri!"/>				
+				<attribute name="Implementation-Vendor" value="Brian Uri!"/>
 			</manifest>
 		</jar>
-		
+
 		<!-- Stage the webapp as exploded WAR file -->
 		<copy todir="${staging.webapp.dir}">
 			<fileset refid="files.webapp" />
 		</copy>
 		<copy todir="${staging.webapp.dir}/WEB-INF/" filtering="true">
 			<fileset refid="files.webapp.properties" />
-		</copy>		
+		</copy>
 		<copy todir="${staging.webapp.dir}/WEB-INF/classes" filtering="true">
 			<fileset refid="files.webapp.classes.properties" />
-		</copy>		
+		</copy>
 		<copy todir="${staging.webapp.dir}/WEB-INF/lib">
 			<fileset dir="${staging.jars.dir}" includes="sparkour-${sparkour.version}.jar" />
-			<fileset dir="${lib.main.dir}/javax" includes="*.jar" />
+			<fileset dir="${lib.main.dir}/jakarta" includes="*.jar" />
 			<fileset dir="${lib.main.dir}/logback" includes="*.jar" />
 			<fileset dir="${lib.main.dir}/spring" includes="*.jar" />
-		</copy>	
-		
+		</copy>
+
 		<!-- Stage the static content -->
 		<copy todir="${deploy.content.dir}">
 			<fileset refid="files.content" />
@@ -179,7 +179,7 @@
 	        	<fileset dir="${compile.test.dir}" includes="**/*Test.class" />
 	      	</batchtest>
 	    </junit>
-	</target>	
+	</target>
 
 	<target name="deploy" depends="compile" description="Deploys the webapp for testing">
 		<!-- Create CodeDeploy WAR bundle for live deploy -->
@@ -191,10 +191,10 @@
 		</war>
 		<copy todir="${deploy.dir}">
 			<fileset refid="files.deploy" />
-		</copy>		
-		
+		</copy>
+
 		<!-- Deploy to local Tomcat for testing -->
-		<delete quiet="true" dir="${deploy.webapp.dir}/ROOT" />	
+		<delete quiet="true" dir="${deploy.webapp.dir}/ROOT" />
 		<mkdir dir="${deploy.webapp.dir}/ROOT" />
 		<copy todir="${deploy.webapp.dir}/ROOT">
 			<fileset dir="${staging.webapp.dir}" />
@@ -205,13 +205,13 @@
 			<fileset refid="files.examples" />
 		</copy>
 		<delete quiet="true" dir="${staging.dir}/webapp" />
-	</target>		
+	</target>
 
 	<target name="reloadViews" description="Copies only the view files, without restarting the web application">
 		<copy todir="${deploy.webapp.dir}/ROOT" preservelastmodified="true" includeemptydirs="false">
 			<fileset refid="files.webapp" />
 			<fileset refid="files.content" />
-		</copy>		
+		</copy>
 	</target>
 	<target name="startWebapp" description="Starts the webapp testing server">
 		<exec dir="${deploy.webapp.home}/bin" executable="cmd">
@@ -219,19 +219,19 @@
 			<arg value="startup.bat"/>
 		</exec>
 	</target>
-	
+
 	<target name="stopWebapp" description="Stops the webapp testing server">
 		<exec dir="${deploy.webapp.home}/bin" executable="cmd">
 			<arg value="/c"/>
 			<arg value="shutdown.bat"/>
 		</exec>
 	</target>
-	
+
 	<target name="zBackupZip" description="Creates a backup ZIP of the entire project">
 		<tstamp>
 			<format property="backupStamp" pattern="yyMMdd-HHmm"/>
-		</tstamp>		
-		<zip destfile="../${backupStamp}-sparkour-${sparkour.version}.zip" basedir=".." 
+		</tstamp>
+		<zip destfile="../${backupStamp}-sparkour-${sparkour.version}.zip" basedir=".."
 			includes="sparkour/**" excludes="sparkour/output/**" />
-	</target>	
+	</target>
 </project>

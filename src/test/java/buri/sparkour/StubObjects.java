@@ -1,12 +1,12 @@
 /* Copyright 2016 - 2020 by Brian Uri!
    sparkour@urizone.net, https://sparkour.urizone.net/
-  
+
    Licensed under the Apache License, Version 2.0 (the "License"); you may not
    use this file except in compliance with the License. You may obtain a copy
    of the License at:
-   
+
    http://www.apache.org/licenses/LICENSE-2.0
-   
+
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,21 +22,22 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.AsyncContext;
+import jakarta.servlet.DispatcherType;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletConnection;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 /**
  * Dummy objects created to test special conditions. Extracted here so as not to clutter up the Test classes.
- * 
+ *
  * @author Brian Uri!
  */
 public class StubObjects {
-	
+
 	/**
 	 * A stub class that is used to test the non session-id path in the filter.
 	 */
@@ -63,6 +64,15 @@ public class StubObjects {
 			return null;
 		}
 		public DispatcherType getDispatcherType() {
+			return null;
+		}
+		public String getRequestId() {
+			return null;
+		}
+		public String getProtocolRequestId() {
+			return null;
+		}
+		public ServletConnection getServletConnection() {
 			return null;
 		}
 		public ServletInputStream getInputStream() throws IOException {
@@ -145,6 +155,6 @@ public class StubObjects {
 		}
 		public AsyncContext startAsync(ServletRequest arg0, ServletResponse arg1) {
 			return null;
-		}		
+		}
 	}
 }
