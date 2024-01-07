@@ -1,9 +1,9 @@
 # This is an appspec.yml template file for use with AWS CodeDeploy.
 version: 0.0
-os: linux 
+os: linux
 files:
   - source: ROOT.war
-    destination: /usr/share/tomcat8/webapps-sparkour
+    destination: /usr/local/tomcat/webapps-sparkour
 hooks:
   ApplicationStop:
     - location: stopTomcat.sh

@@ -1,4 +1,4 @@
 #!/bin/bash
 #
 # Cleans the webapps directory.
-rm -rf /usr/share/tomcat8/webapps-sparkour/ROOT*
+rm -rf /usr/local/tomcat/webapps-sparkour/ROOT*
