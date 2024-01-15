@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated all dependency versions." />
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated robots.txt" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +100,7 @@
       <workItem from="1704647546967" duration="270000" />
       <workItem from="1704649284697" duration="603000" />
       <workItem from="1704653153465" duration="203000" />
+      <workItem from="1705347745539" duration="65000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -148,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704653323006</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updated robots.txt">
+      <option name="closed" value="true" />
+      <created>1705347807908</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705347807908</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +181,7 @@
     <MESSAGE value="Removed JSessionIdFilter. Instead, using Tomcat's built in configuration." />
     <MESSAGE value="Updated codedeploy config to work on Tomcat 10." />
     <MESSAGE value="Updated all dependency versions." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated all dependency versions." />
+    <MESSAGE value="Updated robots.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated robots.txt" />
   </component>
 </project>

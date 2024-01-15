@@ -22,9 +22,3 @@ User-agent: YandexImages
 User-agent: bhc.collectionBot
 User-agent: MegaIndex.ru
 Disallow: /
-
-User-agent: Googlebot-Mobile
-User-agent: MJ12bot
-User-agent: XoviBot
-Disallow:
-Crawl-delay: 10
