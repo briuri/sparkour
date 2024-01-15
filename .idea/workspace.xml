@@ -4,35 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated bio and copyright years.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/jakarta.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/webapp/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/conf/webapp/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/deploy/appspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/appspec.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/deploy/cleanWebapps.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/cleanWebapps.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/deploy/startTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/startTomcat.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/deploy/stopTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/data/deploy/stopTomcat.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/license.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/license.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax/javax.servlet.jsp.jstl-1.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax/javax.servlet.jsp.jstl-api-1.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-aop-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-beans-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-support-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-core-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-expression-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-web-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/spring/spring-webmvc-4.3.25.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/tomcat/servlet-api-8.5.42.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sparkour.iml" beforeDir="false" afterPath="$PROJECT_DIR$/sparkour.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/JSessionIdFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/PageControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/PageControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/StubObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/buri/sparkour/StubObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/web/JSessionIdFilterTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated all dependency versions." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,6 +99,7 @@
       <workItem from="1704645107562" duration="611000" />
       <workItem from="1704647546967" duration="270000" />
       <workItem from="1704649284697" duration="603000" />
+      <workItem from="1704653153465" duration="203000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -143,7 +116,39 @@
       <option name="project" value="LOCAL" />
       <updated>1702344619734</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated from Java 8 to Java 17 for building the website. This encompasses a migration from javax to jakarta and Spring 3 to 6.">
+      <option name="closed" value="true" />
+      <created>1704653275345</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704653275345</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removed JSessionIdFilter. Instead, using Tomcat's built in configuration.">
+      <option name="closed" value="true" />
+      <created>1704653296476</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1704653296476</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Updated codedeploy config to work on Tomcat 10.">
+      <option name="closed" value="true" />
+      <created>1704653309548</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704653309548</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated all dependency versions.">
+      <option name="closed" value="true" />
+      <created>1704653323006</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704653323006</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +168,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Migrated sparkour project from Eclipse to IntelliJ IDEA." />
     <MESSAGE value="Updated bio and copyright years." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated bio and copyright years." />
+    <MESSAGE value="Updated from Java 8 to Java 17 for building the website. This encompasses a migration from javax to jakarta and Spring 3 to 6." />
+    <MESSAGE value="Removed JSessionIdFilter. Instead, using Tomcat's built in configuration." />
+    <MESSAGE value="Updated codedeploy config to work on Tomcat 10." />
+    <MESSAGE value="Updated all dependency versions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated all dependency versions." />
   </component>
 </project>
