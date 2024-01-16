@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated robots.txt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Fixed unit tests by upgrading Spring-Test.">
       <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/test/spring-test-4.3.25.RELEASE.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +123,7 @@
       <workItem from="1704653153465" duration="203000" />
       <workItem from="1705347745539" duration="65000" />
       <workItem from="1705347850727" duration="34000" />
-      <workItem from="1705425145867" duration="1341000" />
+      <workItem from="1705425145867" duration="1624000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -190,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705347859433</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed unit tests by upgrading Spring-Test.">
+      <option name="closed" value="true" />
+      <created>1705426724160</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705426724160</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +221,7 @@
     <MESSAGE value="Updated codedeploy config to work on Tomcat 10." />
     <MESSAGE value="Updated all dependency versions." />
     <MESSAGE value="Updated robots.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated robots.txt" />
+    <MESSAGE value="Fixed unit tests by upgrading Spring-Test." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed unit tests by upgrading Spring-Test." />
   </component>
 </project>

@@ -232,6 +232,6 @@
 			<format property="backupStamp" pattern="yyMMdd-HHmm"/>
 		</tstamp>
 		<zip destfile="../${backupStamp}-sparkour-${sparkour.version}.zip" basedir=".."
-			includes="sparkour/**" excludes="sparkour/output/**" />
+			includes="sparkour/**" excludes="sparkour/out/**" />
 	</target>
 </project>
