@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Fixed path in backup ZIP task.">
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated profile image.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/footer.jspf" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/footer.jspf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,6 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2FgA48bFLR6sxsskD95gaagLTT4" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -121,8 +120,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409" />
       </set>
     </attachedChunks>
   </component>
@@ -151,7 +150,9 @@
       <workItem from="1705425145867" duration="1710000" />
       <workItem from="1736905748319" duration="303000" />
       <workItem from="1738789203203" duration="389000" />
-      <workItem from="1751039389751" duration="19000" />
+      <workItem from="1751039389751" duration="107000" />
+      <workItem from="1751039769725" duration="86000" />
+      <workItem from="1756646931128" duration="19000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -232,7 +233,31 @@
       <option name="project" value="LOCAL" />
       <updated>1705426854336</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated bio.">
+      <option name="closed" value="true" />
+      <created>1751039441239</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1751039441239</updated>
+    </task>
+    <task id="LOCAL-00012" summary="IDEA workspace file updated.">
+      <option name="closed" value="true" />
+      <created>1751039449661</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1751039449661</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Updated profile image.">
+      <option name="closed" value="true" />
+      <created>1751039851365</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1751039851365</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +284,9 @@
     <MESSAGE value="Updated robots.txt" />
     <MESSAGE value="Fixed unit tests by upgrading Spring-Test." />
     <MESSAGE value="Fixed path in backup ZIP task." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed path in backup ZIP task." />
+    <MESSAGE value="Updated bio." />
+    <MESSAGE value="IDEA workspace file updated." />
+    <MESSAGE value="Updated profile image." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated profile image." />
   </component>
 </project>
