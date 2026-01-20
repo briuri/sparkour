@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{shared :: head}"></head>
+<body>
+<div id="layoutOuterPosition">
+    <a href="/"><div id="layoutHeaderRow">Sparkour</div></a>
+    <div th:replace="~{shared :: menubar }"></div>
+    <div id="layoutContent">
+        <div id="layoutInnerContent">
+            <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
+            <!--/* ------------------------------------------------- */-->
+            <p><c:out value="${exception.message}" /></p>
+            <pre class="exception" th:utext="${stackTrace}"></pre>
+            <!--/* ------------------------------------------------- */-->
+        </div>
+        <div th:replace="~{shared :: footer }"></div>
+    </div>
+</div>
+</body>
+</html>

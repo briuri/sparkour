@@ -4,8 +4,257 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated content location.">
+    <list default="true" id="4b38ea8c-6e7c-44fb-a266-d4fe0291f0d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jakarta.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/spring.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/tomcat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/sparkour.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/sparkour-context.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/sparkour-servlet.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/sparkour.tld" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/webapp/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/css/jquery.slicknav-1.0.10.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/css/shCore-3.0.83.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/css/shThemeDefault-3.0.83.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/css/sparkour.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/files/atom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/files/using-s3-dataframe.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/atom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/author.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/background-menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/logo-256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/logo-50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-ec2/iam-roles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-ec2/instance-details.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-ec2/security-group.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-zeppelin/interpreter-local.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-zeppelin/notebook-home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-zeppelin/notebook-settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/installing-zeppelin/notebook-welcome.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/managing-clusters/cluster.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/managing-clusters/master-ui.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/managing-clusters/minimal-cluster.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/managing-clusters/worker-ui.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/s3-vpc-endpoint/configure-endpoint.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/s3-vpc-endpoint/internet-gateways.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/s3-vpc-endpoint/routes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/spark-ec2/iam-roles.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/spark-ec2/script-download.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/spark-ec2/status-checks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/spark-nutshell/components.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/spark-nutshell/languages.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/submitting-applications/deploy-modes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/recipes/working-rdds/dag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/images/stats-160921.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/jquery-3.4.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/jquery.slicknav-1.0.10.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/js.cookie-2.2.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/shBrushes-3.0.83.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/shCore-3.0.83.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/content/js/sparkour.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/appspec.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/cleanWebapps.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/startTomcat.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/deploy/stopTomcat.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/lib/commons-csv-1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2019-01-06-2.3.0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2019-01-06-2.4.0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2019-01-22-2.4.0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2019-05-30-2.4.3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2019-10-19-2.4.4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/log/2020-03-07-2.4.5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/heights.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/src/main/java/buri/sparkour/JAggregatingAccumulators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/src/main/java/buri/sparkour/StringAccumulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/src/main/python/aggregating_accumulators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/src/main/scala/buri/sparkour/SAggregatingAccumulators.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/aggregating-accumulators/src/main/scala/buri/sparkour/StringAccumulator.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/src/main/java/buri/sparkour/JBroadcastVariables.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/src/main/python/broadcast_variables.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/src/main/scala/buri/sparkour/SBroadcastVariables.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/store_locations.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/broadcast-variables/us_states.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/pom-java-local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/pom-java.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/pom-scala-local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/pom-scala.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/src/main/java/buri/sparkour/JBuildingMaven.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-maven/src/main/scala/buri/sparkour/SBuildingMaven.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/build.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/project/assembly.sbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/project/build.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/src/main/java/buri/sparkour/JBuildingSBT.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/building-sbt/src/main/scala/buri/sparkour/SBuildingSBT.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/src/main/java/buri/sparkour/JControllingSchema.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/src/main/java/buri/sparkour/Record.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/src/main/python/controlling_schema.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/src/main/r/controlling_schema.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/controlling-schema/src/main/scala/buri/sparkour/SControllingSchema.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/src/main/java/buri/sparkour/JSubmittingApplications.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/src/main/python/submitting_applications.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/src/main/r/submitting_applications.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/submitting-applications/src/main/scala/buri/sparkour/SSubmittingApplications.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/db-properties.flat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/db-properties.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/setup-mysql.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/src/main/java/buri/sparkour/JUsingJDBC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/src/main/python/using_jdbc.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/src/main/r/using_jdbc.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-jdbc/src/main/scala/buri/sparkour/SUsingJDBC.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/friendly_orders.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/loudoun_d_primary_results_2016.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/src/main/java/buri/sparkour/JUsingSqlUdf.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/src/main/python/using_sql_udf.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/src/main/r/using_sql_udf.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/using-sql-udf/src/main/scala/buri/sparkour/SUsingSqlUdf.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/friendly_orders.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/loudoun_d_primary_results_2016.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/src/main/java/buri/sparkour/JWorkingDataFrames.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/src/main/python/csv_to_json.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/src/main/python/working_dataframes.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/src/main/r/working_dataframes.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-dataframes/src/main/scala/buri/sparkour/SWorkingDataFrames.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/random_numbers.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/src/main/java/buri/sparkour/JWorkingRDDs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/src/main/python/working_rdds.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/sparkour/working-rdds/src/main/scala/buri/sparkour/SWorkingRDDs.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/VERSIONS.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/sparkour.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/src/main/java/buri/sparkour/Template.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/src/main/python/template.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/src/main/r/template.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/template/src/main/scala/buri/sparkour/Template.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/aggregating-accumulators.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/broadcast-variables.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/building-maven.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/building-sbt.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/controlling-schema.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/submitting-applications.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/using-jdbc.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/using-sql-udf.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/working-dataframes.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/examples/zip/working-rdds.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/404.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/exception.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/home/license.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/aggregating-accumulators.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/broadcast-variables.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/building-maven.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/building-sbt.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/configuring-s3.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/controlling-schema.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/installing-ec2.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/installing-zeppelin.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/managing-clusters.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/s3-vpc-endpoint.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/spark-ec2.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/spark-nutshell.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/sparkour-conventions.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/submitting-applications.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/understanding-sparksession.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/using-jdbc.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/using-s3.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/using-sql-udf.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/working-dataframes.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/recipes/working-rdds.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/footer.jspf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/header.jspf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/headerSplit.jspf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/newsUpdate.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeChangeLog.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeCode.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeFooter.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeIndexLink.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeLink.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeLinks.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeOverview.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeSection.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeTab.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeTabHandlers.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeTabs.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/tags/recipeTocLink.tag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/webapp/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/work/diagrams.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/work/scratch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/work/template.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jakarta/annotations-api-2.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jakarta/jakarta.servlet.jsp.jstl-3.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/jakarta/jakarta.servlet.jsp.jstl-api-3.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logback/jcl-over-slf4j-1.7.28.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logback/logback-classic-1.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logback/logback-core-1.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/logback/slf4j-api-1.7.28.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/micrometer-commons-1.12.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/micrometer-observation-1.12.0-M3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-aop-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-beans-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-context-support-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-core-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-expression-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-web-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/spring/spring-webmvc-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test/hamcrest-core-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test/hamcrest-library-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test/junit-4.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/test/spring-test-6.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/tomcat/servlet-api-10.1.17.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sparkour.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/AbstractControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/PageControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/control/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/buri/sparkour/web/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/AbstractSpringTestCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/StubObjects.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/buri/sparkour/web/control/PageControlTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +263,42 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sparkour" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sparkour" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sparkour" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="distribution" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,9 +315,7 @@
     &quot;accountId&quot;: &quot;b360664c-7d63-45cd-86a7-9c47b9f5b38a&quot;
   }
 }</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\BU\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Program Files\Amazon Corretto\jdk17.0.8_7" gradleVersion="8.14" />
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -41,84 +324,118 @@
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2FgA48bFLR6sxsskD95gaagLTT4" />
+  <component name="ProjectId" id="38XBKuzZdoz2nnpEiN9wX8rsDsh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;JUnit.PageControlTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PageControlTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build sparkour.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.sparkour [aws-stage].executor&quot;: &quot;Run&quot;,
+    &quot;Ktor.ApplicationKt.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/workspace/sparkour/lib/jakarta&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d41d8cd98f00b204e9800998ecf8427e&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.All in sparkour">
-    <configuration name="All in sparkour" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="sparkour" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+  <component name="RunManager" selected="Gradle.sparkour [aws-stage]">
+    <configuration name="sparkour [aws-stage]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="aws-stage" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ApplicationKt" type="KtorApplicationConfigurationType" factoryName="Ktor" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="buri.sparkour.ApplicationKt" />
+      <module name="kpuffin.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="buri.sparkour.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="includeProvidedScope" value="false" />
+      <option name="mainClass" value="buri.sparkour.ApplicationKt" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="shortenCommandLine" />
+      <option name="vmParameters" />
+      <option name="workingDirectory" value="C:\workspace\sparkour" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PageControlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="sparkour" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="buri.sparkour.web.control.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="buri.sparkour.web.control" />
-      <option name="MAIN_CLASS_NAME" value="buri.sparkour.web.control.PageControlTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="EngineMain (1)" type="KtorApplicationConfigurationType" factoryName="Ktor" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.ktor.server.netty.EngineMain" />
+      <module name="sparkour.main" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="includeProvidedScope" value="false" />
+      <option name="mainClass" value="io.ktor.server.netty.EngineMain" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="shortenCommandLine" />
+      <option name="vmParameters" />
+      <option name="workingDirectory" value="C:\workspace\sparkour" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PageControlTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="sparkour" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="buri.sparkour.web.control.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="buri.sparkour.web.control" />
-      <option name="MAIN_CLASS_NAME" value="buri.sparkour.web.control.PageControlTest" />
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="EngineMain" type="KtorApplicationConfigurationType" factoryName="Ktor" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.ktor.server.netty.EngineMain" />
+      <module name="kpuffin.main" />
+      <option name="alternativeJrePath" />
+      <option name="alternativeJrePathEnabled" value="false" />
+      <option name="includeProvidedScope" value="false" />
+      <option name="mainClass" value="io.ktor.server.netty.EngineMain" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="shortenCommandLine" />
+      <option name="vmParameters" />
+      <option name="workingDirectory" value="C:\workspace\sparkour" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PageControlTest" />
-        <item itemvalue="JUnit.All in sparkour" />
+        <item itemvalue="Gradle.sparkour [aws-stage]" />
+        <item itemvalue="Ktor.ApplicationKt" />
       </list>
     </recent_temporary>
   </component>
@@ -130,199 +447,19 @@
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="" />
-      <created>1664903160062</created>
+      <changelist id="4b38ea8c-6e7c-44fb-a266-d4fe0291f0d8" name="Changes" comment="" />
+      <created>1768935975198</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1664903160062</updated>
-      <workItem from="1664903161271" duration="2000" />
-      <workItem from="1664903193127" duration="108000" />
-      <workItem from="1664903305495" duration="546000" />
-      <workItem from="1692370024122" duration="28000" />
-      <workItem from="1702344582715" duration="220000" />
-      <workItem from="1704032976419" duration="2000" />
-      <workItem from="1704472722241" duration="32000" />
-      <workItem from="1704473286225" duration="765000" />
-      <workItem from="1704645107562" duration="611000" />
-      <workItem from="1704647546967" duration="270000" />
-      <workItem from="1704649284697" duration="603000" />
-      <workItem from="1704653153465" duration="203000" />
-      <workItem from="1705347745539" duration="65000" />
-      <workItem from="1705347850727" duration="34000" />
-      <workItem from="1705425145867" duration="1710000" />
-      <workItem from="1736905748319" duration="303000" />
-      <workItem from="1738789203203" duration="389000" />
-      <workItem from="1751039389751" duration="107000" />
-      <workItem from="1751039769725" duration="86000" />
-      <workItem from="1756646931128" duration="164000" />
-      <workItem from="1765915849706" duration="70000" />
-      <workItem from="1768320877766" duration="3000" />
-      <workItem from="1768909916839" duration="51000" />
-      <workItem from="1768910951320" duration="606000" />
+      <updated>1768935975198</updated>
+      <workItem from="1768935976446" duration="29000" />
+      <workItem from="1768936023224" duration="748000" />
     </task>
-    <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
-      <created>1664903799835</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1664903799835</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Updated bio and copyright years.">
-      <option name="closed" value="true" />
-      <created>1702344619734</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1702344619734</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Updated from Java 8 to Java 17 for building the website. This encompasses a migration from javax to jakarta and Spring 3 to 6.">
-      <option name="closed" value="true" />
-      <created>1704653275345</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1704653275345</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Removed JSessionIdFilter. Instead, using Tomcat's built in configuration.">
-      <option name="closed" value="true" />
-      <created>1704653296476</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1704653296476</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated codedeploy config to work on Tomcat 10.">
-      <option name="closed" value="true" />
-      <created>1704653309548</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1704653309548</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Updated all dependency versions.">
-      <option name="closed" value="true" />
-      <created>1704653323006</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1704653323006</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Updated robots.txt">
-      <option name="closed" value="true" />
-      <created>1705347807908</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1705347807908</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Updated robots.txt">
-      <option name="closed" value="true" />
-      <created>1705347859433</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1705347859433</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Fixed unit tests by upgrading Spring-Test.">
-      <option name="closed" value="true" />
-      <created>1705426724160</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1705426724160</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fixed path in backup ZIP task.">
-      <option name="closed" value="true" />
-      <created>1705426854336</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1705426854336</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Updated bio.">
-      <option name="closed" value="true" />
-      <created>1751039441239</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1751039441239</updated>
-    </task>
-    <task id="LOCAL-00012" summary="IDEA workspace file updated.">
-      <option name="closed" value="true" />
-      <created>1751039449661</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1751039449661</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Updated profile image.">
-      <option name="closed" value="true" />
-      <created>1751039851365</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1751039851365</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Updated disclaimer.">
-      <option name="closed" value="true" />
-      <created>1756646959364</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1756646959364</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Updated copyright.">
-      <option name="closed" value="true" />
-      <created>1765915865880</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1765915865880</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Updated content location.">
-      <option name="closed" value="true" />
-      <created>1768909960757</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1768909960757</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Migrated sparkour project from Eclipse to IntelliJ IDEA." />
-    <MESSAGE value="Updated bio and copyright years." />
-    <MESSAGE value="Updated from Java 8 to Java 17 for building the website. This encompasses a migration from javax to jakarta and Spring 3 to 6." />
-    <MESSAGE value="Removed JSessionIdFilter. Instead, using Tomcat's built in configuration." />
-    <MESSAGE value="Updated codedeploy config to work on Tomcat 10." />
-    <MESSAGE value="Updated all dependency versions." />
-    <MESSAGE value="Updated robots.txt" />
-    <MESSAGE value="Fixed unit tests by upgrading Spring-Test." />
-    <MESSAGE value="Fixed path in backup ZIP task." />
-    <MESSAGE value="Updated bio." />
-    <MESSAGE value="IDEA workspace file updated." />
-    <MESSAGE value="Updated profile image." />
-    <MESSAGE value="Updated disclaimer." />
-    <MESSAGE value="Updated copyright." />
-    <MESSAGE value="Updated content location." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated content location." />
   </component>
 </project>

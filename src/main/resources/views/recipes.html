@@ -1,0 +1,120 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{shared :: head}"></head>
+<body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        rememberLastRecipeTab();
+        registerTabClicks("Toc");
+    });
+</script>
+<div id="layoutOuterPosition">
+    <a href="/"><div id="layoutHeaderRow">Sparkour</div></a>
+    <div th:replace="~{shared :: menubar }"></div>
+    <div id="layoutContent">
+        <div id="layoutInnerContent">
+            <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
+            <!--/* ------------------------------------------------- */-->
+            <div class="tabsContainer">
+                <ul class="tabsMenu tabsTocMenu">
+                    <li><a href=".tab-1">Spark Tutorials (6)</a></li>
+                    <li><a href=".tab-2">Spark Development (9)</a></li>
+                    <li><a href=".tab-3">Spark Integration (5)</a></li>
+                </ul>
+                <div class="tabContentPane tabTocContentPane">
+                    <div class="tab-1 tabContent">
+                        <p>These sequential tutorial recipes are intended for developers just getting started with Spark.
+                            Developers should have some familiarity with the Linux command line and common tasks like running shell scripts.</p>
+
+                        <ul>
+                            <li><div th:replace="~{shared :: recipeLink('sparkour-conventions', '', ${recipeTitles['sparkour-conventions']}) }"></div></li>
+                            <li><div th:replace="~{shared :: recipeLink('spark-nutshell', '', ${recipeTitles['spark-nutshell']}) }"></div></li>
+                            <li><div th:replace="~{shared :: recipeLink('installing-ec2', '', ${recipeTitles['installing-ec2']}) }"></div></li>
+                            <li><div th:replace="~{shared :: recipeLink('managing-clusters', '', ${recipeTitles['managing-clusters']}) }"></div></li>
+                            <li><div th:replace="~{shared :: recipeLink('submitting-applications', '', ${recipeTitles['submitting-applications']}) }"></div></li>
+                            <li><div th:replace="~{shared :: recipeLink('working-rdds', '', ${recipeTitles['working-rdds']}) }"></div></li>
+                        </ul>
+                    </div>
+                    <div class="tab-2 tabContent">
+                        <p>These recipes are targeted, adaptable examples of useful Spark code addressing common developer needs. They assume some familiarity
+                            with the concepts explained in the tutorials.</p>
+    
+                        <ul>
+                            <li><span class="rCategory">Libraries: Spark GraphX</span><ul>
+                            </ul></li>
+                            <li><span class="rCategory">Libraries: Spark MLlib Library</span><ul>
+                            </ul></li>
+                            <li><span class="rCategory">Libraries: Spark Streaming</span><ul>
+                            </ul></li>
+                            <li><span class="rCategory">Libraries: Spark SQL</span><ul>
+                                <li><div th:replace="~{shared :: recipeLink('working-dataframes', '', ${recipeTitles['working-dataframes']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('using-sql-udf', '', ${recipeTitles['using-sql-udf']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('using-jdbc', '', ${recipeTitles['using-jdbc']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('controlling-schema', '', ${recipeTitles['controlling-schema']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('understanding-sparksession', '', ${recipeTitles['understanding-sparksession']}) }"></div></li>
+                                <li>Using Hive Tables with Spark DataFrames</li>
+                            </ul></li>
+                            <li><span class="rCategory">Practices</span><ul>
+                                <li><div th:replace="~{shared :: recipeLink('building-maven', '', ${recipeTitles['building-maven']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('building-sbt', '', ${recipeTitles['building-sbt']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('aggregating-accumulators', '', ${recipeTitles['aggregating-accumulators']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('broadcast-variables', '', ${recipeTitles['broadcast-variables']}) }"></div></li>
+                                <li>Simplifying Java Applications with Lambda Expressions</li>
+                                <li>Writing Unit Tests</li>
+                            </ul></li>
+                        </ul>
+    
+                        <p>Unlinked titles depict the roadmap of recipes I would like to tackle next -- the titles will become links as they are published.
+                            Suggestions for new recipes can be submitted through the <a href="https://ddmsence.atlassian.net/projects/SPARKOUR/summary">Issues</a> page.</p>
+                    </div>
+                    <div class="tab-3 tabContent">
+                        <p>These recipes are targeted, adaptable examples of useful Spark code addressing common developer needs. They assume some familiarity
+                            with the concepts explained in the tutorials.</p>
+    
+                        <ul>
+                            <li><span class="rCategory">Clusters</span><ul>
+                                <li><div th:replace="~{shared :: recipeLink('spark-ec2', '', ${recipeTitles['spark-ec2']}) }"></div></li>
+                                <li>Configuring Job Scheduling</li>
+                                <li>Using Apache Hadoop YARN as a Cluster Manager</li>
+                                <li>Using Apache Mesos as a Cluster Manager</li>
+                            </ul></li>
+                            <li><span class="rCategory">Data Sources: S3</span><ul>
+                                <li><div th:replace="~{shared :: recipeLink('configuring-s3', '', ${recipeTitles['configuring-s3']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('using-s3', '', ${recipeTitles['using-s3']}) }"></div></li>
+                                <li><div th:replace="~{shared :: recipeLink('s3-vpc-endpoint', '', ${recipeTitles['s3-vpc-endpoint']}) }"></div></li>
+                            </ul></li>
+                            <li><span class="rCategory">Data Sources: Other</span><ul>
+                                <li>Using HDFS as a Data Store</li>
+                            </ul></li>
+                            <li><span class="rCategory">Logging and Monitoring</span><ul>
+                                <li>Enabling History in Your Master UI</li>
+                                <li>Monitoring Your Cluster with the REST API</li>
+                                <li>Capturing Metrics with slf4j</li>
+                            </ul></li>
+                            <li><span class="rCategory">Notebooks</span><ul>
+                                <li><div th:replace="~{shared :: recipeLink('installing-zeppelin', '', ${recipeTitles['installing-zeppelin']}) }"></div></li>
+                            </ul></li>
+                            <li><span class="rCategory">Security</span><ul>
+                                <li>Adding Authentication to Spark UIs</li>
+                                <li>Running Spark over SSL</li>
+                            </ul></li>
+                            <li><span class="rCategory">Tuning</span><ul>
+                                <li>Configuring Shuffle Behavior</li>
+                                <li>Using Amazon CloudWatch to Profile Your Workload</li>
+                                <li>Using Kryo for Memory-Efficient Data Serialization</li>
+                                <li>Using Spark Metrics to Profile Your Workload</li>
+                            </ul></li>
+                        </ul>
+    
+                        <p>Unlinked titles depict the roadmap of recipes I would like to tackle next -- the titles will become links as they are published.
+                            Suggestions for new recipes can be submitted through the <a href="https://ddmsence.atlassian.net/projects/SPARKOUR/summary">Issues</a> page.</p>
+                    </div>
+                </div>
+            </div>
+            <!--/* ------------------------------------------------- */-->
+        </div>
+        <div th:replace="~{shared :: footer }"></div>
+    </div>
+</div>
+</body>
+</html>

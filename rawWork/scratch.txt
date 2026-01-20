@@ -1,0 +1,17 @@
+#########
+# Links #
+#########
+
+HDFS:
+	http://www.ccs.neu.edu/home/cbw/spark.html
+Shuffle:
+	http://blog.cloudera.com/blog/2015/05/working-with-apache-spark-or-how-i-learned-to-stop-worrying-and-love-the-shuffle/
+	http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/ 
+Standalone/YARN/Mesos:
+	http://stackoverflow.com/questions/28664834/which-cluster-type-should-i-choose--fileor-spark
+	https://www.quora.com/How-does-YARN-compare-to-Mesos
+Streaming with Twitter:
+	https://medium.com/@anicolaspp/spark-streaming-and-twitter-sentiment-analysis-c860938d484#.cs2oral7p
+Uber JAR with Ant:	
+	http://www.oooogleeee.com/education/apache-ant-tutorial/ant-create--fileat-jar--fileile/
+

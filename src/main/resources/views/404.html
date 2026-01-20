@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{shared :: head}"></head>
+<body>
+<div id="layoutOuterPosition">
+    <a href="/"><div id="layoutHeaderRow">Sparkour</div></a>
+    <div th:replace="~{shared :: menubar }"></div>
+    <div id="layoutContent">
+        <div id="layoutInnerContent">
+            <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
+            <!--/* ------------------------------------------------- */-->
+            <div class="error">
+                <span th:utext="${baseUrl} + ${path}"></span><br />
+                The page you requested could not be found. The link you followed may be broken.
+            </div>
+            <!--/* ------------------------------------------------- */-->
+        </div>
+        <div th:replace="~{shared :: footer }"></div>
+    </div>
+</div>
+</body>
+</html>

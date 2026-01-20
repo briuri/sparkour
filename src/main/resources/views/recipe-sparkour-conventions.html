@@ -1,0 +1,187 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{shared :: head}"></head>
+<body>
+<div id="layoutOuterPosition">
+    <a href="/"><div id="layoutHeaderRow">Sparkour</div></a>
+    <div th:replace="~{shared :: menubar }"></div>
+    <div id="layoutContent">
+        <div id="layoutInnerContent">
+            <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
+            <!--/* ------------------------------------------------- */-->
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    showDefaultCodeTab();
+                    registerTabClicks("Code");
+                    registerSaveTabClicks();
+                });
+            </script>
+
+
+            <div class="rDate">by Brian Uri!, 2016-02-24</div>
+            <div class="rReference">
+                <h3>Synopsis</h3>
+                <p>This tutorial describes the formatting conventions used in the Sparkour recipes.
+                    There is no hands-on work involved.
+
+                <h3>Tutorial Goals</h3>
+                <ul>
+                    <li>You will understand how recipe instructions and code samples are presented.</li>
+                </ul>
+
+                <a name="toc"></a>
+                <h3>Section Links</h3>
+                <ul>
+                    <li><a href="#01">Instructions</a></li>
+                    <li><a href="#02">Code Samples</a></li>
+                    <li><a href="#03">Conclusion</a></li>
+                </ul>
+            </div>
+
+            <a id="01"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Instructions</h2>
+
+            <p>Sparkour recipes employ a few formatting conventions to make instructions clearer:</p>
+
+            <ul>
+                <li><span class="rPN">Page Name</span> denotes the title of a page, or a tabbed pane within a page.
+                    This is also used to highlight important terminology.</li>
+                <li><span class="rMI">Menu Item</span> denotes an option in a menu that needs to be selected.</li>
+                <li><span class="rAB">Button</span> denotes an important button you need to press in
+                    a user interface (UI).</li>
+                <li><span class="rK">Field Name</span> denotes the name of a form field in a UI or an XML element name.</li>
+                <li><span class="rV">Field Value</span> denotes the value that you would enter into a form field or an XML element.
+                    Example values in a recipe generally include a <span class="rV">sparkour-</span> prefix. Feel free to
+                    customize this with a token relevant to your own work.</li>
+                <li><span class="rCW">code word</span> denotes technical coding concepts, such as the names
+                    of classes and variables, or the name of a Linux command line utility.</li>
+            </ul>
+
+            <a id="02"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Code Samples</h2>
+
+            <p>Commands to be typed at the Linux command line are <span class="rCW">bash</span>-compatible
+                and displayed in a syntax-highlighted box. The command prompt is not shown:</p>
+
+            <script type="syntaxhighlighter" class="brush: bash"><![CDATA[
+	# This is a comment that explains the next command. You don't need to type this.
+	typeThis.sh parameter1 parameter2
+	# (Parenthetical comments describe an action you'd take based on the results 
+	#  of the previous command, such as selecting something from a follow-up menu)
+]]></script>
+
+            <p>Code samples employ the Java, Python, R, or Scala programming languages. If the example
+                has been translated into multiple languages, a separate box appears for each employed language. These boxes show code
+                in Python by default, but you can change the language and use the &#128190; icon to save your preferred language.</p>
+
+            <div class="tabsContainer">
+                <ul class="tabsMenu tabsCodeMenu">
+                    <li><a href=".tab-1">Java</a></li>
+                    <li><a href=".tab-2">Python</a></li>
+                    <li><a href=".tab-3">R</a></li>
+                    <li><a href=".tab-4">Scala</a></li>
+                    <li><span class="tabSave">&#128190;</span><span class="tabSaveMessage">Default language saved.</span></li>
+                </ul>
+                <div class="tabContentPane tabCodeContentPane">
+                    <div class="tab-1 tabContent">
+                        <script type="syntaxhighlighter" class="brush: java"><![CDATA[
+			/**
+			 * A sample Java class.
+			 */
+			public class SparkApp {
+			
+				public SparkApp() {}
+			}
+		]]></script>
+                    </div><div class="tab-2 tabContent">
+                    <script type="syntaxhighlighter" class="brush: python"><![CDATA[
+			class SparkApp():
+				"""A sample Python class.
+				
+			    	camelCase used for variable names for consistency and
+    				ease of translation across the prevailing style of
+    				the Java, R, and Scala examples.
+				"""
+				
+				def __init__(self):
+			   		self.data = []
+		]]></script>
+                </div><div class="tab-3 tabContent">
+                    <script type="syntaxhighlighter" class="brush: plain"><![CDATA[
+			# R code using SparkR as a front-end to Spark
+			
+			# Use SparkR to get the SparkContext
+			sc <- sparkR.init("local")
+			sqlContext <- sparkRSQL.init(sc)
+
+			# Create a DataFrame from a text file
+			people <- read.df(sqlContext, "data.json", "json")
+		]]></script>
+                </div><div class="tab-4 tabContent">
+                    <script type="syntaxhighlighter" class="brush: scala"><![CDATA[
+			/**
+			 * A sample Scala class
+			 */
+			object SparkApp {
+			
+			}
+		]]></script>
+                </div>
+                </div></div>
+
+            <p>Code intended for the Spark interactive shells includes the shell prompt at the beginning of each line:</p>
+
+            <div class="tabsContainer">
+                <ul class="tabsMenu tabsCodeMenu">
+                    <li><a href=".tab-1">Java</a></li>
+                    <li><a href=".tab-2">Python</a></li>
+                    <li><a href=".tab-3">R</a></li>
+                    <li><a href=".tab-4">Scala</a></li>
+                    <li><span class="tabSave">&#128190;</span><span class="tabSaveMessage">Default language saved.</span></li>
+                </ul>
+                <div class="tabContentPane tabCodeContentPane">
+                    <div class="tab-1 tabContent">
+                        <p>There is no interactive shell in Java.</p>
+                    </div><div class="tab-2 tabContent">
+                    <script type="syntaxhighlighter" class="brush: python"><![CDATA[
+			>>> # This is a comment in Spark's Python interactive shell. You don't need to type this.
+			>>> print("Hello")
+			>>> quit()
+		]]></script>
+                </div><div class="tab-3 tabContent">
+                    <script type="syntaxhighlighter" class="brush: plain"><![CDATA[
+			> # This is a comment in an R shell. You don't need to type this.
+			> print("Hello")
+			> quit()
+		]]></script>
+                </div><div class="tab-4 tabContent">
+                    <script type="syntaxhighlighter" class="brush: scala"><![CDATA[
+			scala> // This is a comment in Spark's Scala interactive shell. You don't need to type this.
+			scala> println("Hello")
+			scala> exit
+		]]></script>
+                </div>
+                </div></div>
+
+            <a id="03"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Conclusion</h2>
+
+            <p>You should now understand how the material in the remaining tutorials and recipes is presented.
+                In the next tutorial, <div th:replace="~{shared :: recipeLink('spark-nutshell', '', ${recipeTitles['spark-nutshell']}) }"></div>, we learn more about Apache Spark.</p>
+
+            <div class="rReference">
+                <h3>Change Log</h3><ul>
+                <li>2016-03-13: Added instructions for saving a preferred programming language
+                    (<a href="https://ddmsence.atlassian.net/projects/SPARKOUR/issues/SPARKOUR-1">SPARKOUR-1</a>).</li>
+            </ul>
+            </div>
+            <p>Spot any inconsistencies or errors? See things that could be explained better or code that could be written more idiomatically?
+                If so, please help me improve Sparkour by opening a ticket on the <a href="https://ddmsence.atlassian.net/projects/SPARKOUR">Issues</a> page.
+                You can also discuss this recipe with others in the Sparkour community on the <a href="http://groups.google.com/group/sparkour">Discussion</a> page.</p>
+
+            <div class="rIndexLink"><a href="/recipes">back to Recipes</a></div>
+            <!--/* ------------------------------------------------- */-->
+        </div>
+        <div th:replace="~{shared :: footer }"></div>
+    </div>
+</div>
+</body>
+</html>

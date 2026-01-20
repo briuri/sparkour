@@ -1,3 +1,0 @@
-jdbcUrl=jdbc:mysql://<hostname>/sparkour
-user=sparkour
-password=<password>

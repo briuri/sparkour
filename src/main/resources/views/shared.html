@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:fragment="head">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Sparkour is an open-source collection of programming recipes for Apache Spark. Designed as an efficient way to navigate the intricacies of the Spark ecosystem, Sparkour aims to be an approachable, understandable, and actionable cookbook for distributed data processing.">
+    <meta name="og:description" content="Sparkour is an open-source collection of programming recipes for Apache Spark. Designed as an efficient way to navigate the intricacies of the Spark ecosystem, Sparkour aims to be an approachable, understandable, and actionable cookbook for distributed data processing.">
+    <meta property="og:image" content="https://sparkour.urizone.net/images/logo-256.png"/>
+    <meta property="og:title" content="Sparkour"/>
+    <meta property="og:url" th:content="${baseUrl} + ${path}"/>
+    
+    <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.slicknav-1.0.10.min.js"></script>
+    <script type="text/javascript" src="/js/js.cookie-2.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/shCore-3.0.83.js"></script>
+    <script type="text/javascript" src="/js/shBrushes-3.0.83.js"></script>
+    <script type="text/javascript" src="/js/sparkour.js"></script>
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+        $(function() {
+            $('#menu').slicknav({
+                label: '',
+                prependTo: '#menuContainer'
+            });
+        });
+    </script>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="/css/jquery.slicknav-1.0.10.css" />
+    <link type="text/css" rel="stylesheet" href="/css/shCore-3.0.83.css" />
+    <link type="text/css" rel="stylesheet" href="/css/shThemeDefault-3.0.83.css" />
+    <link type="text/css" rel="stylesheet" href="/css/sparkour.css" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="alternate" href="/files/atom.xml" type="application/atom+xml"/>
+    <title th:text="${title} + ' | Sparkour'"></title>
+</head>
+
+<body>
+
+        <div th:fragment="footer">
+            <div id="layoutFooter">
+                Apache, Spark, and Apache Spark are trademarks of the Apache Software Foundation (ASF).
+                <br />Sparkour is &copy 2016 - 2026 by
+                <script type="text/javascript">
+                    document.write("<a href=\"mailto:" + eMail + "\">Brian Uri!</a>.");
+                </script>
+                It is an independent project that is not endorsed or supported by the ASF.
+                <br /><div class="counter"><script type="text/javascript" src="https://secure.statcounter.com/counter/counter.js"></script> visitors since February 2016</div>
+            </div>
+        </div>
+        
+        <a th:fragment="recipeLink(id, anchor, text)" th:href="'/recipes/' + ${id} + '/' + ${anchor}" th:text="${text}"></a>
+        
+    <div th:fragment="menubar">
+        <div id="menuContainer">
+            <ul id="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recipes">Recipes</a></li>
+                <li><a href="/license">License</a></li>
+                <li><a href="https://ddmsence.atlassian.net/projects/SPARKOUR/summary">Issues &rArr;</a></li>
+                <li><a href="http://groups.google.com/group/sparkour">Discussion &rArr;</a></li>
+            </ul>
+        </div>      
+    </div>
+
+</body>
+</html>

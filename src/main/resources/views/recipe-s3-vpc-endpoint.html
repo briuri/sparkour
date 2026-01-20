@@ -1,0 +1,146 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{shared :: head}"></head>
+<body>
+<div id="layoutOuterPosition">
+    <a href="/"><div id="layoutHeaderRow">Sparkour</div></a>
+    <div th:replace="~{shared :: menubar }"></div>
+    <div id="layoutContent">
+        <div id="layoutInnerContent">
+            <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
+            <!--/* ------------------------------------------------- */-->
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    showDefaultCodeTab();
+                    registerTabClicks("Code");
+                    registerSaveTabClicks();
+                });
+            </script>
+
+
+            <div class="rDate">by Brian Uri!, 2016-04-13</div>
+            <div class="rReference">
+                <h3>Synopsis</h3>
+                <p>This recipe shows how to set up a VPC Endpoint for Amazon S3, which allows your Spark cluster to interact with S3 resources
+                    from a private subnet without a Network Address Translation (NAT) instance or Internet Gateway.</p>
+
+                <h3>Prerequisites</h3>
+                <ol>
+                    <li>You need an
+                        <a href="https://www.amazon.com/ap/signin?openid.assoc_handle=aws&openid.return_to=https%3A%2F%2Fsignin.aws.amazon.com%2Foauth%3Fresponse_type%3Dcode%26client_id%3Darn%253Aaws%253Aiam%253A%253A015428540659%253Auser%252Fhomepage%26redirect_uri%3Dhttps%253A%252F%252Fconsole.aws.amazon.com%252Fconsole%252Fhome%253Fstate%253DhashArgs%252523%2526isauthcode%253Dtrue%26noAuthCookie%3Dtrue&openid.mode=checkid_setup&openid.ns=http://specs.openid.net/auth/2.0&openid.identity=http://specs.openid.net/auth/2.0/identifier_select&openid.claimed_id=http://specs.openid.net/auth/2.0/identifier_select&openid.pape.preferred_auth_policies=MultifactorPhysical&openid.pape.max_auth_age=43200&openid.ns.pape=http://specs.openid.net/extensions/pape/1.0&server=/ap/signin&forceMobileApp=&forceMobileLayout=&pageId=aws.ssop&ie=UTF8">AWS account</a>
+                        and a general understanding of how <a href="https://media.amazonwebservices.com/AWS_Pricing_Overview.pdf">AWS billing works</a>.</li>
+
+                    <li>You need an EC2 instance with the AWS command line tools installed, so you can test the connection. The instance created in either <div th:replace="~{shared :: recipeLink('installing-ec2', '', ${recipeTitles['installing-ec2']}) }"></div> or
+                        <div th:replace="~{shared :: recipeLink('spark-ec2', '', ${recipeTitles['spark-ec2']}) }"></div> is sufficient.</li>
+                </ol>
+
+                <h3>Target Versions</h3>
+                <ol>
+                    <li>This recipe is independent of any specific version of Spark or Hadoop. All work is done through Amazon Web Services (AWS).</li>
+                </ol>
+
+                <a name="toc"></a>
+                <h3>Section Links</h3>
+                <ul>
+                    <li><a href="#01">Introducing VPC Endpoints</a></li>
+                    <li><a href="#02">Establishing the VPC Endpoint</a></li>
+                    <li><a href="#03">Next Steps</a></li>
+                </ul>
+            </div>
+
+            <a id="01"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Introducing VPC Endpoints</h2>
+
+            <p>Amazon S3 is a key-value object store that can be used as a data source to your Spark cluster. Normally, connections between EC2 instances in a Virtual Private Cloud (VPC)
+                and resources in S3 require an Internet Gateway to be established in the VPC. However, you may need to deploy your Spark cluster in a private subnet where no Internet Gateway
+                is available. In this case, you can establish a VPC Endpoint, which enables secure connections to S3 without the extra expense of a NAT instance. (Normally, a NAT instance would be
+                needed to allow instances in the private subnet to share the Internet Gateway of a nearby public subnet).</p>
+
+            <p>S3 is one of several Amazon service accessible over a VPC Endpoint, and other services are expected to adopt Endpoints in the future.
+                Using a VPC Endpoint to access S3 also improves your cluster's security posture, as traffic between the cluster and S3 never leaves the Amazon network.</p>
+
+            <a id="02"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Establishing the VPC Endpoint</h2>
+
+            <ol>
+                <li>Login to your <a href="https://console.aws.amazon.com/">AWS Management Console</a> and select the
+                    <span class="rPN">VPC</span> service.</li>
+                <li>Navigate to <span class="rMI">Endpoints</span> in the left side menu, and then select
+                    <span class="rAB">Create Endpoint</span> at the top of the page.
+                    This starts a wizard workflow to create a new Endpoint.</li>
+                <li>Select <span class="rV">com.amazonaws.us-east-1.s3</span> as the AWS <span class="rK">Service Name</span>, as shown
+                    in the image below.
+
+                    <img th:src="'/images/' + ${imagesPath} + '/configure-endpoint.png'" width="600" height="342" title="Configuring a VPC Endpoint to S3" class="diagram border" />
+
+                <li>Set the <span class="rK">VPC</span> to the VPC containing your Spark cluster or other EC2 instances. In this example, we're using the Default VPC
+                    provided with the base AWS account.</li>
+                <li>Select the route table corresponding to subnets that need access to the Endpoint. In this example, the default VPC has a route table attached
+                    to the four default subnets. Any EC2 instance in any of the subnets are able to use the Endpoint, unless
+                    we explicitly configure an access control policy on the previous page.</li>
+                <li>Like all AWS services, you can attach policies for fine-grained access control to the VPC Endpoint. You
+                    can also configure bucket policies in S3 to control access <i>from</i> specific Endpoints. In this example,
+                    we're using the <span class="rV">Full Access</span> policy on the Endpoint. The recipe,
+                    <div th:replace="~{shared :: recipeLink('configuring-s3', '', ${recipeTitles['configuring-s3']}) }"></div>, shows how to configure bucket policies.</li>
+                <li>Before you proceed, make sure that there is no active communication between your Spark cluster and S3.
+                    Any active connections are dropped when the Endpoint is established. When ready, select <span class="rAB">Create endpoint</span>.
+                    You should see "The following VPC Endpoint was created" as a status message. Go to <span class="rAB">Close</span>
+                    to return to the list of Endpoints.</li>
+                <li>From the VPC Dashboard, navigate to <span class="rMI">Route Tables</span> and then select the modified route table
+                    in the dashboard. Details about the route table appear in the lower pane, as seen in the image below. Select the
+                    <span class="rPN">Routes</span> tab.</li>
+
+                <img th:src="'/images/' + ${imagesPath} + '/routes.png'" width="700" height="356" title="Showing the Routes in the Route Table" class="diagram border" />
+
+                <li>Routes are processed in order from most specific to least specific. In this example, there is a route for local
+                    traffic within the VPC, a new route pointing to our new S3 VPC Endpoint, and a catch-all route pointing to the
+                    Internet Gateway for all other traffic. (If you are working in a private subnet, you should not see the catch-all route).</li>
+            </ol>
+
+            <a id="03"></a><h2><a class="tocLink" href="#toc" title="Back to Section Links">&#8662;</a> Next Steps</h2>
+
+            <p>The recipe, <div th:replace="~{shared :: recipeLink('configuring-s3', '', ${recipeTitles['configuring-s3']}) }"></div>, provides instructions for setting up an S3 bucket and testing a connection between
+            EC2 and S3. Normally, those tests would send and receive traffic through the configured Internet Gateway out of Amazon's network, and then
+            back in to S3. Now that you have created a VPC Endpoint, it is the preferred route for such traffic. If your Spark cluster
+            is in a private subnet, those tests should fail without a VPC Endpoint in place.</p>
+
+            <p>If your Spark cluster is in a public subnet and you want to confirm that the VPC Endpoint is working,
+                you can temporarily detach the Internet Gateway from the VPC:</p>
+
+            <ol>
+                <li>Confirm that no critical applications are running that require use of the Internet Gateway.</li>
+                <li>From the VPC Dashboard, navigate to <span class="rMI">Internet Gateways</span> in the left side menu,
+                    and then select the Internet Gateway attached to your VPC, as shown in the image below.</li>
+
+                <img th:src="'/images/' + ${imagesPath} + '/internet-gateways.png'" width="700" height="178" title="Managing Internet Gateways in the VPC Dashboard" class="diagram border" />
+
+                <li>Select <span class="rAB">Detach from VPC</span> and then try the connection tests from the other recipe again.
+                    If your VPC Endpoint is configured properly, the connection between EC2 and S3 will continue to work without the
+                    Internet Gateway.</li>
+                <li>When you have confirmed the behavior, select <span class="rAB">Attach to VPC</span> to restore Internet connectivity
+                    to your VPC.</li>
+            </ol>
+
+            <div class="rReference">
+                <h3>Reference Links</h3><ol>
+                <li><a href="hhttp://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html">VPC Endpoints</a> in the Amazon VPC Documentation</a></li>
+                <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies-vpc-endpoint.html">Example Bucket Policies for VPC Endpoints</a> in the Amazon S3 Documentation</li>
+                <li><div th:replace="~{shared :: recipeLink('configuring-s3', '', ${recipeTitles['configuring-s3']}) }"></div></li>
+                <li><div th:replace="~{shared :: recipeLink('using-s3', '', ${recipeTitles['using-s3']}) }"></div></li>
+            </ol>
+
+                <h3>Change Log</h3><ul>
+                <li>This recipe hasn't had any substantive updates since it was first published.</li>
+            </ul>
+            </div>
+            <p>Spot any inconsistencies or errors? See things that could be explained better or code that could be written more idiomatically?
+                If so, please help me improve Sparkour by opening a ticket on the <a href="https://ddmsence.atlassian.net/projects/SPARKOUR">Issues</a> page.
+                You can also discuss this recipe with others in the Sparkour community on the <a href="http://groups.google.com/group/sparkour">Discussion</a> page.</p>
+
+            <div class="rIndexLink"><a href="/recipes">back to Recipes</a></div>
+            <!--/* ------------------------------------------------- */-->
+        </div>
+        <div th:replace="~{shared :: footer }"></div>
+    </div>
+</div>
+</body>
+</html>
