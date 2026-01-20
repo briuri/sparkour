@@ -25,7 +25,7 @@
 
 	<!-- Deploy Properties -->
 	<property name="deploy.dir" value="${output.dir}/deploy" />
-	<property name="deploy.content.dir" value="/workspace/aws-stage/urizone-content/sparkour" />
+	<property name="deploy.content.dir" value="/workspace/aws-stage/urizone-content/sparkour.urizone.net" />
 	<property name="deploy.webapp.home" value="out/tomcat" />
 	<property name="deploy.webapp.dir" value="${deploy.webapp.home}/webapps" />
 

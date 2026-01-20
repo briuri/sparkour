@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated disclaimer.">
+    <list default="true" id="cd09afe8-2c3f-4ecc-9ccb-05fc9802a23c" name="Changes" comment="Updated copyright.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/footer.jspf" beforeDir="false" afterPath="$PROJECT_DIR$/data/webapp/WEB-INF/jsp/shared/footer.jspf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +34,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -47,6 +51,7 @@
   "keyToString": {
     "JUnit.PageControlTest (1).executor": "Run",
     "JUnit.PageControlTest.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -121,8 +126,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>
@@ -154,7 +159,9 @@
       <workItem from="1751039389751" duration="107000" />
       <workItem from="1751039769725" duration="86000" />
       <workItem from="1756646931128" duration="164000" />
-      <workItem from="1765915849706" duration="7000" />
+      <workItem from="1765915849706" duration="70000" />
+      <workItem from="1768320877766" duration="3000" />
+      <workItem from="1768909916839" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="Migrated sparkour project from Eclipse to IntelliJ IDEA.">
       <created>1664903799835</created>
@@ -267,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756646959364</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Updated copyright.">
+      <option name="closed" value="true" />
+      <created>1765915865880</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1765915865880</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +313,7 @@
     <MESSAGE value="IDEA workspace file updated." />
     <MESSAGE value="Updated profile image." />
     <MESSAGE value="Updated disclaimer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated disclaimer." />
+    <MESSAGE value="Updated copyright." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated copyright." />
   </component>
 </project>
