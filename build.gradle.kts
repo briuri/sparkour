@@ -65,6 +65,7 @@ tasks.processResources {
     exclude("codedeploy/**")
 }
 tasks.shadowJar {
+    exclude("codedeploy/**")
     exclude("static/css/**")
     exclude("static/files/**")
     exclude("static/images/**")
