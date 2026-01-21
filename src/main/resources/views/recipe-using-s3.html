@@ -321,7 +321,7 @@
 
             <p>This message occurs when your IAM Role does not have the proper permissions to delete objects in the S3 bucket. When you write to S3,
                 several temporary files are saved during the task. These files are deleted once the write operation is complete, so your EC2 instance
-                must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Role policy, as shown in <div th:replace="~{shared :: recipeLink('configuring-s3', 's3a-config', ${recipeTitles['configuring-s3']}) }"></div>.</p>
+                must have the <span class="rCW">s3:Delete*</span> permission added to its IAM Role policy, as shown in <div th:replace="~{shared :: recipeLink('configuring-s3', '#s3a-config', ${recipeTitles['configuring-s3']}) }"></div>.</p>
 
             <div class="rReference">
                 <h3>Reference Links</h3><ol>
