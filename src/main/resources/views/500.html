@@ -9,7 +9,7 @@
         <div id="layoutInnerContent">
             <h1 th:if="${title != 'Home'}" th:text="${title}"></h1>
             <!--/* ------------------------------------------------- */-->
-            <p><c:out value="${exception.message}" /></p>
+            <p th:text="${message}">
             <pre class="exception" th:utext="${stackTrace}"></pre>
             <!--/* ------------------------------------------------- */-->
         </div>
